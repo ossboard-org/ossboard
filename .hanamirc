@@ -1,0 +1,4 @@
+project=ossboard
+architecture=container
+test=rspec
+template=erb
