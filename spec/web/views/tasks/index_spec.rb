@@ -17,4 +17,13 @@ RSpec.describe Web::Views::Tasks::Index do
       expect(view.tasks).to eq repository.all
     end
   end
+
+  describe '#link_to_task' do
+    let(:task) { Task.new(id: 1, title: 'test') }
+
+    it 'returns link to special task' do
+      link = view.link_to_task(task)
+      expect(link.to_s).to eq '<a href="/tasks/1">test</a>'
+    end
+  end
 end
