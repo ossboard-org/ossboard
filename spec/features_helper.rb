@@ -5,6 +5,7 @@ require 'capybara'
 require 'capybara/rspec'
 
 RSpec.configure do |config|
+  config.include RSpec::Hanami
   config.include RSpec::FeatureExampleGroup
 
   config.include Capybara::DSL,           feature: true

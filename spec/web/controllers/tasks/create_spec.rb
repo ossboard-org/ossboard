@@ -1,3 +1,4 @@
+require 'spec_helper'
 require_relative '../../../../apps/web/controllers/tasks/create'
 
 RSpec.describe Web::Controllers::Tasks::Create do
@@ -6,6 +7,6 @@ RSpec.describe Web::Controllers::Tasks::Create do
 
   it 'is successful' do
     response = action.call(params)
-    expect(response[0]).to eq 200
+    expect(response).to have_http_status 200
   end
 end

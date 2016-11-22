@@ -1,3 +1,4 @@
+require 'spec_helper'
 require_relative '../../../../apps/web/controllers/tasks/show'
 
 RSpec.describe Web::Controllers::Tasks::Show do
@@ -7,7 +8,7 @@ RSpec.describe Web::Controllers::Tasks::Show do
 
   it 'is successful' do
     response = action.call(params)
-    expect(response[0]).to eq 200
+    expect(response).to be_success
   end
 
   describe 'expose' do
