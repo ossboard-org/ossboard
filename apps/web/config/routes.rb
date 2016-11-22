@@ -1,6 +1,6 @@
 root to: 'tasks#index'
 
+get '/tasks/new', to: 'tasks#new',  as: :new_task
 get '/tasks/:id', to: 'tasks#show', as: :task
-get '/tasks/new', to: 'tasks#new'
 
-post '/tasks',    to: 'tasks#create'
+post '/tasks',    to: 'tasks#create', as: :task
