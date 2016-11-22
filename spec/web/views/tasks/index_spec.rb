@@ -14,6 +14,8 @@ RSpec.describe Web::Views::Tasks::Index do
       3.times { |i| TaskRepository.new.create(title: "title ##{i}") }
     end
 
+    after { TaskRepository.new.clear }
+
     it 'returns all tasks' do
       expect(view.tasks).to eq repository.all
     end

@@ -4,8 +4,15 @@ module Web::Views::Tasks
 
     def form
       form_for task_form, id: 'task-form' do
-        text_field :title
-        text_area :body
+        div class: 'input' do
+          label      :title
+          text_field :title
+        end
+
+        div class: 'input' do
+          label      :body
+          text_field :body
+        end
 
         submit 'Create'
       end
