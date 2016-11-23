@@ -1,0 +1,1 @@
+root to: 'dashboard#index'
