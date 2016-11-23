@@ -6,6 +6,8 @@ RSpec.describe Web::Controllers::Tasks::Show do
   let(:task) { TaskRepository.new.create(title: 'test') }
   let(:params) { { id: task.id } }
 
+  after { TaskRepository.new.clear }
+
   it 'is successful' do
     response = action.call(params)
     expect(response).to be_success

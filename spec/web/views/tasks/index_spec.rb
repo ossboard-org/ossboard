@@ -7,17 +7,17 @@ RSpec.describe Web::Views::Tasks::Index do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  let(:repository) { TaskRepository.new }
+  let(:repo) { TaskRepository.new }
 
   describe '#tasks' do
     before do
-      3.times { |i| TaskRepository.new.create(title: "title ##{i}") }
+      3.times { |i| repo.create(title: "title ##{i}", approved: true) }
     end
 
     after { TaskRepository.new.clear }
 
     it 'returns all tasks' do
-      expect(view.tasks).to eq repository.all
+      expect(view.tasks).to eq repo.all
     end
   end
 

@@ -3,7 +3,7 @@ module Web::Views::Tasks
     include Web::View
 
     def tasks
-      TaskRepository.new.all
+      TaskRepository.new.only_approved
     end
 
     def link_to_task(task)
