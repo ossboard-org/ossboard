@@ -5,6 +5,7 @@ Hanami::Model.migration do
       column :title,      String
       column :body,       String, text: true
       column :link,       String
+      column :approved,   TrueClass, default: false
       column :created_at, DateTime
       column :updated_at, DateTime
     end
