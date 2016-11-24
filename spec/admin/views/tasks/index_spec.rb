@@ -5,8 +5,27 @@ RSpec.describe Admin::Views::Tasks::Index do
   let(:template)  { Hanami::View::Template.new('apps/admin/templates/tasks/index.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
+  let(:repo)      { TaskRepository.new }
 
-  it 'exposes #foo' do
-    expect(view.foo).to eq exposures.fetch(:foo)
+  describe '#tasks' do
+    before do
+      3.times { repo.create(title: 'good', approved: false) }
+      3.times { repo.create(title: 'good', approved: true) }
+    end
+
+    after { repo.clear }
+
+    it 'returns all tasks' do
+      expect(view.tasks).to eq repo.all
+    end
+  end
+
+  describe '#link_to_task' do
+    let(:task) { Task.new(id: 1, title: 'test') }
+
+    it 'returns link to special task' do
+      link = view.link_to_task(task)
+      expect(link.to_s).to eq '<a href="/admin/tasks/1">test</a>'
+    end
   end
 end
