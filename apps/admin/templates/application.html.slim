@@ -6,4 +6,7 @@ html
     = favicon
   body
     h1 Admin
+    ul
+      li = link_to 'Dashboard', routes.root_path
+      li = link_to 'Tasks', routes.tasks_path
     = yield
