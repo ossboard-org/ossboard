@@ -1,3 +1,4 @@
+require 'spec_helper'
 require_relative '../../../../apps/admin/views/tasks/show'
 
 RSpec.describe Admin::Views::Tasks::Show do
@@ -6,7 +7,12 @@ RSpec.describe Admin::Views::Tasks::Show do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  it 'exposes #foo' do
-    expect(view.foo).to eq exposures.fetch(:foo)
+  describe '#link_to_edit' do
+    let(:task) { Task.new(id: 1, title: 'test') }
+
+    it 'returns link to special task' do
+      link = view.link_to_edit(task)
+      expect(link.to_s).to eq '<a href="/admin/tasks/1/edit">Edit task</a>'
+    end
   end
 end
