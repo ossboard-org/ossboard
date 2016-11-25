@@ -2,9 +2,12 @@
   "name": "ossboard",
   "version": "0.0.1",
   "devDependencies": {
+    "css-loader": "^0.26.0",
+    "node-sass": "^3.13.0",
+    "sass-loader": "^4.0.2",
     "stats-webpack-plugin": "*",
+    "style-loader": "^0.13.1",
     "webpack": "*",
-    "webpack-dev-server": "*",
-    "css-loader": "^0.15.1"
+    "webpack-dev-server": "*"
   }
 }

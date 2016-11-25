@@ -22,6 +22,13 @@ var config = {
 
   plugins: [
     new StatsPlugin("manifest.json")
+  ],
+
+  loaders: [
+    {
+      test: /\.scss$/,
+      loaders: ["style-loader", "css-loader", "sass-loader"]
+    }
   ]
 };
 
