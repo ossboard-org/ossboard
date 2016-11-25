@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/samuelsimoes/hanami-webpack.git
+  revision: 3891141532b78bf11a60f8a0a313bb11b7780288
+  specs:
+    hanami-webpack (0.0.1)
+      hanami
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -168,6 +175,7 @@ DEPENDENCIES
   dotenv (~> 2.0)
   hanami (~> 0.9)
   hanami-model (~> 0.7)
+  hanami-webpack!
   pg
   rake
   rspec

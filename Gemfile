@@ -8,6 +8,7 @@ gem 'hanami-model', '~> 0.7'
 gem 'pg'
 
 gem 'slim'
+gem 'hanami-webpack', github: 'samuelsimoes/hanami-webpack'
 
 group :development do
   # Code reloading

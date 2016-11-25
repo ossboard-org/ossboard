@@ -1,0 +1,10 @@
+{
+  "name": "ossboard",
+  "version": "0.0.1",
+  "devDependencies": {
+    "stats-webpack-plugin": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*",
+    "css-loader": "^0.15.1"
+  }
+}
