@@ -1,5 +1,16 @@
 h2 All Tasks
 
-- tasks.each do |task|
-  div
-    a = link_to_task(task)
+table.table.pure-table.pure-table-horizontal
+  thead
+    tr
+      th.table__id #
+      th.table__title Title
+      th.table__status Status
+      th.table__created-at Created at
+  tbody
+    - tasks.each do |task|
+      tr
+        td = task.id
+        td = link_to_task(task)
+        td = task.approved
+        td = task.created_at

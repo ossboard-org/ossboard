@@ -1,0 +1,22 @@
+.table {
+  width: 100%;
+
+  .table__id {
+    width: 30px;
+  }
+
+  .table__title {
+  }
+
+  .table__status {
+    width: 100px;
+  }
+
+  .table__created-at {
+    width: 200px;
+  }
+
+  tr:hover {
+    background-color: #f3f3f3;
+  }
+}

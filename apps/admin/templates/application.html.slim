@@ -25,10 +25,7 @@ html
         li.pure-menu-item
           a.pure-menu-link href="#" Logout
 
-    ul
-      li = link_to 'Dashboard', routes.root_path
-      li = link_to 'Moderation', routes.moderations_path
-      li = link_to 'Tasks', routes.tasks_path
-    = yield
+    .container
+      = yield
 
     script src=webpack_asset_path('admin')
