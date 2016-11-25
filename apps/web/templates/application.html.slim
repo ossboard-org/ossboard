@@ -3,8 +3,10 @@ html
   head
     title Web
     = favicon
+
+    link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/doximity/vital/v1.2.1/dist/css/vital.min.css"
   body
     = link_to_admin
     = yield
 
-    script src="#{webpack_asset_path('web')}"
+    script src=webpack_asset_path('web')

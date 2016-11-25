@@ -4,6 +4,8 @@ html
     title
       | Admin
     = favicon
+
+    link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/doximity/vital/v1.2.1/dist/css/vital.min.css"
   body
     h1 Admin
     ul
@@ -12,4 +14,4 @@ html
       li = link_to 'Tasks', routes.tasks_path
     = yield
 
-    script src="#{webpack_asset_path('admin')}"
+    script src=webpack_asset_path('admin')
