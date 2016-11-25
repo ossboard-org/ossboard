@@ -1,0 +1,31 @@
+.show-task {
+  .show-task__tittle {
+  }
+
+  .show-task__attributes {
+  }
+
+  .show-task__actions {
+    margin: 10px 0;
+
+    a {
+      margin: 0 10px 0 0;
+    }
+  }
+}
+
+.task-form {
+  .task-form__fields {
+    .task-form__field {
+      margin: 10px 0;
+    }
+  }
+
+  .task-form__actions {
+    margin: 20px 0;
+
+    a {
+      margin: 0 10px 0 0;
+    }
+  }
+}

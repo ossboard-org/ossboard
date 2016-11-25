@@ -1,3 +1,24 @@
 .container {
   margin: 60px 20px;
 }
+
+.moderation {
+}
+
+.moderation-table {
+  .moderation-table__id {
+    width: 30px;
+  }
+
+  .moderation-table__title {
+  }
+
+  .moderation-table__action {
+    width: 100px;
+  }
+
+  .moderation-table__approve {
+    color: #fff;
+    background: rgb(28, 184, 65);
+  }
+}

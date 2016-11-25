@@ -3,19 +3,28 @@ module Admin::Views::Tasks
     include Admin::View
 
     def form
-      form_for task_form, id: 'task-form' do
-        div class: 'input' do
-          label      :title
-          text_field :title, value: task.title
+      form_for task_form, id: 'task-form', class: 'task-form pure-form pure-form-stacked' do
+        div class: 'task-form__fields' do
+          div class: 'input task-form__field pure-control-group' do
+            label      :title, for: 'title'
+            text_field :title, value: task.title
+          end
+
+          div class: 'input task-form__field pure-control-group' do
+            label      :body
+            text_field :body, value: task.body
+          end
+
+          div class: 'input task-form__field pure-control-group' do
+            label     :approved
+            check_box :approved, value: task.body
+          end
         end
 
-        div class: 'input' do
-          label      :body
-          text_field :body, value: task.body
+        div class: 'task-form__actions pure-controls' do
+          a 'back', href: routes.task_path(task.id), class: 'pure-button'
+          submit 'Update', class: 'pure-button pure-button-primary'
         end
-
-        submit 'Update'
-        a 'back', href: routes.task_path(task.id)
       end
     end
 

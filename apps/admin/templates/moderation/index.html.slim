@@ -1,5 +1,14 @@
-h2 Moderation
+h2 For moderation
 
-- tasks.each do |task|
-  div
-    a = task.title
+table.table.pure-table.pure-table-horizontal.moderation-table
+  thead
+    tr
+      th.moderation-table__id #
+      th.moderation-table__title Title
+      th.moderation-table__action
+  tbody
+    - tasks.each do |task|
+      tr
+        td = task.id
+        td = task.title
+        td = link_to 'Approve', '#', class: 'pure-button moderation-table__approve'

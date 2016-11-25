@@ -1,7 +1,27 @@
-h2 = task.title
+.show-task
+  h2.show-task__tittle Task ##{task.id}
 
-div
-  = task.body
+  .show-task__attributes
+    .pure-g
+      .pure-u-1-8 Title
+      .pure-u-7-8 = task.title
 
-div
-  = link_to_edit(task)
+    .pure-g
+      .pure-u-1-8 Body
+      .pure-u-7-8 = task.body
+
+    .pure-g
+      .pure-u-1-8 Approved
+      .pure-u-7-8 = task.approved
+
+    .pure-g
+      .pure-u-1-8 Created at
+      .pure-u-7-8 = task.created_at
+
+    .pure-g
+      .pure-u-1-8 Updated at
+      .pure-u-7-8 = task.updated_at
+
+  .show-task__actions
+    = link_to 'Back', routes.tasks_path, class: 'pure-button'
+    = link_to_edit(task)
