@@ -1,0 +1,64 @@
+.splash-container
+  .splash
+    h1.splash-head OSS Board
+    p.splash-subhead
+      | Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+.content-wrapper
+  .content.landing-about
+    h2.content-head.is-center.landing-about__title About
+    .pure-g
+      .pure-u-1.landing-about__text
+        p
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+
+
+  .ribbon.l-box-lrg.pure-g
+    .l-box.pure-u-1.pure-g.landing-about__for-dev.for-dev
+      .pure-menu.pure-menu-horizontal.pure-menu-scrollable.is-center.for-dev__actions
+        ul.pure-menu-list
+          li.pure-menu-item
+            button.pure-button.pure-menu-link id="js-for-developers" For developers
+          li.pure-menu-item
+            button.pure-button.pure-menu-link id="js-for-maintainers" For maintainers
+
+      .pure-u-1.for-dev__developers-text
+        p
+          | Phasellus eget enim eu lectus faucibus vestibulum. 
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+        .pure-u-1.is-center
+          button.pure-button View All Tasks
+
+      .pure-u-1.for-dev__maintainers-text.hide
+        p
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+          | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+        .pure-u-1.is-center
+          button.pure-button Submit Task
+
+  .content.latest-tasks
+    h2.content-head.is-center.latest-tasks__title Latest tasks
+
+    .pure-g
+      .pure-u-1.latest-tasks__table.is-center
+        table.table.pure-table.pure-table-horizontal.latest-tasks-table
+          thead
+            tr
+              th.latest-tasks-table__title Title
+              th.latest-tasks-table__action
+          tbody
+            - TaskRepository.new.all.each do |task|
+              tr
+                td = task.title
+                td 
+                  a href="#" Open task
+
+      .pure-u-1.is-center.latest-tasks__show-all
+        a.pure-button href="#" View All

@@ -1,0 +1,49 @@
+.landing-about {
+  .landing-about__title {
+  }
+  .landing-about__text {
+  }
+  .landing-about__for-dev {
+  }
+}
+
+.for-dev {
+  .for-dev__actions {
+    button {
+      margin: 0 5px;
+    }
+  }
+
+  .for-dev__developers-text {
+  }
+
+  .for-dev__maintainers-text {
+  }
+}
+
+
+.latest-tasks {
+  .latest-tasks__title {
+  }
+
+  .latest-tasks__table {
+
+    .latest-tasks-table {
+      margin: 0 auto;
+
+      .latest-tasks-table__title {
+      }
+
+      .latest-tasks-table__action {
+      }
+    }
+  }
+
+  .latest-tasks__show-all {
+    margin: 20px 0;
+  }
+}
+
+.hide {
+  display: none;
+}

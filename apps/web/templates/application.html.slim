@@ -6,8 +6,22 @@ html
 
     link rel="stylesheet" href="https://yui-s.yahooapis.com/pure/0.6.0/pure-min.css"
   body
-    / http://purecss.io/layouts/marketing/
-    = link_to_admin
-    = yield
+    .header
+      .home-menu.pure-menu.pure-menu-horizontal.pure-menu-fixed
+        a.pure-menu-heading href="/" ossboard
+        ul.pure-menu-list
+          li.pure-menu-item
+            a.pure-menu-link href="#" Tasks
+          li.pure-menu-item
+            a.pure-menu-link href="#" How to help
+          li.pure-menu-item
+            a.pure-menu-link href="#" About
+          li.pure-menu-item
+            = link_to_admin
+          li.pure-menu-item
+            a.pure-menu-link href="#"  Sign Up
+
+    .main-container
+      = yield
 
     script src=webpack_asset_path('web')

@@ -1,3 +1,3 @@
-root to: 'tasks#index'
+root to: 'main#index'
 
-resources :tasks, only: [:new, :create, :show]
+resources :tasks, only: %i[index new create show]
