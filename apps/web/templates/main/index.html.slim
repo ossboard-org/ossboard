@@ -54,7 +54,7 @@
               th.latest-tasks-table__title Title
               th.latest-tasks-table__action
           tbody
-            - TaskRepository.new.all.each do |task|
+            - tasks.each do |task|
               tr
                 td = task.title
                 td 
