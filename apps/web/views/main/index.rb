@@ -9,5 +9,13 @@ module Web::Views::Main
     def link_to_tasks
       link_to 'View All Tasks', routes.tasks_path, class: 'pure-button'
     end
+
+    def link_to_new_tasks
+      link_to 'Submit Task', routes.new_task_path, class: 'pure-button'
+    end
+
+    def link_to_task(task)
+      link_to 'Open task', routes.task_path(id: task.id), class: 'pure-button'
+    end
   end
 end

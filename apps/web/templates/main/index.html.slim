@@ -41,7 +41,7 @@
           | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
           | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
         .pure-u-1.is-center
-          button.pure-button Submit Task
+          = link_to_new_tasks
 
   .content.latest-tasks
     h2.content-head.is-center.latest-tasks__title Latest tasks
@@ -54,8 +54,7 @@
               tr
                 td.latest-tasks-table__title = task.title
                 td.latest-tasks-table__lang ruby
-                td.latest-tasks-table__action
-                  a.pure-button href="#" Open task
+                td.latest-tasks-table__action = link_to_task(task)
 
       .pure-u-1.is-center.latest-tasks__show-all
         = link_to_tasks
