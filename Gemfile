@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.3.0'
+
 gem 'bundler'
 gem 'rake'
 gem 'hanami',       '~> 0.9'
@@ -9,6 +11,7 @@ gem 'pg'
 
 gem 'slim'
 gem 'hanami-webpack', github: 'samuelsimoes/hanami-webpack'
+gem 'sass'
 
 group :development do
   # Code reloading
