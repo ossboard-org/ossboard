@@ -145,8 +145,6 @@ module Admin
         # In order to skip stylesheet compression comment the following line
         stylesheet_compressor :builtin
 
-        public_directory __dir__ + '../../../public'
-
         # Specify sources for assets
         #
         sources << [

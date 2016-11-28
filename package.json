@@ -10,7 +10,17 @@
     "webpack": "*",
     "webpack-dev-server": "*"
   },
+  "dependencies": {
+    "css-loader": "^0.26.0",
+    "node-sass": "^3.13.0",
+    "sass-loader": "^4.0.2",
+    "stats-webpack-plugin": "*",
+    "style-loader": "^0.13.1",
+    "webpack": "*",
+    "webpack-dev-server": "*"
+  },
   "scripts": {
+    "build": "webpack",
     "heroku-postbuild": "npm run build"
   }
 }
