@@ -21,7 +21,7 @@ var config = {
   },
 
   plugins: [
-    new StatsPlugin("manifest.json")
+    new StatsPlugin({ filename: "../../public/assets.json" })
   ],
 
   loaders: [
