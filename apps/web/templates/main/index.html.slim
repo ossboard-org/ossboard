@@ -49,16 +49,16 @@
     .pure-g
       .pure-u-1.latest-tasks__table.is-center
         table.table.pure-table.pure-table-horizontal.latest-tasks-table
-          thead
-            tr
-              th.latest-tasks-table__title Title
-              th.latest-tasks-table__action
           tbody
             - tasks.each do |task|
               tr
-                td = task.title
-                td 
-                  a href="#" Open task
+                td.latest-tasks-table__title = task.title
+                td.latest-tasks-table__lang ruby
+                td.latest-tasks-table__action
+                  a.pure-button href="#" Open task
 
       .pure-u-1.is-center.latest-tasks__show-all
         a.pure-button href="#" View All
+
+  .footer.l-box.is-center
+    = render partial: 'shared/footer'

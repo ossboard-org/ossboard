@@ -1,5 +1,5 @@
 require("!style-loader!css-loader!sass-loader!../stylesheets/footer.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/landing-about.scss");
+require("!style-loader!css-loader!sass-loader!../stylesheets/landing.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/main.scss");
 
 dev_text = document.querySelector('.for-dev__developers-text');
