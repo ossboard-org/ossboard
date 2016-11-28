@@ -12,7 +12,7 @@ RSpec.describe Admin::Views::Tasks::Show do
 
     it 'returns link to special task' do
       link = view.link_to_edit(task)
-      expect(link.to_s).to eq '<a href="/admin/tasks/1/edit">Edit task</a>'
+      expect(link.to_s).to eq '<a class="pure-button pure-button-primary" href="/admin/tasks/1/edit">Edit task</a>'
     end
   end
 end

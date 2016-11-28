@@ -3,7 +3,7 @@ module Web::Views::Main
     include Web::View
 
     def tasks
-      TaskRepository.new.only_approved[0..2]
+      TaskRepository.new.only_approved.take(3)
     end
   end
 end

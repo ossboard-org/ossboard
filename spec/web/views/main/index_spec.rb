@@ -6,7 +6,17 @@ RSpec.describe Web::Views::Main::Index do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  it 'exposes #foo' do
-    expect(view.foo).to eq exposures.fetch(:foo)
+  let(:repo) { TaskRepository.new }
+
+  describe '#tasks' do
+    before do
+      10.times { |i| repo.create(title: "title ##{i}", approved: true) }
+    end
+
+    after { TaskRepository.new.clear }
+
+    it { expect(view.tasks.count).to eq 3 }
+    it { expect(view.tasks.first.title).to eq 'title #0' }
+    it { expect(view.tasks.last.title).to  eq 'title #2' }
   end
 end
