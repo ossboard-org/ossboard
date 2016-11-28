@@ -11,7 +11,7 @@ html
         a.pure-menu-heading href="/" ossboard
         ul.pure-menu-list
           li.pure-menu-item
-            a.pure-menu-link href="#" Tasks
+            = link_to 'Tasks', routes.tasks_path, class: 'pure-menu-link'
           li.pure-menu-item
             a.pure-menu-link href="#" How to help
           li.pure-menu-item

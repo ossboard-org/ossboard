@@ -32,7 +32,7 @@
           | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
           | Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
         .pure-u-1.is-center
-          button.pure-button View All Tasks
+          = link_to_tasks
 
       .pure-u-1.for-dev__maintainers-text.hide
         p
@@ -58,7 +58,7 @@
                   a.pure-button href="#" Open task
 
       .pure-u-1.is-center.latest-tasks__show-all
-        a.pure-button href=routes.tasks_path View All
+        = link_to_tasks
 
   .footer.l-box.is-center
     = render partial: 'shared/footer'

@@ -19,4 +19,10 @@ RSpec.describe Web::Views::Main::Index do
     it { expect(view.tasks.first.title).to eq 'title #0' }
     it { expect(view.tasks.last.title).to  eq 'title #2' }
   end
+
+  describe '#link_to_tasks' do
+    it 'returns link to all tasks' do
+      expect(view.link_to_tasks.to_s).to eq '<a class="pure-button" href="/tasks">View All Tasks</a>'
+    end
+  end
 end
