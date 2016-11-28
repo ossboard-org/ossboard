@@ -146,6 +146,7 @@ module Web
         stylesheet_compressor :builtin
 
         public_directory __dir__ + '../../../public'
+        manifest 'manifest.json'
 
         # Specify sources for assets
         #
