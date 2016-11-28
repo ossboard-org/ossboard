@@ -1,0 +1,41 @@
+.tasks {
+  margin: 75px 100px;
+
+  .tasks__actions {
+    .tasks__new {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .tasks__search {
+    }
+  }
+
+  .tasks__list {
+  }
+}
+
+
+.task-search {
+  width: 100%;
+  margin: 20px 0;
+
+  display: flex;
+  justify-content: space-between;
+
+  .task-search__keyword {
+    margin: 0 2px;
+    max-width: 73%;
+  }
+
+  .task-search__lang {
+    width: 130px;
+    margin: 0 2px;
+  }
+
+  .task-search__submit {
+    width: 150px !important;
+    margin: 0 2px;
+  }
+}

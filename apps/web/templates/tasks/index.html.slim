@@ -1,8 +1,17 @@
-h2 All Tasks
+.tasks
+  .tasks__actions
+    .tasks__new
+      = link_to_new_task
+    .tasks__search
+      form.pure-form.task-search action="#" method="post"
+        input.task-search__keyword type="text" name="keyword" placeholder="Keyword"
+        select.task-search__lang name="select"
+          option value="any" selected="" Any language
+          option value="ruby" ruby
+          option value="js" js
+        input.pure-button.pure-button-primary.task-search__submit type="submit" value="Search"
 
-- tasks.each do |task|
-  div
-    a = link_to_task(task)
-
-hr
-= link_to_new_task
+  .tasks__list
+    - tasks.each do |task|
+      div
+        a = link_to_task(task)
