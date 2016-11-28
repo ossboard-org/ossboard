@@ -10,7 +10,7 @@ gem 'hanami-model', '~> 0.7'
 gem 'pg'
 
 gem 'slim'
-gem 'hanami-webpack', github: 'samuelsimoes/hanami-webpack'
+gem 'hanami-webpack', github: 'davydovanton/hanami-webpack', branch: 'manifest-file-name'
 gem 'sass'
 
 group :development do

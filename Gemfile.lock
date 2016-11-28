@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/samuelsimoes/hanami-webpack.git
-  revision: 3891141532b78bf11a60f8a0a313bb11b7780288
+  remote: git://github.com/davydovanton/hanami-webpack.git
+  revision: f2749ab7a5a02eb6bd7f204d6fee21db1e9e1975
+  branch: manifest-file-name
   specs:
     hanami-webpack (0.0.1)
       hanami
