@@ -1,7 +1,9 @@
 .tasks {
-  margin: 75px 100px;
+  margin: 100px 75px;
 
   .tasks__actions {
+    margin: 0 0 20px;
+
     .tasks__new {
       width: 100%;
       display: flex;
@@ -15,7 +17,6 @@
   .tasks__list {
   }
 }
-
 
 .task-search {
   width: 100%;
@@ -37,5 +38,26 @@
   .task-search__submit {
     width: 150px !important;
     margin: 0 2px;
+  }
+}
+
+.task-item {
+  margin: 5px 0;
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 10px 20px;
+
+  &:hover {
+    background-color: #ddd;
+  }
+
+  .task-item__title {
+  }
+
+  .task-item__lang {
+    width: 200px;
+    text-align: center;
   }
 }

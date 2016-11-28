@@ -277,3 +277,7 @@ a.pure-button-primary {
     font-size: 300%;
   }
 }
+
+.main-container {
+  min-height: calc(100vh - 250px)
+}

@@ -13,5 +13,8 @@
 
   .tasks__list
     - tasks.each do |task|
-      div
-        a = link_to_task(task)
+      .task-item
+        .task-item__title
+          = link_to_task(task)
+        .task-item__lang
+          | ruby
