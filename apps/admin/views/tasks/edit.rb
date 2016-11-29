@@ -17,7 +17,7 @@ module Admin::Views::Tasks
 
           div class: 'input task-form__field pure-control-group' do
             label     :approved
-            check_box :approved, value: task.body
+            check_box :approved, checked: checkbox_status
           end
         end
 
@@ -35,6 +35,10 @@ module Admin::Views::Tasks
 
     def params
       {}
+    end
+
+    def checkbox_status
+      task.approved ? 'checked' : nil
     end
   end
 end

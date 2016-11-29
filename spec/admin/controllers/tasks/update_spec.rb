@@ -9,7 +9,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
   after { repo.clear }
 
   describe 'when params valid' do
-    let(:params) { { id: task.id, task: { title: 'test', body: 'long body' } } }
+    let(:params) { { id: task.id, task: { title: 'test', body: 'long body', approved: '1' } } }
 
     it { expect(action.call(params)).to redirect_to("/admin/tasks/#{task.id}") }
 
@@ -18,6 +18,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
       task = repo.last
       expect(task.title).to eq 'test'
       expect(task.body).to eq 'long body'
+      expect(task.approved).to eq true
     end
   end
 

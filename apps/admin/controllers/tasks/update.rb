@@ -8,14 +8,16 @@ module Admin::Controllers::Tasks
       required(:task).schema do
         required(:title).filled(:str?)
         required(:body).filled(:str?)
+        required(:approved).filled
       end
     end
 
     def call(params)
-      @task = TaskRepository.new.find(params[:id])
+      repo = TaskRepository.new
+      @task = repo.find(params[:id])
 
       if @task && params.valid?
-        @task = TaskRepository.new.update(@task.id, params[:task])
+        @task = repo.update(@task.id, params[:task])
         redirect_to routes.task_path(task.id)
       else
         self.status = 422

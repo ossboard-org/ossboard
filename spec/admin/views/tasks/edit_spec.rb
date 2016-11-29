@@ -11,4 +11,15 @@ RSpec.describe Admin::Views::Tasks::Edit do
     it { expect(view.form).to have_method(:patch) }
     it { expect(view.form).to have_action('/admin/tasks/1') }
   end
+
+  describe '#checkbox_status' do
+    context 'when task not approved' do
+      it { expect(view.checkbox_status).to eq nil }
+    end
+
+    context 'when task approved' do
+      let(:task) { Task.new(id: 1, title: 'test', body: 'test', approved: true) }
+      it { expect(view.checkbox_status).to eq 'checked' }
+    end
+  end
 end
