@@ -8,6 +8,7 @@ gem 'hanami',       '~> 0.9'
 gem 'hanami-model', '~> 0.7'
 
 gem 'pg'
+gem 'travis'
 
 gem 'slim'
 gem 'hanami-webpack', github: 'samuelsimoes/hanami-webpack'
