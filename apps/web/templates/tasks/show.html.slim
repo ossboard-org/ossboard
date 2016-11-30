@@ -1,3 +1,10 @@
-h2 = task.title
+.task
+  .task__title
+    h2 = task.title
 
-= task.body
+  .task__body
+    = task.body
+
+  .task__actions
+    button.pure-button.pure-button-primary.task__contact Contact with mentor
+    button.pure-button.pure-button-primary.task__share Share task

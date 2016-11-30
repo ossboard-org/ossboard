@@ -61,3 +61,30 @@
     text-align: center;
   }
 }
+
+.task {
+  margin: 100px 75px;
+
+  .task__title {
+  }
+
+  .task__body {
+  }
+
+  .task__actions {
+    margin: 5px 0;
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  .task__contact {
+    background-color: #32c107;
+  }
+
+  .task__share {
+  }
+}
+
