@@ -21,4 +21,11 @@ RSpec.describe Admin::Views::Moderation::Index do
       expect(view.tasks.last.approved).to eq false
     end
   end
+
+  describe '#approve_task_button' do
+    let(:task) { Task.new(id: 1) }
+
+    it { expect(view.approve_task_button(task)).to have_method(:patch) }
+    it { expect(view.approve_task_button(task)).to have_action('/admin/moderation/1') }
+  end
 end
