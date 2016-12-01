@@ -281,3 +281,9 @@ a.pure-button-primary {
 .main-container {
   min-height: calc(100vh - 250px)
 }
+
+.pure-menu-selected {
+  a {
+    color: #fff !important;
+  }
+}

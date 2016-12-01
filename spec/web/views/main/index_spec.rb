@@ -40,4 +40,8 @@ RSpec.describe Web::Views::Main::Index do
       expect(link.to_s).to eq '<a class="pure-button" href="/tasks/1">Open task</a>'
     end
   end
+
+  describe 'nav bar actions' do
+    it { expect(view.tasks_active?).to be false }
+  end
 end

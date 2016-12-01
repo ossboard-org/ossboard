@@ -10,4 +10,8 @@ RSpec.describe Web::Views::Tasks::Show do
   it 'exposes #foo' do
     expect(view.foo).to eq exposures.fetch(:foo)
   end
+
+  describe 'nav bar actions' do
+    it { expect(view.tasks_active?).to be true }
+  end
 end

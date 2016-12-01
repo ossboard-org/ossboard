@@ -15,4 +15,8 @@ RSpec.describe Web::Views::Tasks::New do
     it { expect(view.form).to have_method(:post) }
     it { expect(view.form).to have_action('/tasks') }
   end
+
+  describe 'nav bar actions' do
+    it { expect(view.tasks_active?).to be true }
+  end
 end

@@ -10,7 +10,7 @@ html
       .home-menu.pure-menu.pure-menu-horizontal.pure-menu-fixed
         a.pure-menu-heading href="/" ossboard
         ul.pure-menu-list
-          li.pure-menu-item
+          li.pure-menu-item class="#{ 'pure-menu-selected' if tasks_active? }"
             = link_to 'Tasks', routes.tasks_path, class: 'pure-menu-link'
           li.pure-menu-item
             a.pure-menu-link href="#" How to help

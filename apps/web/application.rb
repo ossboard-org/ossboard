@@ -262,6 +262,7 @@ module Web
       view.prepare do
         include Hanami::Helpers
         include Web::Assets::Helpers
+        include Admin::Views::NavBar
       end
     end
 

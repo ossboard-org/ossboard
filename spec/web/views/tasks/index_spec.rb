@@ -29,4 +29,8 @@ RSpec.describe Web::Views::Tasks::Index do
       expect(link.to_s).to eq '<a href="/tasks/1">test</a>'
     end
   end
+
+  describe 'nav bar actions' do
+    it { expect(view.tasks_active?).to be true }
+  end
 end

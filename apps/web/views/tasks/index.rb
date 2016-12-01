@@ -13,5 +13,9 @@ module Web::Views::Tasks
     def link_to_new_task
       link_to 'Submit new task', routes.new_task_path, class: 'pure-button'
     end
+
+    def tasks_active?
+      true
+    end
   end
 end

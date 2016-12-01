@@ -25,5 +25,9 @@ module Web::Views::Tasks
     def params
       {}
     end
+
+    def tasks_active?
+      true
+    end
   end
 end
