@@ -34,4 +34,16 @@ RSpec.describe Admin::Views::Tasks::Index do
     it { expect(view.moderation_active?).to be false }
     it { expect(view.tasks_active?).to be true }
   end
+
+  describe '#task_label' do
+    context 'when task approved' do
+      let(:task) { Task.new(id: 1, title: 'test', approved: true) }
+      it { expect(view.task_label(task).to_s).to eq "<span class=\"label label-success\">\nApproved\n</span>" }
+    end
+
+    context 'when task not approved' do
+      let(:task) { Task.new(id: 1, title: 'test', approved: false) }
+      it { expect(view.task_label(task).to_s).to eq "<span class=\"label label-danger\">\nUnapproved\n</span>" }
+    end
+  end
 end

@@ -12,5 +12,5 @@ table.table.pure-table.pure-table-horizontal
       tr
         td = task.id
         td = link_to_task(task)
-        td = task.approved
+        td = task_label(task)
         td = task.created_at

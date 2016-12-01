@@ -13,5 +13,13 @@ module Admin::Views::Tasks
     def tasks_active?
       true
     end
+
+    def task_label(task)
+      if task.approved
+        html.span(class: 'label label-success'){ 'Approved' }
+      else
+        html.span(class: 'label label-danger'){ 'Unapproved' }
+      end
+    end
   end
 end
