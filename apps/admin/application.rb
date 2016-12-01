@@ -1,6 +1,8 @@
 require 'hanami/helpers'
 require 'hanami/assets'
 
+require_relative './views/nav_bar'
+
 module Admin
   class Application < Hanami::Application
     configure do
@@ -262,6 +264,7 @@ module Admin
       view.prepare do
         include Hanami::Helpers
         include Admin::Assets::Helpers
+        include Admin::Views::NavBar
       end
     end
 

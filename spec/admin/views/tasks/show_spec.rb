@@ -15,4 +15,10 @@ RSpec.describe Admin::Views::Tasks::Show do
       expect(link.to_s).to eq '<a class="pure-button pure-button-primary" href="/admin/tasks/1/edit">Edit task</a>'
     end
   end
+
+  describe 'nav bar actions' do
+    it { expect(view.dashboard_active?).to be false }
+    it { expect(view.moderation_active?).to be false }
+    it { expect(view.tasks_active?).to be true }
+  end
 end

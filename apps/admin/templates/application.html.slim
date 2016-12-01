@@ -12,11 +12,11 @@ html
       a.pure-menu-heading href="/admin" OSSBoard
 
       ul.pure-menu-list
-        li.pure-menu-item.pure-menu-selected
+        li.pure-menu-item class="#{ 'pure-menu-selected' if dashboard_active? }"
           = link_to 'Dashboard', routes.root_path, class: 'pure-menu-link'
-        li.pure-menu-item
+        li.pure-menu-item class="#{ 'pure-menu-selected' if moderation_active? }"
           = link_to 'Moderation', routes.moderations_path, class: 'pure-menu-link'
-        li.pure-menu-item
+        li.pure-menu-item class="#{ 'pure-menu-selected' if tasks_active? }"
           = link_to 'Tasks', routes.tasks_path, class: 'pure-menu-link'
 
       ul.pure-menu-list.pure-menu-list-right

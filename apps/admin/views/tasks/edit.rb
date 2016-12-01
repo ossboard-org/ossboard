@@ -40,5 +40,9 @@ module Admin::Views::Tasks
     def checkbox_status
       task.approved ? 'checked' : nil
     end
+
+    def tasks_active?
+      true
+    end
   end
 end

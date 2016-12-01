@@ -28,4 +28,10 @@ RSpec.describe Admin::Views::Moderation::Index do
     it { expect(view.approve_task_button(task)).to have_method(:patch) }
     it { expect(view.approve_task_button(task)).to have_action('/admin/moderation/1') }
   end
+
+  describe 'nav bar actions' do
+    it { expect(view.dashboard_active?).to be false }
+    it { expect(view.moderation_active?).to be true }
+    it { expect(view.tasks_active?).to be false }
+  end
 end

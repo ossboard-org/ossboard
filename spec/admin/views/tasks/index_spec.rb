@@ -28,4 +28,10 @@ RSpec.describe Admin::Views::Tasks::Index do
       expect(link.to_s).to eq '<a href="/admin/tasks/1">test</a>'
     end
   end
+
+  describe 'nav bar actions' do
+    it { expect(view.dashboard_active?).to be false }
+    it { expect(view.moderation_active?).to be false }
+    it { expect(view.tasks_active?).to be true }
+  end
 end

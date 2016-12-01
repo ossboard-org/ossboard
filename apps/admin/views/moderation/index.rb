@@ -15,5 +15,9 @@ module Admin::Views::Moderation
     def params
       {}
     end
+
+    def moderation_active?
+      true
+    end
   end
 end
