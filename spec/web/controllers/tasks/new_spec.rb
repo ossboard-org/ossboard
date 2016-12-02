@@ -17,5 +17,12 @@ RSpec.describe Web::Controllers::Tasks::New do
         expect(action.task).to eq Task.new
       end
     end
+
+    context '#params' do
+      it 'returns action params' do
+        action.call(params)
+        expect(action.params).to be_a Hanami::Action::BaseParams
+      end
+    end
   end
 end

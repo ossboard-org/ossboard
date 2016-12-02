@@ -1,3 +1,9 @@
 h2 Hew task
 
+- unless params.valid?
+  ul
+    - params.error_messages.each do |error|
+      li
+        = error
+
 = form

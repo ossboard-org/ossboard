@@ -22,10 +22,11 @@ RSpec.describe Web::Controllers::Tasks::Create do
   end
 
   describe 'when params invalid' do
-    let(:params) { {} }
+    let(:params) { { task: {} } }
 
     it { expect(action.call(params)).to have_http_status(200) }
-    it { expect(action.call(params)[2]).to_not be_empty }
+    it { expect(action.call(params)[2].first).to match(/Title is missing/) }
+    it { expect(action.call(params)[2].first).to match(/Body is missing/) }
 
     it 'does not create new task' do
       expect { action.call(params) }.to change { repo.all.size }.by(0)
