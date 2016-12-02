@@ -10,7 +10,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
   describe 'when params valid' do
     let(:params) { { task: { title: 'test', body: 'long body' } } }
 
-    it { expect(action.call(params)).to redirect_to('/') }
+    it { expect(action.call(params)).to redirect_to('/tasks') }
 
     it 'creates new task' do
       expect { action.call(params) }.to change { repo.all.size }.by(1)
@@ -24,7 +24,8 @@ RSpec.describe Web::Controllers::Tasks::Create do
   describe 'when params invalid' do
     let(:params) { {} }
 
-    it { expect(action.call(params)).to have_http_status(422) }
+    it { expect(action.call(params)).to have_http_status(200) }
+    it { expect(action.call(params)[2]).to_not be_empty }
 
     it 'does not create new task' do
       expect { action.call(params) }.to change { repo.all.size }.by(0)

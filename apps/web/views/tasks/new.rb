@@ -6,12 +6,12 @@ module Web::Views::Tasks
       form_for task_form, id: 'task-form' do
         div class: 'input' do
           label      :title
-          text_field :title
+          text_field :title, value: task.title
         end
 
         div class: 'input' do
           label      :body
-          text_field :body
+          text_field :body, value: task.body
         end
 
         submit 'Create'

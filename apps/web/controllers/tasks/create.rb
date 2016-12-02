@@ -14,9 +14,10 @@ module Web::Controllers::Tasks
     def call(params)
       if params.valid?
         @task = TaskRepository.new.create(params[:task])
-        redirect_to routes.root_path
+        redirect_to routes.tasks_path
       else
-        self.status = 422
+        @task = Task.new(params[:task])
+        self.body = Web::Views::Tasks::New.render(format: format, task: @task)
       end
     end
   end
