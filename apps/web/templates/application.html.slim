@@ -29,4 +29,5 @@ html
     .footer.l-box.is-center
       = render partial: 'shared/footer'
 
-    script src=webpack_asset_path('web')
+    - if Hanami.env != 'test'
+      script src=webpack_asset_path('web')
