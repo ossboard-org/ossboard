@@ -5,11 +5,12 @@ RSpec.describe Admin::Controllers::Tasks::Update do
   let(:action) { described_class.new }
   let(:repo) { TaskRepository.new }
   let(:task) { repo.create(title: 'old') }
+  let(:session) { { current_user: User.new(id: 1, admin: true) } }
 
   after { repo.clear }
 
   describe 'when params valid' do
-    let(:params) { { id: task.id, task: { title: 'test', body: 'long body', approved: '1' } } }
+    let(:params) { { id: task.id, task: { title: 'test', body: 'long body', approved: '1' }, 'rack.session' => session  } }
 
     it { expect(action.call(params)).to redirect_to("/admin/tasks/#{task.id}") }
 
@@ -23,7 +24,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
   end
 
   describe 'when params invalid' do
-    let(:params) { { id: task.id } }
+    let(:params) { { id: task.id, 'rack.session' => session  } }
 
     it { expect(action.call(params)).to have_http_status(422) }
 
