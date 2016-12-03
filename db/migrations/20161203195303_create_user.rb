@@ -3,7 +3,7 @@ Hanami::Model.migration do
     create_table :users do
       primary_key :id
       column :name,       String
-      column :uid,        String
+      column :uuid,       String
       column :login,      String
       column :email,      String
       column :avatar_url, String
