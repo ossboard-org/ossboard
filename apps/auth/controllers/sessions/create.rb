@@ -3,8 +3,11 @@ module Auth::Controllers::Sessions
     include Auth::Action
 
     def call(params)
-      require 'pp'
-      pp params.env['omniauth.auth']
+      repo = UserRepository.new
+
+      params.env['omniauth.auth']
+      session[:current_user] = repo.find_by_uuid(params.env['omniauth.auth']['uuid']) || User.new
+      redirect_to '/'
     end
   end
 end
