@@ -4,7 +4,8 @@ require_relative '../../../../apps/admin/controllers/tasks/show'
 RSpec.describe Admin::Controllers::Tasks::Show do
   let(:action) { described_class.new }
   let(:task) { TaskRepository.new.create(title: 'test') }
-  let(:params) { { id: task.id } }
+  let(:session) { { current_user: User.new(id: 1, admin: true) } }
+  let(:params)  { { id: task.id, 'rack.session' => session } }
 
   after { TaskRepository.new.clear }
 

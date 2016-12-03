@@ -10,6 +10,9 @@ gem 'hanami-model', '~> 0.7'
 gem 'pg'
 gem 'travis'
 
+gem 'omniauth'
+gem 'omniauth-github', github: 'intridea/omniauth-github'
+
 gem 'slim'
 gem 'hanami-webpack', github: 'samuelsimoes/hanami-webpack'
 gem 'sass'
