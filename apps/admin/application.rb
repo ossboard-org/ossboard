@@ -1,5 +1,6 @@
 require 'hanami/helpers'
 require 'hanami/assets'
+require_relative './../../lib/authentication'
 
 require_relative './views/nav_bar'
 
@@ -253,7 +254,7 @@ module Admin
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
-        # include MyAuthentication # included in all the actions
+        include Authentication # included in all the actions
         # before :authenticate!    # run an authentication before callback
       end
 
