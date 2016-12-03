@@ -3,6 +3,8 @@ module Auth::Controllers::Sessions
     include Auth::Action
 
     def call(params)
+      require 'pp'
+      pp params.env['omniauth.auth']
     end
   end
 end
