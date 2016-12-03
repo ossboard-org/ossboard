@@ -3,6 +3,8 @@ module Auth::Controllers::Sessions
     include Auth::Action
 
     def call(params)
+      p params
+      redirect_to '/'
     end
   end
 end
