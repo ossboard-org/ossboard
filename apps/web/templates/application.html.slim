@@ -16,8 +16,9 @@ html
             a.pure-menu-link href="#" How to help
           li.pure-menu-item
             a.pure-menu-link href="#" About
-          li.pure-menu-item
-            = link_to_admin
+          - if current_user.admin
+            li.pure-menu-item
+              = link_to_admin
           li.pure-menu-item
             a.pure-menu-link href="https://github.com/davydovanton/ossboard" target="_blank"  Source
           li.pure-menu-item
