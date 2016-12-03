@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/intridea/omniauth-github.git
+  revision: 45f2fc73d6d06f30863adac0e6aa112bcaaadf67
+  specs:
+    omniauth-github (1.1.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (>= 1.1.1, < 2.0)
+
+GIT
   remote: git://github.com/samuelsimoes/hanami-webpack.git
   revision: 3891141532b78bf11a60f8a0a313bb11b7780288
   specs:
@@ -105,12 +113,16 @@ GEM
     hanami-view (0.8.0)
       hanami-utils (~> 0.9)
       tilt (~> 2.0, >= 2.0.1)
+    hashie (3.4.6)
     highline (1.7.8)
     http_router (0.11.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
+    httpauth (0.2.1)
     inflecto (0.0.2)
     json (2.0.2)
+    jwt (0.1.13)
+      multi_json (>= 1.5)
     launchy (2.4.3)
       addressable (~> 2.3)
     mail (2.6.4)
@@ -125,6 +137,18 @@ GEM
     net-http-pipeline (1.0.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    omniauth (1.3.1)
+      hashie (>= 1.2, < 4)
+      rack (>= 1.0, < 3)
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     pg (0.19.0)
     public_suffix (2.0.4)
     pusher-client (0.6.2)
@@ -216,6 +240,8 @@ DEPENDENCIES
   hanami (~> 0.9)
   hanami-model (~> 0.7)
   hanami-webpack!
+  omniauth
+  omniauth-github!
   pg
   rake
   rspec
