@@ -2,10 +2,12 @@ require_relative '../../../../apps/auth/controllers/sessions/create'
 
 RSpec.describe Auth::Controllers::Sessions::Create do
   let(:action) { described_class.new }
-  let(:params) { Hash[] }
+  let(:params) { Hash[ 'omniauth.auth' => onmiauth_hash ] }
+  let(:uuid) { '1147484' }
+  let(:repo) { UserRepository.new }
   let(:onmiauth_hash) do
     {
-      "uid"=>"1147484",
+      "uid"=>uuid,
       "extra"=> {
         "raw_info"=> {
           "login"=>"davydovanton",
@@ -47,5 +49,48 @@ RSpec.describe Auth::Controllers::Sessions::Create do
         "all_emails"=>[]
       }
     }
+  end
+
+  after { repo.clear }
+
+  it 'is successful' do
+    response = action.call(params)
+    expect(response[0]).to eq 302
+  end
+
+  context 'when user not exist' do
+    it 'creates a new user' do
+      expect { action.call(params) }.to change { repo.all.count }.by(1)
+    end
+
+    it 'sets current_user session' do
+      action.call(params)
+      expect(action.session[:current_user]).to be_a User
+      expect(action.session[:current_user].login).to eq "davydovanton"
+      expect(action.session[:current_user].avatar_url).to eq "https://avatars.githubusercontent.com/u/1147484?v=3"
+      expect(action.session[:current_user].name).to eq "Anton Davydov"
+      expect(action.session[:current_user].email).to eq "mail@davydovanton.com"
+      expect(action.session[:current_user].bio).to eq "Indie OSS developer"
+      expect(action.session[:current_user].uuid).to eq uuid
+    end
+  end
+
+  context 'when user not exist' do
+    before { repo.create(uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3", name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer") }
+
+    it 'does not create a new user' do
+      expect { action.call(params) }.to change { repo.all.count }.by(0)
+    end
+
+    it 'sets current_user session' do
+      action.call(params)
+      expect(action.session[:current_user]).to be_a User
+      expect(action.session[:current_user].login).to eq "davydovanton"
+      expect(action.session[:current_user].avatar_url).to eq "https://avatars.githubusercontent.com/u/1147484?v=3"
+      expect(action.session[:current_user].name).to eq "Anton Davydov"
+      expect(action.session[:current_user].email).to eq "mail@davydovanton.com"
+      expect(action.session[:current_user].bio).to eq "Indie OSS developer"
+      expect(action.session[:current_user].uuid).to eq uuid
+    end
   end
 end

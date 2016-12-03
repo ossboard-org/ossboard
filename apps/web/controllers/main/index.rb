@@ -3,7 +3,6 @@ module Web::Controllers::Main
     include Web::Action
 
     def call(params)
-      p session[:current_user]
     end
   end
 end
