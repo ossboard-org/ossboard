@@ -6,23 +6,7 @@ html
 
     link rel="stylesheet" href="https://yui-s.yahooapis.com/pure/0.6.0/pure-min.css"
   body
-    .header
-      .home-menu.pure-menu.pure-menu-horizontal.pure-menu-fixed
-        a.pure-menu-heading href="/" ossboard
-        ul.pure-menu-list
-          li.pure-menu-item class="#{ 'pure-menu-selected' if tasks_active? }"
-            = link_to 'Tasks', routes.tasks_path, class: 'pure-menu-link'
-          li.pure-menu-item
-            a.pure-menu-link href="#" How to help
-          li.pure-menu-item
-            a.pure-menu-link href="#" About
-          - if current_user.admin
-            li.pure-menu-item
-              = link_to_admin
-          li.pure-menu-item
-            a.pure-menu-link href="https://github.com/davydovanton/ossboard" target="_blank"  Source
-          li.pure-menu-item
-            a.pure-menu-link href="#"  Sign Up
+    = render partial: 'shared/navbar'
 
     .main-container
       = yield
