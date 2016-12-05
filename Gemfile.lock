@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/davydovanton/rspec-hanami.git
+  revision: abd0452cd4900804ead9dc1ccb3d93ef04090800
+  specs:
+    rspec-hanami (0.2.0)
+      hanami
+      rspec
+
+GIT
   remote: git://github.com/intridea/omniauth-github.git
   revision: 45f2fc73d6d06f30863adac0e6aa112bcaaadf67
   specs:
@@ -193,9 +201,6 @@ GEM
     rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.5.0)
-    rspec-hanami (0.2.0)
-      hanami
-      rspec
     rspec-mocks (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.5.0)
@@ -245,7 +250,7 @@ DEPENDENCIES
   pg
   rake
   rspec
-  rspec-hanami
+  rspec-hanami!
   sass
   shotgun
   slim

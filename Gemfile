@@ -31,7 +31,7 @@ end
 
 group :test do
   gem 'rspec'
-  gem 'rspec-hanami'
+  gem 'rspec-hanami', github: 'davydovanton/rspec-hanami'
   gem 'capybara'
 end
 

@@ -6,18 +6,12 @@ RSpec.describe Admin::Controllers::Dashboard::Index do
   let(:params)  { { 'rack.session' => session } }
 
   context 'when admin login' do
-    it 'is successful' do
-      response = action.call(params)
-      expect(response[0]).to eq 200
-    end
+    it { expect(action.call(params)).to be_success }
   end
 
   context 'when admin login' do
     let(:params) { {} }
 
-    it 'is successful' do
-      response = action.call(params)
-      expect(response[0]).to eq 302
-    end
+    it { expect(action.call(params)).to redirect_to('/') }
   end
 end

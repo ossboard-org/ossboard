@@ -25,8 +25,8 @@ RSpec.describe Web::Controllers::Tasks::Create do
     let(:params) { { task: {} } }
 
     it { expect(action.call(params)).to have_http_status(200) }
-    it { expect(action.call(params)[2].first).to match(/Title is missing/) }
-    it { expect(action.call(params)[2].first).to match(/Body is missing/) }
+    it { expect(action.call(params)).to match_in_body('Title is missing') }
+    it { expect(action.call(params)).to match_in_body(/Body is missing/) }
 
     it 'does not create new task' do
       expect { action.call(params) }.to change { repo.all.size }.by(0)

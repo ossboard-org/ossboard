@@ -4,8 +4,5 @@ RSpec.describe Web::Controllers::Main::Index do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
-  end
+  it { expect(action.call(params)).to be_success }
 end

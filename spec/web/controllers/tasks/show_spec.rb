@@ -8,10 +8,7 @@ RSpec.describe Web::Controllers::Tasks::Show do
 
   after { TaskRepository.new.clear }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response).to be_success
-  end
+  it { expect(action.call(params)).to be_success }
 
   describe 'expose' do
     context '#task' do

@@ -11,7 +11,6 @@ RSpec.describe Admin::Controllers::Moderation::Update do
 
   after { repo.clear }
 
-
   it { expect { action.call(params) }.to change { repo.find(task.id).approved } }
   it { expect(action.call(params)).to redirect_to('/admin/moderation')  }
 end

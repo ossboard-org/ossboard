@@ -5,10 +5,7 @@ RSpec.describe Web::Controllers::Tasks::New do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response).to be_success
-  end
+  it { expect(action.call(params)).to be_success }
 
   describe 'expose' do
     context '#task' do

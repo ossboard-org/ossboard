@@ -53,10 +53,7 @@ RSpec.describe Auth::Controllers::Sessions::Create do
 
   after { repo.clear }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 302
-  end
+  it { expect(action.call(params)).to redirect_to('/') }
 
   context 'when user not exist' do
     it 'creates a new user' do
