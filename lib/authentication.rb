@@ -12,7 +12,7 @@ private
   end
 
   def authenticated?
-    !!current_user.id
+    current_user.registred?
   end
 
   def current_user
