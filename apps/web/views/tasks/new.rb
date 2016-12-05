@@ -25,5 +25,9 @@ module Web::Views::Tasks
     def task_form
       Form.new(:task, routes.tasks_path, {}, { method: :post })
     end
+
+    def tasks_active?
+      true
+    end
   end
 end
