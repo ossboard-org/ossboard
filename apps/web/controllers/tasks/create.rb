@@ -12,7 +12,7 @@ module Web::Controllers::Tasks
     end
 
     def call(params)
-      if params.valid?
+      if params.valid? && authenticated?
         @task = TaskRepository.new.create(params[:task])
         redirect_to routes.tasks_path
       else
