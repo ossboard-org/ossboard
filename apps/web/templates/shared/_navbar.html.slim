@@ -14,7 +14,7 @@
       li.pure-menu-item
         a.pure-menu-link href="https://github.com/davydovanton/ossboard" target="_blank"  Source
       li.pure-menu-item
-        - if current_user.id
+        - if current_user.registred?
           a.pure-menu-link href="/auth/logout" Logout
         - else
           a.pure-menu-link href="/auth/github" Sign In
