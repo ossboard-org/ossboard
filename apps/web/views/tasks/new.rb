@@ -5,14 +5,18 @@ module Web::Views::Tasks
     def form
       form_for task_form, id: 'task-form', class: 'pure-form' do
         div class: 'input' do
-          label      :title
-          text_field :title, value: task.title
+          text_field :title, value: task.title, placeholder: 'Title'
         end
 
         div class: 'input' do
-          label      :body
-          text_field :body, value: task.body
+          text_area :body, value: task.body, placeholder: 'Body'
         end
+
+        div class: 'input' do
+          select :language, { 'language' => '', 'ruby' => 'ruby', 'js' => 'js' }
+        end
+
+        a 'Back', href: routes.tasks_path, class: 'pure-button button-secondary'
 
         if current_user.id
           submit('Create', class: 'pure-button pure-button-primary')

@@ -1,9 +1,17 @@
-h2 Hew task
+.new-task
+  h2.new-task__title Submit new task
 
-- unless params.valid?
-  ul
-    - params.error_messages.each do |error|
-      li
-        = error
+  .new-task__errors
+    - unless params.valid?
+      .wrap-errors
+        h2 Errors:
+        ul
+          - params.error_messages.each do |error|
+            li
+              = error
 
-= form
+  .new-task__import
+    button.pure-button.pure-button-primary.new-task__github-import Import from github
+
+  .new-task__form
+    = form

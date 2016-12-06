@@ -88,3 +88,49 @@
   }
 }
 
+.new-task {
+  margin: 100px 75px;
+
+  .new-task__title {
+  }
+
+  .new-task__errors {
+    position: fixed;
+    margin: 5px 0;
+    display: flex;
+    width: 85%;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    padding: 10px 20px;
+
+    color: red;
+  }
+
+  .new-task__import {
+    margin: 5px 0;
+    display: flex;
+    width: 77%;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    padding: 10px 20px;
+
+    .new-task__github-import {
+      background-color: #32c107;
+    }
+  }
+
+  .new-task__form {
+    width: 75%;
+
+    textarea {
+      width: 100%;
+      height: 300px;
+      margin: 10px 0;
+    }
+
+    select {
+      width: 30%;
+      margin: 10px 0;
+    }
+  }
+}
