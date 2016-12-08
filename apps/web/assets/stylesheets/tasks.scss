@@ -81,7 +81,13 @@
   }
 
   .task__contact {
-    background-color: #32c107;
+    color: #32c107;
+    border: 1px solid #32c107;
+
+    &:hover {
+      background-color: #32c107;
+      color: #fff;
+    }
   }
 
   .task__share {
@@ -115,7 +121,13 @@
     padding: 10px 20px;
 
     .new-task__github-import {
-      background-color: #32c107;
+      color: #32c107;
+      border: 1px solid #32c107;
+
+      &:hover {
+        background-color: #32c107;
+        color: #fff;
+      }
     }
   }
 

@@ -16,7 +16,7 @@ module Web::Views::Tasks
           select :language, { 'language' => '', 'ruby' => 'ruby', 'js' => 'js' }
         end
 
-        a 'Back', href: routes.tasks_path, class: 'pure-button button-secondary'
+        a 'Back', href: routes.tasks_path, class: 'btn btn-back'
 
         if current_user.id
           submit('Create', class: 'pure-button pure-button-primary')

@@ -291,3 +291,53 @@ a.pure-button-primary {
     color: #fff !important;
   }
 }
+
+.btn {
+  display: inline-block;
+  border-radius: 2px;
+  border: none;
+  height: 45px;
+  margin: 5px 10px;
+  background-color: transparent;
+  color: #F07444;
+  border: 1px solid #F07444;
+  transition: .2s ease;
+  width: 200px;
+
+  &:hover {
+    background-color: #F07444;
+    color: white;
+
+    transition: .2s ease;
+  }
+}
+
+a, .btn {
+  text-decoration: none;
+  padding: 9px;
+}
+
+.btn-back {
+  text-align: center;
+  padding: 3px;
+  width: 100px;
+  height: 35px;
+  color: #42b8dd;
+  border: 1px solid #42b8dd;
+
+  &:hover {
+    background-color: #42b8dd;
+    color: #fff;
+  }
+}
+
+.btn-new-task {
+  text-align: center;
+  color: #42b8dd;
+  border: 1px solid #42b8dd;
+
+  &:hover {
+    background-color: #42b8dd;
+    color: #fff;
+  }
+}
