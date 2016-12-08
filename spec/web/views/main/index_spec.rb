@@ -22,13 +22,13 @@ RSpec.describe Web::Views::Main::Index do
 
   describe '#link_to_tasks' do
     it 'returns link to all tasks' do
-      expect(view.link_to_tasks.to_s).to eq '<a class="pure-button" href="/tasks">View All Tasks</a>'
+      expect(view.link_to_tasks.to_s).to eq '<a class="btn" href="/tasks">View All Tasks</a>'
     end
   end
 
   describe '#link_to_new_tasks' do
     it 'returns link to new task form' do
-      expect(view.link_to_new_tasks.to_s).to eq '<a class="pure-button" href="/tasks/new">Submit Task</a>'
+      expect(view.link_to_new_tasks.to_s).to eq '<a class="btn" href="/tasks/new">Submit Task</a>'
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe Web::Views::Main::Index do
 
     it 'returns link to special task' do
       link = view.link_to_task(task)
-      expect(link.to_s).to eq '<a class="pure-button" href="/tasks/1">Open task</a>'
+      expect(link.to_s).to eq '<a class="btn" href="/tasks/1">Open task</a>'
     end
   end
 
