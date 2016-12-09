@@ -2,6 +2,10 @@ module Admin::Views::Moderation
   class Index
     include Admin::View
 
+    def link_to_task(task)
+      link_to task.title, routes.task_path(task.id)
+    end
+
     def tasks
       TaskRepository.new.not_approved
     end

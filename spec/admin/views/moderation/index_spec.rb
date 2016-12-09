@@ -8,6 +8,13 @@ RSpec.describe Admin::Views::Moderation::Index do
   let(:rendered)  { view.render }
   let(:repo)      { TaskRepository.new }
 
+  describe '#link_to_tasks' do
+    let(:task) { Task.new(id: 1, title: 'Test') }
+    it 'returns link to all tasks' do
+      expect(view.link_to_task(task).to_s).to eq '<a href="/admin/tasks/1">Test</a>'
+    end
+  end
+
   describe '#tasks' do
     before do
       3.times { repo.create(title: 'good', approved: false) }
