@@ -50,7 +50,7 @@
             - tasks.each do |task|
               tr
                 td.latest-tasks-table__title = task.title
-                td.latest-tasks-table__lang ruby
+                td.latest-tasks-table__lang = task.lang
                 td.latest-tasks-table__action = link_to_task(task)
 
       .pure-u-1.is-center.latest-tasks__show-all
