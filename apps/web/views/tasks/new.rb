@@ -13,7 +13,7 @@ module Web::Views::Tasks
         end
 
         div class: 'input' do
-          select :language, { 'language' => '', 'ruby' => 'ruby', 'js' => 'js' }
+          select :lang, { 'language' => 'undefined', 'ruby' => 'ruby', 'js' => 'js' }
         end
 
         a 'Back', href: routes.tasks_path, class: 'btn btn-back'

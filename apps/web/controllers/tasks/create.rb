@@ -8,6 +8,7 @@ module Web::Controllers::Tasks
       required(:task).schema do
         required(:title).filled(:str?)
         required(:body).filled(:str?)
+        required(:lang).filled(:str?)
       end
     end
 
