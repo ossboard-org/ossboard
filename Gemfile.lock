@@ -166,6 +166,7 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (11.3.0)
+    redcarpet (3.3.4)
     rom (2.0.2)
       concurrent-ruby (~> 1.0)
       dry-equalizer (~> 0.2)
@@ -249,6 +250,7 @@ DEPENDENCIES
   omniauth-github!
   pg
   rake
+  redcarpet
   rspec
   rspec-hanami!
   sass

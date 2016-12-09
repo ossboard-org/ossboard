@@ -7,6 +7,9 @@ gem 'rake'
 gem 'hanami',       '~> 0.9'
 gem 'hanami-model', '~> 0.7'
 
+# markdown
+gem 'redcarpet'
+
 gem 'pg'
 gem 'travis'
 
