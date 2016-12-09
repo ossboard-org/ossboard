@@ -5,10 +5,12 @@ table.table.pure-table.pure-table-horizontal.moderation-table
     tr
       th.moderation-table__id #
       th.moderation-table__title Title
+      th.moderation-table__lang Language
       th.moderation-table__action
   tbody
     - tasks.each do |task|
       tr
         td = task.id
         td = task.title
+        td = task.lang
         td = approve_task_button(task)

@@ -5,6 +5,7 @@ table.table.pure-table.pure-table-horizontal
     tr
       th.table__id #
       th.table__title Title
+      th.table__lang Language
       th.table__status Status
       th.table__created-at Created at
   tbody
@@ -12,5 +13,6 @@ table.table.pure-table.pure-table-horizontal
       tr
         td = task.id
         td = link_to_task(task)
+        td = task.lang
         td = task_label(task)
         td = task.created_at
