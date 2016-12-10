@@ -20,8 +20,8 @@ module Admin::Controllers::Users
       if @user && params.valid?
         user_params = params[:user]
         user_params[:admin] = user_params[:admin] == '1'
-        @user = repo.update(@user.id, user_params)
 
+        repo.update(@user.id, user_params)
         redirect_to routes.user_path(user.id)
       else
         self.status = 422

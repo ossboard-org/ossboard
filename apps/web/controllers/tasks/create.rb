@@ -17,7 +17,7 @@ module Web::Controllers::Tasks
         task_params = params[:task]
         task_params[:body] = MARKDOWN.render(task_params[:md_body])
 
-        @task = TaskRepository.new.create(task_params)
+        TaskRepository.new.create(task_params)
         redirect_to routes.tasks_path
       else
         @task = Task.new(params[:task])

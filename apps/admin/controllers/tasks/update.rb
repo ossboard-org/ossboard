@@ -14,19 +14,23 @@ module Admin::Controllers::Tasks
     end
 
     def call(params)
-      repo = TaskRepository.new
       @task = repo.find(params[:id])
 
       if @task && params.valid?
         task_params = params[:task]
         task_params[:body] = MARKDOWN.render(task_params[:md_body])
 
-        @task = repo.update(@task.id, task_params)
-
+        repo.update(@task.id, task_params)
         redirect_to routes.task_path(task.id)
       else
         self.status = 422
       end
+    end
+
+  private
+
+    def repo
+      @repo ||= TaskRepository.new
     end
   end
 end
