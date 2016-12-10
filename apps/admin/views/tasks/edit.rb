@@ -11,8 +11,8 @@ module Admin::Views::Tasks
           end
 
           div class: 'input task-form__field pure-control-group' do
-            label      :body
-            text_field :body, value: task.body
+            label      :md_body
+            text_field :md_body, value: task.md_body
           end
 
           div class: 'input task-form__field pure-control-group' do

@@ -7,7 +7,7 @@ module Admin::Controllers::Tasks
       required(:id).filled
       required(:task).schema do
         required(:title).filled(:str?)
-        required(:body).filled(:str?)
+        required(:md_body).filled(:str?)
         required(:approved).filled
         required(:lang).filled
       end
@@ -18,7 +18,11 @@ module Admin::Controllers::Tasks
       @task = repo.find(params[:id])
 
       if @task && params.valid?
-        @task = repo.update(@task.id, params[:task])
+        task_params = params[:task]
+        task_params[:body] = MARKDOWN.render(task_params[:md_body])
+
+        @task = repo.update(@task.id, task_params)
+
         redirect_to routes.task_path(task.id)
       else
         self.status = 422
