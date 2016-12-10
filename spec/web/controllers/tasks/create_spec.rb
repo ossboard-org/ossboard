@@ -9,7 +9,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
   after { repo.clear }
 
   describe 'when user in not authenticated' do
-    let(:params) { { task: { title: 'test', body: 'long body', lang: 'test' } } }
+    let(:params) { { task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test' } } }
 
     it { expect(action.call(params)).to have_http_status(200) }
 
@@ -19,7 +19,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
   end
 
   describe 'when params valid' do
-    let(:params) { { task: { title: 'test', body: 'long body', lang: 'test' }, 'rack.session' => session } }
+    let(:params) { { task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test' }, 'rack.session' => session } }
 
     it { expect(action.call(params)).to redirect_to('/tasks') }
 
@@ -28,8 +28,10 @@ RSpec.describe Web::Controllers::Tasks::Create do
 
       task = repo.last
       expect(task.title).to eq 'test'
-      expect(task.body).to eq 'long body'
+      expect(task.md_body).to eq 'This is *bongos*, indeed.'
+      expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
     end
+
   end
 
   describe 'when params invalid' do

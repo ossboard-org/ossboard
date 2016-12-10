@@ -7,14 +7,17 @@ module Web::Controllers::Tasks
     params do
       required(:task).schema do
         required(:title).filled(:str?)
-        required(:body).filled(:str?)
+        required(:md_body).filled(:str?)
         required(:lang).filled(:str?)
       end
     end
 
     def call(params)
       if params.valid? && authenticated?
-        @task = TaskRepository.new.create(params[:task])
+        task_params = params[:task]
+        task_params[:body] = MARKDOWN.render(task_params[:md_body])
+
+        @task = TaskRepository.new.create(task_params)
         redirect_to routes.tasks_path
       else
         @task = Task.new(params[:task])

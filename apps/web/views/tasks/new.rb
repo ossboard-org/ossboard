@@ -9,7 +9,7 @@ module Web::Views::Tasks
         end
 
         div class: 'input' do
-          text_area :body, value: task.body, placeholder: 'Body'
+          text_area :md_body, value: task.body, placeholder: 'Body'
         end
 
         div class: 'input' do
