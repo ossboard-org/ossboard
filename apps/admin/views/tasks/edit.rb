@@ -19,6 +19,10 @@ module Admin::Views::Tasks
             label     :approved
             check_box :approved, checked: checkbox_status
           end
+
+          div class: 'input' do
+            select :lang, { 'language' => 'undefined', 'ruby' => 'ruby', 'js' => 'js' }
+          end
         end
 
         div class: 'task-form__actions pure-controls' do

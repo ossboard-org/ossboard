@@ -9,6 +9,7 @@ module Admin::Controllers::Tasks
         required(:title).filled(:str?)
         required(:body).filled(:str?)
         required(:approved).filled
+        required(:lang).filled
       end
     end
 
