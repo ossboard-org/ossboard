@@ -3,13 +3,16 @@ module Web::Views::Tasks
     include Web::View
 
     def form
-      form_for task_form, id: 'task-form', class: 'pure-form' do
+      form_for task_form, id: 'task-form', class: 'task-form pure-form' do
         div class: 'input' do
           text_field :title, value: task.title, placeholder: 'Title'
         end
 
         div class: 'input' do
           text_area :md_body, value: task.body, placeholder: 'Body'
+          div(class: 'task-form__body-tip') do
+            em '* you can use markdown syntax'
+          end
         end
 
         div class: 'input' do
