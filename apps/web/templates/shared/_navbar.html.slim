@@ -5,9 +5,9 @@
       li.pure-menu-item class="#{ 'pure-menu-selected' if tasks_active? }"
         = link_to 'Tasks', routes.tasks_path, class: 'pure-menu-link'
       li.pure-menu-item
-        a.pure-menu-link href="#" How to help
+        = link_to 'How to help', routes.help_path, class: 'pure-menu-link'
       li.pure-menu-item
-        a.pure-menu-link href="#" About
+        = link_to 'About', routes.about_path, class: 'pure-menu-link'
       - if current_user.admin
         li.pure-menu-item
           = link_to_admin
