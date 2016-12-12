@@ -15,7 +15,7 @@ module Web::Controllers::Tasks
     def call(params)
       if params.valid? && authenticated?
         task_params = params[:task]
-        task_params[:body] = MARKDOWN.render(task_params[:md_body])
+        task_params[:body] = Markdown.parse(task_params[:md_body])
 
         TaskRepository.new.create(task_params)
         redirect_to routes.tasks_path

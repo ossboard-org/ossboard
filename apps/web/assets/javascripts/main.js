@@ -1,3 +1,4 @@
+require("!style-loader!css-loader!sass-loader!../stylesheets/syntax.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/static.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/tasks.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/footer.scss");

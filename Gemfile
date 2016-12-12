@@ -8,7 +8,8 @@ gem 'hanami',       '~> 0.9'
 gem 'hanami-model', '~> 0.7'
 
 # markdown
-gem 'redcarpet'
+gem 'kramdown'
+gem 'rouge'
 
 gem 'pg'
 gem 'travis'

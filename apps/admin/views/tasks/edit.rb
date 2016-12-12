@@ -12,7 +12,7 @@ module Admin::Views::Tasks
 
           div class: 'input task-form__field pure-control-group' do
             label      :md_body
-            text_field :md_body, value: task.md_body
+            text_area  :md_body, value: task.md_body
           end
 
           div class: 'input task-form__field pure-control-group' do

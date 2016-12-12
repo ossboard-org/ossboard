@@ -131,6 +131,7 @@ GEM
     json (2.0.2)
     jwt (0.1.13)
       multi_json (>= 1.5)
+    kramdown (1.13.1)
     launchy (2.4.3)
       addressable (~> 2.3)
     mail (2.6.4)
@@ -166,7 +167,6 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (11.3.0)
-    redcarpet (3.3.4)
     rom (2.0.2)
       concurrent-ruby (~> 1.0)
       dry-equalizer (~> 0.2)
@@ -193,6 +193,7 @@ GEM
       dry-equalizer (~> 0.2)
       transproc (~> 0.4.0)
       wisper (~> 1.6, >= 1.6.0)
+    rouge (1.10.1)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -246,11 +247,12 @@ DEPENDENCIES
   hanami (~> 0.9)
   hanami-model (~> 0.7)
   hanami-webpack!
+  kramdown
   omniauth
   omniauth-github!
   pg
   rake
-  redcarpet
+  rouge
   rspec
   rspec-hanami!
   sass
