@@ -21,6 +21,19 @@
   .task-form__fields {
     .task-form__field {
       margin: 10px 0;
+
+      input {
+        width: 700px;
+      }
+
+      textarea {
+        width: 700px;
+        height: 300px;
+      }
+
+      select {
+        width: 200px;
+      }
     }
   }
 

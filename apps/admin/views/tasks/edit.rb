@@ -11,8 +11,8 @@ module Admin::Views::Tasks
           end
 
           div class: 'input task-form__field pure-control-group' do
-            label      :md_body
-            text_area  :md_body, value: task.md_body
+            label     :md_body
+            text_area :md_body, task.md_body
           end
 
           div class: 'input task-form__field pure-control-group' do
@@ -20,7 +20,7 @@ module Admin::Views::Tasks
             check_box :approved, checked: checkbox_status
           end
 
-          div class: 'input' do
+          div class: 'input task-form__field' do
             select :lang, { 'language' => 'undefined', 'ruby' => 'ruby', 'js' => 'js' }
           end
         end
