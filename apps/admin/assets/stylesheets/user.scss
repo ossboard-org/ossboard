@@ -16,3 +16,27 @@
     }
   }
 }
+
+.user-form {
+  .user-form__fields {
+    .user-form__field {
+      margin: 10px 0;
+
+      input {
+        width: 700px;
+      }
+
+      textarea {
+        width: 700px;
+        height: 200px;
+      }
+
+      select {
+        width: 200px;
+      }
+    }
+  }
+
+  .user-form__actions {
+  }
+}

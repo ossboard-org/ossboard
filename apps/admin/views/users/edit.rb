@@ -25,8 +25,8 @@ module Admin::Views::Users
           end
 
           div class: 'input user-form__field pure-control-group' do
-            label      :bio
-            text_field :bio, value: user.bio
+            label     :bio
+            text_area :bio, user.bio
           end
 
           div class: 'input user-form__field pure-control-group' do
