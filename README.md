@@ -7,6 +7,6 @@ Under construction
 ```
 $ bundle install
 $ npm install
-$ bundle exec hanami db prepere
+$ bundle exec hanami db prepare
 $ bundle exec hanami server
 ```
