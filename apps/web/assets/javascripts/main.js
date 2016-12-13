@@ -5,15 +5,23 @@ require("!style-loader!css-loader!sass-loader!../stylesheets/footer.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/landing.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/main.scss");
 
-dev_text = document.querySelector('.for-dev__developers-text');
-maint_text = document.querySelector('.for-dev__maintainers-text');
+import Vue from 'vue/dist/vue.js'
 
-document.getElementById('js-for-developers').onclick = function () {
-  dev_text.classList.remove('hide');
-  maint_text.classList.add('hide');
-}
+var for_dev = new Vue({
+  el: '#for-dev',
+  data: {
+    forDevelopers: true,
+    forMaintainers: false
+  },
+  methods: {
+    displayForDevelopers: function () {
+      this.forDevelopers = true
+      this.forMaintainers = false
+    },
 
-document.getElementById('js-for-maintainers').onclick = function () {
-  dev_text.classList.add('hide');
-  maint_text.classList.remove('hide');
-}
+    displayForMaintainers: function () {
+      this.forDevelopers = false
+      this.forMaintainers = true
+    }
+  }
+})

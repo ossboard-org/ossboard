@@ -29,7 +29,18 @@ var config = {
       test: /\.scss$/,
       loaders: ["style-loader", "css-loader", "sass-loader"]
     }
-  ]
+  ],
+
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+      query: {
+        presets: ['es2015']
+      }
+    }]
+  }
 };
 
 if (process.env.INBUILT_WEBPACK_DEV_SERVER) {

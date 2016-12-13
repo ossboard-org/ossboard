@@ -17,22 +17,22 @@
 
 
   .ribbon.l-box-lrg.pure-g
-    .l-box.pure-u-1.pure-g.landing-about__for-dev.for-dev
+    .l-box.pure-u-1.pure-g.landing-about__for-dev.for-dev id="for-dev"
       .pure-menu.pure-menu-horizontal.pure-menu-scrollable.is-center.for-dev__actions
         ul.pure-menu-list
           li.pure-menu-item
-            button.btn.pure-menu-link id="js-for-developers" For developers
+            button.btn.pure-menu-link v-on:click="displayForDevelopers" For developers
           li.pure-menu-item
-            button.btn.pure-menu-link id="js-for-maintainers" For maintainers
+            button.btn.pure-menu-link v-on:click="displayForMaintainers" For maintainers
 
-      .pure-u-1.for-dev__developers-text
+      .pure-u-1.for-dev__developers-text v-if="forDevelopers"
         p
           | You have amazing chance to start working on OSS project, help to other developers
           |  and update your CV with real tasks.
         .pure-u-1.is-center
           = link_to_tasks
 
-      .pure-u-1.for-dev__maintainers-text.hide
+      .pure-u-1.for-dev__maintainers-text v-if="forMaintainers"
         p
           | Do you have old issue? You don't time for solving some issue? Submit your issue
           |  and vaiting new developer who want to help you. It's simple and more productive
