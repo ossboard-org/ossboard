@@ -10,8 +10,17 @@
             li
               = error
 
-  .new-task__import
-    button.btn.new-task__github-import Import from github
+  .new-task__import id="import-modal"
+    button.btn.new-task__github-import @click="showModal = true" Import from github
+
+    modal v-if="showModal" @close="showModal = false"
+      h3 slot="header" Import from
+      div slot="body"
+        span Github:
+        |  comming soon
+      div slot="footer"
+        button class="pure-button pure-button-primary" Import
+        button class="pure-button pure-button-primary modal-close-button" @click="showModal = false" Close
 
   .new-task__form
     = form

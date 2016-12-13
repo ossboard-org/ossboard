@@ -1,3 +1,4 @@
+require("!style-loader!css-loader!sass-loader!../stylesheets/modal.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/syntax.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/static.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/tasks.scss");
@@ -24,4 +25,16 @@ var for_dev = new Vue({
       this.forMaintainers = true
     }
   }
+})
+
+
+Vue.component('modal', {
+  template: '#modal-template'
+})
+
+var importModal = new Vue({
+  el: '#import-modal',
+  data: {
+    showModal: false
+  },
 })

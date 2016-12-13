@@ -1,0 +1,14 @@
+script type="text/x-template" id="modal-template"
+  transition name="modal"
+    .modal-mask
+      .modal-wrapper
+        .modal-container
+          .modal-header
+            slot name="header"
+              | default header
+          .modal-body
+            slot name="body"
+              | default body
+          .modal-footer
+            slot name="footer"
+              button class="pure-button pure-button-primary modal-close-button" @click="$emit('close')" OK
