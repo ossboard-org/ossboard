@@ -3,7 +3,7 @@
     h2 = task.title
 
   .task__author
-    | Author: #{author.name}
+    | Author: #{link_to_author(author)}
 
   .task__body
     = task_body

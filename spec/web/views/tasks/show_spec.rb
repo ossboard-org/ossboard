@@ -14,4 +14,14 @@ RSpec.describe Web::Views::Tasks::Show do
   describe 'nav bar actions' do
     it { expect(view.tasks_active?).to be true }
   end
+
+
+  describe '#link_to_author' do
+    let(:user) { User.new(id: 1, name: 'test') }
+
+    it 'returns link to special user' do
+      link = view.link_to_author(user)
+      expect(link.to_s).to eq '<a href="/users/1">test</a>'
+    end
+  end
 end

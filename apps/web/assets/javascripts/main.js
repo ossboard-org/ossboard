@@ -1,3 +1,4 @@
+require("!style-loader!css-loader!sass-loader!../stylesheets/user.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/modal.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/syntax.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/static.scss");

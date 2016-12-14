@@ -9,5 +9,9 @@ module Web::Views::Tasks
     def tasks_active?
       true
     end
+
+    def link_to_author(user)
+      link_to user.name, routes.user_path(id: user.id)
+    end
   end
 end
