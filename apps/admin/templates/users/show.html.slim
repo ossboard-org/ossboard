@@ -30,6 +30,24 @@
       .pure-u-1-8 Updated at
       .pure-u-7-8 = user.updated_at
 
+  .show-user__submited-tasks.submited-tasks
+    h2.submited-tasks__title User Tasks 
+
+    table.table.pure-table.pure-table-horizontal.submited-tasks__table
+      thead
+        tr
+          th.table__id #
+          th.table__title Title
+          th.table__lang Language
+          th.table__status Status
+      tbody
+        - user.tasks.each do |task|
+          tr
+            td = task.id
+            td = link_to_task(task)
+            td = task.lang
+            td = task_label(task)
+
   .show-user__actions
     = link_to 'Back', routes.users_path, class: 'pure-button'
     = link_to_edit

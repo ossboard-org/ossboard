@@ -4,7 +4,7 @@ module Admin::Controllers::Users
     expose :user
 
     def call(params)
-      @user = UserRepository.new.find(params[:id])
+      @user = UserRepository.new.find_with_tasks(params[:id])
     end
   end
 end
