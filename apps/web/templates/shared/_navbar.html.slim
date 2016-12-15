@@ -18,7 +18,7 @@
           a#menuLink1.pure-menu-link href="#" = current_user.name
           ul.navbar-dropdown.pure-menu-children
             li.pure-menu-item
-              a.pure-menu-link href="#" Settings
+              = link_to 'Profile', routes.user_path(current_user.id), class: 'pure-menu-link'
             li.pure-menu-item
               a.pure-menu-link href="/auth/logout" Logout
 
