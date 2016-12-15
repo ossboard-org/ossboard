@@ -9,5 +9,9 @@ module Web::Views::Users
         html.span { task.title }
       end
     end
+
+    def task_status_style(task)
+      task.approved ? '' : 'waiting-task'
+    end
   end
 end

@@ -29,4 +29,16 @@ RSpec.describe Web::Views::Users::Show do
       end
     end
   end
+
+  describe '#task_status_style' do
+    context 'when task approved' do
+      let(:task) { Task.new(id: 1, title: 'test', approved: true) }
+      it { expect(view.task_status_style(task).to_s).to eq '' }
+    end
+
+    context 'when task not approved' do
+      let(:task) { Task.new(id: 1, title: 'test', approved: false) }
+      it { expect(view.task_status_style(task).to_s).to eq 'waiting-task' }
+    end
+  end
 end

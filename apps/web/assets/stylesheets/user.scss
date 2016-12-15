@@ -12,6 +12,7 @@
     }
 
     .show-user__bio {
+      color: #7f8c8d;
     }
   }
 
@@ -27,6 +28,12 @@
     }
 
     .tasks__list {
+      color: #000;
+
+      .waiting-task {
+        color: #7f8c8d;
+      }
+
       .task-item__title {
         span {
           margin: 0 10px;

@@ -12,7 +12,7 @@
 
     .tasks__list
       - user.tasks.each do |task|
-        .task-item
+        .task-item class=task_status_style(task)
           .task-item__title
             = link_to_task(task)
           .task-item__lang = task.lang
