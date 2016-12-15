@@ -10,8 +10,13 @@ module Web::Views::Tasks
       true
     end
 
-    def link_to_author(user)
-      link_to user.name, routes.user_path(id: user.id)
+    def link_to_author
+      link_to author.name, routes.user_path(author.id)
+    end
+
+    def contact_with_mentor_link
+      subject = "OSSBoard: #{task.title}"
+      link_to 'Contact with mentor', "mailto:#{author.email}?subject=#{subject}", class: 'btn btn-contact task__contact'
     end
   end
 end

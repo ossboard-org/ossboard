@@ -3,7 +3,7 @@
     h2 = task.title
 
   .task__author
-    | Author: #{link_to_author(author)}
+    | Author: #{link_to_author}
 
   .task__body
     = task_body
@@ -12,5 +12,5 @@
     | Language: #{task.lang}
 
   .task__actions
-    button.btn.btn-contact.task__contact Contact with mentor
+    = contact_with_mentor_link
     button.btn.btn-share.task__share Share task
