@@ -1,3 +1,37 @@
 .show-user {
   margin: 100px 75px;
+  display: flex;
+
+  .show-user__info {
+    width: 20%;
+
+    .show-user__avatar {
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .show-user__bio {
+    }
+  }
+
+  .show-user__tasks {
+    width: 80%
+  }
+
+  .tasks {
+    margin: 0 75px;
+
+    .task__title {
+      margin: 0 0 30px;
+    }
+
+    .tasks__list {
+      .task-item__title {
+        span {
+          margin: 0 10px;
+        }
+      }
+    }
+  }
 }

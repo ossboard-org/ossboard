@@ -1,2 +1,18 @@
 .show-user
-  h1 = user.name
+  .show-user__info
+    .show-user__avatar
+      img src=user.avatar_url
+    .show-user__name
+      h2 = user.name
+    .show-user__bio
+      = user.bio
+
+  .show-user__tasks.tasks
+    h2.task__title Tasks
+
+    .tasks__list
+      - user.tasks.each do |task|
+        .task-item
+          .task-item__title
+            = link_to_task(task)
+          .task-item__lang = task.lang
