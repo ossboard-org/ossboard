@@ -11,7 +11,7 @@ module Web::Views::Users
     end
 
     def task_status_style(task)
-      task.approved ? '' : 'waiting-task'
+      'waiting-task' unless task.approved
     end
   end
 end
