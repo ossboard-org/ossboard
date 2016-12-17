@@ -2,11 +2,13 @@ require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
 require_relative '../lib/ossboard'
+require_relative '../apps/api/application'
 require_relative '../apps/auth/application'
 require_relative '../apps/admin/application'
 require_relative '../apps/web/application'
 
 Hanami.configure do
+  mount Api::Application, at: '/api'
   mount Auth::Application, at: '/auth'
   mount Admin::Application, at: '/admin'
   mount Web::Application, at: '/'
