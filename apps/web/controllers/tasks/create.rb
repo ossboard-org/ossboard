@@ -18,6 +18,7 @@ module Web::Controllers::Tasks
       if params.valid? && authenticated?
         task_params = params[:task]
         task_params[:body] = Markdown.parse(task_params[:md_body])
+        task_params[:status] = Task::VALID_STATUSES[:in_progress]
 
         TaskRepository.new.create(task_params)
         redirect_to routes.tasks_path

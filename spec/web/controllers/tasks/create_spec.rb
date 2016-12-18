@@ -34,6 +34,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
       expect(task.md_body).to eq 'This is *bongos*, indeed.'
       expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
       expect(task.issue_url).to eq 'github.com/issue/1'
+      expect(task.status).to eq 'in progress'
     end
   end
 
