@@ -36,4 +36,5 @@
 
   .show-task__actions
     = link_to 'Back', routes.tasks_path, class: 'pure-button'
+    = link_to 'Open in app', "/tasks/#{task.id}", class: 'pure-button origin-task', target: '_blank'
     = link_to_edit
