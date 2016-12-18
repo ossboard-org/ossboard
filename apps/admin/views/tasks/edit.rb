@@ -28,6 +28,10 @@ module Admin::Views::Tasks
           div class: 'input task-form__field' do
             select :lang, { 'language' => 'undefined', 'ruby' => 'ruby', 'js' => 'js' }
           end
+
+          div class: 'input task-form__field pure-control-group' do
+            select :status, { 'in progress' => 'in progress', 'done' => 'done', 'closed' => 'closed' }, options: {selected: task.status}
+          end
         end
 
         div class: 'task-form__actions pure-controls' do

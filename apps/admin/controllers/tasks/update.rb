@@ -10,6 +10,7 @@ module Admin::Controllers::Tasks
         required(:md_body).filled(:str?)
         required(:approved).filled
         required(:lang).filled
+        required(:status).filled
         optional(:issue_url).maybe(:str?)
       end
     end

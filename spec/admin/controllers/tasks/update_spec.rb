@@ -10,7 +10,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
   after { repo.clear }
 
   describe 'when params valid' do
-    let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', approved: '1', lang: 'ruby', issue_url: 'github.com/issue/1' }, 'rack.session' => session  } }
+    let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', approved: '1', lang: 'ruby', issue_url: 'github.com/issue/1', status: 'done' }, 'rack.session' => session  } }
 
     it { expect(action.call(params)).to redirect_to("/admin/tasks/#{task.id}") }
 
@@ -23,10 +23,11 @@ RSpec.describe Admin::Controllers::Tasks::Update do
       expect(task.approved).to eq true
       expect(task.lang).to eq 'ruby'
       expect(task.issue_url).to eq 'github.com/issue/1'
+      expect(task.status).to eq 'done'
     end
 
     context 'and issue url empty' do
-      let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', approved: '1', lang: 'ruby', issue_url: '' }, 'rack.session' => session  } }
+      let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', approved: '1', lang: 'ruby', issue_url: '', status: 'done' }, 'rack.session' => session  } }
 
       it { expect(action.call(params)).to redirect_to("/admin/tasks/#{task.id}") }
 
