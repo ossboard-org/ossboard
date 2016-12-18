@@ -235,7 +235,7 @@ module Web
         connect-src 'self' 'unsafe-inline' http:;
         img-src 'self' https: data:;
         style-src 'self' 'unsafe-inline' https:;
-        font-src 'self' 'unsafe-inline' https:;
+        font-src 'self' data: 'unsafe-inline' https:;
         object-src 'none';
         plugin-types application/pdf;
         child-src 'self';

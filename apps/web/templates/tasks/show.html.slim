@@ -1,6 +1,6 @@
 .task
   .task__title
-    h2 = task.title
+    h2#task_title = task.title
 
   .task__author
     | Author: #{link_to_author}
@@ -13,7 +13,7 @@
 
   .task__actions
     = contact_with_mentor_link
-    button.btn.btn-share.task__share Share task
+    share-button.btn.btn-share.task__share Share task
 
   .task__comments
     h3 Comments

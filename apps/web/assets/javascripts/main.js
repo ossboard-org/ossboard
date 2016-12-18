@@ -7,6 +7,39 @@ require("!style-loader!css-loader!sass-loader!../stylesheets/footer.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/landing.scss");
 require("!style-loader!css-loader!sass-loader!../stylesheets/main.scss");
 
+require("script-loader!./share_buttons.js");
+require("!style-loader!css-loader!../stylesheets/share_buttons.css");
+
+window.onload = function () {
+  var taskTitleTag = document.getElementById('task_title');
+  var taskTitle = taskTitleTag.textContent || taskTitleTag.innerText;
+  var config = {
+    networks: {
+      googlePlus: {
+        enabled: true,
+      },
+      twitter: {
+        enabled: true,
+        description: taskTitle
+      },
+      facebook: {
+        enabled: true,
+        loadSdk: true,
+        title: taskTitle
+      },
+      reddit: {
+        enabled: true,
+        title: taskTitle
+      },
+      email: {
+        enabled: true,
+        description: taskTitle
+      }
+    }
+  }
+  var share = new ShareButton('.task__share', config);
+}
+
 import Vue from 'vue/dist/vue.js'
 
 var for_dev = new Vue({
