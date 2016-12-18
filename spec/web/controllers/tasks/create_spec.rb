@@ -36,6 +36,21 @@ RSpec.describe Web::Controllers::Tasks::Create do
       expect(task.issue_url).to eq 'github.com/issue/1'
       expect(task.status).to eq 'in progress'
     end
+
+    context 'and issue url empty' do
+      let(:params) { { task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test', user_id: user.id, issue_url: '' }, 'rack.session' => session } }
+
+      it 'creates new task' do
+        expect { action.call(params) }.to change { repo.all.size }.by(1)
+
+        task = repo.last
+        expect(task.title).to eq 'test'
+        expect(task.md_body).to eq 'This is *bongos*, indeed.'
+        expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
+        expect(task.issue_url).to eq nil
+        expect(task.status).to eq 'in progress'
+      end
+    end
   end
 
   describe 'when user is not login' do

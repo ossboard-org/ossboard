@@ -24,6 +24,23 @@ RSpec.describe Admin::Controllers::Tasks::Update do
       expect(task.lang).to eq 'ruby'
       expect(task.issue_url).to eq 'github.com/issue/1'
     end
+
+    context 'and issue url empty' do
+      let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', approved: '1', lang: 'ruby', issue_url: '' }, 'rack.session' => session  } }
+
+      it { expect(action.call(params)).to redirect_to("/admin/tasks/#{task.id}") }
+
+      it 'updates new task' do
+        action.call(params)
+        task = repo.last
+        expect(task.title).to eq 'test'
+        expect(task.md_body).to eq 'This is *bongos*, indeed.'
+        expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
+        expect(task.approved).to eq true
+        expect(task.lang).to eq 'ruby'
+        expect(task.issue_url).to eq nil
+      end
+    end
   end
 
   describe 'when params invalid' do

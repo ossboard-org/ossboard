@@ -10,7 +10,7 @@ module Web::Controllers::Tasks
         required(:md_body).filled(:str?)
         required(:lang).filled(:str?)
         required(:user_id).filled
-        optional(:issue_url).filled(:str?)
+        optional(:issue_url).maybe(:str?)
       end
     end
 
