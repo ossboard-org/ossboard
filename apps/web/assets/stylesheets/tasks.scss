@@ -10,6 +10,14 @@
       justify-content: flex-end;
     }
 
+    .pure-menu-selected {
+      background-color: #ccc;
+
+      a {
+        color: #000 !important;
+      }
+    }
+
     .tasks__search {
     }
   }

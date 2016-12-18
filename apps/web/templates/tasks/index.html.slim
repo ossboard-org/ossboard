@@ -2,6 +2,16 @@
   .tasks__actions
     .tasks__new
       = link_to_new_task
+
+    .pure-menu.pure-menu-horizontal
+      ul.pure-menu-list
+        li.pure-menu-item.pure-menu-selected
+          a.pure-menu-link href="#" In progress
+        li.pure-menu-item
+          a.pure-menu-link href="#" Closed
+        li.pure-menu-item
+          a.pure-menu-link href="#" Finished
+
     .tasks__search
       form.pure-form.task-search action="#" method="post"
         input.task-search__keyword type="text" name="keyword" placeholder="Keyword"
