@@ -11,6 +11,10 @@ module Web::Views::Tasks
         end
 
         div class: 'input' do
+          text_field :issue_url, value: task.issue_url, placeholder: 'Link to issue (optional)'
+        end
+
+        div class: 'input' do
           text_area :md_body, value: task.md_body, placeholder: 'Body'
           div(class: 'task-form__body-tip') do
             em '* you can use markdown syntax'

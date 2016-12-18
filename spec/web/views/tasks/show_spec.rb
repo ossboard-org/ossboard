@@ -26,4 +26,23 @@ RSpec.describe Web::Views::Tasks::Show do
       expect(link.to_s).to eq '<a class="btn btn-contact task__contact" href="mailto:test@ossboard.com?subject=OSSBoard: task title">Contact with mentor</a>'
     end
   end
+
+  describe '#link_to_original_issue' do
+    subject { view.link_to_original_issue.to_s }
+
+    context 'when task have issue link' do
+      let(:task) { Task.new(id: 1, issue_url: 'github.com') }
+      it { expect(subject).to eq '<a target="_blank" href="github.com">(Original issue)</a>' }
+    end
+
+    context 'when issue link empty' do
+      let(:task) { Task.new(id: 1, issue_url: '') }
+      it { expect(subject).to eq '' }
+    end
+
+    context 'when task does not have issue link' do
+      let(:task) { Task.new(id: 1, issue_url: nil) }
+      it { expect(subject).to eq '' }
+    end
+  end
 end

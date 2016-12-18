@@ -20,7 +20,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
 
   describe 'when params valid' do
     let(:user) { UserRepository.new.create(name: 'test') }
-    let(:params) { { task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test', user_id: user.id }, 'rack.session' => session } }
+    let(:params) { { task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test', user_id: user.id, issue_url: 'github.com/issue/1' }, 'rack.session' => session } }
 
     after { UserRepository.new.clear }
 
@@ -33,6 +33,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
       expect(task.title).to eq 'test'
       expect(task.md_body).to eq 'This is *bongos*, indeed.'
       expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
+      expect(task.issue_url).to eq 'github.com/issue/1'
     end
   end
 
