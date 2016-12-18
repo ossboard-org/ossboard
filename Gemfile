@@ -37,6 +37,7 @@ group :test do
   gem 'rspec'
   gem 'rspec-hanami', github: 'davydovanton/rspec-hanami'
   gem 'capybara'
+  gem 'simplecov', require: false
 end
 
 group :production do

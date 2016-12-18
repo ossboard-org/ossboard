@@ -1,3 +1,4 @@
 /public/assets*
 /tmp
 /node_modules
+/coverage
