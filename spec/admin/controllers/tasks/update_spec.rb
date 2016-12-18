@@ -10,7 +10,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
   after { repo.clear }
 
   describe 'when params valid' do
-    let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', approved: '1', lang: 'ruby' }, 'rack.session' => session  } }
+    let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', approved: '1', lang: 'ruby', issue_url: 'github.com/issue/1' }, 'rack.session' => session  } }
 
     it { expect(action.call(params)).to redirect_to("/admin/tasks/#{task.id}") }
 
@@ -22,6 +22,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
       expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
       expect(task.approved).to eq true
       expect(task.lang).to eq 'ruby'
+      expect(task.issue_url).to eq 'github.com/issue/1'
     end
   end
 
