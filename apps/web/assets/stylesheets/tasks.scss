@@ -93,6 +93,12 @@
 
   .task__share {
   }
+
+  .task__comments-disabled {
+    a {
+      padding: 0 5px;
+    }
+  }
 }
 
 .new-task {

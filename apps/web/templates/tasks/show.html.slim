@@ -14,3 +14,29 @@
   .task__actions
     = contact_with_mentor_link
     button.btn.btn-share.task__share Share task
+
+  .task__comments
+    h3 Comments
+
+    - if current_user.registred?
+      #disqus_thread
+      javascript:
+        var disqus_config = function () {
+        this.page.url = '#{routes.task_url(task.id)}';
+        this.page.identifier = '#{routes.task_path(task.id)}';
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//ossboard.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+      noscript
+        | Please enable JavaScript to view the
+        a href="https://disqus.com/?ref_noscript"  comments powered by Disqus.
+
+    - else
+      .task__comments-disabled
+        | You need to
+        a href="/auth/github" login
+        | first before you can reed comments
