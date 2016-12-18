@@ -6,9 +6,8 @@
       form.pure-form.task-search action="#" method="post"
         input.task-search__keyword type="text" name="keyword" placeholder="Keyword"
         select.task-search__lang name="select"
-          option value="any" selected="" Any language
-          option value="ruby" ruby
-          option value="js" js
+          - langs_list.each do |value, title|
+            option value=value = title
         input.pure-button.pure-button-primary.task-search__submit type="submit" value="Search"
 
   .tasks__list

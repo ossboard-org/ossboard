@@ -6,6 +6,28 @@ module Web
       def link_to_admin
         link_to 'admin app', '/admin', class: 'pure-menu-link'
       end
+
+      def langs_list
+        LANGUAGES_HASH
+      end
+
+    private
+
+      LANGUAGES_HASH = {
+        'language' => 'undefined',
+        'ruby'     => 'ruby',
+        'js'       => 'js',
+        'java'     => 'java',
+        'Python'   => 'Python',
+        'go'       => 'go',
+        'haskell'  => 'haskell',
+        'lua'      => 'lua',
+        'scala'    => 'scala',
+        'elixir'   => 'elixir',
+        'rust'     => 'rust',
+        'clojure'  => 'clojure',
+        'php'      => 'php'
+      }.freeze
     end
   end
 end
