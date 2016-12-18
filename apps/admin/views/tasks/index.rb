@@ -21,5 +21,17 @@ module Admin::Views::Tasks
         html.span(class: 'label label-danger'){ 'Unapproved' }
       end
     end
+
+    def status_label(task)
+      html.span(class: "label #{STATUS_LABELS[task.status]}"){ task.status }
+    end
+
+  private
+
+    STATUS_LABELS = {
+      'in progress' => 'label-info',
+      'closed' => 'label-danger',
+      'done' => 'label-success'
+    }.freeze
   end
 end

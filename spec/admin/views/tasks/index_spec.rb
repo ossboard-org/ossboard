@@ -47,4 +47,21 @@ RSpec.describe Admin::Views::Tasks::Index do
       it { expect(view.task_label(task).to_s).to eq "<span class=\"label label-danger\">\nUnapproved\n</span>" }
     end
   end
+
+  describe '#status_label' do
+    context 'when task have in progress status' do
+      let(:task) { Task.new(id: 1, title: 'test', status: 'in progress') }
+      it { expect(view.status_label(task).to_s).to eq "<span class=\"label label-info\">\nin progress\n</span>" }
+    end
+
+    context 'when task have done status' do
+      let(:task) { Task.new(id: 1, title: 'test', status: 'done') }
+      it { expect(view.status_label(task).to_s).to eq "<span class=\"label label-success\">\ndone\n</span>" }
+    end
+
+    context 'when task have closed status' do
+      let(:task) { Task.new(id: 1, title: 'test', status: 'closed') }
+      it { expect(view.status_label(task).to_s).to eq "<span class=\"label label-danger\">\nclosed\n</span>" }
+    end
+  end
 end
