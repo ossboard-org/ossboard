@@ -16,10 +16,10 @@
     modal v-if="showModal" @close="showModal = false"
       h3 slot="header" Import from
       div slot="body"
-        span Github:
-        |  comming soon
+        form.pure-form action="#" method="post"
+          input type="text" name="keyword" placeholder="Issue link (github or gitlab)"
+          input.pure-button.pure-button-primary type="submit" value="Export"
       div slot="footer"
-        button class="pure-button pure-button-primary" Import
         button class="pure-button pure-button-primary modal-close-button" @click="showModal = false" Close
 
   .new-task__form
