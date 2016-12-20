@@ -20,6 +20,7 @@ require 'rspec/hanami'
 
 RSpec.configure do |config|
   config.include RSpec::Hanami::Matchers
+  config.include RSpec::Hanami::RequestHelpers
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
