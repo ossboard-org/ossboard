@@ -25,7 +25,7 @@ module Web::Views::Tasks
     end
 
     def task_status_actions
-      return if task.user_id != current_user.id
+      return if task.author?(current_user)
       return if task.status != Task::VALID_STATUSES[:in_progress]
 
       html.div(class: 'task__status') do

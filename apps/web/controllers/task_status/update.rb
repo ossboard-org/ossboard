@@ -10,16 +10,15 @@ module Web::Controllers::TaskStatus
 
   private
 
-    VALID_STATUSES = [Task::VALID_STATUSES[:closed], Task::VALID_STATUSES[:done]].freeze
+    ALLOWED_STATUSES = [Task::VALID_STATUSES[:closed], Task::VALID_STATUSES[:done]].freeze
 
     def repo
       @repo ||= TaskRepository.new
     end
 
     def valid?(task)
-      task &&
-        task.user_id == current_user.id &&
-        VALID_STATUSES.include?(params[:status]) &&
+      task && task.author?(current_user) &&
+        ALLOWED_STATUSES.include?(params[:status]) &&
         task.status == Task::VALID_STATUSES[:in_progress]
     end
   end
