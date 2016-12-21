@@ -61,14 +61,53 @@ var for_dev = new Vue({
   }
 })
 
+var xhr = new XMLHttpRequest();
 
 Vue.component('modal', {
-  template: '#modal-template'
+  template: '#modal-template',
+  methods: {
+    stop: function (responder) {
+      console.log('here')
+      responder.preventDefault()
+    }
+  }
 })
 
 var importModal = new Vue({
   el: '#import-modal',
   data: {
-    showModal: false
+    showModal: false,
+    hasError: false,
+    errorMessage: ''
   },
+  methods: {
+    exporIssue: function () {
+      var url = '/api/issue?issue_url=' + document.getElementById('issueUrl').value
+      var self = this
+
+      xhr.open('GET', url, true);
+      xhr.setRequestHeader('Content-type', 'application/json');
+      xhr.setRequestHeader('Accept', 'application/json');
+      xhr.onload = function() {
+        var data = JSON.parse(xhr.response)
+        if (xhr.status == 200) {
+          document.getElementById('task-title').value = data.title
+          document.getElementById('task-issue-url').value = data.html_url
+          document.getElementById('task-md-body').value = data.body
+          self.showModal = false
+        } else {
+          self.hasError = true;
+          self.errorMessage = 'Error: ' + data.error;
+        }
+      };
+      xhr.send();
+    }
+  },
+  created: function () {
+    document.addEventListener("keydown", (e) => {
+      if (this.showModal && e.keyCode == 27) {
+        this.showModal = false;
+      }
+    });
+  }
 })

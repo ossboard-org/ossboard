@@ -11,16 +11,21 @@
               = error
 
   .new-task__import id="import-modal"
-    button.btn.new-task__github-import @click="showModal = true" Import from
+    button.btn.new-task__github-import @click="showModal = true; errorMessage = ''; hasError = false" Import from
 
     modal v-if="showModal" @close="showModal = false"
-      h3 slot="header" Import from
       div slot="body"
-        form.pure-form action="#" method="post"
-          input type="text" name="keyword" placeholder="Issue link (github or gitlab)"
-          input.pure-button.pure-button-primary type="submit" value="Export"
-      div slot="footer"
-        button class="pure-button pure-button-primary modal-close-button" @click="showModal = false" Close
+        .modal-header
+          h3 Import from
+        .modal-body
+          .modal-error
+            | {{ errorMessage }}
+
+          form.pure-form id="exportForm"
+            input#issueUrl type="text" name="keyword" placeholder="Issue link (github or gitlab)" v-bind:class="{ 'text-danger': hasError }"
+          .modal-footer
+            button.pure-button.pure-button-primary.modal-close-button @click="showModal = false" Close
+            input.pure-button.pure-button-primary.modal-submit.button-green type="submit" value="Export" @click="exporIssue"
 
   .new-task__form
     = form

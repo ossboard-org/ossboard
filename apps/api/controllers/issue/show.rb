@@ -8,6 +8,7 @@ module Api::Controllers::Issue
 
     def call(params)
       response = params.valid? ? match_host(params[:issue_url]) : { error: 'empty url' }
+      self.status = 404 if response[:error]
       self.body = JSON.generate(response)
     end
 
