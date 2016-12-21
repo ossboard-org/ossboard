@@ -11,7 +11,7 @@ module Web::Views::Tasks
     end
 
     def status_selected_class(status)
-      'pure-menu-selected' if params[:status] == status
+      'pure-menu-selected' if tasks_status == status
     end
 
     def task_statuses
@@ -20,6 +20,10 @@ module Web::Views::Tasks
         'closed' => 'Closed',
         'done' => 'Finished'
       }
+    end
+
+    def tasks_status
+      params[:status] || 'in progress'
     end
 
     def tasks_active?
