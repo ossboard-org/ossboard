@@ -25,7 +25,7 @@
             input#issueUrl type="text" name="keyword" placeholder="Issue link (github or gitlab)" v-bind:class="{ 'text-danger': hasError }"
           .modal-footer
             button.pure-button.pure-button-primary.modal-close-button @click="showModal = false" Close
-            input.pure-button.pure-button-primary.modal-submit.button-green type="submit" value="Export" @click="exporIssue" @click.enter="exporIssue"
+            input.pure-button.pure-button-primary.modal-submit.button-green v-bind:class="{ 'pure-button-disabled': exporingIsuue }" type="submit" value="Export" @click="exporIssue" @click.enter="exporIssue"
 
   .new-task__form
     = form

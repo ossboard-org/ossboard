@@ -72,18 +72,21 @@ var importModal = new Vue({
     showModal: false,
     hasError: false,
     errorMessage: '',
+    exporingIsuue: false,
     xhr: new XMLHttpRequest()
   },
   methods: {
     exporIssue: function () {
       var url = '/api/issue?issue_url=' + document.getElementById('issueUrl').value
       var self = this
+      this.exporingIsuue = true
 
       this.xhr.open('GET', url, true);
       this.xhr.setRequestHeader('Content-type', 'application/json');
       this.xhr.setRequestHeader('Accept', 'application/json');
       this.xhr.onload = function() {
         var data = JSON.parse(self.xhr.response)
+
         if (self.xhr.status == 200) {
           document.getElementById('task-title').value = data.title
           document.getElementById('task-issue-url').value = data.html_url
@@ -93,6 +96,8 @@ var importModal = new Vue({
           self.hasError = true;
           self.errorMessage = 'Error: ' + data.error;
         }
+
+        self.exporingIsuue = false
       };
       this.xhr.send();
     }
