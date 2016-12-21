@@ -79,6 +79,16 @@
   .task__body {
   }
 
+  .task__status {
+    margin: 20px 0;
+
+    a {
+      width: 150px;
+      height: 37px;
+      padding: 5px;
+    }
+  }
+
   .task__actions {
     margin: 5px 0;
     display: flex;

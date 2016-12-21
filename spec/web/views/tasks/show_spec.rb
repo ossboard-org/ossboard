@@ -2,11 +2,12 @@ require 'spec_helper'
 require_relative '../../../../apps/web/views/tasks/show'
 
 RSpec.describe Web::Views::Tasks::Show do
-  let(:exposures) { { author: user, task: task } }
+  let(:exposures) { { current_user: current_user, author: user, task: task } }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/tasks/show.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
-  let(:user) { User.new(id: 1, name: 'test', email: 'test@ossboard.com') }
+  let(:current_user) { User.new(id: 1, name: 'test', email: 'test@ossboard.com') }
+  let(:user) { User.new(id: 2, name: 'test', email: 'test@ossboard.com') }
   let(:task) { Task.new(id: 1, title: 'task title') }
 
   describe 'nav bar actions' do
@@ -16,7 +17,7 @@ RSpec.describe Web::Views::Tasks::Show do
   describe '#link_to_author' do
     it 'returns link to special user' do
       link = view.link_to_author
-      expect(link.to_s).to eq '<a href="/users/1">test</a>'
+      expect(link.to_s).to eq '<a href="/users/2">test</a>'
     end
   end
 
@@ -42,6 +43,25 @@ RSpec.describe Web::Views::Tasks::Show do
 
     context 'when task does not have issue link' do
       let(:task) { Task.new(id: 1, issue_url: nil) }
+      it { expect(subject).to eq '' }
+    end
+  end
+
+  describe '#task_status_actions' do
+    subject { view.task_status_actions.to_s }
+
+    context 'when not task author open page' do
+      let(:task) { Task.new(id: 1, user_id: 5) }
+      it { expect(subject).to eq '' }
+    end
+
+    context 'when task author open page' do
+      let(:task) { Task.new(id: 1, user_id: 1, status: 'in progress') }
+      it { expect(subject).to eq "<div class=\"task__status\">\n<a href=\"#\" class=\"btn btn-done\">Complited</a>\n<a href=\"#\" class=\"btn btn-close\">Closed</a>\n</div>" }
+    end
+
+    context 'when task is not in in_progress pstatus' do
+      let(:task) { Task.new(id: 1, user_id: 1, status: 'closed') }
       it { expect(subject).to eq '' }
     end
   end

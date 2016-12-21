@@ -297,6 +297,7 @@ a.pure-button-primary {
 }
 
 .btn {
+  text-align: center;
   display: inline-block;
   border-radius: 2px;
   border: none;
@@ -322,7 +323,6 @@ a, .btn {
 }
 
 .btn-back {
-  text-align: center;
   padding: 3px;
   width: 100px;
   height: 35px;
@@ -336,12 +336,32 @@ a, .btn {
 }
 
 .btn-new-task {
-  text-align: center;
   color: #42b8dd;
   border: 1px solid #42b8dd;
 
   &:hover {
     background-color: #42b8dd;
+    color: #fff;
+  }
+}
+
+
+.btn-done {
+  color: #32c107;
+  border: 1px solid #32c107;
+
+  &:hover {
+    background-color: #32c107;
+    color: #fff;
+  }
+}
+
+.btn-close {
+  color: #f04444;
+  border: 1px solid #f04444;
+
+  &:hover {
+    background-color: #f04444;
     color: #fff;
   }
 }

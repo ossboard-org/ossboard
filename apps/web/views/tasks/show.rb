@@ -23,5 +23,15 @@ module Web::Views::Tasks
       subject = "OSSBoard: #{task.title}"
       link_to 'Contact with mentor', "mailto:#{author.email}?subject=#{subject}", class: 'btn btn-contact task__contact'
     end
+
+    def task_status_actions
+      return if task.user_id != current_user.id
+      return if task.status != Task::VALID_STATUSES[:in_progress]
+
+      html.div(class: 'task__status') do
+        a 'Complited', href: '#', class: 'btn btn-done'
+        a 'Closed', href: '#', class: 'btn btn-close'
+      end
+    end
   end
 end

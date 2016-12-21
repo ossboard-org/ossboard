@@ -2,6 +2,8 @@
   .task__title
     h2#task_title = task.title
 
+  = task_status_actions
+
   .task__author
     | Author: #{link_to_author} #{link_to_original_issue}
 
