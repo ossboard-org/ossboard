@@ -6,20 +6,6 @@ RSpec.describe Web::Views::Tasks::Index do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
-  let(:repo) { TaskRepository.new }
-
-  describe '#tasks' do
-    before do
-      3.times { |i| repo.create(title: "title ##{i}", approved: true) }
-    end
-
-    after { TaskRepository.new.clear }
-
-    it 'returns all tasks' do
-      expect(view.tasks).to eq repo.all
-    end
-  end
-
   describe '#link_to_task' do
     let(:task) { Task.new(id: 1, title: 'test') }
 
