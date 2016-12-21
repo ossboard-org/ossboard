@@ -32,7 +32,7 @@ module Web::Views::Tasks
         form(action: "/task_status/#{task.id}", method: "POST") do
           input(type: "hidden", name: "_method", value: "PATCH")
           input(type: "hidden", name: "status",  value: "done")
-          input(class: 'btn btn-done', type: "submit", value: "Complited")
+          input(class: 'btn btn-done', type: "submit", value: "Completed")
         end
 
         form(action: "/task_status/#{task.id}", method: "POST") do

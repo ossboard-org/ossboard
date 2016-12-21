@@ -72,14 +72,14 @@ var importModal = new Vue({
     showModal: false,
     hasError: false,
     errorMessage: '',
-    exporingIsuue: false,
+    exportingIssue: false,
     xhr: new XMLHttpRequest()
   },
   methods: {
-    exporIssue: function () {
+    exportIssue: function () {
       var url = '/api/issue?issue_url=' + document.getElementById('issueUrl').value
       var self = this
-      this.exporingIsuue = true
+      this.exportingIssue = true
 
       this.xhr.open('GET', url, true);
       this.xhr.setRequestHeader('Content-type', 'application/json');
@@ -97,7 +97,7 @@ var importModal = new Vue({
           self.errorMessage = 'Error: ' + data.error;
         }
 
-        self.exporingIsuue = false
+        self.exportingIssue = false
       };
       this.xhr.send();
     }
