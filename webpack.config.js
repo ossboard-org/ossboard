@@ -1,4 +1,5 @@
 var path = require("path"),
+    webpack = require("webpack"),
     StatsPlugin = require("stats-webpack-plugin");
 
 var devServerPort = process.env.WEBPACK_DEV_SERVER_PORT,
@@ -49,6 +50,10 @@ if (process.env.INBUILT_WEBPACK_DEV_SERVER) {
     headers: { "Access-Control-Allow-Origin": "*" }
   };
   config.output.publicPath = "//" + devServerHost + ":" + devServerPort + "/";
+}
+
+if (!process.env.INBUILT_WEBPACK_DEV_SERVER) {
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true }))
 }
 
 module.exports = config;
