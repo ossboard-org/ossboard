@@ -1,4 +1,3 @@
-require 'spec_helper'
 require_relative '../../../../apps/admin/controllers/users/edit'
 
 RSpec.describe Admin::Controllers::Users::Edit do

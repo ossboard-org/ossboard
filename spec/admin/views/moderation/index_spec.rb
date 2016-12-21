@@ -1,4 +1,3 @@
-require 'spec_helper'
 require_relative '../../../../apps/admin/views/moderation/index'
 
 RSpec.describe Admin::Views::Moderation::Index do

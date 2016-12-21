@@ -1,4 +1,3 @@
-require 'spec_helper'
 require_relative '../../../../apps/admin/controllers/tasks/edit'
 
 RSpec.describe Admin::Controllers::Tasks::Edit do

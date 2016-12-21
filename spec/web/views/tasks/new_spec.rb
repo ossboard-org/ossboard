@@ -1,4 +1,3 @@
-require 'spec_helper'
 require_relative '../../../../apps/web/views/tasks/new'
 
 RSpec.describe Web::Views::Tasks::New do

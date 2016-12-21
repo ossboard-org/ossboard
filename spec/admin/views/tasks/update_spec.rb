@@ -1,4 +1,3 @@
-require 'spec_helper'
 require_relative '../../../../apps/admin/views/tasks/update'
 
 RSpec.describe Admin::Views::Tasks::Update do

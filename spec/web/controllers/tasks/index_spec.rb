@@ -1,4 +1,3 @@
-require 'spec_helper'
 require_relative '../../../../apps/web/controllers/tasks/index'
 
 RSpec.describe Web::Controllers::Tasks::Index do

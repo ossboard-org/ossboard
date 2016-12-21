@@ -1,4 +1,3 @@
-require 'spec_helper'
 require_relative '../../../../apps/web/controllers/tasks/create'
 
 RSpec.describe Admin::Controllers::Tasks::Update do

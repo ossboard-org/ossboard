@@ -1,4 +1,3 @@
-require 'spec_helper'
 require_relative '../../../../apps/admin/controllers/users/update'
 
 RSpec.describe Admin::Controllers::Users::Update do
