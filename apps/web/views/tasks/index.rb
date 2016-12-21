@@ -10,6 +10,18 @@ module Web::Views::Tasks
       link_to 'Submit new task', routes.new_task_path, class: 'btn btn-new-task'
     end
 
+    def status_selected_class(status)
+      'pure-menu-selected' if params[:status] == status
+    end
+
+    def task_statuses
+      {
+        'in progress' => 'In progress',
+        'closed' => 'Closed',
+        'done' => 'Finished'
+      }
+    end
+
     def tasks_active?
       true
     end

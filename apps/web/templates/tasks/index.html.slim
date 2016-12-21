@@ -5,12 +5,9 @@
 
     .pure-menu.pure-menu-horizontal
       ul.pure-menu-list
-        li.pure-menu-item.pure-menu-selected
-          a.pure-menu-link href="#" In progress
-        li.pure-menu-item
-          a.pure-menu-link href="#" Closed
-        li.pure-menu-item
-          a.pure-menu-link href="#" Finished
+        - task_statuses.each do |status, text|
+          li.pure-menu-item class=status_selected_class(status)
+            a.pure-menu-link href=routes.tasks_path(status: status) = text
 
     .tasks__search
       form.pure-form.task-search action="#" method="post"

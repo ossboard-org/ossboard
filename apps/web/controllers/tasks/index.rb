@@ -4,7 +4,8 @@ module Web::Controllers::Tasks
     expose :tasks
 
     def call(params)
-      @tasks = TaskRepository.new.find_by_status(params[:status])
+      status = params[:status] || 'in progress'
+      @tasks = TaskRepository.new.find_by_status(status)
     end
   end
 end

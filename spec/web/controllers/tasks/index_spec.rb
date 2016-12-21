@@ -19,7 +19,8 @@ RSpec.describe Web::Controllers::Tasks::Index do
 
       it 'returns all tasks' do
         action.call(params)
-        expect(action.tasks).to eq repo.all
+        expect(action.tasks).to all(be_a(Task))
+        expect(action.tasks.count).to eq 3
       end
 
       context 'when status param in done' do

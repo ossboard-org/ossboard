@@ -18,4 +18,14 @@ RSpec.describe Web::Views::Tasks::Index do
   describe 'nav bar actions' do
     it { expect(view.tasks_active?).to be true }
   end
+
+  describe '#task_statuses' do
+    it { expect(view.task_statuses).to eq('in progress' => 'In progress', 'closed' => 'Closed', 'done' => 'Finished') }
+  end
+
+  describe '#status_selected_class' do
+    let(:exposures) { { params: { status: 'test' } } }
+    it { expect(view.status_selected_class('test')).to eq('pure-menu-selected') }
+    it { expect(view.status_selected_class('invalid')).to eq(nil) }
+  end
 end
