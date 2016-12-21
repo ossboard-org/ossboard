@@ -61,16 +61,9 @@ var for_dev = new Vue({
   }
 })
 
-var xhr = new XMLHttpRequest();
 
 Vue.component('modal', {
   template: '#modal-template',
-  methods: {
-    stop: function (responder) {
-      console.log('here')
-      responder.preventDefault()
-    }
-  }
 })
 
 var importModal = new Vue({
@@ -78,19 +71,20 @@ var importModal = new Vue({
   data: {
     showModal: false,
     hasError: false,
-    errorMessage: ''
+    errorMessage: '',
+    xhr: new XMLHttpRequest()
   },
   methods: {
     exporIssue: function () {
       var url = '/api/issue?issue_url=' + document.getElementById('issueUrl').value
       var self = this
 
-      xhr.open('GET', url, true);
-      xhr.setRequestHeader('Content-type', 'application/json');
-      xhr.setRequestHeader('Accept', 'application/json');
-      xhr.onload = function() {
-        var data = JSON.parse(xhr.response)
-        if (xhr.status == 200) {
+      this.xhr.open('GET', url, true);
+      this.xhr.setRequestHeader('Content-type', 'application/json');
+      this.xhr.setRequestHeader('Accept', 'application/json');
+      this.xhr.onload = function() {
+        var data = JSON.parse(self.xhr.response)
+        if (self.xhr.status == 200) {
           document.getElementById('task-title').value = data.title
           document.getElementById('task-issue-url').value = data.html_url
           document.getElementById('task-md-body').value = data.body
@@ -100,7 +94,7 @@ var importModal = new Vue({
           self.errorMessage = 'Error: ' + data.error;
         }
       };
-      xhr.send();
+      this.xhr.send();
     }
   },
   created: function () {
