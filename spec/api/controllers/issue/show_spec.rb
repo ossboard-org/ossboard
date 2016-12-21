@@ -8,7 +8,7 @@ RSpec.describe Api::Controllers::Issue::Show, :vcr do
     VCR.use_cassette("github_success_issue") { action.call(params) }
   end
 
-  it { expect(action.call(params)).to be_success }
+  it { expect(action.call(params)).to_not be_success }
 
   context 'when params does not contain issue url' do
     let(:params) { { issue_url: nil } }
