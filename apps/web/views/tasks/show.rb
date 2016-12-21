@@ -25,12 +25,12 @@ module Web::Views::Tasks
     end
 
     def task_status_actions
-      return if task.author?(current_user)
-      return if task.status != Task::VALID_STATUSES[:in_progress]
+      return unless current_user.author?(task)
+      return unless task.status == Task::VALID_STATUSES[:in_progress]
 
       html.div(class: 'task__status') do
-        a 'Complited', href: '#', class: 'btn btn-done'
-        a 'Closed', href: '#', class: 'btn btn-close'
+        button 'Complited', class: 'btn btn-done'
+        button 'Closed', class: 'btn btn-close'
       end
     end
   end

@@ -57,7 +57,7 @@ RSpec.describe Web::Views::Tasks::Show do
 
     context 'when task author open page' do
       let(:task) { Task.new(id: 1, user_id: 1, status: 'in progress') }
-      it { expect(subject).to eq "<div class=\"task__status\">\n<a href=\"#\" class=\"btn btn-done\">Complited</a>\n<a href=\"#\" class=\"btn btn-close\">Closed</a>\n</div>" }
+      it { expect(subject).to eq "<div class=\"task__status\">\n<button class=\"btn btn-done\">Complited</button>\n<button class=\"btn btn-close\">Closed</button>\n</div>" }
     end
 
     context 'when task is not in in_progress pstatus' do

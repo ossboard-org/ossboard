@@ -17,7 +17,7 @@ module Web::Controllers::TaskStatus
     end
 
     def valid?(task)
-      task && task.author?(current_user) &&
+      task && current_user.author?(task) &&
         ALLOWED_STATUSES.include?(params[:status]) &&
         task.status == Task::VALID_STATUSES[:in_progress]
     end

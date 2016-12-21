@@ -4,8 +4,4 @@ class Task < Hanami::Entity
     closed: 'closed',
     done: 'done'
   }.freeze
-
-  def author?(user)
-    user_id == user.id
-  end
 end
