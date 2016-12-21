@@ -21,5 +21,9 @@ module Web::Controllers::TaskStatus
         ALLOWED_STATUSES.include?(params[:status]) &&
         task.status == Task::VALID_STATUSES[:in_progress]
     end
+
+    def verify_csrf_token?
+      false
+    end
   end
 end

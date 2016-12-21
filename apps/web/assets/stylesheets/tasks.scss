@@ -80,9 +80,14 @@
   }
 
   .task__status {
+    display: flex;
     margin: 20px 0;
 
-    a {
+    form {
+      margin: 0;
+    }
+
+    input {
       width: 150px;
       height: 37px;
       padding: 5px;

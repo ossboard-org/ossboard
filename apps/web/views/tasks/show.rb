@@ -29,8 +29,17 @@ module Web::Views::Tasks
       return unless task.status == Task::VALID_STATUSES[:in_progress]
 
       html.div(class: 'task__status') do
-        button 'Complited', class: 'btn btn-done'
-        button 'Closed', class: 'btn btn-close'
+        form(action: "/task_status/#{task.id}", method: "POST") do
+          input(type: "hidden", name: "_method", value: "PATCH")
+          input(type: "hidden", name: "status",  value: "done")
+          input(class: 'btn btn-done', type: "submit", value: "Complited")
+        end
+
+        form(action: "/task_status/#{task.id}", method: "POST") do
+          input(type: "hidden", name: "_method", value: "PATCH")
+          input(type: "hidden", name: "status",  value: "closed")
+          input(class: 'btn btn-close', type: "submit", value: "Closed")
+        end
       end
     end
   end
