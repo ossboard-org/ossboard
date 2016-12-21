@@ -1,6 +1,54 @@
 RSpec.describe TaskRepository do
   let(:repo) { TaskRepository.new }
 
+  describe '#find_by_status' do
+    before do
+      repo.create(title: 'in progress', approved: true, status: 'in progress')
+      repo.create(title: 'closed', approved: true, status: 'closed')
+      repo.create(title: 'done', approved: true, status: 'done')
+    end
+
+    after { repo.clear }
+
+    context 'when key empty' do
+      it 'returns array of closed tasks' do
+        expect(repo.find_by_status(nil)).to all(be_a(Task))
+        expect(repo.find_by_status(nil).count).to eq 3
+      end
+    end
+
+    context 'when key is closed' do
+      it 'returns array of closed tasks' do
+        expect(repo.find_by_status('closed')).to all(be_a(Task))
+        expect(repo.find_by_status('closed').count).to eq 1
+        expect(repo.find_by_status('closed').first.status).to eq 'closed'
+      end
+    end
+
+    context 'when key is done' do
+      it 'returns array of done tasks' do
+        expect(repo.find_by_status('done')).to all(be_a(Task))
+        expect(repo.find_by_status('done').count).to eq 1
+        expect(repo.find_by_status('done').first.status).to eq 'done'
+      end
+    end
+
+    context 'when key is in progress' do
+      it 'returns array of in progress tasks' do
+        expect(repo.find_by_status('in progress')).to all(be_a(Task))
+        expect(repo.find_by_status('in progress').count).to eq 1
+        expect(repo.find_by_status('in progress').first.status).to eq 'in progress'
+      end
+    end
+
+    context 'when key is invalid' do
+      it 'returns array of all tasks' do
+        expect(repo.find_by_status('test')).to all(be_a(Task))
+        expect(repo.find_by_status('test').count).to eq 3
+      end
+    end
+  end
+
   describe '#only_approved' do
     before do
       repo.create(title: 'bad')

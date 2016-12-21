@@ -6,4 +6,12 @@ class TaskRepository < Hanami::Repository
   def not_approved
     tasks.where(approved: false).as(Task).to_a
   end
+
+  def find_by_status(status)
+    if Task::VALID_STATUSES.values.include?(status)
+      tasks.where(approved: true, status: status).as(Task).to_a
+    else
+      only_approved
+    end
+  end
 end
