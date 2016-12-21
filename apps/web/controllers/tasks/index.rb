@@ -4,7 +4,7 @@ module Web::Controllers::Tasks
     expose :tasks
 
     def call(params)
-      @tasks = TaskRepository.new.only_approved
+      @tasks = TaskRepository.new.find_by_status(params[:status])
     end
   end
 end
