@@ -1,5 +1,9 @@
 .tasks
   .tasks__actions
+    - if flash[:info]
+      .pure-alert.pure-alert-success
+        = flash[:info]
+
     .tasks__new
       = link_to_new_task
 

@@ -21,6 +21,9 @@ module Web::Controllers::Tasks
         task_params[:status] = Task::VALID_STATUSES[:in_progress]
 
         TaskRepository.new.create(task_params)
+
+        flash[:info] = 'Task had been added to moderation. You can check your task status on profile page'
+
         redirect_to routes.tasks_path
       else
         @task = Task.new(params[:task])
