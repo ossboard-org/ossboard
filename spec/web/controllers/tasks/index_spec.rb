@@ -47,6 +47,17 @@ RSpec.describe Web::Controllers::Tasks::Index do
         it 'returns all done tasks' do
           expect(action.tasks).to all(be_a(Task))
           expect(action.tasks.count).to eq 3
+          expect(action.tasks.map(&:status)).to all(eq('done'))
+        end
+      end
+
+      context 'when status param invalid' do
+        let(:params) { { status: 'invalid' } }
+
+        it 'returns all done tasks' do
+          expect(action.tasks).to all(be_a(Task))
+          expect(action.tasks.count).to eq 3
+          expect(action.tasks.map(&:status)).to all(eq('in progress'))
         end
       end
 
@@ -56,6 +67,7 @@ RSpec.describe Web::Controllers::Tasks::Index do
         it 'returns all closed tasks' do
           expect(action.tasks).to all(be_a(Task))
           expect(action.tasks.count).to eq 3
+          expect(action.tasks.map(&:status)).to all(eq('closed'))
         end
       end
 
@@ -65,6 +77,7 @@ RSpec.describe Web::Controllers::Tasks::Index do
         it 'returns all in progress tasks' do
           expect(action.tasks).to all(be_a(Task))
           expect(action.tasks.count).to eq 3
+          expect(action.tasks.map(&:status)).to all(eq('in progress'))
         end
       end
     end
