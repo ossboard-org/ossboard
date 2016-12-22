@@ -1,6 +1,7 @@
 var path = require("path"),
     webpack = require("webpack"),
-    StatsPlugin = require("stats-webpack-plugin");
+    StatsPlugin = require("stats-webpack-plugin"),
+    ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var devServerPort = process.env.WEBPACK_DEV_SERVER_PORT,
     devServerHost = process.env.WEBPACK_DEV_SERVER_HOST,
@@ -22,13 +23,14 @@ var config = {
   },
 
   plugins: [
-    new StatsPlugin("manifest.json")
+    new StatsPlugin("manifest.json"),
+    new ExtractTextPlugin("[name].css")
   ],
 
   loaders: [
     {
       test: /\.scss$/,
-      loaders: ["style-loader", "css-loader", "sass-loader"]
+      loaders: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
     }
   ],
 
