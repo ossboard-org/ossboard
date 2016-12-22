@@ -14,4 +14,8 @@ class TaskRepository < Hanami::Repository
       only_approved
     end
   end
+
+  def om_moderation_for_user(id)
+    tasks.where(user_id: id, approved: false).as(Task).to_a
+  end
 end

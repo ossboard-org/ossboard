@@ -26,6 +26,22 @@ RSpec.describe Web::Controllers::Tasks::Index do
       end
 
       context 'when status param in done' do
+        let(:user) { UserRepository.new.create(admin: false) }
+        let(:params)  { { 'rack.session' => { current_user: user }, status: 'moderation' } }
+
+        before do
+          3.times { |i| repo.create(approved: false, user_id: user.id) }
+          action.call(params)
+        end
+
+        it 'returns all done tasks' do
+          expect(action.tasks).to all(be_a(Task))
+          expect(action.tasks.count).to eq 3
+          expect(action.tasks.map(&:user_id)).to all(eq(user.id))
+        end
+      end
+
+      context 'when status param in done' do
         let(:params) { { status: 'done' } }
 
         it 'returns all done tasks' do

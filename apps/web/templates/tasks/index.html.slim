@@ -12,6 +12,9 @@
         - task_statuses.each do |status, text|
           li.pure-menu-item class=status_selected_class(status)
             a.pure-menu-link href=routes.tasks_path(status: status) = text
+        - if current_user.registred?
+          li.pure-menu-item class=status_selected_class('moderation')
+            a.pure-menu-link href=routes.tasks_path(status: 'moderation') On moderation
 
     /.tasks__search
       form.pure-form.task-search action="#" method="post"

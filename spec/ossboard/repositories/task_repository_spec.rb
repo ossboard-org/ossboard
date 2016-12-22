@@ -67,6 +67,23 @@ RSpec.describe TaskRepository do
     end
   end
 
+  describe '#om_moderation_for_user' do
+    before do
+      repo.create(title: 'good', approved: false, user_id: user.id)
+      repo.create(title: 'good', approved: false)
+    end
+
+    let(:user) { UserRepository.new.create(name: 'anton') }
+
+    after { repo.clear }
+
+    it 'returns array of tasks' do
+      expect(repo.om_moderation_for_user(user.id)).to all(be_a(Task))
+      expect(repo.om_moderation_for_user(user.id).count).to eq 1
+      expect(repo.om_moderation_for_user(user.id).last.user_id).to eq user.id
+    end
+  end
+
   describe '#not_approved' do
     before do
       repo.create(title: 'bad')
