@@ -262,6 +262,12 @@ a.pure-button-primary {
       float: right;
     }
   }
+  .content-wrapper {
+    .content {
+      margin: 0 5%;
+    }
+  }
+
   /* We increase the height of the splash-container */
   /*    .splash-container {
           height: 500px;
@@ -279,6 +285,18 @@ a.pure-button-primary {
   .l-box-lrg {
     border: none;
   }
+
+  .for-dev__maintainers-text p,
+  .for-dev__developers-text  p {
+    text-align: center;
+    padding: 16px 5%;
+  }
+
+  .btn {
+    height: 45px;
+    margin: 5px 15px;
+    width: 130px;
+  }
 }
 
 /*
@@ -290,6 +308,24 @@ a.pure-button-primary {
   /* We increase the header font size even more */
   .splash-head {
     font-size: 300%;
+  }
+
+  .for-dev__maintainers-text p,
+  .for-dev__developers-text  p {
+    text-align: center;
+    padding: 16px 14%;
+  }
+
+  .content-wrapper {
+    .content {
+      margin: 0 15%;
+    }
+  }
+
+  .btn {
+    height: 45px;
+    margin: 5px 10px;
+    width: 200px;
   }
 }
 
@@ -308,13 +344,10 @@ a.pure-button-primary {
   display: inline-block;
   border-radius: 2px;
   border: none;
-  height: 45px;
-  margin: 5px 10px;
   background-color: transparent;
   color: #F07444;
   border: 1px solid #F07444;
   transition: .2s ease;
-  width: 200px;
 
   &:hover {
     background-color: #F07444;
