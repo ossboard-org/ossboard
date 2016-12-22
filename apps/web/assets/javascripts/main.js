@@ -1,15 +1,15 @@
-require("!style-loader!css-loader!sass-loader!../stylesheets/alerts.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/user.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/modal.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/syntax.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/static.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/tasks.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/footer.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/landing.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/main.scss");
+import "../stylesheets/alerts.scss";
+import "../stylesheets/user.scss";
+import "../stylesheets/modal.scss";
+import "../stylesheets/syntax.scss";
+import "../stylesheets/static.scss";
+import "../stylesheets/tasks.scss";
+import "../stylesheets/footer.scss";
+import "../stylesheets/landing.scss";
+import "../stylesheets/main.scss";
 
-require("script-loader!./share_buttons.js");
-require("!style-loader!css-loader!../stylesheets/share_buttons.css");
+import "script-loader!./share_buttons.js";
+import "!style-loader!css-loader!../stylesheets/share_buttons.css";
 
 window.onload = function () {
   var taskTitleTag = document.getElementById('task_title');

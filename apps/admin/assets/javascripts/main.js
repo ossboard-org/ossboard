@@ -1,6 +1,6 @@
-require("!style-loader!css-loader!sass-loader!../stylesheets/label.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/user.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/task.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/table.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/navbar.scss");
-require("!style-loader!css-loader!sass-loader!../stylesheets/main.scss");
+import "../stylesheets/label.scss";
+import "../stylesheets/user.scss";
+import "../stylesheets/task.scss";
+import "../stylesheets/table.scss";
+import "../stylesheets/navbar.scss";
+import "../stylesheets/main.scss";

@@ -23,14 +23,13 @@ var config = {
   },
 
   plugins: [
-    new StatsPlugin("manifest.json"),
-    new ExtractTextPlugin("[name].css")
+    new StatsPlugin("manifest.json")
   ],
 
   loaders: [
     {
       test: /\.scss$/,
-      loaders: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+      loaders: ["style-loader", "css-loader", "sass-loader"]
     }
   ],
 
@@ -42,11 +41,15 @@ var config = {
       query: {
         presets: ['es2015']
       }
+    },
+    {
+      test: /\.scss$/,
+      loaders: ["style-loader", "css-loader", "sass-loader"]
     }]
   }
 };
 
-if (process.env.INBUILT_WEBPACK_DEV_SERVER) {
+if (process.env.INBUILT_WEBPACK_DEV_SERVER === 'true') {
   config.devServer = {
     port: devServerPort,
     headers: { "Access-Control-Allow-Origin": "*" }
@@ -54,8 +57,27 @@ if (process.env.INBUILT_WEBPACK_DEV_SERVER) {
   config.output.publicPath = "//" + devServerHost + ":" + devServerPort + "/";
 }
 
-if (!process.env.INBUILT_WEBPACK_DEV_SERVER) {
+if (process.env.INBUILT_WEBPACK_DEV_SERVER === 'false') {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true }))
+  config.plugins.push(new ExtractTextPlugin("[name].css"))
+  config.loaders = [
+    {
+      test: /\.s?css$/, 
+      loader: ExtractTextPlugin.extract("style-loader", "css!sass")
+    }
+  ]
+  config.module.loaders = [{
+    test: /\.js$/,
+    exclude: /node_modules/,
+    loader: 'babel',
+    query: {
+      presets: ['es2015']
+    }
+  },
+  {
+    test: /\.s?css$/, 
+    loader: ExtractTextPlugin.extract("style-loader", "css!sass")
+  }]
 }
 
 module.exports = config;
