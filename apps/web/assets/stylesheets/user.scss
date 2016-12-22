@@ -14,6 +14,16 @@
     .show-user__bio {
       color: #7f8c8d;
     }
+
+    .show-user__github {
+      a {
+        padding: 0;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   .show-user__tasks {

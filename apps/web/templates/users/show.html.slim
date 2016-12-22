@@ -6,6 +6,8 @@
       h2 = user.name
     .show-user__bio
       = user.bio
+    .show-user__github
+      = link_to 'Github', "http://github.com/#{user.login}"
 
   .show-user__tasks.tasks
     h2.task__title Tasks
