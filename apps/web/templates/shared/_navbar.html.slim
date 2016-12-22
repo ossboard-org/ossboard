@@ -11,8 +11,6 @@
       - if current_user.admin
         li.pure-menu-item
           = link_to_admin
-      li.pure-menu-item
-        a.pure-menu-link href="https://github.com/davydovanton/ossboard" target="_blank"  Source
       - if current_user.registred?
         li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
           a#menuLink1.pure-menu-link href="#" = current_user.name
