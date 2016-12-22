@@ -4,7 +4,7 @@ module Auth::Controllers::Sessions
 
     def call(params)
       session[:current_user] = nil
-      redirect_to '/'
+      redirect_to session[:current_path] || '/'
     end
   end
 end

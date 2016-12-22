@@ -256,6 +256,7 @@ module Admin
       controller.prepare do
         include Authentication # included in all the actions
         before :authenticate_admin!  # run an authentication before callback
+        before { session[:current_path] = nil }
       end
 
       # Configure the code that will yield each time Admin::View is included

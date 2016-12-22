@@ -253,7 +253,7 @@ module Web
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
         include Authentication # included in all the actions
-        # before :authenticate!    # run an authentication before callback
+        before { session[:current_path] = @_env['REQUEST_PATH'] }
       end
 
       # Configure the code that will yield each time Web::View is included

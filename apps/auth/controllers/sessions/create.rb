@@ -5,7 +5,7 @@ module Auth::Controllers::Sessions
     def call(params)
       repo = UserRepository.new
       session[:current_user] = repo.find_by_uuid(omniauth_params['uid']) || repo.create(user_params)
-      redirect_to '/'
+      redirect_to session[:current_path] || '/'
     end
 
     private
