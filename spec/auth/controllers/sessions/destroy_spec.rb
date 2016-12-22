@@ -26,4 +26,8 @@ RSpec.describe Auth::Controllers::Sessions::Destroy do
     it { expect(action.call(params)).to redirect_to('/') }
   end
 
+  context 'when current_path sets' do
+    let(:session) { { current_user: nil, current_path: '/tasks' } }
+    it { expect(action.call(params)).to redirect_to('/tasks') }
+  end
 end

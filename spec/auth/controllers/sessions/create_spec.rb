@@ -90,4 +90,9 @@ RSpec.describe Auth::Controllers::Sessions::Create do
       expect(action.session[:current_user].uuid).to eq uuid
     end
   end
+
+  context 'when current_path sets' do
+    let(:params) { { 'omniauth.auth' => onmiauth_hash, 'rack.session' => { current_path: '/tasks' } } }
+    it { expect(action.call(params)).to redirect_to('/tasks') }
+  end
 end
