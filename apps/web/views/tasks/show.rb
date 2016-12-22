@@ -2,6 +2,10 @@ module Web::Views::Tasks
   class Show
     include Web::View
 
+    def title
+      "OSSBoard: #{task.title}"
+    end
+
     def task_body
       raw(task.body)
     end

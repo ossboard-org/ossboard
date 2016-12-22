@@ -2,6 +2,10 @@ module Web::Views::Tasks
   class Index
     include Web::View
 
+    def title
+      'OSSBoard: tasks'
+    end
+
     def link_to_task(task)
       link_to task.title, routes.task_path(id: task.id)
     end

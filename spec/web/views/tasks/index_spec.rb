@@ -6,6 +6,10 @@ RSpec.describe Web::Views::Tasks::Index do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
+  describe '#title' do
+    it { expect(view.title).to eq 'OSSBoard: tasks' }
+  end
+
   describe '#link_to_task' do
     let(:task) { Task.new(id: 1, title: 'test') }
 

@@ -2,6 +2,10 @@ module Web::Views::Tasks
   class New
     include Web::View
 
+    def title
+      'OSSBoard: new task'
+    end
+
     def form
       form_for task_form, id: 'task-form', class: 'task-form pure-form' do
         hidden_field :user_id, value: current_user.id

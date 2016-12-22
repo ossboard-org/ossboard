@@ -6,6 +6,10 @@ RSpec.describe Web::Views::Tasks::New do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
+  describe '#title' do
+    it { expect(view.title).to eq 'OSSBoard: new task' }
+  end
+
   describe '#form' do
     it { expect(view.form).to have_method(:post) }
     it { expect(view.form).to have_action('/tasks') }

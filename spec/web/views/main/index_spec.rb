@@ -8,6 +8,10 @@ RSpec.describe Web::Views::Main::Index do
 
   let(:repo) { TaskRepository.new }
 
+  describe '#title' do
+    it { expect(view.title).to eq 'OSSBoard' }
+  end
+
   describe '#tasks' do
     before do
       10.times { |i| repo.create(title: "title ##{i}", approved: true) }

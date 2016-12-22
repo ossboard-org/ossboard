@@ -9,4 +9,8 @@ RSpec.describe Web::Views::Static::Help do
   it 'exposes #foo' do
     expect(view.foo).to eq exposures.fetch(:foo)
   end
+
+  describe '#title' do
+    it { expect(view.title).to eq 'OSSBoard' }
+  end
 end

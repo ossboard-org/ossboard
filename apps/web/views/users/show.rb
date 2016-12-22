@@ -2,6 +2,10 @@ module Web::Views::Users
   class Show
     include Web::View
 
+    def title
+      "OSSBoard: #{user.login}"
+    end
+
     def link_to_task(task)
       if task.approved
         link_to task.title, routes.task_path(id: task.id)

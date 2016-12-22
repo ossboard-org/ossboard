@@ -9,6 +9,10 @@ RSpec.describe Web::Views::Tasks::Show do
   let(:user) { User.new(id: 2, name: 'test', email: 'test@ossboard.com') }
   let(:task) { Task.new(id: 1, title: 'task title') }
 
+  describe '#title' do
+    it { expect(view.title).to eq 'OSSBoard: task title' }
+  end
+
   describe 'nav bar actions' do
     it { expect(view.tasks_active?).to be true }
   end

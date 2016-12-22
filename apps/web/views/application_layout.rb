@@ -11,6 +11,10 @@ module Web
         LANGUAGES_HASH
       end
 
+      def title
+        'OSSBoard'
+      end
+
     private
 
       LANGUAGES_HASH = {
