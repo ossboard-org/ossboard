@@ -58,7 +58,7 @@ if (process.env.INBUILT_WEBPACK_DEV_SERVER === 'true') {
 }
 
 if (process.env.INBUILT_WEBPACK_DEV_SERVER === 'false') {
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true }))
+  // config.plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true }))
   config.plugins.push(new ExtractTextPlugin("[name].css"))
   config.loaders = [
     {
