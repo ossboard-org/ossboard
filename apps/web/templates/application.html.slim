@@ -18,5 +18,8 @@ html
 
     = render partial: 'shared/components'
 
-    - if Hanami.env != 'test'
+    - if Hanami.env?(:development)
       script src=webpack_asset_path('web')
+
+    - if Hanami.env?(:production)
+      script src="/#{webpack_asset_path('web').split('/')[1]}"

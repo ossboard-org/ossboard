@@ -32,4 +32,8 @@ html
     .container
       = yield
 
-    script src=webpack_asset_path('admin')
+    - if Hanami.env?(:development)
+      script src=webpack_asset_path('admin')
+
+    - if Hanami.env?(:production)
+      script src="/#{webpack_asset_path('admin').split('/')[1]}"

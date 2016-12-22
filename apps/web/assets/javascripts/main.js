@@ -1,11 +1,3 @@
-import "../stylesheets/alerts.scss";
-import "../stylesheets/user.scss";
-import "../stylesheets/modal.scss";
-import "../stylesheets/syntax.scss";
-import "../stylesheets/static.scss";
-import "../stylesheets/tasks.scss";
-import "../stylesheets/footer.scss";
-import "../stylesheets/landing.scss";
 import "../stylesheets/main.scss";
 
 import "script-loader!./share_buttons.js";
