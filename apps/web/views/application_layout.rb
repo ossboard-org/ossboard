@@ -14,7 +14,7 @@ module Web
     private
 
       LANGUAGES_HASH = {
-        'language' => 'undefined',
+        'language' => 'unknown',
         'ruby'     => 'ruby',
         'js'       => 'js',
         'java'     => 'java',

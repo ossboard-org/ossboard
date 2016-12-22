@@ -26,7 +26,7 @@ module Admin::Views::Tasks
           end
 
           div class: 'input task-form__field' do
-            select :lang, { 'language' => 'undefined', 'ruby' => 'ruby', 'js' => 'js' }
+            select :lang, langs_list
           end
 
           div class: 'input task-form__field pure-control-group' do
