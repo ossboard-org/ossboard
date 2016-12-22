@@ -11,12 +11,12 @@
               = error
 
   .new-task__import id="import-modal"
-    button.btn.new-task__github-import @click="showModal = true; errorMessage = ''; hasError = false" Import from
+    button.btn.new-task__github-import @click="showModal = true; errorMessage = ''; hasError = false" Export from
 
     modal v-if="showModal" @close="showModal = false"
       div slot="body"
         .modal-header
-          h3 Import from
+          h3 Export from
         .modal-body
           .modal-error
             | {{ errorMessage }}
