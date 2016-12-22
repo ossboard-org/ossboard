@@ -1,5 +1,5 @@
 .tasks {
-  margin: 100px 75px;
+  margin: 100px 8%;
 
   .tasks__actions {
     margin: 0 0 20px;
@@ -71,7 +71,7 @@
 }
 
 .task {
-  margin: 100px 75px;
+  margin: 100px 8%;
 
   .task__title {
   }
@@ -88,6 +88,7 @@
     }
 
     input {
+      margin: 0 20px 0 0;
       width: 150px;
       height: 37px;
       padding: 5px;
@@ -100,7 +101,11 @@
     width: 100%;
     flex-wrap: nowrap;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 10px 0;
+
+    a {
+      margin: 5px 0;
+    }
   }
 
   .task__contact {
@@ -125,7 +130,7 @@
 }
 
 .new-task {
-  margin: 100px 75px;
+  margin: 100px 8%;
 
   .new-task__title {
   }
@@ -151,6 +156,7 @@
     padding: 10px 20px;
 
     .new-task__github-import {
+      margin: 0;
       color: #32c107;
       border: 1px solid #32c107;
 
@@ -173,6 +179,10 @@
     select {
       width: 30%;
       margin: 10px 0;
+    }
+
+    a {
+      margin: 5px 10px 0 0;
     }
   }
 }
