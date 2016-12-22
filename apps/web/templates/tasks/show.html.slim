@@ -4,7 +4,8 @@
       = task.title
       = task_status
 
-  = task_status_actions
+  - if task.approved
+    = task_status_actions
 
   .task__author
     | Author: #{link_to_author} #{link_to_original_issue}
@@ -15,9 +16,10 @@
   .task__lang
     | Language: #{task.lang}
 
-  .task__actions
-    = contact_with_mentor_link
-    share-button.btn.btn-share.task__share Share task
+  - if task.approved
+    .task__actions
+      = contact_with_mentor_link
+      share-button.btn.btn-share.task__share Share task
 
   .task__comments
     h3 Comments
