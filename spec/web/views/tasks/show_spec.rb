@@ -20,6 +20,16 @@ RSpec.describe Web::Views::Tasks::Show do
     end
   end
 
+  describe '#link_to_author' do
+    let(:task) { Task.new(status: 'done') }
+    it { expect(view.task_status.to_s).to eq "<span>\n(done)\n</span>" }
+
+    context 'when task in progress' do
+      let(:task) { Task.new(status: 'in progress') }
+      it { expect(view.task_status.to_s).to eq '' }
+    end
+  end
+
   describe '#contact_with_mentor_link' do
     it 'returns link to special user' do
       link = view.contact_with_mentor_link

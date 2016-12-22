@@ -1,6 +1,8 @@
 .task
   .task__title
-    h2#task_title = task.title
+    h2#task_title
+      = task.title
+      = task_status
 
   = task_status_actions
 

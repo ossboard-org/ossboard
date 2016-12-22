@@ -42,5 +42,10 @@ module Web::Views::Tasks
         end
       end
     end
+
+    def task_status
+      return if task.status == Task::VALID_STATUSES[:in_progress]
+      html.span { "(#{task.status})" }
+    end
   end
 end
