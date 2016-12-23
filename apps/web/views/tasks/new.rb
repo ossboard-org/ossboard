@@ -29,15 +29,17 @@ module Web::Views::Tasks
           select :lang, langs_list
         end
 
-        div class: 'input agree-checkbox' do
-          check_box :aprove
-          label 'I agree to be a mentor to the developer that’s willing to work on my project’s task'
+        if current_user.registred?
+          div class: 'input agree-checkbox' do
+            check_box :aprove, id: 'agreement-chackbox'
+            label 'I agree to be a mentor to the developer that’s willing to work on my project’s task'
+          end
         end
 
         a 'Back', href: routes.tasks_path, class: 'btn btn-back'
 
-        if current_user.id
-          submit('Create', class: 'pure-button pure-button-primary')
+        if current_user.registred?
+          submit('Create', class: 'pure-button pure-button-disabled pure-button-primary', id: 'new-task-submit')
         else
           span('Create', class: 'pure-button pure-button-disabled')
         end

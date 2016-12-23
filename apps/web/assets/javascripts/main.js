@@ -1,3 +1,5 @@
+import Vue from 'vue/dist/vue.js'
+
 import "../stylesheets/main.scss";
 
 import "script-loader!./share_buttons.js";
@@ -33,8 +35,6 @@ window.onload = function () {
   var share = new ShareButton('.task__share', config);
 }
 
-import Vue from 'vue/dist/vue.js'
-
 var for_dev = new Vue({
   el: '#for-dev',
   data: {
@@ -54,12 +54,11 @@ var for_dev = new Vue({
   }
 })
 
-
 Vue.component('modal', {
   template: '#modal-template',
 })
 
-var importModal = new Vue({
+new Vue({
   el: '#import-modal',
   data: {
     showModal: false,
@@ -103,3 +102,15 @@ var importModal = new Vue({
     });
   }
 })
+
+var agreementChackbox = document.getElementById("agreement-chackbox"),
+    submitButton = document.getElementById("new-task-submit"),
+    disableButtonReg = new RegExp('(\\s|^)pure-button-disabled(\\s|$)');
+
+agreementChackbox.onchange = function() {
+  if (agreementChackbox.checked) {
+    submitButton.className = submitButton.className.replace(disableButtonReg, ' ');
+  } else {
+    submitButton.className += " pure-button-disabled";
+  }
+}
