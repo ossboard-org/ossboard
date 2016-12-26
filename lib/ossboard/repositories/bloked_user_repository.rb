@@ -15,6 +15,10 @@ class BlokedUserRepository
     redis.with { |conn| conn.sismember(REDIS_LIST_KEY, nickname) }
   end
 
+  def delete(nickname)
+    redis.with { |conn| conn.srem(REDIS_LIST_KEY, nickname) }
+  end
+
 private
 
   REDIS_LIST_KEY = 'ossboard:blocked_list'.freeze

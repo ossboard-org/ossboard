@@ -5,21 +5,17 @@ RSpec.describe BlokedUserRepository do
 
   describe '#all' do
     context 'when blocked users not exist' do
-      it 'returns empty array' do
-        expect(repo.all).to eq []
-      end
+      it { expect(repo.all).to eq [] }
     end
 
     context 'when blocked users exist' do
-      before {
+      before do
         repo.create('anton1')
         repo.create('anton2')
         repo.create('anton3')
-      }
-
-      it 'returns array of nicknames' do
-        expect(repo.all).to eq %w[anton3 anton2 anton1]
       end
+
+      it { expect(repo.all).to eq %w[anton3 anton2 anton1] }
     end
   end
 
@@ -46,6 +42,17 @@ RSpec.describe BlokedUserRepository do
 
     context 'when blocked user exist' do
       it { expect(repo.exist?('anton')).to eq false }
+    end
+  end
+
+  describe '#delete' do
+    context 'when blocked user exist' do
+      before { repo.create('anton') }
+      it { expect{ repo.delete('anton') }.to change{ repo.all.count }.by(-1) }
+    end
+
+    context 'when blocked user exist' do
+      it { expect{ repo.delete('anton') }.to change{ repo.all.count }.by(0) }
     end
   end
 end
