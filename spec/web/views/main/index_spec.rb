@@ -45,7 +45,7 @@ RSpec.describe Web::Views::Main::Index do
     end
   end
 
-  describe 'nav bar actions' do
+  describe '#tasks_active?' do
     it { expect(view.tasks_active?).to be false }
   end
 end
