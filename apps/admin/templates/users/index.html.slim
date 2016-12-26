@@ -9,6 +9,7 @@ table.table.pure-table.pure-table-horizontal
       th.table__email email
       th.table__role role
       th.table__created-at Created at
+      th.table__block
   tbody
     - users.each do |user|
       tr
@@ -18,3 +19,4 @@ table.table.pure-table.pure-table-horizontal
         td = user.email
         td = user_role(user)
         td = user.created_at
+        td = link_to_block(user)

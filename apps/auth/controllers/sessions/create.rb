@@ -3,12 +3,24 @@ module Auth::Controllers::Sessions
     include Auth::Action
 
     def call(params)
-      repo = UserRepository.new
+      if user_bloked?(omniauth_params)
+        flash[:error] = 'Sorry, but you was blocked. Please contact with maintainer'
+        redirect_to '/'
+      end
+
       session[:current_user] = repo.find_by_uuid(omniauth_params['uid']) || repo.create(user_params)
       redirect_to session[:current_path] || '/'
     end
 
     private
+
+    def user_bloked?(omniauth_params)
+      BlokedUserRepository.new.exist?(omniauth_params['extra']['raw_info']['login'])
+    end
+
+    def repo
+      @repo ||= UserRepository.new
+    end
 
     def omniauth_params
       @omniauth_params ||= params.env['omniauth.auth']

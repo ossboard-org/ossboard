@@ -28,6 +28,25 @@ RSpec.describe Admin::Views::Users::Index do
     end
   end
 
+  describe '#banned_users' do
+    it { expect(view.banned_users).to eq [] }
+  end
+
+  describe '#link_to_block' do
+    let(:user) { User.new(id: 1, login: 'davydovanton') }
+
+    context 'when user not banned' do
+      it { expect(view.link_to_block(user)).to_not eq '' }
+    end
+
+    context 'when user banned' do
+      before { BlokedUserRepository.new.create('davydovanton') }
+      after { REDIS.with(&:flushdb) }
+
+      it { expect(view.link_to_block(user).to_s).to eq '' }
+    end
+  end
+
   describe '#user_role' do
     context 'when user admin' do
       let(:user) { User.new(admin: true) }
