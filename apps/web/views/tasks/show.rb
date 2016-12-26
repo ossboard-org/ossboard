@@ -47,6 +47,12 @@ module Web::Views::Tasks
       end
     end
 
+    def link_to_edit_task
+      if current_user.id && current_user.author?(task) && !task.approved
+        link_to 'Edit', routes.edit_task_path(task.id), class: 'btn btn-back'
+      end
+    end
+
     def task_status
       return if task.status == Task::VALID_STATUSES[:in_progress]
       html.span { "(#{task.status})" }

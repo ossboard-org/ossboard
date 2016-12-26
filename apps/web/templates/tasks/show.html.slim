@@ -1,4 +1,8 @@
 .task
+  - if flash[:error]
+    .pure-alert.pure-alert-error
+      = flash[:error]
+
   .task__title
     h2#task_title
       = task.title
