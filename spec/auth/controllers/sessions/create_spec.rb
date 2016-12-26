@@ -72,7 +72,7 @@ RSpec.describe Auth::Controllers::Sessions::Create do
     end
   end
 
-  context 'when user not exist' do
+  context 'when user exist' do
     before { repo.create(uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3", name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer") }
 
     it 'does not create a new user' do
@@ -88,6 +88,26 @@ RSpec.describe Auth::Controllers::Sessions::Create do
       expect(action.session[:current_user].email).to eq "mail@davydovanton.com"
       expect(action.session[:current_user].bio).to eq "Indie OSS developer"
       expect(action.session[:current_user].uuid).to eq uuid
+    end
+  end
+
+  context 'when user in black list' do
+    before { BlokedUserRepository.new.create('davydovanton') }
+    after { REDIS.with(&:flushdb) }
+
+    it 'creates a new user' do
+      expect { action.call(params) }.to change { repo.all.count }.by(0)
+    end
+
+    it 'sets current_user session' do
+      action.call(params)
+      expect(action.session[:current_user]).to eq nil
+    end
+
+    it 'redirects to root page with message' do
+      expect(action.call(params)).to redirect_to('/')
+      flash = action.exposures[:flash]
+      expect(flash[:error]).to eq 'Sorry, but you was blocked. Please contact with maintainer'
     end
   end
 
