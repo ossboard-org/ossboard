@@ -1,27 +1,81 @@
 require_relative '../../../../apps/web/controllers/tasks/edit'
 
 RSpec.describe Web::Controllers::Tasks::Edit do
-  let(:action) { described_class.new }
-  let(:params) { { id: task.id } }
-  let(:task)   { TaskRepository.new.create(title: 'TestTask') }
-  let(:repo)   { TaskRepository.new }
+  let(:action)  { described_class.new }
+  let(:user)    { UserRepository.new.create(name: 'anton') }
+  let(:session) { { current_user: User.new } }
+  let(:repo)    { TaskRepository.new }
+  let(:task)    { repo.create(title: 'TestTask') }
+  let(:params)  { { id: task.id } }
+  let(:params)  { { 'rack.session' => session, id: task.id } }
 
   after { repo.clear }
 
-  it { expect(action.call(params)).to be_success }
+  context 'when user unauthenticated' do
+    it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
 
-  describe 'expose' do
-    context '#task' do
-      it 'returns task by id' do
-        action.call(params)
-        expect(action.task).to eq task
-      end
+    it 'sets error flash message' do
+      action.call(params)
+      flash = action.exposures[:flash]
+      expect(flash[:error]).to eq "You doesn't have access for editing this task"
+    end
+  end
+
+  context 'when user authenticated and try to edit not its task' do
+    let(:task)    { repo.create(title: 'TestTask', user_id: user.id) }
+    let(:session) { { current_user: User.new(id: user.id - 1) } }
+
+    after do
+      UserRepository.new.clear
+      repo.clear
     end
 
-    context '#params' do
-      it 'returns action params' do
-        action.call(params)
-        expect(action.params).to be_a Hanami::Action::BaseParams
+    it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
+
+    it 'sets error flash message' do
+      action.call(params)
+      flash = action.exposures[:flash]
+      expect(flash[:error]).to eq "You doesn't have access for editing this task"
+    end
+  end
+
+  context 'when user authenticated and try to edit approved task' do
+    let(:task)    { repo.create(title: 'TestTask', user_id: user.id, approved: true) }
+    let(:session) { { current_user: user } }
+
+    after do
+      UserRepository.new.clear
+      repo.clear
+    end
+
+    it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
+
+    it 'sets error flash message' do
+      action.call(params)
+      flash = action.exposures[:flash]
+      expect(flash[:error]).to eq "You doesn't have access for editing this task"
+    end
+  end
+
+  context 'when user unauthenticated' do
+    let(:task)    { repo.create(title: 'TestTask', user_id: user.id, approved: false) }
+    let(:session) { { current_user: user } }
+
+    it { expect(action.call(params)).to have_http_status(:success) }
+
+    describe 'expose' do
+      context '#task' do
+        it 'returns task by id' do
+          action.call(params)
+          expect(action.task).to eq task
+        end
+      end
+
+      context '#params' do
+        it 'returns action params' do
+          action.call(params)
+          expect(action.params).to be_a Hanami::Action::BaseParams
+        end
       end
     end
   end
