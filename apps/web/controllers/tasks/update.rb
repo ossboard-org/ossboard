@@ -33,12 +33,8 @@ module Web::Controllers::Tasks
 
   private
 
-    def allow_to_edit_task?
-      authenticated? && current_user.author?(@task) && !@task.approved
-    end
-
     def check_edit_ability
-      return if allow_to_edit_task?
+      return if current_user.can_edit_task?(task)
       flash[:error] = "You doesn't have access for editing this task"
       redirect_to routes.task_path(@task.id)
     end
