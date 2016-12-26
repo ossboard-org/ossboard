@@ -23,6 +23,12 @@ RSpec.describe Web::Controllers::Tasks::Create do
 
     after { UserRepository.new.clear }
 
+    it 'sets error flash message' do
+      action.call(params)
+      flash = action.exposures[:flash]
+      expect(flash[:info]).to eq 'Task had been added to moderation. You can check your task status on profile page'
+    end
+
     it { expect(action.call(params)).to redirect_to('/tasks') }
 
     it 'creates new task' do
