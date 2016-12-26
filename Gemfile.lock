@@ -114,6 +114,7 @@ GEM
       tilt (~> 2.0, >= 2.0.1)
     hashdiff (0.3.1)
     hashie (3.4.6)
+    hiredis (0.6.1)
     http_router (0.11.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -231,6 +232,7 @@ DEPENDENCIES
   hanami (~> 0.9)
   hanami-model (~> 0.7)
   hanami-webpack!
+  hiredis
   kramdown
   mock_redis
   omniauth

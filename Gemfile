@@ -13,6 +13,7 @@ gem 'rouge'
 
 gem 'pg'
 gem 'redis', '~>3.2'
+gem 'hiredis'
 gem 'mock_redis'
 gem 'connection_pool'
 
