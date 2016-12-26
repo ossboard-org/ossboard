@@ -6,6 +6,10 @@ module Admin::Views::Users
       UserRepository.new.all
     end
 
+    def banned_users
+      @banned_users ||= BlokedUserRepository.new.all
+    end
+
     def link_to_user(user)
       link_to user.name, routes.user_path(user.id)
     end
@@ -19,6 +23,8 @@ module Admin::Views::Users
     end
 
     def link_to_block(user)
+      return if banned_users.include?(user.login)
+
       html.form(action: "/admin/users/#{user.id}", method: "POST") do
         input(type: "hidden", name: "_method",  value: "DELETE")
         input(type: "hidden", name: "login",    value: user.login)
