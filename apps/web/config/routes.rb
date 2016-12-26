@@ -5,4 +5,4 @@ get '/how-to-help', to: 'static#help',  as: 'help'
 
 resources :users,       only: %i[show]
 resources :task_status, only: %i[update]
-resources :tasks,       only: %i[index new create show]
+resources :tasks,       only: %i[index new create show edit update]

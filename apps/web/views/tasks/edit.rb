@@ -1,9 +1,9 @@
 module Web::Views::Tasks
-  class New
+  class Edit
     include Web::View
 
     def title
-      'OSSBoard: new task'
+      'OSSBoard: edit task'
     end
 
     def form
@@ -47,7 +47,7 @@ module Web::Views::Tasks
     end
 
     def task_form
-      Form.new(:task, routes.tasks_path, {}, { method: :post })
+      Form.new(:task, routes.task_path(task.id), {}, { method: :patch })
     end
 
     def tasks_active?

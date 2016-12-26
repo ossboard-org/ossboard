@@ -24,6 +24,44 @@ RSpec.describe Web::Views::Tasks::Show do
     end
   end
 
+  describe '#link_to_edit_task' do
+    context 'when user not authenticated' do
+      let(:current_user) { User.new }
+
+      it 'returns emty string' do
+        link = view.link_to_edit_task
+        expect(link.to_s).to eq ''
+      end
+    end
+
+    context 'when user not author of task' do
+      let(:task) { Task.new(id: 1, title: 'task title', user_id: 5) }
+
+      it 'returns emty string' do
+        link = view.link_to_edit_task
+        expect(link.to_s).to eq ''
+      end
+    end
+
+    context 'when task approved' do
+      let(:task) { Task.new(id: 1, title: 'task title', user_id: 1, approved: true) }
+
+      it 'returns emty string' do
+        link = view.link_to_edit_task
+        expect(link.to_s).to eq ''
+      end
+    end
+
+    context 'when task not approved and authenticated user is author of this task' do
+      let(:task) { Task.new(id: 1, title: 'task title', user_id: 1, approved: false) }
+
+      it 'returns link to edit' do
+        link = view.link_to_edit_task
+        expect(link.to_s).to eq '<a class="btn btn-back" href="/tasks/1/edit">Edit</a>'
+      end
+    end
+  end
+
   describe '#link_to_author' do
     let(:task) { Task.new(status: 'done') }
     it { expect(view.task_status.to_s).to eq "<span>\n(done)\n</span>" }
