@@ -20,8 +20,8 @@ module Admin::Views::Users
 
     def link_to_block(user)
       html.form(action: "/admin/users/#{user.id}", method: "POST") do
-        input(type: "hidden", name: "_method",  value: "DESTROY")
-        input(type: "hidden", name: "nickname", value: user.login)
+        input(type: "hidden", name: "_method",  value: "DELETE")
+        input(type: "hidden", name: "login",    value: user.login)
         input(class: 'pure-button pure-button-danger', type: "submit", value: "Block")
       end
     end
