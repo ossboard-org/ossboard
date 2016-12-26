@@ -1,0 +1,14 @@
+.new-task
+  h2.new-task__title Edit task
+
+  .new-task__errors
+    - unless params.valid?
+      .wrap-errors
+        h2 Errors:
+        ul
+          - params.error_messages.each do |error|
+            li
+              = error
+
+  .new-task__form
+    = form
