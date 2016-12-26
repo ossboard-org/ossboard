@@ -12,7 +12,9 @@ gem 'kramdown'
 gem 'rouge'
 
 gem 'pg'
-gem 'travis'
+gem 'redis', '~>3.2'
+gem 'mock_redis'
+gem 'connection_pool'
 
 gem 'omniauth'
 gem 'omniauth-github', github: 'intridea/omniauth-github'
