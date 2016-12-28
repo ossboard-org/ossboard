@@ -30,6 +30,7 @@ module Admin::Views::Tasks
 
     STATUS_LABELS = {
       'in progress' => 'label-info',
+      'assigned' => 'label-warning',
       'closed' => 'label-danger',
       'done' => 'label-success'
     }.freeze

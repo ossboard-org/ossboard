@@ -30,7 +30,7 @@ module Admin::Views::Tasks
           end
 
           div class: 'input task-form__field pure-control-group' do
-            select :status, { 'in progress' => 'in progress', 'done' => 'done', 'closed' => 'closed' }, options: {selected: task.status}
+            select :status, { 'in progress' => 'in progress', 'assigned' => 'assigned', 'done' => 'done', 'closed' => 'closed' }, options: {selected: task.status}
           end
         end
 
