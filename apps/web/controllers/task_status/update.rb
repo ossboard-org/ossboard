@@ -10,7 +10,7 @@ module Web::Controllers::TaskStatus
 
   private
 
-    ALLOWED_STATUSES = [Task::VALID_STATUSES[:closed], Task::VALID_STATUSES[:done]].freeze
+    ALLOWED_STATUSES = [Task::VALID_STATUSES[:assigned], Task::VALID_STATUSES[:closed], Task::VALID_STATUSES[:done]].freeze
 
     def repo
       @repo ||= TaskRepository.new
@@ -19,7 +19,8 @@ module Web::Controllers::TaskStatus
     def valid?(task)
       task && current_user.author?(task) &&
         ALLOWED_STATUSES.include?(params[:status]) &&
-        task.status == Task::VALID_STATUSES[:in_progress]
+        (task.status == Task::VALID_STATUSES[:in_progress] ||
+         task.status == Task::VALID_STATUSES[:assigned])
     end
 
     def verify_csrf_token?

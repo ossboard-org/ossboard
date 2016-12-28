@@ -49,4 +49,24 @@ RSpec.describe Web::Controllers::TaskStatus::Update do
       expect(repo.find(task.id).status).to eq 'done'
     end
   end
+
+  context 'when all is okay' do
+    let(:task) { repo.create(title: 'old', status: 'assigned', user_id: user.id) }
+    let(:status) { 'done' }
+
+    it 'does nothig' do
+      action.call(params)
+      expect(repo.find(task.id).status).to eq 'done'
+    end
+  end
+
+  context 'when all is okay' do
+    let(:task) { repo.create(title: 'old', status: 'in progress', user_id: user.id) }
+    let(:status) { 'assigned' }
+
+    it 'does nothig' do
+      action.call(params)
+      expect(repo.find(task.id).status).to eq 'assigned'
+    end
+  end
 end
