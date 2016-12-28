@@ -125,7 +125,7 @@ RSpec.describe Web::Views::Tasks::Show do
              "<form action=\"/task_status/1\" method=\"POST\">\n" +
              "<input type=\"hidden\" name=\"_method\" value=\"PATCH\">\n" +
              "<input type=\"hidden\" name=\"status\" value=\"assigned\">\n" +
-             "<input class=\"btn btn-done\" type=\"submit\" value=\"Assigned\">\n" +
+             "<input class=\"btn btn-assign\" type=\"submit\" value=\"Assigned\">\n" +
              "</form>\n" +
 
              "<form action=\"/task_status/1\" method=\"POST\">\n" +
