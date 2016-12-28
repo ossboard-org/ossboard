@@ -9,6 +9,11 @@ RSpec.describe Web::Controllers::Users::Show do
 
   it { expect(action.call(params)).to be_success }
 
+  context 'when user not found' do
+    let(:params)  { { id: 0 } }
+    it { expect(action.call(params)).to redirect_to('/') }
+  end
+
   describe 'expose' do
     context '#user' do
       it 'returns user by id' do
