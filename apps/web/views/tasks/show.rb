@@ -25,7 +25,7 @@ module Web::Views::Tasks
 
     def contact_with_mentor_link
       subject = "OSSBoard: #{task.title}"
-      link_to 'Contact with mentor', "mailto:#{author.email}?subject=#{subject}", class: 'btn btn-contact task__contact'
+      link_to 'Contact mentor', "mailto:#{author.email}?subject=#{subject}", class: 'btn btn-contact task__contact'
     end
 
     def task_status_actions

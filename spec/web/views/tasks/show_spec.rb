@@ -86,7 +86,7 @@ RSpec.describe Web::Views::Tasks::Show do
   describe '#contact_with_mentor_link' do
     it 'returns link to special user' do
       link = view.contact_with_mentor_link
-      expect(link.to_s).to eq '<a class="btn btn-contact task__contact" href="mailto:test@ossboard.com?subject=OSSBoard: task title">Contact with mentor</a>'
+      expect(link.to_s).to eq '<a class="btn btn-contact task__contact" href="mailto:test@ossboard.com?subject=OSSBoard: task title">Contact mentor</a>'
     end
   end
 
