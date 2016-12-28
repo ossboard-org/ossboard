@@ -10,6 +10,14 @@ module Admin::Views::Tasks
       true
     end
 
+    def link_to_issue
+      if task.issue_url
+        link_to task.issue_url, task.issue_url, target: '_blank'
+      else
+        'None'
+      end
+    end
+
     def task_label
       if task.approved
         html.span(class: 'label label-success'){ 'Approved' }

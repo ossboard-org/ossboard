@@ -33,4 +33,16 @@ RSpec.describe Admin::Views::Tasks::Show do
       it { expect(view.task_label.to_s).to eq "<span class=\"label label-danger\">\nUnapproved\n</span>" }
     end
   end
+
+  describe '#link_to_issue' do
+    context 'when task have issue link' do
+      let(:task) { Task.new(issue_url: 'test.com') }
+      it { expect(view.link_to_issue.to_s).to eq '<a target="_blank" href="test.com">test.com</a>' }
+    end
+
+    context "when task doesn't have issue link" do
+      let(:task) { Task.new(issue_url: nil) }
+      it { expect(view.link_to_issue.to_s).to eq 'None' }
+    end
+  end
 end
