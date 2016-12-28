@@ -6,7 +6,7 @@ RSpec.describe Web::Views::Tasks::Show do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
   let(:current_user) { User.new(id: 1, name: 'test', email: 'test@ossboard.com') }
-  let(:user) { User.new(id: 2, name: 'test', email: 'test@ossboard.com') }
+  let(:user) { User.new(id: 2, login: 'davydovanton', name: 'test', email: 'test@ossboard.com') }
   let(:task) { Task.new(id: 1, title: 'task title') }
 
   describe '#title' do
@@ -86,7 +86,7 @@ RSpec.describe Web::Views::Tasks::Show do
   describe '#contact_with_mentor_link' do
     it 'returns link to special user' do
       link = view.contact_with_mentor_link
-      expect(link.to_s).to eq '<a class="btn btn-contact task__contact" href="mailto:test@ossboard.com?subject=OSSBoard: task title">Contact mentor</a>'
+      expect(link.to_s).to eq '<a target="_blank" class="btn btn-contact task__contact" href="https://gitter.im/davydovanton">Contact mentor (Gitter)</a>'
     end
   end
 
