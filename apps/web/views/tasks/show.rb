@@ -29,9 +29,17 @@ module Web::Views::Tasks
 
     def task_status_actions
       return unless current_user.author?(task)
-      return unless task.status == Task::VALID_STATUSES[:in_progress]
+      return unless [Task::VALID_STATUSES[:in_progress], Task::VALID_STATUSES[:assigned]].include?(task.status)
 
       html.div(class: 'task__status') do
+        if task.status == Task::VALID_STATUSES[:in_progress]
+          form(action: "/task_status/#{task.id}", method: "POST") do
+            input(type: "hidden", name: "_method", value: "PATCH")
+            input(type: "hidden", name: "status",  value: "assigned")
+            input(class: 'btn btn-assign', type: "submit", value: "Assigned")
+          end
+        end
+
         form(action: "/task_status/#{task.id}", method: "POST") do
           input(type: "hidden", name: "_method", value: "PATCH")
           input(type: "hidden", name: "status",  value: "done")

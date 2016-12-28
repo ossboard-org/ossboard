@@ -386,6 +386,15 @@ a, .btn {
   }
 }
 
+.btn-assign {
+  color: #f0ad4e;
+  border: 1px solid #f0ad4e;
+
+  &:hover {
+    background-color: #f0ad4e;
+    color: #fff;
+  }
+}
 
 .btn-done {
   color: #32c107;
