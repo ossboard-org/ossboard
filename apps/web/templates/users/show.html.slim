@@ -3,7 +3,7 @@
     .show-user__avatar
       img src=user.avatar_url
     .show-user__name
-      h2 = user.name
+      h2 = user.name || user.login
     .show-user__bio
       = user.bio
     .show-user__github

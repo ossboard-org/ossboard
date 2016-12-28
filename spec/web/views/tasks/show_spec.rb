@@ -18,9 +18,20 @@ RSpec.describe Web::Views::Tasks::Show do
   end
 
   describe '#link_to_author' do
-    it 'returns link to special user' do
-      link = view.link_to_author
-      expect(link.to_s).to eq '<a href="/users/2">test</a>'
+    context 'when user have name' do
+      it 'returns link to special user' do
+        link = view.link_to_author
+        expect(link.to_s).to eq '<a href="/users/2">test</a>'
+      end
+    end
+
+    context "when user doesn't have name" do
+      let(:user) { User.new(id: 2, login: 'login', email: 'test@ossboard.com') }
+
+      it 'returns link to special user' do
+        link = view.link_to_author
+        expect(link.to_s).to eq '<a href="/users/2">login</a>'
+      end
     end
   end
 
