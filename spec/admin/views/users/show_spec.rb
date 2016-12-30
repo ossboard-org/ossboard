@@ -1,13 +1,19 @@
 require_relative '../../../../apps/admin/views/users/show'
 
 RSpec.describe Admin::Views::Users::Show do
-  let(:exposures) { Hash[foo: 'bar'] }
+  let(:user) { User.new }
+  let(:exposures) { Hash[foo: 'bar', user: user] }
   let(:template)  { Hanami::View::Template.new('apps/admin/templates/users/show.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
   it 'exposes #foo' do
     expect(view.foo).to eq exposures.fetch(:foo)
+  end
+
+  describe '#link_to_github' do
+    let(:user) { User.new(login: 'davydovanton') }
+    it { expect(view.link_to_github.to_s).to eq '<a href="http://github.com/davydovanton">davydovanton</a>' }
   end
 
   describe '#link_to_task' do

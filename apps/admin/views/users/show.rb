@@ -10,6 +10,10 @@ module Admin::Views::Users
       link_to 'Edit user', routes.edit_user_path(user.id), class: 'pure-button pure-button-primary'
     end
 
+    def link_to_github
+      link_to user.login, "http://github.com/#{user.login}"
+    end
+
     def link_to_task(task)
       link_to task.title, routes.task_path(id: task.id)
     end
