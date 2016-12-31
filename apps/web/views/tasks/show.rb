@@ -15,7 +15,7 @@ module Web::Views::Tasks
     end
 
     def link_to_author
-      link_to author.name || author.login, routes.user_path(author.id)
+      link_to author.name || author.login, routes.user_path(author.login)
     end
 
     def link_to_original_issue
