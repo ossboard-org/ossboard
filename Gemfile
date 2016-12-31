@@ -26,6 +26,8 @@ gem 'sass'
 
 gem 'dry-matcher'
 
+gem 'sidekiq'
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading

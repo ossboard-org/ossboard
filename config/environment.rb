@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
+require 'sidekiq/web'
 require_relative '../lib/ossboard'
 require_relative '../apps/api/application'
 require_relative '../apps/auth/application'
