@@ -12,4 +12,5 @@ RSpec.describe Admin::Controllers::Moderation::Update do
 
   it { expect { action.call(params) }.to change { repo.find(task.id).approved } }
   it { expect(action.call(params)).to redirect_to('/admin/moderation')  }
+  it { expect(action.call(params)).to change {Hanami::Mailer.deliveries.size}.by(1)  }
 end
