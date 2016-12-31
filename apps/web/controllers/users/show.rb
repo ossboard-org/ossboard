@@ -4,7 +4,7 @@ module Web::Controllers::Users
     expose :user
 
     def call(params)
-      @user = UserRepository.new.find_with_tasks(params[:id])
+      @user = UserRepository.new.find_by_login_with_tasks(params[:id])
 
       redirect_to '/' unless @user
     end
