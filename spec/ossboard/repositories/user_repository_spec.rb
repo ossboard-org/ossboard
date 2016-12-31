@@ -16,6 +16,22 @@ RSpec.describe UserRepository do
     end
   end
 
+  describe '#find_by_login_with_tasks' do
+    let(:task_repo) { TaskRepository.new }
+
+    let(:user) { repo.create(uuid: 'test', login: 'davydovanton') }
+
+    before do
+      task_repo.create(title: 'bad', user_id: user.id )
+      task_repo.create(title: 'good', approved: true)
+    end
+
+    subject { repo.find_by_login_with_tasks(user.login) }
+
+    it { expect(subject.tasks).to be_a Array }
+    it { expect(subject.tasks.count).to eq 1 }
+  end
+
   describe '#find_by_uuid' do
     context 'when user exist with uuid' do
       before { repo.create(uuid: 'test') }
