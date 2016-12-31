@@ -3,7 +3,7 @@ require_relative '../../../../apps/web/controllers/tasks/create'
 RSpec.describe Web::Controllers::Tasks::Create do
   let(:action) { described_class.new }
   let(:repo) { TaskRepository.new }
-  let(:session) { { current_user: User.new(id: 1) } }
+  let(:session) { { current_user: User.new(id: 1, login: 'test') } }
 
   after { repo.clear }
 
@@ -18,7 +18,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
   end
 
   describe 'when params valid' do
-    let(:user) { UserRepository.new.create(name: 'test') }
+    let(:user) { UserRepository.new.create(name: 'test', login: 'davydovanton') }
     let(:params) { { task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test', user_id: user.id, issue_url: 'github.com/issue/1' }, 'rack.session' => session } }
 
     after { UserRepository.new.clear }
