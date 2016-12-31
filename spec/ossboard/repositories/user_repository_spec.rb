@@ -3,6 +3,19 @@ RSpec.describe UserRepository do
 
   after { repo.clear }
 
+  describe '#find_by_login' do
+    context 'when user exist with uuid' do
+      before { repo.create(login: 'test') }
+
+      it { expect(repo.find_by_login('test')).to be_a User }
+      it { expect(repo.find_by_login('test').login).to eq 'test' }
+    end
+
+    context 'when user not exist with uuid' do
+      it { expect(repo.find_by_login('test2')).to eq nil }
+    end
+  end
+
   describe '#find_by_uuid' do
     context 'when user exist with uuid' do
       before { repo.create(uuid: 'test') }
