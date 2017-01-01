@@ -5,7 +5,7 @@ RSpec.describe Admin::Controllers::Users::Destroy do
   let(:session) { { current_user: User.new(id: 1, admin: true) } }
   let(:params)  { { id: 1, 'rack.session' => session, login: 'davydovanton' } }
 
-  before { UserRepository.new.create(login: 'davydovanton') }
+  before { Fabricate.create(:user, login: 'davydovanton') }
   after { REDIS.with(&:flushdb) }
 
   it { expect(action.call(params)).to redirect_to '/admin/users' }

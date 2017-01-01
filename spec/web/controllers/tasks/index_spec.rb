@@ -12,9 +12,9 @@ RSpec.describe Web::Controllers::Tasks::Index do
 
     describe '#tasks' do
       before do
-        3.times { |i| repo.create(title: "title ##{i}", approved: true, status: 'done') }
-        3.times { |i| repo.create(title: "title ##{i}", approved: true, status: 'closed') }
-        3.times { |i| repo.create(title: "title ##{i}", approved: true, status: 'in progress') }
+        3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'done') }
+        3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'closed') }
+        3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'in progress') }
         action.call(params)
       end
 
@@ -26,11 +26,11 @@ RSpec.describe Web::Controllers::Tasks::Index do
       end
 
       context 'when status param in done' do
-        let(:user) { UserRepository.new.create(admin: false) }
+        let(:user) { Fabricate.create(:user, admin: false) }
         let(:params)  { { 'rack.session' => { current_user: user }, status: 'moderation' } }
 
         before do
-          3.times { |i| repo.create(approved: false, user_id: user.id) }
+          3.times { |i| Fabricate.create(:task, approved: false, user_id: user.id) }
           action.call(params)
         end
 

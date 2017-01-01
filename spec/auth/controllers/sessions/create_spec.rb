@@ -73,7 +73,7 @@ RSpec.describe Auth::Controllers::Sessions::Create do
   end
 
   context 'when user exist' do
-    before { repo.create(uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3", name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer") }
+    before { Fabricate.create(:user, uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3", name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer") }
 
     it 'does not create a new user' do
       expect { action.call(params) }.to change { repo.all.count }.by(0)

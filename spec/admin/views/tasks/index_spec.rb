@@ -9,8 +9,8 @@ RSpec.describe Admin::Views::Tasks::Index do
 
   describe '#tasks' do
     before do
-      3.times { repo.create(title: 'good', approved: false) }
-      3.times { repo.create(title: 'good', approved: true) }
+      3.times { Fabricate.create(:task, title: 'good', approved: false) }
+      3.times { Fabricate.create(:task, title: 'good', approved: true) }
     end
 
     after { repo.clear }

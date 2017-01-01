@@ -5,7 +5,7 @@ RSpec.describe UserRepository do
 
   describe '#find_by_login' do
     context 'when user exist with uuid' do
-      before { repo.create(login: 'test') }
+      before { Fabricate.create(:user, login: 'test') }
 
       it { expect(repo.find_by_login('test')).to be_a User }
       it { expect(repo.find_by_login('test').login).to eq 'test' }
@@ -19,11 +19,11 @@ RSpec.describe UserRepository do
   describe '#find_by_login_with_tasks' do
     let(:task_repo) { TaskRepository.new }
 
-    let(:user) { repo.create(uuid: 'test', login: 'davydovanton') }
+    let(:user) { Fabricate.create(:user, uuid: 'test', login: 'davydovanton') }
 
     before do
-      task_repo.create(title: 'bad', user_id: user.id )
-      task_repo.create(title: 'good', approved: true)
+      Fabricate.create(:task, title: 'bad', user_id: user.id )
+      Fabricate.create(:task, title: 'good', approved: true)
     end
 
     subject { repo.find_by_login_with_tasks(user.login) }
@@ -34,7 +34,7 @@ RSpec.describe UserRepository do
 
   describe '#find_by_uuid' do
     context 'when user exist with uuid' do
-      before { repo.create(uuid: 'test') }
+      before { Fabricate.create(:user, uuid: 'test') }
 
       it { expect(repo.find_by_uuid('test')).to be_a User }
       it { expect(repo.find_by_uuid('test').uuid).to eq 'test' }
@@ -48,11 +48,11 @@ RSpec.describe UserRepository do
   describe '#find_with_tasks' do
     let(:task_repo) { TaskRepository.new }
 
-    let(:user) { repo.create(uuid: 'test') }
+    let(:user) { Fabricate.create(:user, uuid: 'test') }
 
     before do
-      task_repo.create(title: 'bad', user_id: user.id )
-      task_repo.create(title: 'good', approved: true)
+      Fabricate.create(:task, title: 'bad', user_id: user.id )
+      Fabricate.create(:task, title: 'good', approved: true)
     end
 
     subject { repo.find_with_tasks(user.id) }

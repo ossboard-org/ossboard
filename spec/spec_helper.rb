@@ -4,6 +4,10 @@ ENV['HANAMI_ENV'] ||= 'test'
 require 'simplecov'
 SimpleCov.start
 
+# This line needed to fix the error
+# NoMethodError: undefined method `user_id' for <Rake::Task  => []>:Rake::Task
+require 'fabrication'
+
 require_relative '../config/environment'
 Hanami.boot
 Hanami::Utils.require!("#{__dir__}/support")

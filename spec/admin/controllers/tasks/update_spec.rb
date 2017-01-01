@@ -3,7 +3,7 @@ require_relative '../../../../apps/web/controllers/tasks/create'
 RSpec.describe Admin::Controllers::Tasks::Update do
   let(:action) { described_class.new }
   let(:repo) { TaskRepository.new }
-  let(:task) { repo.create(title: 'old') }
+  let(:task) { Fabricate.create(:task, title: 'old', body: nil) }
   let(:session) { { current_user: User.new(id: 1, admin: true) } }
 
   after { repo.clear }

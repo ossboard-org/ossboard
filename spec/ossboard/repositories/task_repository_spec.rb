@@ -3,9 +3,9 @@ RSpec.describe TaskRepository do
 
   describe '#find_by_status' do
     before do
-      repo.create(title: 'in progress', approved: true, status: 'in progress')
-      repo.create(title: 'closed', approved: true, status: 'closed')
-      repo.create(title: 'done', approved: true, status: 'done')
+      Fabricate.create(:task, title: 'in progress', approved: true, status: 'in progress')
+      Fabricate.create(:task, title: 'closed', approved: true, status: 'closed')
+      Fabricate.create(:task, title: 'done', approved: true, status: 'done')
     end
 
     after { repo.clear }
@@ -51,8 +51,8 @@ RSpec.describe TaskRepository do
 
   describe '#only_approved' do
     before do
-      repo.create(title: 'bad')
-      repo.create(title: 'good', approved: true)
+      Fabricate.create(:task, title: 'bad')
+      Fabricate.create(:task, title: 'good', approved: true)
     end
 
     after { repo.clear }
@@ -69,11 +69,11 @@ RSpec.describe TaskRepository do
 
   describe '#om_moderation_for_user' do
     before do
-      repo.create(title: 'good', approved: false, user_id: user.id)
-      repo.create(title: 'good', approved: false)
+      Fabricate.create(:task, title: 'good', approved: false, user_id: user.id)
+      Fabricate.create(:task, title: 'good', approved: false)
     end
 
-    let(:user) { UserRepository.new.create(name: 'anton') }
+    let(:user) { Fabricate.create(:user, name: 'anton') }
 
     after { repo.clear }
 
@@ -86,8 +86,8 @@ RSpec.describe TaskRepository do
 
   describe '#not_approved' do
     before do
-      repo.create(title: 'bad')
-      repo.create(title: 'good', approved: true)
+      Fabricate.create(:task, title: 'bad')
+      Fabricate.create(:task, title: 'good', approved: true)
     end
 
     after { repo.clear }

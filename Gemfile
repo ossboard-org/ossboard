@@ -47,6 +47,8 @@ group :test do
   gem 'simplecov', require: false
   gem 'vcr'
   gem 'webmock'
+  gem 'hanami-fabrication'
+  gem 'faker'
 end
 
 group :production do
