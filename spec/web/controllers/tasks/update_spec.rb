@@ -2,7 +2,7 @@ require_relative '../../../../apps/web/controllers/tasks/update'
 
 RSpec.describe Web::Controllers::Tasks::Update do
   let(:repo) { TaskRepository.new }
-  let(:task) { repo.create(title: 'title')}
+  let(:task) { Fabricate.create(:task, title: 'title')}
   let(:user) { User.new(login: 'test') }
   let(:session) { { current_user: user } }
   let(:action) { described_class.new }
@@ -28,8 +28,8 @@ RSpec.describe Web::Controllers::Tasks::Update do
   end
 
   context 'when user authenticated and try to edit not its task' do
-    let(:user) { UserRepository.new.create(name: 'anton', login: 'test') }
-    let(:task) { repo.create(title: 'title', user_id: user.id - 1) }
+    let(:user) { Fabricate.create(:user, name: 'anton', login: 'test') }
+    let(:task) { Fabricate.create(:task, title: 'title', user_id: user.id - 1) }
     let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test' }, 'rack.session' => session } }
 
     it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
@@ -47,8 +47,8 @@ RSpec.describe Web::Controllers::Tasks::Update do
   end
 
   context 'when user try to edit approved task' do
-    let(:user) { UserRepository.new.create(name: 'anton', login: 'test') }
-    let(:task) { repo.create(title: 'title', user_id: user.id, approved: true) }
+    let(:user) { Fabricate.create(:user, name: 'anton', login: 'test') }
+    let(:task) { Fabricate.create(:task, title: 'title', user_id: user.id, approved: true) }
     let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test' }, 'rack.session' => session } }
 
     it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
@@ -66,8 +66,8 @@ RSpec.describe Web::Controllers::Tasks::Update do
   end
 
   context 'when user edit its unapproved task' do
-    let(:user) { UserRepository.new.create(name: 'anton', login: 'test') }
-    let(:task) { repo.create(title: 'title', user_id: user.id, approved: false) }
+    let(:user) { Fabricate.create(:user, name: 'anton', login: 'test') }
+    let(:task) { Fabricate.create(:task, title: 'title', user_id: user.id, approved: false) }
     let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test' }, 'rack.session' => session } }
 
     context 'and params valid' do
@@ -107,8 +107,8 @@ RSpec.describe Web::Controllers::Tasks::Update do
     end
 
     describe 'and params invalid' do
-      let(:user) { UserRepository.new.create(name: 'anton', login: 'test') }
-      let(:task) { repo.create(title: 'title', user_id: user.id, approved: false) }
+      let(:user) { Fabricate.create(:user, name: 'anton', login: 'test') }
+      let(:task) { Fabricate.create(:task, title: 'title', user_id: user.id, approved: false) }
       let(:params) { { id: task.id, task: {  }, 'rack.session' => session } }
 
       it { expect(action.call(params)).to have_http_status(200) }

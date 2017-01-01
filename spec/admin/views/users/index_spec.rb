@@ -9,7 +9,7 @@ RSpec.describe Admin::Views::Users::Index do
 
   describe 'users' do
     before do
-      3.times { repo.create(name: 'Anton') }
+      3.times { Fabricate.create(:user, name: 'Anton') }
     end
 
     after { repo.clear }

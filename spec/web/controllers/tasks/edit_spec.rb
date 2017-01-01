@@ -2,10 +2,10 @@ require_relative '../../../../apps/web/controllers/tasks/edit'
 
 RSpec.describe Web::Controllers::Tasks::Edit do
   let(:action)  { described_class.new }
-  let(:user)    { UserRepository.new.create(name: 'anton') }
+  let(:user)    { Fabricate.create(:user, name: 'anton') }
   let(:session) { { current_user: User.new } }
   let(:repo)    { TaskRepository.new }
-  let(:task)    { repo.create(title: 'TestTask') }
+  let(:task)    { Fabricate.create(:task, title: 'TestTask') }
   let(:params)  { { id: task.id } }
   let(:params)  { { 'rack.session' => session, id: task.id } }
 
@@ -22,7 +22,7 @@ RSpec.describe Web::Controllers::Tasks::Edit do
   end
 
   context 'when user authenticated and try to edit not its task' do
-    let(:task)    { repo.create(title: 'TestTask', user_id: user.id) }
+    let(:task)    { Fabricate.create(:task, title: 'TestTask', user_id: user.id) }
     let(:session) { { current_user: User.new(id: user.id - 1) } }
 
     after do
@@ -40,7 +40,7 @@ RSpec.describe Web::Controllers::Tasks::Edit do
   end
 
   context 'when user authenticated and try to edit approved task' do
-    let(:task)    { repo.create(title: 'TestTask', user_id: user.id, approved: true) }
+    let(:task)    { Fabricate.create(:task, title: 'TestTask', user_id: user.id, approved: true) }
     let(:session) { { current_user: user } }
 
     after do
@@ -58,7 +58,7 @@ RSpec.describe Web::Controllers::Tasks::Edit do
   end
 
   context 'when user unauthenticated' do
-    let(:task)    { repo.create(title: 'TestTask', user_id: user.id, approved: false) }
+    let(:task)    { Fabricate.create(:task, title: 'TestTask', user_id: user.id, approved: false) }
     let(:session) { { current_user: user } }
 
     it { expect(action.call(params)).to have_http_status(:success) }

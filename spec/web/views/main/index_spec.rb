@@ -14,7 +14,7 @@ RSpec.describe Web::Views::Main::Index do
 
   describe '#tasks' do
     before do
-      10.times { |i| repo.create(title: "title ##{i}", approved: true) }
+      10.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true) }
     end
 
     after { TaskRepository.new.clear }

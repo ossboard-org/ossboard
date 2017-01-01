@@ -2,7 +2,7 @@ require_relative '../../../../apps/admin/controllers/tasks/show'
 
 RSpec.describe Admin::Controllers::Tasks::Show do
   let(:action) { described_class.new }
-  let(:task) { TaskRepository.new.create(title: 'test') }
+  let(:task) { Fabricate.create(:task, title: 'test') }
   let(:session) { { current_user: User.new(id: 1, admin: true) } }
   let(:params)  { { id: task.id, 'rack.session' => session } }
 
@@ -19,8 +19,8 @@ RSpec.describe Admin::Controllers::Tasks::Show do
     end
 
     context '#author' do
-      let(:author) { UserRepository.new.create(name: 'test') }
-      let(:task) { TaskRepository.new.create(title: 'test', user_id: author.id) }
+      let(:author) { Fabricate.create(:user, name: 'test') }
+      let(:task) { Fabricate.create(:task, title: 'test', user_id: author.id) }
 
       it 'returns author of task' do
         action.call(params)
@@ -28,7 +28,7 @@ RSpec.describe Admin::Controllers::Tasks::Show do
       end
 
       context 'when author is empty (unreal case)' do
-        let(:task) { TaskRepository.new.create(title: 'test') }
+        let(:task) { Fabricate.create(:task, title: 'test') }
 
         it 'returns author of task' do
           action.call(params)

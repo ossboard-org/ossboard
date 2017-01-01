@@ -6,7 +6,7 @@ RSpec.describe Admin::Controllers::Moderation::Update do
   let(:params)  { { id: task.id, 'rack.session' => session } }
 
   let(:repo) { TaskRepository.new }
-  let(:task) { repo.create(title: 'old', approved: false) }
+  let(:task) { Fabricate.create(:task, title: 'old', approved: false) }
 
   after { repo.clear }
 

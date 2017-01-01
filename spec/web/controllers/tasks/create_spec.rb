@@ -18,7 +18,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
   end
 
   describe 'when params valid' do
-    let(:user) { UserRepository.new.create(name: 'test', login: 'davydovanton') }
+    let(:user) { Fabricate.create(:user, name: 'test', login: 'davydovanton') }
     let(:params) { { task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test', user_id: user.id, issue_url: 'github.com/issue/1' }, 'rack.session' => session } }
 
     after { UserRepository.new.clear }
