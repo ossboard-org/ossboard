@@ -20,9 +20,9 @@ module Web::Controllers::Tasks
         task_params[:body] = Markdown.parse(task_params[:md_body])
         task_params[:status] = Task::VALID_STATUSES[:in_progress]
 
-        TaskRepository.new.create(task_params)
+        task = TaskRepository.new.create(task_params)
 
-        send_email_to_admins
+        send_email_to_admins(task)
         flash[:info] = 'Task had been added to moderation. You can check your task status on profile page'
 
         redirect_to routes.tasks_path
@@ -35,7 +35,7 @@ module Web::Controllers::Tasks
   private
 
     # todo: sidekiq here
-    def send_email_to_admins
+    def send_email_to_admins(task)
       UserRepository.new.admins.each do |admin|
         Mailers::NewTask.deliver(user: admin, task: task, format: :html)
       end

@@ -30,7 +30,11 @@ RSpec.describe Web::Controllers::Tasks::Create do
     end
 
     it { expect(action.call(params)).to redirect_to('/tasks') }
-    it { expect{ action.call(params) }.to change { Hanami::Mailer.deliveries.size }.by(1) }
+
+    context 'sends email to admin users' do
+      before { Fabricate.create(:user, admin: true) }
+      it { expect{ action.call(params) }.to change { Hanami::Mailer.deliveries.size }.by(1) }
+    end
 
     it 'creates new task' do
       expect { action.call(params) }.to change { repo.all.size }.by(1)
