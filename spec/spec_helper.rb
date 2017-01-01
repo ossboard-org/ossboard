@@ -21,6 +21,8 @@ VCR.configure do |c|
 end
 
 require 'rspec/hanami'
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
 
 RSpec.configure do |config|
   config.include RSpec::Hanami::Matchers

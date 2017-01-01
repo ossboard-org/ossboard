@@ -33,7 +33,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
 
     context 'sends email to admin users' do
       before { Fabricate.create(:user, admin: true) }
-      it { expect{ action.call(params) }.to change { Hanami::Mailer.deliveries.size }.by(1) }
+      it { expect{ action.call(params) }.to change { NewTaskNotificationWorker.jobs.size }.by(1) }
     end
 
     it 'creates new task' do
