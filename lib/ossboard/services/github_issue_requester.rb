@@ -1,4 +1,5 @@
 require "net/https"
+      require 'pp'
 
 class GithubIssueRequester
   def self.call(params)
@@ -6,11 +7,18 @@ class GithubIssueRequester
   end
 
   def call(params)
-    response = get_response(GITHUB_API_URL % params)
-    data = JSON.parse(response.body)
+    issue_response = get_response(GITHUB_ISSUE_API_URL % params)
+    issue_data = JSON.parse(issue_response.body)
 
-    if response.is_a?(Net::HTTPSuccess)
-      { html_url: data['html_url'], title: data['title'], body: data['body'] }
+    if issue_response.is_a?(Net::HTTPSuccess)
+      repo_response = get_response(GITHUB_REPO_API_URL % params)
+      repo_data = JSON.parse(repo_response.body)
+
+      if repo_response.is_a?(Net::HTTPSuccess)
+        { html_url: issue_data['html_url'], title: issue_data['title'], body: issue_data['body'], lang: repo_data['language'].downcase }
+      else
+        { error: 'invalid url' }
+      end
     else
       { error: 'invalid url' }
     end
@@ -18,7 +26,8 @@ class GithubIssueRequester
 
   private
 
-  GITHUB_API_URL = 'https://api.github.com/repos/%{org}/%{repo}/issues/%{issue}'.freeze
+  GITHUB_REPO_API_URL = 'https://api.github.com/repos/%{org}/%{repo}'.freeze
+  GITHUB_ISSUE_API_URL = 'https://api.github.com/repos/%{org}/%{repo}/issues/%{issue}'.freeze
 
   def get_response(url)
     uri = URI.parse(url)

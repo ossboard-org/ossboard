@@ -10,6 +10,7 @@ RSpec.describe GithubIssueRequester, :vcr do
         expect(data[:html_url]).to eq 'https://github.com/hanami/hanami/issues/663'
         expect(data[:title]).to eq 'Format resolving and Template lookup'
         expect(data[:body]).to match('As was reported on Gitter')
+        expect(data[:lang]).to eq 'ruby'
       end
     end
   end
