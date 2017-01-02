@@ -20,6 +20,11 @@ module Admin::Views::Tasks
             text_field :issue_url, value: task.issue_url
           end
 
+          div class: 'input' do
+            label  :complexity
+            select :complexity, complexity_options_list
+          end
+
           div class: 'input task-form__field pure-control-group' do
             label     :md_body
             text_area :md_body, task.md_body

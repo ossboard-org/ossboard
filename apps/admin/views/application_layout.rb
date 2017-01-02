@@ -7,6 +7,10 @@ module Admin
         LANGUAGES_HASH
       end
 
+      def complexity_options_list
+        COMPLEXITY_OPTIONS_HASH
+      end
+
     private
 
       LANGUAGES_HASH = {
@@ -23,6 +27,12 @@ module Admin
         'rust'     => 'rust',
         'clojure'  => 'clojure',
         'php'      => 'php'
+      }.freeze
+
+      COMPLEXITY_OPTIONS_HASH = {
+        'Easy' => 'easy',
+        'Medium' => 'medium',
+        'Hard' => 'hard',
       }.freeze
     end
   end

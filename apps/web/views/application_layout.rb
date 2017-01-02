@@ -11,6 +11,10 @@ module Web
         LANGUAGES_HASH
       end
 
+      def complexity_options_list
+        COMPLEXITY_OPTIONS_HASH
+      end
+
       def title
         'OSSBoard'
       end
@@ -31,6 +35,12 @@ module Web
         'rust'     => 'rust',
         'clojure'  => 'clojure',
         'php'      => 'php'
+      }.freeze
+
+      COMPLEXITY_OPTIONS_HASH = {
+        'Easy' => 'easy',
+        'Medium' => 'medium',
+        'Hard' => 'hard',
       }.freeze
     end
   end
