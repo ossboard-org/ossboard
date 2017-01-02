@@ -41,7 +41,11 @@ Hanami.configure do
     delivery do
       development :test
       test        :test
-      # production :smtp, address: ENV['SMTP_PORT'], port: 1025
+      production  :smtp,
+        port:      587,
+        address:   "smtp.mailgun.org",
+        user_name: ENV['MAILGUN_USERNAME'],
+        password:  ENV['MAILGUN_PASSWORD']
     end
   end
 end
