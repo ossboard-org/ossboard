@@ -16,6 +16,16 @@ RSpec.describe UserRepository do
     end
   end
 
+  describe '#admins' do
+    before do
+      3.times { Fabricate.create(:user) }
+      3.times { Fabricate.create(:user, admin: true) }
+    end
+
+    it { expect(repo.admins).to all(be_a(User)) }
+    it { expect(repo.admins.map(&:admin)).to eq [true, true, true] }
+  end
+
   describe '#find_by_login_with_tasks' do
     let(:task_repo) { TaskRepository.new }
 

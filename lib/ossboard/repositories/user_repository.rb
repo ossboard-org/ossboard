@@ -3,6 +3,10 @@ class UserRepository < Hanami::Repository
     has_many :tasks
   end
 
+  def admins
+    users.where(admin: true).as(User).to_a
+  end
+
   def find_by_login(login)
     users.where(login: login).as(User).first
   end
