@@ -31,8 +31,8 @@ module Web::Views::Tasks
 
         if current_user.registred?
           div class: 'input agree-checkbox' do
-            check_box :aprove, id: 'agreement-chackbox'
-            label 'I agree to be a mentor to the developer that’s willing to work on my project’s task'
+            check_box :aprove, id: 'agreement-checkbox'
+            label 'I agree to be a mentor to the developer that’s willing to work on my project’s task', for: 'agreement-checkbox'
           end
         end
 
