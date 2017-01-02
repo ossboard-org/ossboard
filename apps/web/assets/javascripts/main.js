@@ -83,6 +83,7 @@ new Vue({
           document.getElementById('task-title').value = data.title
           document.getElementById('task-issue-url').value = data.html_url
           document.getElementById('task-md-body').value = data.body
+          document.getElementById('task-lang').value = data.lang
           self.showModal = false
         } else {
           self.hasError = true;

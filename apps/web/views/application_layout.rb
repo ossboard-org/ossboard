@@ -20,9 +20,9 @@ module Web
       LANGUAGES_HASH = {
         'language' => 'unknown',
         'ruby'     => 'ruby',
-        'js'       => 'js',
+        'js'       => 'javascript',
         'java'     => 'java',
-        'Python'   => 'Python',
+        'python'   => 'python',
         'go'       => 'go',
         'haskell'  => 'haskell',
         'lua'      => 'lua',
