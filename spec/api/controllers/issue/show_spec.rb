@@ -25,6 +25,8 @@ RSpec.describe Api::Controllers::Issue::Show, :vcr do
     it { expect(subject).to match_in_body(/"title":/) }
     it { expect(subject).to match_in_body(/"body":/) }
     it { expect(subject).to match_in_body(/"html_url":/) }
+    it { expect(subject).to match_in_body(/"lang":/) }
+    it { expect(subject).to match_in_body(/"repository_name":/) }
   end
 
   context 'when issue url is invalid' do

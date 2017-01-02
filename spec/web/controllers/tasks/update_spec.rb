@@ -53,7 +53,7 @@ RSpec.describe Web::Controllers::Tasks::Update do
 
     it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
 
-    it 'does not create new task' do
+    it 'does not update task' do
       action.call(params)
       expect(repo.find(task.id).title).to eq 'title'
     end
@@ -68,10 +68,19 @@ RSpec.describe Web::Controllers::Tasks::Update do
   context 'when user edit its unapproved task' do
     let(:user) { Fabricate.create(:user, name: 'anton', login: 'test') }
     let(:task) { Fabricate.create(:task, title: 'title', user_id: user.id, approved: false) }
-    let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test' }, 'rack.session' => session } }
+    let(:params) { { id: task.id, task: task_params, 'rack.session' => session } }
 
     context 'and params valid' do
-      let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test', user_id: user.id, issue_url: 'github.com/issue/1' }, 'rack.session' => session } }
+      let(:task_params) do
+        {
+          title: 'test',
+          repository_name: 'Acme-Project',
+          md_body: 'This is *bongos*, indeed.',
+          lang: 'test',
+          user_id: user.id,
+          issue_url: 'github.com/issue/1'
+        }
+      end
 
       after { UserRepository.new.clear }
 
@@ -83,25 +92,36 @@ RSpec.describe Web::Controllers::Tasks::Update do
 
       it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
 
-      it 'creates new task' do
+      it 'updates task' do
         action.call(params)
-        new_task = repo.find(task.id)
-        expect(new_task.title).to eq 'test'
-        expect(new_task.md_body).to eq 'This is *bongos*, indeed.'
-        expect(new_task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
-        expect(new_task.issue_url).to eq 'github.com/issue/1'
+        updated_task = repo.find(task.id)
+        expect(updated_task.title).to eq 'test'
+        expect(updated_task.repository_name).to eq 'Acme-Project'
+        expect(updated_task.md_body).to eq 'This is *bongos*, indeed.'
+        expect(updated_task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
+        expect(updated_task.issue_url).to eq 'github.com/issue/1'
       end
 
-      context 'and issue url empty' do
-        let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test', user_id: user.id, issue_url: '' }, 'rack.session' => session } }
+      context 'when issue url and repository name empty' do
+        let(:task_params) do
+          {
+            title: 'test',
+            repository_name: '',
+            md_body: 'This is *bongos*, indeed.',
+            lang: 'test',
+            user_id: user.id,
+            issue_url: ''
+          }
+        end
 
-        it 'creates new task' do
+        it 'updates task' do
           action.call(params)
-          new_task = repo.find(task.id)
-          expect(new_task.title).to eq 'test'
-          expect(new_task.md_body).to eq 'This is *bongos*, indeed.'
-          expect(new_task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
-          expect(new_task.issue_url).to eq nil
+          updated_task = repo.find(task.id)
+          expect(updated_task.title).to eq 'test'
+          expect(updated_task.repository_name).to eq nil
+          expect(updated_task.md_body).to eq 'This is *bongos*, indeed.'
+          expect(updated_task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
+          expect(updated_task.issue_url).to eq nil
         end
       end
     end
@@ -109,13 +129,13 @@ RSpec.describe Web::Controllers::Tasks::Update do
     describe 'and params invalid' do
       let(:user) { Fabricate.create(:user, name: 'anton', login: 'test') }
       let(:task) { Fabricate.create(:task, title: 'title', user_id: user.id, approved: false) }
-      let(:params) { { id: task.id, task: {  }, 'rack.session' => session } }
+      let(:params) { { id: task.id, task: {}, 'rack.session' => session } }
 
       it { expect(action.call(params)).to have_http_status(200) }
       it { expect(action.call(params)).to match_in_body(/Title is missing/) }
       it { expect(action.call(params)).to match_in_body(/Body is missing/) }
 
-      it 'does not create new task' do
+      it 'does not update task' do
         action.call(params)
         expect(repo.find(task.id).title).to eq 'title'
       end

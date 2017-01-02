@@ -11,11 +11,12 @@ RSpec.describe GithubIssueRequester, :vcr do
         expect(data[:title]).to eq 'Format resolving and Template lookup'
         expect(data[:body]).to match('As was reported on Gitter')
         expect(data[:lang]).to eq 'ruby'
+        expect(data[:repository_name]).to eq 'hanami'
       end
     end
   end
 
-  context 'when data is valid' do
+  context 'when data is invalid' do
     let(:params) { { org: 'hanam', repo: 'anami', issue: '63' } }
 
     it 'returns github issue data' do

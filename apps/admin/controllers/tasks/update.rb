@@ -12,6 +12,7 @@ module Admin::Controllers::Tasks
         required(:lang).filled
         required(:status).filled
         optional(:issue_url).maybe(:str?)
+        optional(:repository_name).maybe(:str?)
       end
     end
 

@@ -6,6 +6,10 @@ module Admin::Views::Tasks
       TaskRepository.new.all
     end
 
+    def repository_name(task)
+      task.repository_name || '---'
+    end
+
     def link_to_task(task)
       link_to task.title, routes.task_path(id: task.id)
     end

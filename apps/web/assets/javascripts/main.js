@@ -81,6 +81,7 @@ new Vue({
 
         if (self.xhr.status == 200) {
           document.getElementById('task-title').value = data.title
+          document.getElementById('task-repository-name').value = data.repository_name
           document.getElementById('task-issue-url').value = data.html_url
           document.getElementById('task-md-body').value = data.body
           document.getElementById('task-lang').value = data.lang

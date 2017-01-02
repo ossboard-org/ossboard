@@ -9,14 +9,27 @@ RSpec.describe Admin::Controllers::Tasks::Update do
   after { repo.clear }
 
   describe 'when params valid' do
-    let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', approved: '1', lang: 'ruby', issue_url: 'github.com/issue/1', status: 'done' }, 'rack.session' => session  } }
+    let(:params) { { id: task.id, task: task_params, 'rack.session' => session } }
+    let(:task_params) do
+      {
+        title: 'test',
+        repository_name: 'Acme-Project',
+        md_body: 'This is *bongos*, indeed.',
+        lang: 'ruby',
+        issue_url: 'github.com/issue/1',
+        approved: '1',
+        status: 'done'
+      }
+    end
+
 
     it { expect(action.call(params)).to redirect_to("/admin/tasks/#{task.id}") }
 
-    it 'updates new task' do
+    it 'updates task' do
       action.call(params)
       task = repo.last
       expect(task.title).to eq 'test'
+      expect(task.repository_name).to eq 'Acme-Project'
       expect(task.md_body).to eq 'This is *bongos*, indeed.'
       expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
       expect(task.approved).to eq true
@@ -25,15 +38,26 @@ RSpec.describe Admin::Controllers::Tasks::Update do
       expect(task.status).to eq 'done'
     end
 
-    context 'and issue url empty' do
-      let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', approved: '1', lang: 'ruby', issue_url: '', status: 'done' }, 'rack.session' => session  } }
+    context 'when issue url and repository name empty' do
+      let(:task_params) do
+        {
+          title: 'test',
+          repository_name: '',
+          md_body: 'This is *bongos*, indeed.',
+          lang: 'ruby',
+          issue_url: '',
+          approved: '1',
+          status: 'done'
+        }
+      end
 
       it { expect(action.call(params)).to redirect_to("/admin/tasks/#{task.id}") }
 
-      it 'updates new task' do
+      it 'updates task' do
         action.call(params)
         task = repo.last
         expect(task.title).to eq 'test'
+        expect(task.repository_name).to eq nil
         expect(task.md_body).to eq 'This is *bongos*, indeed.'
         expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
         expect(task.approved).to eq true
@@ -44,11 +68,11 @@ RSpec.describe Admin::Controllers::Tasks::Update do
   end
 
   describe 'when params invalid' do
-    let(:params) { { id: task.id, 'rack.session' => session  } }
+    let(:params) { { id: task.id, 'rack.session' => session } }
 
     it { expect(action.call(params)).to have_http_status(422) }
 
-    it 'does not create new task' do
+    it 'does not update task' do
       action.call(params)
       task = repo.last
       expect(task.title).to eq 'old'

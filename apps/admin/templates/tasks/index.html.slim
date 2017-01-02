@@ -5,6 +5,7 @@ table.table.pure-table.pure-table-horizontal
     tr
       th.table__id #
       th.table__title Title
+      th.table__repository Repository
       th.table__lang Language
       th.table__status Status
       th.table__status Approved
@@ -14,6 +15,7 @@ table.table.pure-table.pure-table-horizontal
       tr
         td = task.id
         td = link_to_task(task)
+        td = repository_name(task)
         td = task.lang
         td = status_label(task)
         td = task_label(task)

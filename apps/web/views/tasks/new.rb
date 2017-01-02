@@ -15,6 +15,10 @@ module Web::Views::Tasks
         end
 
         div class: 'input' do
+          text_field :repository_name, value: task.repository_name, placeholder: 'Repository Name (optional)'
+        end
+
+        div class: 'input' do
           text_field :issue_url, value: task.issue_url, placeholder: 'Link to issue (optional)'
         end
 

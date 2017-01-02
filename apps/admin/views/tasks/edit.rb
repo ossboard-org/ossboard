@@ -11,6 +11,11 @@ module Admin::Views::Tasks
           end
 
           div class: 'input task-form__field pure-control-group' do
+            label      :repository_name
+            text_field :repository_name, value: task.repository_name
+          end
+
+          div class: 'input task-form__field pure-control-group' do
             label      :issue_url
             text_field :issue_url, value: task.issue_url
           end
