@@ -6,19 +6,27 @@ class GithubIssueRequester
   end
 
   def call(params)
-    response = get_response(GITHUB_API_URL % params)
-    data = JSON.parse(response.body)
+    issue_response = get_response(GITHUB_ISSUE_API_URL % params)
+    issue_data = JSON.parse(issue_response.body)
 
-    if response.is_a?(Net::HTTPSuccess)
-      { html_url: data['html_url'], title: data['title'], body: data['body'] }
-    else
-      { error: 'invalid url' }
-    end
+    data = { html_url: issue_data['html_url'], title: issue_data['title'], body: issue_data['body'] }
+
+    return ERROR_HASH unless issue_response.is_a?(Net::HTTPSuccess)
+
+    repo_response = get_response(GITHUB_REPO_API_URL % params)
+    repo_data = JSON.parse(repo_response.body)
+
+    data[:lang] = repo_data['language'].downcase if repo_response.is_a?(Net::HTTPSuccess)
+
+    data
   end
 
   private
 
-  GITHUB_API_URL = 'https://api.github.com/repos/%{org}/%{repo}/issues/%{issue}'.freeze
+  ERROR_HASH = { error: 'invalid url' }.freeze
+
+  GITHUB_REPO_API_URL = 'https://api.github.com/repos/%{org}/%{repo}'.freeze
+  GITHUB_ISSUE_API_URL = 'https://api.github.com/repos/%{org}/%{repo}/issues/%{issue}'.freeze
 
   def get_response(url)
     uri = URI.parse(url)

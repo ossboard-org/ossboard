@@ -84,4 +84,74 @@ http_interactions:
         this.","closed_by":null}'
     http_version: 
   recorded_at: Mon, 19 Dec 2016 23:47:48 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/hanami/hanami
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Mon, 02 Jan 2017 00:20:47 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '57'
+      X-Ratelimit-Reset:
+      - '1483318012'
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Vary:
+      - Accept
+      - Accept-Encoding
+      Etag:
+      - W/"ac4dae94a9c84c329ea5798843b53c50"
+      Last-Modified:
+      - Sat, 31 Dec 2016 23:34:07 GMT
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Served-By:
+      - 318e55760cf7cdb40e61175a4d36cd32
+      X-Github-Request-Id:
+      - 05138B7C:44D6:165A491:58699CDF
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":12004006,"name":"hanami","full_name":"hanami/hanami","owner":{"login":"hanami","id":3210273,"avatar_url":"https://avatars.githubusercontent.com/u/3210273?v=3","gravatar_id":"","url":"https://api.github.com/users/hanami","html_url":"https://github.com/hanami","followers_url":"https://api.github.com/users/hanami/followers","following_url":"https://api.github.com/users/hanami/following{/other_user}","gists_url":"https://api.github.com/users/hanami/gists{/gist_id}","starred_url":"https://api.github.com/users/hanami/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/hanami/subscriptions","organizations_url":"https://api.github.com/users/hanami/orgs","repos_url":"https://api.github.com/users/hanami/repos","events_url":"https://api.github.com/users/hanami/events{/privacy}","received_events_url":"https://api.github.com/users/hanami/received_events","type":"Organization","site_admin":false},"private":false,"html_url":"https://github.com/hanami/hanami","description":"The
+        web, with simplicity.","fork":false,"url":"https://api.github.com/repos/hanami/hanami","forks_url":"https://api.github.com/repos/hanami/hanami/forks","keys_url":"https://api.github.com/repos/hanami/hanami/keys{/key_id}","collaborators_url":"https://api.github.com/repos/hanami/hanami/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/hanami/hanami/teams","hooks_url":"https://api.github.com/repos/hanami/hanami/hooks","issue_events_url":"https://api.github.com/repos/hanami/hanami/issues/events{/number}","events_url":"https://api.github.com/repos/hanami/hanami/events","assignees_url":"https://api.github.com/repos/hanami/hanami/assignees{/user}","branches_url":"https://api.github.com/repos/hanami/hanami/branches{/branch}","tags_url":"https://api.github.com/repos/hanami/hanami/tags","blobs_url":"https://api.github.com/repos/hanami/hanami/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/hanami/hanami/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/hanami/hanami/git/refs{/sha}","trees_url":"https://api.github.com/repos/hanami/hanami/git/trees{/sha}","statuses_url":"https://api.github.com/repos/hanami/hanami/statuses/{sha}","languages_url":"https://api.github.com/repos/hanami/hanami/languages","stargazers_url":"https://api.github.com/repos/hanami/hanami/stargazers","contributors_url":"https://api.github.com/repos/hanami/hanami/contributors","subscribers_url":"https://api.github.com/repos/hanami/hanami/subscribers","subscription_url":"https://api.github.com/repos/hanami/hanami/subscription","commits_url":"https://api.github.com/repos/hanami/hanami/commits{/sha}","git_commits_url":"https://api.github.com/repos/hanami/hanami/git/commits{/sha}","comments_url":"https://api.github.com/repos/hanami/hanami/comments{/number}","issue_comment_url":"https://api.github.com/repos/hanami/hanami/issues/comments{/number}","contents_url":"https://api.github.com/repos/hanami/hanami/contents/{+path}","compare_url":"https://api.github.com/repos/hanami/hanami/compare/{base}...{head}","merges_url":"https://api.github.com/repos/hanami/hanami/merges","archive_url":"https://api.github.com/repos/hanami/hanami/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/hanami/hanami/downloads","issues_url":"https://api.github.com/repos/hanami/hanami/issues{/number}","pulls_url":"https://api.github.com/repos/hanami/hanami/pulls{/number}","milestones_url":"https://api.github.com/repos/hanami/hanami/milestones{/number}","notifications_url":"https://api.github.com/repos/hanami/hanami/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/hanami/hanami/labels{/name}","releases_url":"https://api.github.com/repos/hanami/hanami/releases{/id}","deployments_url":"https://api.github.com/repos/hanami/hanami/deployments","created_at":"2013-08-09T15:24:44Z","updated_at":"2016-12-31T23:34:07Z","pushed_at":"2016-12-29T18:41:11Z","git_url":"git://github.com/hanami/hanami.git","ssh_url":"git@github.com:hanami/hanami.git","clone_url":"https://github.com/hanami/hanami.git","svn_url":"https://github.com/hanami/hanami","homepage":"http://hanamirb.org","size":24910,"stargazers_count":3477,"watchers_count":3477,"language":"Ruby","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":347,"mirror_url":null,"open_issues_count":22,"forks":347,"open_issues":22,"watchers":3477,"default_branch":"master","organization":{"login":"hanami","id":3210273,"avatar_url":"https://avatars.githubusercontent.com/u/3210273?v=3","gravatar_id":"","url":"https://api.github.com/users/hanami","html_url":"https://github.com/hanami","followers_url":"https://api.github.com/users/hanami/followers","following_url":"https://api.github.com/users/hanami/following{/other_user}","gists_url":"https://api.github.com/users/hanami/gists{/gist_id}","starred_url":"https://api.github.com/users/hanami/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/hanami/subscriptions","organizations_url":"https://api.github.com/users/hanami/orgs","repos_url":"https://api.github.com/users/hanami/repos","events_url":"https://api.github.com/users/hanami/events{/privacy}","received_events_url":"https://api.github.com/users/hanami/received_events","type":"Organization","site_admin":false},"network_count":347,"subscribers_count":172}'
+    http_version: 
+  recorded_at: Mon, 02 Jan 2017 00:20:47 GMT
 recorded_with: VCR 3.0.3
