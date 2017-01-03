@@ -29,6 +29,8 @@ gem 'dry-matcher'
 
 gem 'sidekiq'
 
+gem 'skylight'
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
