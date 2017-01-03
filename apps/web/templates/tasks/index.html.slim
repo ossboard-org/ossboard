@@ -29,4 +29,5 @@
       .task-item
         .task-item__title
           = link_to_task(task)
+        .task-item__repo = task.repository_name
         .task-item__lang = task.lang
