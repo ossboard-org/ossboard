@@ -1,5 +1,8 @@
 require './config/environment'
 require 'omniauth'
+require 'skylight'
+
+use Skylight::Middleware
 
 use Rack::Session::Cookie, secret: ENV['SESSIONS_SECRET']
 use OmniAuth::Builder do
