@@ -13,6 +13,7 @@ module Web::Controllers::Tasks
         required(:lang).filled(:str?)
         required(:user_id).filled
         optional(:issue_url).maybe(:str?)
+        optional(:repository_name).maybe(:str?)
       end
     end
 

@@ -16,7 +16,12 @@ class GithubIssueRequester
     repo_response = get_response(GITHUB_REPO_API_URL % params)
     repo_data = JSON.parse(repo_response.body)
 
-    data[:lang] = repo_data['language'].downcase if repo_response.is_a?(Net::HTTPSuccess)
+    if repo_response.is_a?(Net::HTTPSuccess)
+      data = data.merge(
+        lang: repo_data['language'].downcase,
+        repository_name: repo_data['name']
+      )
+    end
 
     data
   end

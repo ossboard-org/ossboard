@@ -19,7 +19,17 @@ RSpec.describe Web::Controllers::Tasks::Create do
 
   describe 'when params valid' do
     let(:user) { Fabricate.create(:user, name: 'test', login: 'davydovanton') }
-    let(:params) { { task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test', user_id: user.id, issue_url: 'github.com/issue/1' }, 'rack.session' => session } }
+    let(:params) { { task: task_params, 'rack.session' => session } }
+    let(:task_params) do
+      {
+        title: 'test',
+        repository_name: 'Acme-Project',
+        md_body: 'This is *bongos*, indeed.',
+        lang: 'test',
+        user_id: user.id,
+        issue_url: 'github.com/issue/1'
+      }
+    end
 
     after { UserRepository.new.clear }
 
@@ -41,20 +51,31 @@ RSpec.describe Web::Controllers::Tasks::Create do
 
       task = repo.last
       expect(task.title).to eq 'test'
+      expect(task.repository_name).to eq 'Acme-Project'
       expect(task.md_body).to eq 'This is *bongos*, indeed.'
       expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
       expect(task.issue_url).to eq 'github.com/issue/1'
       expect(task.status).to eq 'in progress'
     end
 
-    context 'and issue url empty' do
-      let(:params) { { task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test', user_id: user.id, issue_url: '' }, 'rack.session' => session } }
+    context 'when issue url and repository name empty' do
+      let(:task_params) do
+        {
+          title: 'test',
+          repository_name: '',
+          md_body: 'This is *bongos*, indeed.',
+          lang: 'test',
+          user_id: user.id,
+          issue_url: ''
+        }
+      end
 
       it 'creates new task' do
         expect { action.call(params) }.to change { repo.all.size }.by(1)
 
         task = repo.last
         expect(task.title).to eq 'test'
+        expect(task.repository_name).to eq nil
         expect(task.md_body).to eq 'This is *bongos*, indeed.'
         expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
         expect(task.issue_url).to eq nil
