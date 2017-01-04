@@ -87,10 +87,16 @@
   }
 
   .task-item__title {
+    width: 500px;
   }
 
   .task-item__lang {
     width: 200px;
+    text-align: center;
+  }
+
+  .task-item__repo {
+    width: 100px;
     text-align: center;
   }
 }

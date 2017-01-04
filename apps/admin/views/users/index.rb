@@ -23,12 +23,20 @@ module Admin::Views::Users
     end
 
     def link_to_block(user)
-      return if banned_users.include?(user.login)
+      if banned_users.include?(user.login)
+        html.form(action: "/admin/unban_users/#{user.id}", method: "POST") do
+          input(type: "hidden", name: "_method",  value: "PATCH")
+          input(type: "hidden", name: "login",    value: user.login)
+          input(class: 'pure-button pure-button-green', type: "submit", value: "Unblock")
+        end
 
-      html.form(action: "/admin/users/#{user.id}", method: "POST") do
-        input(type: "hidden", name: "_method",  value: "DELETE")
-        input(type: "hidden", name: "login",    value: user.login)
-        input(class: 'pure-button pure-button-danger', type: "submit", value: "Block")
+      else
+
+        html.form(action: "/admin/users/#{user.id}", method: "POST") do
+          input(type: "hidden", name: "_method",  value: "DELETE")
+          input(type: "hidden", name: "login",    value: user.login)
+          input(class: 'pure-button pure-button-danger', type: "submit", value: "Block")
+        end
       end
     end
   end
