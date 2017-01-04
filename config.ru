@@ -1,8 +1,9 @@
 require './config/environment'
 require 'omniauth'
-require 'skylight'
+require 'newrelic_rpm'
+require 'newrelic-hanami'
 
-use Skylight::Middleware
+NewRelic::Agent.manual_start
 
 use Rack::Session::Cookie, secret: ENV['SESSIONS_SECRET']
 use OmniAuth::Builder do
