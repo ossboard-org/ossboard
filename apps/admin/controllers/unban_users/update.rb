@@ -3,7 +3,7 @@ module Admin::Controllers::UnbanUsers
     include Admin::Action
 
     def call(params)
-      BlokedUserRepository.new.delete(params[:username])
+      BlokedUserRepository.new.delete(params[:login])
       redirect_to routes.users_path
     end
   end
