@@ -36,14 +36,24 @@ RSpec.describe Admin::Views::Users::Index do
     let(:user) { User.new(id: 1, login: 'davydovanton') }
 
     context 'when user not banned' do
-      it { expect(view.link_to_block(user)).to_not eq '' }
+      it { expect(view.link_to_block(user).to_s).to eq(
+           '<form action="/admin/users/1" method="POST">' + "\n" +
+           '<input type="hidden" name="_method" value="DELETE">' + "\n" +
+           '<input type="hidden" name="login" value="davydovanton">' + "\n" +
+           '<input class="pure-button pure-button-danger" type="submit" value="Block">' + "\n" +
+           '</form>') }
     end
 
     context 'when user banned' do
       before { BlokedUserRepository.new.create('davydovanton') }
       after { REDIS.with(&:flushdb) }
 
-      it { expect(view.link_to_block(user).to_s).to eq '' }
+      it { expect(view.link_to_block(user).to_s).to eq(
+           '<form action="/admin/unban_users/1" method="POST">' + "\n" +
+           '<input type="hidden" name="_method" value="PATCH">' + "\n" +
+           '<input type="hidden" name="login" value="davydovanton">' + "\n" +
+           '<input class="pure-button pure-button-green" type="submit" value="Unblock">' + "\n" +
+           '</form>') }
     end
   end
 
