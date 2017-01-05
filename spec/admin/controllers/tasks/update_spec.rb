@@ -16,12 +16,12 @@ RSpec.describe Admin::Controllers::Tasks::Update do
         repository_name: 'Acme-Project',
         md_body: 'This is *bongos*, indeed.',
         lang: 'ruby',
+        complexity: 'medium',
         issue_url: 'github.com/issue/1',
         approved: '1',
         status: 'done'
       }
     end
-
 
     it { expect(action.call(params)).to redirect_to("/admin/tasks/#{task.id}") }
 
@@ -34,6 +34,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
       expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
       expect(task.approved).to eq true
       expect(task.lang).to eq 'ruby'
+      expect(task.complexity).to eq 'medium'
       expect(task.issue_url).to eq 'github.com/issue/1'
       expect(task.status).to eq 'done'
     end
@@ -45,6 +46,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
           repository_name: '',
           md_body: 'This is *bongos*, indeed.',
           lang: 'ruby',
+          complexity: 'medium',
           issue_url: '',
           approved: '1',
           status: 'done'
@@ -62,6 +64,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
         expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
         expect(task.approved).to eq true
         expect(task.lang).to eq 'ruby'
+      expect(task.complexity).to eq 'medium'
         expect(task.issue_url).to eq nil
       end
     end

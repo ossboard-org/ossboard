@@ -29,5 +29,9 @@ module Admin::Views::Tasks
         html.span(class: 'label label-danger'){ 'Unapproved' }
       end
     end
+
+    def task_complexity
+      complexity_options_list.key(task.complexity)
+    end
   end
 end

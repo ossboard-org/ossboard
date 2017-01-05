@@ -23,6 +23,10 @@ module Web::Views::Tasks
         end
 
         div class: 'input' do
+          select :complexity, complexity_options_list
+        end
+
+        div class: 'input' do
           text_area :md_body, task.md_body, placeholder: 'Body'
           div(class: 'task-form__body-tip') do
             em '* you can use markdown syntax'

@@ -11,6 +11,7 @@ module Admin::Controllers::Tasks
         required(:approved).filled
         required(:lang).filled
         required(:status).filled
+        required(:complexity).filled
         optional(:issue_url).maybe(:str?)
         optional(:repository_name).maybe(:str?)
       end
