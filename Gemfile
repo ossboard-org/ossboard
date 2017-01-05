@@ -29,7 +29,7 @@ gem 'dry-matcher'
 
 gem 'sidekiq'
 
-gem 'newrelic-hanami', github: 'davydovanton/newrelic-hanami', branch: 'patch-1'
+gem 'newrelic-hanami', github: 'artemeff/newrelic-hanami'
 
 group :development do
   # Code reloading

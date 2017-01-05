@@ -1,7 +1,6 @@
 GIT
-  remote: git://github.com/davydovanton/newrelic-hanami.git
-  revision: 028274af33630db1bc74288bc6946f7b58c7bb15
-  branch: patch-1
+  remote: git://github.com/artemeff/newrelic-hanami.git
+  revision: 1cbf9d180d8200dfa05c5c43289e6d8e9d7f4d13
   specs:
     newrelic-hanami (0.4.2)
       hanami-controller (> 0.4.0, < 1.0.0)
