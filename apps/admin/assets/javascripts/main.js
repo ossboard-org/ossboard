@@ -30,7 +30,7 @@ function tasksChart(analytics_data) {
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         data: analytics_data.tasks.in_progress,
       }, {
-        label: "Submited",
+        label: "Assigned",
         borderColor: 'rgba(54, 162, 235, 1)',
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         data: analytics_data.tasks.assigned,
