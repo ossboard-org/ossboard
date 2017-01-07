@@ -16,17 +16,19 @@ xhr.open('GET', url, true);
 xhr.setRequestHeader('Content-type', 'application/json');
 xhr.setRequestHeader('Accept', 'application/json');
 xhr.onload = function() {
-  tasksChart(JSON.parse(xhr.response))
+  var data = JSON.parse(xhr.response)
+  tasksChart(data)
+  usersChart(data)
 };
 xhr.send();
 
 function tasksChart(analytics_data) {
   var tasksChartElem = document.getElementById("tasksChart");
 
-  var tasksChart = new Chart(tasksChartElem, {
+  new Chart(tasksChartElem, {
     type: 'line',
     data: {
-      labels: analytics_data.tasks.labels,
+      labels: analytics_data.labels,
       datasets: [{
         label: "Closed",
         borderColor: 'rgba(255,99,132,1)',
@@ -81,33 +83,54 @@ function tasksChart(analytics_data) {
         ],
       }]
     },
-    options: {
-      legend: {
-        position: 'bottom',
-      },
-      hover: {
-        mode: 'index'
-      },
-      scales: {
-        xAxes: [{
-          display: true,
-          scaleLabel: {
-            display: true,
-            labelString: 'days'
-          }
-        }],
-        yAxes: [{
-          display: true,
-          scaleLabel: {
-            display: true,
-            labelString: 'count'
-          }
-        }]
-      },
-      title: {
-        display: true,
-        text: 'Tasks on last month'
-      },
-    }
+    options: chartsOptions()
   });
+}
+
+function usersChart(analytics_data) {
+  var usersChartElem = document.getElementById("usersChart");
+
+  new Chart(usersChartElem, {
+    type: 'line',
+    data: {
+      labels: analytics_data.labels,
+      datasets: [{
+        label: "Users",
+        borderColor: 'rgba(255,99,132,1)',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        data: analytics_data.users
+      }]
+    },
+    options: chartsOptions()
+  });
+}
+
+function chartsOptions() {
+  return {
+    legend: {
+      position: 'bottom',
+    },
+    hover: {
+      mode: 'index'
+    },
+    scales: {
+      xAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'days'
+        }
+      }],
+      yAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'count'
+        }
+      }]
+    },
+    title: {
+      display: false
+    },
+  }
 }
