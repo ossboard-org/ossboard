@@ -1,6 +1,11 @@
 RSpec.describe AnalyticReporter do
   subject { AnalyticReporter.new.call }
 
+  after do
+    UserRepository.new.clear
+    TaskRepository.new.clear
+  end
+
   context 'labels information' do
     it { expect(subject[:labels]).to be_a(Array) }
     it { expect(subject[:labels].count).to eq 31 }
@@ -18,8 +23,6 @@ RSpec.describe AnalyticReporter do
     end
 
     context 'when users was created' do
-      after { UserRepository.new.clear }
-
       before do
         3.times do
           Fabricate.create(:user)
