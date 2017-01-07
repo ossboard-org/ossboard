@@ -6,13 +6,26 @@ class AnalyticReporter
 
   def call
     {
-      labels: ((Date.today - ONE_MONTH)..Date.today).map(&:to_s),
-      tasks: {},
-      users: {}
+      labels: last_month_list,
+      tasks: {
+        in_progress: [],
+        assigned: [],
+        closed: [],
+        done: []
+      },
+      users: last_month_list.map { |day| users_by_day[day] || 0 }
     }
   end
 
   private
 
-  ONE_MONTH = 30
+  def users_by_day
+    {}
+  end
+
+  def last_month_list
+    @last_month_list ||= (ONE_MONTH_AGO..Date.today).map(&:to_s)
+  end
+
+  ONE_MONTH_AGO = Date.today - 30
 end
