@@ -2,13 +2,13 @@ RSpec.describe TaskRepository do
   let(:repo) { TaskRepository.new }
 
   describe '#find_by_status' do
+    after { repo.clear }
+
     before do
       Fabricate.create(:task, title: 'in progress', approved: true, status: 'in progress')
       Fabricate.create(:task, title: 'closed', approved: true, status: 'closed')
       Fabricate.create(:task, title: 'done', approved: true, status: 'done')
     end
-
-    after { repo.clear }
 
     context 'when key empty' do
       it 'returns array of closed tasks' do
@@ -50,12 +50,12 @@ RSpec.describe TaskRepository do
   end
 
   describe '#only_approved' do
+    after { repo.clear }
+
     before do
       Fabricate.create(:task, title: 'bad')
       Fabricate.create(:task, title: 'good', approved: true)
     end
-
-    after { repo.clear }
 
     it 'returns array of tasks' do
       expect(repo.only_approved).to all(be_a(Task))
@@ -68,14 +68,14 @@ RSpec.describe TaskRepository do
   end
 
   describe '#om_moderation_for_user' do
+    after { repo.clear }
+
     before do
       Fabricate.create(:task, title: 'good', approved: false, user_id: user.id)
       Fabricate.create(:task, title: 'good', approved: false)
     end
 
     let(:user) { Fabricate.create(:user, name: 'anton') }
-
-    after { repo.clear }
 
     it 'returns array of tasks' do
       expect(repo.om_moderation_for_user(user.id)).to all(be_a(Task))
@@ -85,12 +85,12 @@ RSpec.describe TaskRepository do
   end
 
   describe '#not_approved' do
+    after { repo.clear }
+
     before do
       Fabricate.create(:task, title: 'bad')
       Fabricate.create(:task, title: 'good', approved: true)
     end
-
-    after { repo.clear }
 
     it 'returns array of tasks' do
       expect(repo.not_approved).to all(be_a(Task))
@@ -100,5 +100,32 @@ RSpec.describe TaskRepository do
       expect(repo.not_approved.size).to eq 1
       expect(repo.not_approved.last.title).to eq 'bad'
     end
+  end
+
+  describe '#all_from_date' do
+    before(:all) do
+      3.times do |i|
+        random_days_count = i * 60 * 60 * 24
+        Timecop.freeze(Time.new(2016, 02, 20) - random_days_count) do
+          Fabricate.create(:task, status: 'done')
+          Fabricate.create(:task, status: 'in progress')
+          Fabricate.create(:task, status: 'closed')
+          Fabricate.create(:task, status: 'assigned')
+        end
+      end
+
+      Timecop.freeze(Time.now + (2 * 60 * 60 * 24)) { Fabricate.create(:task) }
+    end
+
+    after(:all) { TaskRepository.new.clear }
+
+    let(:date) { Date.new(2016, 02, 18) }
+
+    it { expect(repo.all_from_date(date)).to be_a(Array) }
+    it { expect(repo.all_from_date(date).count).to eq 8 }
+    it { expect(repo.all_from_date(date, 'in progress').count).to eq 2 }
+    it { expect(repo.all_from_date(date, 'done').count).to eq 2 }
+    it { expect(repo.all_from_date(date, 'closed').count).to eq 2 }
+    it { expect(repo.all_from_date(date, 'assigned').count).to eq 2 }
   end
 end

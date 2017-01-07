@@ -1,7 +1,7 @@
 RSpec.describe AnalyticReporter do
   subject { AnalyticReporter.new.call }
 
-  after do
+  before(:all) do
     UserRepository.new.clear
     TaskRepository.new.clear
   end
@@ -23,7 +23,7 @@ RSpec.describe AnalyticReporter do
     end
 
     context 'when users was created' do
-      before do
+      before(:all) do
         3.times do
           Fabricate.create(:user)
         end
@@ -31,6 +31,10 @@ RSpec.describe AnalyticReporter do
         Timecop.freeze(Time.now + (2 * 60 * 60 * 24)) do
           Fabricate.create(:user)
         end
+      end
+
+      after(:all) do
+        UserRepository.new.clear
       end
 
       it { expect(subject[:users].uniq.count).to eq 2 }
@@ -46,11 +50,36 @@ RSpec.describe AnalyticReporter do
     it { expect(subject[:tasks][:closed].count).to eq 31 }
     it { expect(subject[:tasks][:done].count).to eq 31 }
 
-    context 'when users not created one month' do
+    context 'when tasks not created one month' do
       it { expect(subject[:tasks][:in_progress]).to all(be == 0) }
       it { expect(subject[:tasks][:assigned]).to all(be == 0) }
       it { expect(subject[:tasks][:closed]).to all(be == 0) }
       it { expect(subject[:tasks][:done]).to all(be == 0) }
+    end
+
+    context 'when users was created' do
+      before(:all) do
+        Fabricate.create(:task, status: 'in progress')
+        Fabricate.create(:task, status: 'assigned')
+        Fabricate.create(:task, status: 'done')
+        Fabricate.create(:task, status: 'closed')
+
+        Timecop.freeze(Time.now + (2 * 60 * 60 * 24)) do
+          Fabricate.create(:task, status: 'in progress')
+          Fabricate.create(:task, status: 'assigned')
+          Fabricate.create(:task, status: 'done')
+          Fabricate.create(:task, status: 'closed')
+        end
+      end
+
+      after(:all) do
+        TaskRepository.new.clear
+      end
+
+      it { expect(subject[:tasks][:in_progress].last).to eq 1 }
+      it { expect(subject[:tasks][:assigned].last).to eq 1 }
+      it { expect(subject[:tasks][:closed].last).to eq 1 }
+      it { expect(subject[:tasks][:done].last).to eq 1 }
     end
   end
 end

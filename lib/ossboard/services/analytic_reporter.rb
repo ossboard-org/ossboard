@@ -24,22 +24,23 @@ class AnalyticReporter
   end
 
   def closed_tasks_by_day
-    # TaskRepository.new.all
-    #   .select{ |task| last_month_list.include?(task.created_at.to_date) && task.status == Task::VALID_STATUSES[:closed] }
-    #   .group_by{ |task| task.created_at.to_date }
-    {}
+    TaskRepository.new.all_from_date(last_month_list.first, Task::VALID_STATUSES[:closed])
+      .group_by{ |task| task.created_at.to_date }
   end
 
   def assigned_tasks_by_day
-    {}
+    TaskRepository.new.all_from_date(last_month_list.first, Task::VALID_STATUSES[:assigned])
+      .group_by{ |task| task.created_at.to_date }
   end
 
   def in_progress_tasks_by_day
-    {}
+    TaskRepository.new.all_from_date(last_month_list.first, Task::VALID_STATUSES[:in_progress])
+      .group_by{ |task| task.created_at.to_date }
   end
 
   def complited_tasks_by_day
-    {}
+    TaskRepository.new.all_from_date(last_month_list.first, Task::VALID_STATUSES[:done])
+      .group_by{ |task| task.created_at.to_date }
   end
 
   def last_month_list
