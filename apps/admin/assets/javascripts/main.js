@@ -3,10 +3,6 @@ import Chart from 'chart.js'
 
 Chart.defaults.global.maintainAspectRatio = false;
 
-window.randomScalingFactor = function() {
-	return Math.round(Math.random() * 100);
-}
-
 var xhr = new XMLHttpRequest()
 var url = '/api/analytics'
 var analytics_data
