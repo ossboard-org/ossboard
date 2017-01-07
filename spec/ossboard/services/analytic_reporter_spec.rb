@@ -26,17 +26,13 @@ RSpec.describe AnalyticReporter do
     end
 
     context 'when users was created' do
-      before(:all) do
-        3.times do
-          Fabricate.create(:user)
-        end
-
-        Timecop.freeze(Time.now + (2 * 60 * 60 * 24)) do
-          Fabricate.create(:user)
+      before do
+        Timecop.freeze(Time.now - 60) do
+          3.times { Fabricate.create(:user) }
         end
       end
 
-      after(:all) do
+      after do
         UserRepository.new.clear
       end
 
@@ -67,13 +63,8 @@ RSpec.describe AnalyticReporter do
     end
 
     context 'when users was created' do
-      before(:all) do
-        Fabricate.create(:task, status: 'in progress')
-        Fabricate.create(:task, status: 'assigned')
-        Fabricate.create(:task, status: 'done')
-        Fabricate.create(:task, status: 'closed')
-
-        Timecop.freeze(Time.now + (2 * 60 * 60 * 24)) do
+      before do
+        Timecop.freeze(Time.now - 60) do
           Fabricate.create(:task, status: 'in progress')
           Fabricate.create(:task, status: 'assigned')
           Fabricate.create(:task, status: 'done')
@@ -81,7 +72,7 @@ RSpec.describe AnalyticReporter do
         end
       end
 
-      after(:all) do
+      after do
         TaskRepository.new.clear
       end
 
