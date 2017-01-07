@@ -16,18 +16,21 @@ RSpec.describe AnalyticReporter do
     context 'when users not created one month' do
       it { expect(subject[:users]).to all(be == 0) }
     end
+  end
 
-    context 'when users created in last month' do
-      before do
-        10.times do
-          random_days_count = rand(30) * 60 * 60 * 24
-          Fabricate.create(:user, created_at: Time.now - random_days_count)
-        end
-      end
+  context 'tasks information' do
+    it { expect(subject[:tasks]).to be_a(Hash) }
+    it { expect(subject[:tasks].keys).to eq %i[in_progress assigned closed done] }
+    it { expect(subject[:tasks][:in_progress].count).to eq 31 }
+    it { expect(subject[:tasks][:assigned].count).to eq 31 }
+    it { expect(subject[:tasks][:closed].count).to eq 31 }
+    it { expect(subject[:tasks][:done].count).to eq 31 }
 
-      after { UserRepository.new.clear }
-
-      it { expect(subject[:users].uniq.size).to be > 1 }
+    context 'when users not created one month' do
+      it { expect(subject[:tasks][:in_progress]).to all(be == 0) }
+      it { expect(subject[:tasks][:assigned]).to all(be == 0) }
+      it { expect(subject[:tasks][:closed]).to all(be == 0) }
+      it { expect(subject[:tasks][:done]).to all(be == 0) }
     end
   end
 end
