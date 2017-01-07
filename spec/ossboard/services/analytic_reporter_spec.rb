@@ -16,6 +16,23 @@ RSpec.describe AnalyticReporter do
     context 'when users not created one month' do
       it { expect(subject[:users]).to all(be == 0) }
     end
+
+    context 'when users was created' do
+      after { UserRepository.new.clear }
+
+      before do
+        3.times do
+          Fabricate.create(:user)
+        end
+
+        Timecop.freeze(Time.now + (2 * 60 * 60 * 24)) do
+          Fabricate.create(:user)
+        end
+      end
+
+      it { expect(subject[:users].uniq.count).to eq 2 }
+      it { expect(subject[:users].last).to eq 3 }
+    end
   end
 
   context 'tasks information' do
