@@ -12,39 +12,44 @@ RSpec.describe TaskRepository do
 
     context 'when key empty' do
       it 'returns array of closed tasks' do
-        expect(repo.find_by_status(nil)).to all(be_a(Task))
-        expect(repo.find_by_status(nil).count).to eq 3
+        result = repo.find_by_status(nil)
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 3
       end
     end
 
     context 'when key is closed' do
       it 'returns array of closed tasks' do
-        expect(repo.find_by_status('closed')).to all(be_a(Task))
-        expect(repo.find_by_status('closed').count).to eq 1
-        expect(repo.find_by_status('closed').first.status).to eq 'closed'
+        result = repo.find_by_status('closed')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 1
+        expect(result.first.status).to eq 'closed'
       end
     end
 
     context 'when key is done' do
       it 'returns array of done tasks' do
-        expect(repo.find_by_status('done')).to all(be_a(Task))
-        expect(repo.find_by_status('done').count).to eq 1
-        expect(repo.find_by_status('done').first.status).to eq 'done'
+        result = repo.find_by_status('done')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 1
+        expect(result.first.status).to eq 'done'
       end
     end
 
     context 'when key is in progress' do
       it 'returns array of in progress tasks' do
-        expect(repo.find_by_status('in progress')).to all(be_a(Task))
-        expect(repo.find_by_status('in progress').count).to eq 1
-        expect(repo.find_by_status('in progress').first.status).to eq 'in progress'
+        result = repo.find_by_status('in progress')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 1
+        expect(result.first.status).to eq 'in progress'
       end
     end
 
     context 'when key is invalid' do
       it 'returns array of all tasks' do
-        expect(repo.find_by_status('test')).to all(be_a(Task))
-        expect(repo.find_by_status('test').count).to eq 3
+        result = repo.find_by_status('test')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 3
       end
     end
   end
@@ -57,17 +62,15 @@ RSpec.describe TaskRepository do
       Fabricate.create(:task, title: 'good', approved: true)
     end
 
-    it 'returns array of tasks' do
-      expect(repo.only_approved).to all(be_a(Task))
-    end
-
     it 'returns only approved tasks' do
-      expect(repo.only_approved.size).to eq 1
-      expect(repo.only_approved.last.title).to eq 'good'
+      result = repo.only_approved
+      expect(result).to all(be_a(Task))
+      expect(result.size).to eq 1
+      expect(result.last.title).to eq 'good'
     end
   end
 
-  describe '#om_moderation_for_user' do
+  describe '#on_moderation_for_user' do
     after { repo.clear }
 
     before do
@@ -78,9 +81,10 @@ RSpec.describe TaskRepository do
     let(:user) { Fabricate.create(:user, name: 'anton') }
 
     it 'returns array of tasks' do
-      expect(repo.om_moderation_for_user(user.id)).to all(be_a(Task))
-      expect(repo.om_moderation_for_user(user.id).count).to eq 1
-      expect(repo.om_moderation_for_user(user.id).last.user_id).to eq user.id
+      result = repo.on_moderation_for_user(user.id)
+      expect(result).to all(be_a(Task))
+      expect(result.count).to eq 1
+      expect(result.last.user_id).to eq user.id
     end
   end
 
@@ -92,13 +96,11 @@ RSpec.describe TaskRepository do
       Fabricate.create(:task, title: 'good', approved: true)
     end
 
-    it 'returns array of tasks' do
-      expect(repo.not_approved).to all(be_a(Task))
-    end
-
     it 'returns not approved tasks' do
-      expect(repo.not_approved.size).to eq 1
-      expect(repo.not_approved.last.title).to eq 'bad'
+      result = repo.not_approved
+      expect(result).to all(be_a(Task))
+      expect(result.size).to eq 1
+      expect(result.last.title).to eq 'bad'
     end
   end
 
@@ -121,8 +123,10 @@ RSpec.describe TaskRepository do
 
     let(:date) { Date.new(2016, 02, 18) }
 
-    it { expect(repo.all_from_date(date)).to be_a(Array) }
-    it { expect(repo.all_from_date(date).count).to eq 8 }
+    it 'returns array of tasks' do
+      expect(repo.all_from_date(date)).to be_a(Array)
+      expect(repo.all_from_date(date).count).to eq 8
+    end
     it { expect(repo.all_from_date(date, 'in progress').count).to eq 2 }
     it { expect(repo.all_from_date(date, 'done').count).to eq 2 }
     it { expect(repo.all_from_date(date, 'closed').count).to eq 2 }
