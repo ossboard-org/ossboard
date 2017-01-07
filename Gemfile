@@ -52,6 +52,7 @@ group :test do
   gem 'webmock'
   gem 'hanami-fabrication'
   gem 'faker'
+  gem 'timecop'
 end
 
 group :production do
