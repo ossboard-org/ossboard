@@ -7,19 +7,22 @@ RSpec.describe AnalyticReporter do
   end
 
   context 'labels information' do
-    it { expect(subject[:labels]).to be_a(Array) }
-    it { expect(subject[:labels].count).to eq 31 }
-    it { expect(subject[:labels]).to all(be_a(String)) }
-    it { expect(subject[:labels].last).to eq Date.today.to_s }
-    it { expect(subject[:labels].first).to eq (Date.today - 30).to_s }
+    it 'returns array of days for chart labels' do
+      labels = subject[:labels]
+      expect(labels).to be_a(Array)
+      expect(labels.count).to eq 31
+      expect(labels).to all(be_a(String))
+      expect(labels.last).to eq Date.today.to_s
+      expect(labels.first).to eq (Date.today - 30).to_s
+    end
   end
 
   context 'users information' do
-    it { expect(subject[:users]).to be_a(Array) }
-    it { expect(subject[:users].count).to eq 31 }
-
-    context 'when users not created one month' do
-      it { expect(subject[:users]).to all(be == 0) }
+    it 'returns array of zeros' do
+      users = subject[:users]
+      expect(users).to be_a(Array)
+      expect(users.count).to eq 31
+      expect(users).to all(be == 0)
     end
 
     context 'when users was created' do
@@ -37,24 +40,30 @@ RSpec.describe AnalyticReporter do
         UserRepository.new.clear
       end
 
-      it { expect(subject[:users].uniq.count).to eq 2 }
-      it { expect(subject[:users].last).to eq 3 }
+      it 'returns array with user count' do
+        users = subject[:users]
+        expect(users.uniq.count).to eq 2
+        expect(users.last).to eq 3
+      end
     end
   end
 
   context 'tasks information' do
-    it { expect(subject[:tasks]).to be_a(Hash) }
-    it { expect(subject[:tasks].keys).to eq %i[in_progress assigned closed done] }
-    it { expect(subject[:tasks][:in_progress].count).to eq 31 }
-    it { expect(subject[:tasks][:assigned].count).to eq 31 }
-    it { expect(subject[:tasks][:closed].count).to eq 31 }
-    it { expect(subject[:tasks][:done].count).to eq 31 }
 
-    context 'when tasks not created one month' do
-      it { expect(subject[:tasks][:in_progress]).to all(be == 0) }
-      it { expect(subject[:tasks][:assigned]).to all(be == 0) }
-      it { expect(subject[:tasks][:closed]).to all(be == 0) }
-      it { expect(subject[:tasks][:done]).to all(be == 0) }
+    it 'returns empty arrays for each task statuse' do
+      tasks = subject[:tasks]
+
+      expect(tasks).to be_a(Hash)
+      expect(tasks.keys).to eq %i[in_progress assigned closed done]
+      expect(tasks[:in_progress].count).to eq 31
+      expect(tasks[:assigned].count).to eq 31
+      expect(tasks[:closed].count).to eq 31
+      expect(tasks[:done].count).to eq 31
+
+      expect(tasks[:in_progress]).to all(be == 0)
+      expect(tasks[:assigned]).to all(be == 0)
+      expect(tasks[:closed]).to all(be == 0)
+      expect(tasks[:done]).to all(be == 0)
     end
 
     context 'when users was created' do
@@ -76,10 +85,13 @@ RSpec.describe AnalyticReporter do
         TaskRepository.new.clear
       end
 
-      it { expect(subject[:tasks][:in_progress].last).to eq 1 }
-      it { expect(subject[:tasks][:assigned].last).to eq 1 }
-      it { expect(subject[:tasks][:closed].last).to eq 1 }
-      it { expect(subject[:tasks][:done].last).to eq 1 }
+      it 'returns arrays with task counts' do
+        tasks = subject[:tasks]
+        expect(tasks[:in_progress].last).to eq 1
+        expect(tasks[:assigned].last).to eq 1
+        expect(tasks[:closed].last).to eq 1
+        expect(tasks[:done].last).to eq 1
+      end
     end
   end
 end
