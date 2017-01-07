@@ -7,7 +7,6 @@ window.randomScalingFactor = function() {
 	return Math.round(Math.random() * 100);
 }
 
-
 var xhr = new XMLHttpRequest()
 var url = '/api/analytics'
 var analytics_data
@@ -33,54 +32,22 @@ function tasksChart(analytics_data) {
         label: "Closed",
         borderColor: 'rgba(255,99,132,1)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor()
-        ],
+        data: analytics_data.tasks.in_progress,
       }, {
         label: "Submited",
         borderColor: 'rgba(54, 162, 235, 1)',
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor()
-        ],
+        data: analytics_data.tasks.assigned,
       }, {
         label: "In progress",
         borderColor: 'rgba(255, 206, 86, 1)',
         backgroundColor: 'rgba(255, 206, 86, 0.2)',
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor()
-        ],
+        data: analytics_data.tasks.closed,
       }, {
         label: "Complited",
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor()
-        ],
+        data: analytics_data.tasks.done,
       }]
     },
     options: chartsOptions()
