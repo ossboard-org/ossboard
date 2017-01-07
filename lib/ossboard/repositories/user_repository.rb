@@ -7,6 +7,10 @@ class UserRepository < Hanami::Repository
     users.where(admin: true).as(User).to_a
   end
 
+  def all_from_date(from)
+    users.where("created_at > '#{from}'").where("created_at < '#{Time.now}'").as(User).to_a
+  end
+
   def find_by_login(login)
     users.where(login: login).as(User).first
   end

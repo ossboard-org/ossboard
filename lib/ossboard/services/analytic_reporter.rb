@@ -13,17 +13,14 @@ class AnalyticReporter
         closed: last_month_list.map { |day| closed_tasks_by_day[day]&.count || 0 },
         done: last_month_list.map { |day| complited_tasks_by_day[day]&.count || 0 }
       },
-      users: last_month_list.map { |day| users_by_day[day]&.count || 0 }
+      users: last_month_list.map { |day| users_by_days[day]&.count || 0 }
     }
   end
 
   private
 
-  # TODO: Use SQL where IN condition here
-  def users_by_day
-    UserRepository.new.all
-      .select{ |user| last_month_list.include?(user.created_at.to_date) }
-      .group_by{ |user| user.created_at.to_date }
+  def users_by_days
+    UserRepository.new.all_from_date(last_month_list.first).group_by{ |u| u.created_at.to_date }
   end
 
   def closed_tasks_by_day

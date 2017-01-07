@@ -26,6 +26,22 @@ RSpec.describe UserRepository do
     it { expect(repo.admins.map(&:admin)).to eq [true, true, true] }
   end
 
+  describe '#all_from_date' do
+    before do
+      5.times do |i|
+        random_days_count = i * 60 * 60 * 24
+        Timecop.freeze(Time.new(2016, 02, 20) - random_days_count) { Fabricate.create(:user) }
+      end
+
+      Timecop.freeze(Time.now + (2 * 60 * 60 * 24)) { Fabricate.create(:user) }
+    end
+
+    let(:date) { Date.new(2016, 02, 17) }
+
+    it { expect(repo.all_from_date(date)).to be_a(Array) }
+    it { expect(repo.all_from_date(date).count).to eq 3 }
+  end
+
   describe '#find_by_login_with_tasks' do
     let(:task_repo) { TaskRepository.new }
 
