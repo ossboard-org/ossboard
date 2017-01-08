@@ -41,6 +41,8 @@ end
 
 group :test, :development do
   gem 'dotenv', '~> 2.0'
+
+  gem 'danger'
 end
 
 group :test do
