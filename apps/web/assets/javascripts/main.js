@@ -105,7 +105,7 @@ new Vue({
   }
 })
 
-var agreementChackbox = document.getElementById("agreement-chackbox"),
+var agreementChackbox = document.getElementById("agreement-checkbox"),
     submitButton = document.getElementById("new-task-submit"),
     disableButtonReg = new RegExp('(\\s|^)pure-button-disabled(\\s|$)');
 
