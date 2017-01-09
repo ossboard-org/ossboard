@@ -2,6 +2,13 @@
 ENV['HANAMI_ENV'] ||= 'test'
 
 require 'simplecov'
+require 'simplecov-json'
+
+SimpleCov.formatters = [
+  SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov::Formatter::JSONFormatter
+]
+
 SimpleCov.start
 
 # This line needed to fix the error

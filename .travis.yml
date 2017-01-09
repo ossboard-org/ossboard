@@ -9,6 +9,7 @@ services:
 before_script:
 - psql -c 'create database ossboard_test;' -U postgres
 - bundle exec hanami db prepare
+after_script:
 - bundle exec danger
 deploy:
   provider: heroku
