@@ -41,6 +41,10 @@ end
 
 group :test, :development do
   gem 'dotenv', '~> 2.0'
+
+  gem 'danger'
+  gem 'danger-rubocop'		
+  gem 'danger-simplecov_json'
 end
 
 group :test do
@@ -48,6 +52,7 @@ group :test do
   gem 'rspec-hanami', github: 'davydovanton/rspec-hanami'
   gem 'capybara'
   gem 'simplecov', require: false
+  gem 'simplecov-json', require: false
   gem 'vcr'
   gem 'webmock'
   gem 'hanami-fabrication'

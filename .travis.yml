@@ -9,6 +9,8 @@ services:
 before_script:
 - psql -c 'create database ossboard_test;' -U postgres
 - bundle exec hanami db prepare
+after_script:
+- bundle exec danger
 deploy:
   provider: heroku
   app: ossboard
@@ -16,3 +18,4 @@ deploy:
   run: "hanami db migrate"
   api_key:
     secure: o602gpYd3pJWDSdAaCR46yETCGt2dA9xVDRxl1tNZwhK2Ow0rNbNXQqljXK+5LjLKYIxRohcV01L2KSMoUr7UXDJYqR+9il+jTZazMPzoX2Ftt/DycHPG8KTfts9lUFEXX4UersotovhPtahwMdFTyhC0XQPUrTy4F5HbE19KjmqnDtIQD2upPVMOOOADc1gAD7GdtLE8i+fleeuQ1B7CG0sFyW3FIsB0HbsnT4V0Z44Q/ryJCC7l4kDMi4zQW5B1klbiJw1xe3aXJ0I0iy4nsovEya8YijtS/Zj7wvKs/0RnEgM5wPHcLRAW1xha/vtMWuWezW5M8T4XkPvZoUJarsOS21Ivz1V5QHKrdB7paijlgcqQ2FtseSyhOJGfWMvLpV/HQ8oiHLFizHFRJGEd2h1EWxBGSjECkhldn/ArS7vGt+YBVQtFqI96gZlc/ZUTecPCuj5SvGPgyMtyNn+s88tz1umaX/Uk/D/RAR8SNJeQLz2DRjBTLplAVtE0dSFmJ0+VCI1OFAigYA/PLCGBSTtTghyEy32gaGVh75gbx+kcPzX1wpGJ/7UKynoJlINnUDV0zjD2hUfXEpaOMIBK7FLVjI6DiW3C9CdFr4JGFJ6qNhSN60nmuyvkHpmW27dkmy+Wo1jmccq0El0nD60E2PSpCpzIo4C4KxSf0WlKXY=
+
