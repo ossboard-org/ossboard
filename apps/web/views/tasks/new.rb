@@ -42,14 +42,14 @@ module Web::Views::Tasks
             end
 
             div class: 'pure-u-1 task-body__write', 'v-if' => "write" do
-              text_area :md_body, task.md_body, placeholder: 'Body'
+              text_area :md_body, task.md_body, placeholder: 'Body', 'v-model' => "taskBody"
               div(class: 'task-form__body-tip') do
                 em '* you can use markdown syntax'
               end
             end
 
             div class: 'pure-u-1 task-body__preview', 'v-if' => "preview" do
-              div class: 'task-body__preview' do
+              div class: 'task-body__preview', id: 'previewed-text', 'v-html' => "rawBody" do
               end
             end
           end
