@@ -125,6 +125,7 @@ if (document.getElementById("task-body")) {
     data: {
       write: true,
       preview: false,
+      loadPreview: false,
       xhr: new XMLHttpRequest(),
       previewedText: document.getElementById('previewed-text'),
       taskBody: '',
@@ -134,11 +135,13 @@ if (document.getElementById("task-body")) {
       displayForm: function () {
         this.write = true
         this.preview = false
+        this.rawBody = ''
       },
 
       displayPreview: function () {
         this.write = false
         this.preview = true
+        this.loadPreview = true
 
         var url = '/api/md_preview'
         var self = this
@@ -149,6 +152,7 @@ if (document.getElementById("task-body")) {
 
         this.xhr.onload = function() {
           var data = JSON.parse(self.xhr.response)
+          self.loadPreview = false
           self.rawBody = data.text
         };
 

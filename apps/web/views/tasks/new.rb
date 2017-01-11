@@ -49,6 +49,16 @@ module Web::Views::Tasks
             end
 
             div class: 'pure-u-1 task-body__preview', 'v-if' => "preview" do
+              div id: "floatingCirclesG", 'v-if' => "loadPreview" do
+                div class: "f_circleG", id: "frotateG_01"
+                div class: "f_circleG", id: "frotateG_02"
+                div class: "f_circleG", id: "frotateG_03"
+                div class: "f_circleG", id: "frotateG_04"
+                div class: "f_circleG", id: "frotateG_05"
+                div class: "f_circleG", id: "frotateG_06"
+                div class: "f_circleG", id: "frotateG_07"
+                div class: "f_circleG", id: "frotateG_08"
+              end
               div class: 'task-body__preview', id: 'previewed-text', 'v-html' => "rawBody" do
               end
             end
