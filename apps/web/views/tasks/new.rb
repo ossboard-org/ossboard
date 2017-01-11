@@ -29,14 +29,16 @@ module Web::Views::Tasks
         div class: 'input task-body', id: "task-body" do
           div class: 'pure-menu pure-menu-horizontal pure-menu-scrollable is-center task-body__actions' do
 
-            div class: 'pure-menu pure-menu-horizontal pure-menu-scrollable is-center' do
+            div class: 'pure-menu pure-menu-horizontal pure-menu-scrollable task-body__menu' do
               ul class: 'pure-menu-list' do
                 li class: 'pure-menu-item' do
-                  button 'Write', type: :button, 'v-on:click' => 'displayForm', class: ''
+                  button 'Write', type: :button, 'v-on:click' => 'displayForm',
+                    class: 'btn btn-default pure-menu-link', 'v-bind:class' => "{ 'btn-default-selected': write }"
                 end
 
                 li class: 'pure-menu-item' do
-                  button 'Preview', type: :button, 'v-on:click' => 'displayPreview', class: ''
+                  button 'Preview', type: :button, 'v-on:click' => 'displayPreview',
+                    class: 'btn btn-default pure-menu-link', 'v-bind:class' => "{ 'btn-default-selected': preview }"
                 end
               end
             end
