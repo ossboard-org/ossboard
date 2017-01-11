@@ -26,10 +26,32 @@ module Web::Views::Tasks
           select :complexity, complexity_options_list
         end
 
-        div class: 'input' do
-          text_area :md_body, task.md_body, placeholder: 'Body'
-          div(class: 'task-form__body-tip') do
-            em '* you can use markdown syntax'
+        div class: 'input task-body', id: "task-body" do
+          div class: 'pure-menu pure-menu-horizontal pure-menu-scrollable is-center task-body__actions' do
+
+            div class: 'pure-menu pure-menu-horizontal pure-menu-scrollable is-center' do
+              ul class: 'pure-menu-list' do
+                li class: 'pure-menu-item' do
+                  button 'Write', type: :button, 'v-on:click' => 'displayForm', class: ''
+                end
+
+                li class: 'pure-menu-item' do
+                  button 'Preview', type: :button, 'v-on:click' => 'displayPreview', class: ''
+                end
+              end
+            end
+
+            div class: 'pure-u-1 task-body__write', 'v-if' => "write" do
+              text_area :md_body, task.md_body, placeholder: 'Body'
+              div(class: 'task-form__body-tip') do
+                em '* you can use markdown syntax'
+              end
+            end
+
+            div class: 'pure-u-1 task-body__preview', 'v-if' => "preview" do
+              div class: 'task-body__preview' do
+              end
+            end
           end
         end
 

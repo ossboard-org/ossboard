@@ -116,3 +116,22 @@ agreementChackbox.onchange = function() {
     submitButton.className += " pure-button-disabled";
   }
 }
+
+var taskBodyPreview = new Vue({
+  el: '#task-body',
+  data: {
+    write: true,
+    preview: false
+  },
+  methods: {
+    displayForm: function () {
+      this.write = true
+      this.preview = false
+    },
+
+    displayPreview: function () {
+      this.write = false
+      this.preview = true
+    }
+  }
+})
