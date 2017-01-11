@@ -1,3 +1,4 @@
+@import 'load_animation';
 @import 'alerts';
 @import 'user';
 @import 'modal';
@@ -375,6 +376,29 @@ a, .btn {
     color: #fff;
   }
 }
+
+.btn-default {
+  color: rgba(45, 62, 80, 0.65);
+  border: 1px solid rgba(45, 62, 80, 0.65);
+
+  &:hover {
+    background-color: rgba(45, 62, 80, 0.65);
+    color: #fff;
+  }
+}
+
+.btn-default-selected {
+  border: 1px solid rgba(45, 62, 80, 0.65);
+  background-color: rgba(45, 62, 80, 0.65);
+  color: #fff;
+
+  &:hover {
+    background-color: #fff;
+    color: rgba(45, 62, 80, 0.65);
+  }
+}
+
+
 
 .btn-new-task {
   color: #42b8dd;

@@ -109,10 +109,55 @@ var agreementChackbox = document.getElementById("agreement-checkbox"),
     submitButton = document.getElementById("new-task-submit"),
     disableButtonReg = new RegExp('(\\s|^)pure-button-disabled(\\s|$)');
 
-agreementChackbox.onchange = function() {
-  if (agreementChackbox.checked) {
-    submitButton.className = submitButton.className.replace(disableButtonReg, ' ');
-  } else {
-    submitButton.className += " pure-button-disabled";
+if (agreementChackbox) {
+  agreementChackbox.onchange = function() {
+    if (agreementChackbox.checked) {
+      submitButton.className = submitButton.className.replace(disableButtonReg, ' ');
+    } else {
+      submitButton.className += " pure-button-disabled";
+    }
   }
+}
+
+if (document.getElementById("task-body")) {
+  new Vue({
+    el: '#task-body',
+    data: {
+      write: true,
+      preview: false,
+      loadPreview: false,
+      xhr: new XMLHttpRequest(),
+      previewedText: document.getElementById('previewed-text'),
+      taskBody: '',
+      rawBody: ''
+    },
+    methods: {
+      displayForm: function () {
+        this.write = true
+        this.preview = false
+        this.rawBody = ''
+      },
+
+      displayPreview: function () {
+        this.write = false
+        this.preview = true
+        this.loadPreview = true
+
+        var url = '/api/md_preview'
+        var self = this
+
+        this.xhr.open('POST', url, true);
+        this.xhr.setRequestHeader('Content-type', 'application/json');
+        this.xhr.setRequestHeader('Accept', 'application/json');
+
+        this.xhr.onload = function() {
+          var data = JSON.parse(self.xhr.response)
+          self.loadPreview = false
+          self.rawBody = data.text
+        };
+
+        this.xhr.send(JSON.stringify({md_text: this.taskBody}));
+      }
+    }
+  })
 }

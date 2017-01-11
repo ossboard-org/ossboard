@@ -26,10 +26,44 @@ module Web::Views::Tasks
           select :complexity, complexity_options_list
         end
 
-        div class: 'input' do
-          text_area :md_body, task.md_body, placeholder: 'Body'
-          div(class: 'task-form__body-tip') do
-            em '* you can use markdown syntax'
+        div class: 'input task-body', id: "task-body" do
+          div class: 'pure-menu pure-menu-horizontal pure-menu-scrollable is-center task-body__actions' do
+
+            div class: 'pure-menu pure-menu-horizontal pure-menu-scrollable task-body__menu' do
+              ul class: 'pure-menu-list' do
+                li class: 'pure-menu-item' do
+                  button 'Write', type: :button, 'v-on:click' => 'displayForm',
+                    class: 'btn btn-default pure-menu-link', 'v-bind:class' => "{ 'btn-default-selected': write }"
+                end
+
+                li class: 'pure-menu-item' do
+                  button 'Preview', type: :button, 'v-on:click' => 'displayPreview',
+                    class: 'btn btn-default pure-menu-link', 'v-bind:class' => "{ 'btn-default-selected': preview }"
+                end
+              end
+            end
+
+            div class: 'pure-u-1 task-body__write', 'v-if' => "write" do
+              text_area :md_body, task.md_body, placeholder: 'Body', 'v-model' => "taskBody"
+              div(class: 'task-form__body-tip') do
+                em '* you can use markdown syntax'
+              end
+            end
+
+            div class: 'pure-u-1 task-body__preview', 'v-if' => "preview" do
+              div id: "floatingCirclesG", 'v-if' => "loadPreview" do
+                div class: "f_circleG", id: "frotateG_01"
+                div class: "f_circleG", id: "frotateG_02"
+                div class: "f_circleG", id: "frotateG_03"
+                div class: "f_circleG", id: "frotateG_04"
+                div class: "f_circleG", id: "frotateG_05"
+                div class: "f_circleG", id: "frotateG_06"
+                div class: "f_circleG", id: "frotateG_07"
+                div class: "f_circleG", id: "frotateG_08"
+              end
+              div class: 'task-body__preview', id: 'previewed-text', 'v-html' => "rawBody" do
+              end
+            end
           end
         end
 
