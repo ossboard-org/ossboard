@@ -15,11 +15,7 @@ module Api::Controllers::MdPreview
     EMPTY_STRING = ''.freeze
 
     def text
-      if params.valid?
-        params[:md_text]
-      else
-        EMPTY_STRING
-      end
+      params.valid? ? Markdown.parse(params[:md_text]) : EMPTY_STRING
     end
   end
 end
