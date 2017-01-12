@@ -26,6 +26,10 @@ module Web::Views::Tasks
           select :complexity, complexity_options_list
         end
 
+        div class: 'input' do
+          select :time_estimate, time_estimate_options_list
+        end
+
         div class: 'input task-body', id: "task-body" do
           div class: 'pure-menu pure-menu-horizontal pure-menu-scrollable is-center task-body__actions' do
 

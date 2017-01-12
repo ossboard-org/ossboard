@@ -17,6 +17,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
         md_body: 'This is *bongos*, indeed.',
         lang: 'ruby',
         complexity: 'medium',
+        time_estimate: 'more than month',
         issue_url: 'github.com/issue/1',
         approved: '1',
         status: 'done'
@@ -35,6 +36,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
       expect(task.approved).to eq true
       expect(task.lang).to eq 'ruby'
       expect(task.complexity).to eq 'medium'
+      expect(task.time_estimate).to eq 'more than month'
       expect(task.issue_url).to eq 'github.com/issue/1'
       expect(task.status).to eq 'done'
     end
@@ -47,6 +49,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
           md_body: 'This is *bongos*, indeed.',
           lang: 'ruby',
           complexity: 'medium',
+          time_estimate: 'more than month',
           issue_url: '',
           approved: '1',
           status: 'done'
@@ -64,7 +67,8 @@ RSpec.describe Admin::Controllers::Tasks::Update do
         expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
         expect(task.approved).to eq true
         expect(task.lang).to eq 'ruby'
-      expect(task.complexity).to eq 'medium'
+        expect(task.complexity).to eq 'medium'
+        expect(task.time_estimate).to eq 'more than month'
         expect(task.issue_url).to eq nil
       end
     end

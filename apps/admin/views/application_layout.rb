@@ -11,6 +11,10 @@ module Admin
         COMPLEXITY_OPTIONS_HASH
       end
 
+      def time_estimate_options_list
+        TIME_ESTIMATE_OPTIONS_HASH
+      end
+
     private
 
       LANGUAGES_HASH = {
@@ -33,6 +37,13 @@ module Admin
         'Easy' => 'easy',
         'Medium' => 'medium',
         'Hard' => 'hard',
+      }.freeze
+
+      TIME_ESTIMATE_OPTIONS_HASH = {
+        'Few days' => 'few days',
+        'More than a week' => 'more than a week',
+        'More than two weeks' => 'more than two weeks',
+        'More than month' => 'more than month'
       }.freeze
     end
   end

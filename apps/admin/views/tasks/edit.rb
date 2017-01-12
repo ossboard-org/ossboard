@@ -25,6 +25,11 @@ module Admin::Views::Tasks
             select :complexity, complexity_options_list
           end
 
+          div class: 'input' do
+            label  :time_estimate
+            select :time_estimate, time_estimate_options_list
+          end
+
           div class: 'input task-form__field pure-control-group' do
             label     :md_body
             text_area :md_body, task.md_body

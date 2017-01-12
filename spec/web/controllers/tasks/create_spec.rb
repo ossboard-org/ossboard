@@ -27,6 +27,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
         md_body: 'This is *bongos*, indeed.',
         lang: 'test',
         complexity: 'easy',
+        time_estimate: 'few days',
         user_id: user.id,
         issue_url: 'github.com/issue/1'
       }
@@ -66,7 +67,8 @@ RSpec.describe Web::Controllers::Tasks::Create do
           repository_name: '',
           md_body: 'This is *bongos*, indeed.',
           lang: 'test',
-        complexity: 'easy',
+          complexity: 'easy',
+          time_estimate: 'few days',
           user_id: user.id,
           issue_url: ''
         }
@@ -82,6 +84,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
         expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
         expect(task.issue_url).to eq nil
         expect(task.complexity).to eq 'easy'
+        expect(task.time_estimate).to eq 'few days'
         expect(task.status).to eq 'in progress'
       end
     end
