@@ -30,8 +30,6 @@ gem 'dry-matcher'
 gem 'sidekiq'
 
 gem 'newrelic-hanami', github: 'artemeff/newrelic-hanami'
-gem 'rack-mini-profiler', path: '/Users/anton/work/repositories/rack-mini-profiler'
-gem 'memory_profiler'
 
 group :development do
   # Code reloading
@@ -39,6 +37,9 @@ group :development do
   gem 'shotgun'
 
   # gem 'hanami-scaffold', github: 'davydovanton/hanami-scaffold'
+
+  gem 'rack-mini-profiler', require: 'false'
+  gem 'memory_profiler'
 end
 
 group :test, :development do
