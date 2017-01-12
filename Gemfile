@@ -30,6 +30,8 @@ gem 'dry-matcher'
 gem 'sidekiq'
 
 gem 'newrelic-hanami', github: 'artemeff/newrelic-hanami'
+gem 'rack-mini-profiler', path: '/Users/anton/work/repositories/rack-mini-profiler'
+gem 'memory_profiler'
 
 group :development do
   # Code reloading

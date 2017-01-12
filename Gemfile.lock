@@ -29,6 +29,12 @@ GIT
     hanami-webpack (0.0.1)
       hanami
 
+PATH
+  remote: /Users/anton/work/repositories/rack-mini-profiler
+  specs:
+    rack-mini-profiler (0.10.1)
+      rack (>= 1.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -169,6 +175,7 @@ GEM
     kramdown (1.13.1)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    memory_profiler (0.9.7)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
@@ -318,12 +325,14 @@ DEPENDENCIES
   hanami-webpack!
   hiredis
   kramdown (= 1.13.1)
+  memory_profiler
   mock_redis
   newrelic-hanami!
   omniauth
   omniauth-github!
   pg
   puma
+  rack-mini-profiler!
   rake
   redis (~> 3.2)
   rouge (= 1.11.1)
