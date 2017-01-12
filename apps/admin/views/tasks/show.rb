@@ -33,5 +33,9 @@ module Admin::Views::Tasks
     def task_complexity
       complexity_options_list.key(task.complexity)
     end
+
+    def task_time_estimate
+      time_estimate_options_list.key(task.time_estimate)
+    end
   end
 end

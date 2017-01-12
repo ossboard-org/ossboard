@@ -10,6 +10,7 @@ module Web::Controllers::Tasks
         required(:md_body).filled(:str?)
         required(:lang).filled(:str?)
         required(:complexity).filled(:str?)
+        required(:time_estimate).filled(:str?)
         required(:user_id).filled
         optional(:issue_url).maybe(:str?)
         optional(:repository_name).maybe(:str?)
