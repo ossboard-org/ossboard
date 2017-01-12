@@ -38,7 +38,7 @@ group :development do
 
   # gem 'hanami-scaffold', github: 'davydovanton/hanami-scaffold'
 
-  gem 'rack-mini-profiler', require: 'false'
+  gem 'rack-mini-profiler', require: false
   gem 'memory_profiler'
 end
 
@@ -46,7 +46,7 @@ group :test, :development do
   gem 'dotenv', '~> 2.0'
 
   gem 'danger'
-  gem 'danger-rubocop'		
+  gem 'danger-rubocop'
   gem 'danger-simplecov_json'
 end
 
