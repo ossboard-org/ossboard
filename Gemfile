@@ -30,6 +30,7 @@ gem 'dry-matcher'
 gem 'sidekiq'
 
 gem 'newrelic-hanami', github: 'artemeff/newrelic-hanami'
+gem 'secure_headers'
 
 group :development do
   # Code reloading
