@@ -65,6 +65,8 @@ module Web::Views::Tasks
                 div class: "f_circleG", id: "frotateG_07"
                 div class: "f_circleG", id: "frotateG_08"
               end
+
+              text_area :md_body, style: "display:none;", 'v-model' => "taskBody"
               div class: 'task-body__preview', id: 'previewed-text', 'v-html' => "rawBody" do
               end
             end
