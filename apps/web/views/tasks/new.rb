@@ -8,6 +8,7 @@ module Web::Views::Tasks
 
     def form
       form_for task_form, id: 'task-form', class: 'task-form pure-form' do
+        input type: "hidden", name: "_csrf_token", value: updated_csrf_token if updated_csrf_token
         hidden_field :user_id, value: current_user.id
 
         div class: 'input' do

@@ -31,7 +31,8 @@ module Web::Controllers::Tasks
         redirect_to routes.tasks_path
       else
         @task = Task.new(params[:task])
-        self.body = Web::Views::Tasks::New.render(format: format, task: @task, current_user: current_user, params: params)
+        self.body = Web::Views::Tasks::New.render(format: format, task: @task,
+          current_user: current_user, params: params, updated_csrf_token: set_csrf_token)
       end
     end
   end
