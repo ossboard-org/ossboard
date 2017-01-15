@@ -136,9 +136,11 @@ if (document.getElementById("task-body")) {
         this.write = true
         this.preview = false
         this.rawBody = ''
+        this.taskBody = document.getElementById('task-md-body').value
       },
 
       displayPreview: function () {
+        this.taskBody = document.getElementById('task-md-body').value
         this.write = false
         this.preview = true
         this.loadPreview = true
