@@ -165,13 +165,10 @@
 
   .new-task__errors {
     position: fixed;
-    margin: 5px 0;
-    display: flex;
-    width: 85%;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
+    margin: 0 2em;
+    right: 0;
+    width: 15%;
     padding: 10px 20px;
-
     color: red;
   }
 
