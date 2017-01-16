@@ -5,7 +5,7 @@ OSSBoard is an open source project and we would love you to help us make it bett
 A well formatted issue is appreciated, and goes a long way in helping us help you.
 
 * Make sure you have a [GitHub account](https://github.com/signup/free)
-* Submit a [Github issue](./issues) by:
+* Submit a [Github issue](https://github.com/davydovanton/ossboard/issues/new) by:
   * Clearly describing the issue
     * Provide a descriptive summary
     * Explain the expected behavior
