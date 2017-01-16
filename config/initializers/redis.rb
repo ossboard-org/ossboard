@@ -1,6 +1,6 @@
 if Hanami.env?(:production)
   uri = URI.parse(ENV.fetch("REDISTOGO_URL"))
-  REDIS = ConnectionPool.new(size: 5, timeout: 3) { Redis.new(driver: :hiredis, host: uri.host, port: uri.port, password: uri.password) }
+  REDIS = ConnectionPool.new(size: 3, timeout: 3) { Redis.new(driver: :hiredis, host: uri.host, port: uri.port, password: uri.password) }
 elsif Hanami.env?(:test)
   REDIS = ConnectionPool.new(size: 5, timeout: 3) { MockRedis.new }
 else
