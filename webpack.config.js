@@ -23,7 +23,7 @@ var config = {
   },
 
   plugins: [
-    new StatsPlugin("manifest.json")
+    new StatsPlugin("webpack_manifest.json")
   ],
 
   loaders: [
