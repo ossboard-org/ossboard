@@ -38,18 +38,18 @@ module Web::Views::Tasks
             input(type: "hidden", name: "status",  value: "assigned")
             input(class: 'btn btn-assign', type: "submit", value: "Assigned")
           end
-        end
+        else
+          form(action: "/task_status/#{task.id}", method: "POST") do
+            input(type: "hidden", name: "_method", value: "PATCH")
+            input(type: "hidden", name: "status",  value: "done")
+            input(class: 'btn btn-done', type: "submit", value: "Completed")
+          end
 
-        form(action: "/task_status/#{task.id}", method: "POST") do
-          input(type: "hidden", name: "_method", value: "PATCH")
-          input(type: "hidden", name: "status",  value: "done")
-          input(class: 'btn btn-done', type: "submit", value: "Completed")
-        end
-
-        form(action: "/task_status/#{task.id}", method: "POST") do
-          input(type: "hidden", name: "_method", value: "PATCH")
-          input(type: "hidden", name: "status",  value: "closed")
-          input(class: 'btn btn-close', type: "submit", value: "Closed")
+          form(action: "/task_status/#{task.id}", method: "POST") do
+            input(type: "hidden", name: "_method", value: "PATCH")
+            input(type: "hidden", name: "status",  value: "closed")
+            input(class: 'btn btn-close', type: "submit", value: "Closed")
+          end
         end
       end
     end
