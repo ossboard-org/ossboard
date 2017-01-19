@@ -34,6 +34,11 @@ RSpec.describe Admin::Views::Tasks::Show do
     end
   end
 
+  describe '#link_to_assignee' do
+    let(:task) { Task.new(assignee_username: 'davydovanton') }
+    it { expect(view.link_to_assignee.to_s).to eq '<a href="/users/davydovanton">davydovanton</a>' }
+  end
+
   describe '#link_to_issue' do
     context 'when task have issue link' do
       let(:task) { Task.new(issue_url: 'test.com') }

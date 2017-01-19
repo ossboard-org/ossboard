@@ -16,6 +16,11 @@ module Admin::Views::Tasks
           end
 
           div class: 'input task-form__field pure-control-group' do
+            label      :assignee_username
+            text_field :assignee_username, value: task.assignee_username
+          end
+
+          div class: 'input task-form__field pure-control-group' do
             label      :issue_url
             text_field :issue_url, value: task.issue_url
           end

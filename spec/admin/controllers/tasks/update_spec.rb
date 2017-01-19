@@ -16,6 +16,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
         repository_name: 'Acme-Project',
         md_body: 'This is *bongos*, indeed.',
         lang: 'ruby',
+        assignee_username: 'davydovanton',
         complexity: 'medium',
         time_estimate: 'more than month',
         issue_url: 'github.com/issue/1',
@@ -34,6 +35,7 @@ RSpec.describe Admin::Controllers::Tasks::Update do
       expect(task.md_body).to eq 'This is *bongos*, indeed.'
       expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
       expect(task.approved).to eq true
+      expect(task.assignee_username).to eq 'davydovanton'
       expect(task.lang).to eq 'ruby'
       expect(task.complexity).to eq 'medium'
       expect(task.time_estimate).to eq 'more than month'
