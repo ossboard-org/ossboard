@@ -93,6 +93,7 @@ RSpec.describe TaskRepository do
 
     before do
       Fabricate.create(:task, title: 'bad')
+      Fabricate.create(:task, title: 'new',  approved: nil)
       Fabricate.create(:task, title: 'good', approved: true)
     end
 
@@ -101,6 +102,23 @@ RSpec.describe TaskRepository do
       expect(result).to all(be_a(Task))
       expect(result.size).to eq 1
       expect(result.last.title).to eq 'bad'
+    end
+  end
+
+  describe '#new_tasks' do
+    after { repo.clear }
+
+    before do
+      Fabricate.create(:task, title: 'bad')
+      Fabricate.create(:task, title: 'new',  approved: nil)
+      Fabricate.create(:task, title: 'good', approved: true)
+    end
+
+    it 'returns not approved tasks' do
+      result = repo.new_tasks
+      expect(result).to all(be_a(Task))
+      expect(result.size).to eq 1
+      expect(result.last.title).to eq 'new'
     end
   end
 

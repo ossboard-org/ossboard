@@ -7,6 +7,10 @@ class TaskRepository < Hanami::Repository
     tasks.where(approved: false).as(Task).to_a
   end
 
+  def new_tasks
+    tasks.where(approved: nil).as(Task).to_a
+  end
+
   def all_from_date(from, status = nil)
     request = tasks.where("created_at > '#{from}'").where("created_at < '#{Time.now}'")
     request = request.where(status: status) if status

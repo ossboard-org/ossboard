@@ -7,7 +7,7 @@ module Admin::Views::Moderation
     end
 
     def tasks
-      TaskRepository.new.not_approved
+      TaskRepository.new.new_tasks
     end
 
     def approve_task_button(task)
