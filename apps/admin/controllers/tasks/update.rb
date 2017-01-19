@@ -15,6 +15,7 @@ module Admin::Controllers::Tasks
         required(:time_estimate).filled
         optional(:issue_url).maybe(:str?)
         optional(:repository_name).maybe(:str?)
+        optional(:assignee_username).maybe(:str?)
       end
     end
 
