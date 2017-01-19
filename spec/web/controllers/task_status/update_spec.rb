@@ -63,10 +63,28 @@ RSpec.describe Web::Controllers::TaskStatus::Update do
   context 'when all is okay' do
     let(:task) { Fabricate.create(:task, title: 'old', status: 'in progress', user_id: user.id) }
     let(:status) { 'assigned' }
+    let(:params) { { id: task.id, status: status, assignee_username: username, 'rack.session' => session  } }
 
-    it 'does nothig' do
-      action.call(params)
-      expect(repo.find(task.id).status).to eq 'assigned'
+    context 'when username is empty' do
+      let(:username) { '' }
+
+      it 'does nothig' do
+        action.call(params)
+        updated_task = repo.find(task.id)
+        expect(updated_task.status).to eq 'assigned'
+        expect(updated_task.assignee_username).to eq ''
+      end
+    end
+
+    context 'when username is set' do
+      let(:username) { 'davydovanton' }
+
+      it 'does nothig' do
+        action.call(params)
+        updated_task = repo.find(task.id)
+        expect(updated_task.status).to eq 'assigned'
+        expect(updated_task.assignee_username).to eq 'davydovanton'
+      end
     end
   end
 end
