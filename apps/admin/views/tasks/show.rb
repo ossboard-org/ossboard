@@ -22,6 +22,10 @@ module Admin::Views::Tasks
       end
     end
 
+    def link_to_assignee
+      link_to task.assignee_username, "/users/#{task.assignee_username}"
+    end
+
     def task_label
       if task.approved
         html.span(class: 'label label-success'){ 'Approved' }
