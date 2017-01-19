@@ -22,6 +22,7 @@ module Web::Controllers::Tasks
         task_params = params[:task]
         task_params[:body] = Markdown.parse(task_params[:md_body])
         task_params[:status] = Task::VALID_STATUSES[:in_progress]
+        task_params[:approved] = nil
 
         task = TaskRepository.new.create(task_params)
 

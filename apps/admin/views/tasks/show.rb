@@ -27,7 +27,9 @@ module Admin::Views::Tasks
     end
 
     def task_label
-      if task.approved
+      if task.approved.nil?
+        html.span(class: 'label'){ 'Waiting' }
+      elsif task.approved
         html.span(class: 'label label-success'){ 'Approved' }
       else
         html.span(class: 'label label-danger'){ 'Unapproved' }

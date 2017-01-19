@@ -58,6 +58,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
       expect(task.body).to eq "<p>This is <em>bongos</em>, indeed.</p>\n"
       expect(task.issue_url).to eq 'github.com/issue/1'
       expect(task.status).to eq 'in progress'
+      expect(task.approved).to eq nil
     end
 
     context 'when issue url and repository name empty' do
@@ -86,6 +87,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
         expect(task.complexity).to eq 'easy'
         expect(task.time_estimate).to eq 'few days'
         expect(task.status).to eq 'in progress'
+        expect(task.approved).to eq nil
       end
     end
   end

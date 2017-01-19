@@ -42,6 +42,11 @@ RSpec.describe Admin::Views::Tasks::Index do
       it { expect(view.task_label(task).to_s).to eq "<span class=\"label label-success\">\nApproved\n</span>" }
     end
 
+    context 'when task in waiting status' do
+      let(:task) { Task.new(id: 1, title: 'test', approved: nil) }
+      it { expect(view.task_label(task).to_s).to eq "<span class=\"label\">\nWaiting\n</span>" }
+    end
+
     context 'when task not approved' do
       let(:task) { Task.new(id: 1, title: 'test', approved: false) }
       it { expect(view.task_label(task).to_s).to eq "<span class=\"label label-danger\">\nUnapproved\n</span>" }

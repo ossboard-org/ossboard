@@ -3,8 +3,13 @@ module Admin::Controllers::Moderation
     include Admin::Action
 
     def call(params)
-      TaskRepository.new.update(params[:id], { approved: true })
-      ApproveTaskWorker.perform_async(params[:id])
+      if params[:action] == 'approve'
+        TaskRepository.new.update(params[:id], { approved: true })
+        ApproveTaskWorker.perform_async(params[:id])
+      else
+        TaskRepository.new.update(params[:id], { approved: false })
+      end
+
       redirect_to routes.moderations_path
     end
   end

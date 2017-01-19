@@ -31,6 +31,7 @@ RSpec.describe Web::Controllers::Tasks::Index do
 
         before do
           3.times { |i| Fabricate.create(:task, approved: false, user_id: user.id) }
+          3.times { |i| Fabricate.create(:task, approved: nil, user_id: user.id) }
           action.call(params)
         end
 
