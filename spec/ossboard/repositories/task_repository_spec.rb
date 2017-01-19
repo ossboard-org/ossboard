@@ -74,7 +74,8 @@ RSpec.describe TaskRepository do
     after { repo.clear }
 
     before do
-      Fabricate.create(:task, title: 'good', approved: false, user_id: user.id)
+      Fabricate.create(:task, title: 'good', approved: nil, user_id: user.id)
+      Fabricate.create(:task, title: 'good', approved: nil)
       Fabricate.create(:task, title: 'good', approved: false)
     end
 

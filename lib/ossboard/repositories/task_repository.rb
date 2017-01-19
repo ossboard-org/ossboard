@@ -26,6 +26,6 @@ class TaskRepository < Hanami::Repository
   end
 
   def on_moderation_for_user(id)
-    tasks.where(user_id: id, approved: false).as(Task).to_a
+    tasks.where(user_id: id, approved: nil).as(Task).to_a
   end
 end
