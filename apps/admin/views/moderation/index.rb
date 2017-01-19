@@ -12,7 +12,13 @@ module Admin::Views::Moderation
 
     def approve_task_button(task)
       form_for :task, routes.moderation_path(task.id), { method: :patch } do
-        submit 'Approve', class: 'pure-button moderation-table__approve'
+        submit 'Approve', class: 'pure-button pure-button-green'
+      end
+    end
+
+    def deny_task_button(task)
+      form_for :task, routes.moderation_path(task.id), { method: :patch } do
+        submit 'Deny', class: 'pure-button pure-button-danger'
       end
     end
 
