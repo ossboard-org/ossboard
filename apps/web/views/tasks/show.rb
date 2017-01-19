@@ -36,7 +36,8 @@ module Web::Views::Tasks
           form(action: "/task_status/#{task.id}", method: "POST") do
             input(type: "hidden", name: "_method", value: "PATCH")
             input(type: "hidden", name: "status",  value: "assigned")
-            input(class: 'btn btn-assign', type: "submit", value: "Assigned")
+            input(name: "assignee_username", value: "", placeholder: 'Assignee @github', class: 'assign-user')
+            input(class: 'btn btn-assign', type: "submit", value: "Assign")
           end
         else
           form(action: "/task_status/#{task.id}", method: "POST") do
