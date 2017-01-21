@@ -7,7 +7,7 @@
     .task__information
       h2#task_title.task__title
         = task.title
-      = task_status
+        = task_status
 
       = author_information
 
@@ -28,7 +28,6 @@
     - if task.approved
       .task__actions
         = contact_with_mentor_link
-        /share-button share
         share-button.task__share.task__share-js
 
   .task__comments
