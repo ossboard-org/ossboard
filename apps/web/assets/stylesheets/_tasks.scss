@@ -102,12 +102,38 @@
 }
 
 .task {
-  margin: 100px 8%;
+  margin: 100px 12%;
 
-  .task__title {
+  .task__header {
+    .task__title {
+      font-size: 32px;
+      color: #214CFD;
+      letter-spacing: 0;
+    }
+
+    .task__author {
+      font-size: 16px;
+      color: #9E9E9E;
+      letter-spacing: 0;
+    }
+
+    .task__time_estimate {
+    }
+
+    .task__complexity {
+    }
   }
 
+
   .task__body {
+    padding: 16px 30px;
+    background: #FFFFFF;
+    box-shadow: 0 0 1px 0 rgba(43,59,124,0.18), 0 1px 3px 0 rgba(43,59,125,0.14);
+    border-radius: 2px;
+    margin: 20px 0;
+
+    .task__text {
+    }
   }
 
   .task__status {
@@ -160,6 +186,18 @@
   .task__comments-disabled {
     a {
       padding: 0 5px;
+    }
+  }
+
+  .task__comments {
+    padding: 20px 40px;
+    background: #FFFFFF;
+    box-shadow: 0 0 1px 0 rgba(43,59,124,0.18), 0 1px 3px 0 rgba(43,59,125,0.14);
+    border-radius: 2px;
+    margin: 20px 0;
+
+    .task__comments-disabled {
+      margin: 20px 0;
     }
   }
 }
