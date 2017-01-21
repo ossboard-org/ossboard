@@ -17,11 +17,18 @@ RSpec.describe Web::Views::Tasks::Show do
     it { expect(view.tasks_active?).to be true }
   end
 
-  describe '#link_to_author' do
+  describe '#author_information' do
     context 'when user have name' do
       it 'returns link to special user' do
-        link = view.link_to_author
-        expect(link.to_s).to eq '<a href="/users/davydovanton">test</a>'
+        link = view.author_information
+        expect(link.to_s).to eq "<div class=\"task__author\">\n" +
+          "Posted by\n" +
+          "<a href=\"/users/davydovanton\">\n" +
+          "<img class=\"task__author-avatar\" src=\"\">\n" +
+          "test\n" +
+          "</a>\n" +
+          "3 weeks ago\n" +
+          "</div>"
       end
     end
 
@@ -29,8 +36,15 @@ RSpec.describe Web::Views::Tasks::Show do
       let(:user) { User.new(id: 2, login: 'login', email: 'test@ossboard.com') }
 
       it 'returns link to special user' do
-        link = view.link_to_author
-        expect(link.to_s).to eq '<a href="/users/login">login</a>'
+        link = view.author_information
+        expect(link.to_s).to eq "<div class=\"task__author\">\n" +
+          "Posted by\n" +
+          "<a href=\"/users/login\">\n" +
+          "<img class=\"task__author-avatar\" src=\"\">\n" +
+          "login\n" +
+          "</a>\n" +
+          "3 weeks ago\n" +
+          "</div>"
       end
     end
   end
@@ -86,7 +100,7 @@ RSpec.describe Web::Views::Tasks::Show do
   describe '#contact_with_mentor_link' do
     it 'returns link to special user' do
       link = view.contact_with_mentor_link
-      expect(link.to_s).to eq '<a target="_blank" class="btn btn-contact task__contact" href="https://gitter.im/davydovanton">Contact mentor (Gitter)</a>'
+      expect(link.to_s).to eq '<a target="_blank" class="contact-mentor-link" href="https://gitter.im/davydovanton">Contact mentor (Gitter)</a>'
     end
   end
 
