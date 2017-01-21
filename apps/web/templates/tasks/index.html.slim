@@ -1,12 +1,9 @@
 .tasks
+  - if flash[:info]
+    .pure-alert.pure-alert-success
+      = flash[:info]
+
   .tasks__actions
-    - if flash[:info]
-      .pure-alert.pure-alert-success
-        = flash[:info]
-
-    .tasks__new
-      = link_to_new_task
-
     .pure-menu.pure-menu-horizontal
       ul.pure-menu-list
         - task_statuses.each do |status, text|
@@ -15,6 +12,9 @@
         - if current_user.registred?
           li.pure-menu-item class=status_selected_class('moderation')
             a.pure-menu-link href=routes.tasks_path(status: 'moderation') On moderation
+
+    .tasks__new
+      = link_to_new_task
 
     /.tasks__search
       form.pure-form.task-search action="#" method="post"
