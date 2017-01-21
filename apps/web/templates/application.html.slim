@@ -8,13 +8,11 @@ html
     - if Hanami.env?(:production)
       link rel="stylesheet" href="/web.css"
   body
-    = render partial: 'shared/navbar'
-
-    .main-container
-      = yield
-
-    .footer.l-box.is-center
-      = render partial: 'shared/footer'
+    .overflow
+      .wrapper
+        = render partial: 'shared/navbar'
+        = yield
+        = render partial: 'shared/footer'
 
     = render partial: 'shared/components'
 

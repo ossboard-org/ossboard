@@ -9,327 +9,523 @@
 @import 'landing';
 @import 'highlight';
 
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+@charset "utf-8";
+
+// Reset
+a,b,button,dd,div,dl,dt,em,form,h1,h2,h3,h4,h5,h6,i,input,img,label,li,ol,p,s,select,small,span,strong,sub,sup,td,textarea,th,u,ul {vertical-align: baseline;}
+body,button,dd,div,dl,dt,form,h1,h2,h3,h4,h5,h6,html,input,li,ol,p,pre,select,table,td,textarea,th,ul {margin: 0; padding: 0;}
+img,table,td,th {border: 0 none;}
+button,input,select,textarea {outline: 0 none;}
+textarea {overflow: auto;}
+ul,li {list-style-type: none;}
+html,body,input,textarea,button { font-family: "Open Sans", "Helvetica Neue", "Arial", sans-serif; font-size: 20px; line-height: 1.33; }
+html,body { background: #fff; color: #222; }
+
+// General
+.overflow {
+    overflow: hidden;
+}
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+@media screen and (min-width: 461px) {
+    .wrapper {
+        padding: 0 25px;
+    }
+}
+@media screen and (min-width: 921px) {
+    .wrapper {
+        padding: 0 50px;
+    }
 }
 
-/*
- * -- BASE STYLES --
- * Most of these are inherited from Base, but I want to change a few.
- */
-
-body {
-  line-height: 1.7em;
-  color: #000;
-  font-size: 13px;
+// Header
+.header {
+    overflow: hidden;
+    padding: 0.75em 0 0;
 }
-
-h1, h2, h3, h4, h5, h6, label {
-  color: #34495e;
+.header-logo {
+    text-align: center;
 }
-
-.pure-img-responsive {
-  max-width: 100%;
-  height: auto;
-}
-
-/*
- * -- LAYOUT STYLES --
- * These are some useful classes which I will need
- */
-
-.l-box {
-  padding: 1em;
-}
-
-.l-box-lrg {
-  padding: 2em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.is-center {
-  text-align: center;
-}
-
-/*
- * -- PURE FORM STYLES --
- * Style the form inputs and labels
- */
-
-.pure-form {
-  label {
-    margin: 1em 0 0;
-    font-weight: bold;
-    font-size: 100%;
-  }
-  input[type] {
-    border: 2px solid #ddd;
-    box-shadow: none;
-    font-size: 100%;
+.header-logo__img {
+    vertical-align: top;
     width: 100%;
-    margin-bottom: 1em;
-  }
 }
-
-/*
- * -- PURE BUTTON STYLES --
- * I want my pure-button elements to look a little different
- */
-
-.pure-button {
-  background-color: #1f8dd6;
-  color: white;
-  padding: 0.5em 2em;
-  border-radius: 5px;
+.header-menu {
+    text-align: center;
+    margin: 1em 0 0;
 }
-
-a.pure-button-primary {
-  background: white;
-  color: #1f8dd6;
-  border-radius: 5px;
-  font-size: 120%;
+.header-menu-item {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0.7em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 0.5em 0.5em;
 }
-
-.button-secondary {
-  background: rgb(66, 184, 221);
+.header-menu-item__link:link,
+.header-menu-item__link:active,
+.header-menu-item__link:visited {
+    display: inline-block;
+    vertical-align: top;
+    color: #214CFD;
+    text-decoration: none;
+    padding: 0.5em;
+    border-radius: 100px;
 }
-
-.button-green {
-  background: #32c107;
+.header-menu-item__link:hover {
+    color: #FD2121;
 }
-
-/*
- * -- MENU STYLES --
- * I want to customize how my .pure-menu looks at the top of the page
- */
-
-.pure-menu.pure-menu-fixed {
-  /* Fixed menus normally have a border at the bottom. */
-  border-bottom: none;
-  /* I need a higher z-index here because of the scroll-over effect. */
-  z-index: 4;
+.header-menu-item__link_button:link,
+.header-menu-item__link_button:active,
+.header-menu-item__link_button:visited {
+    box-shadow: inset 0 0 0 1px #214CFD;
+    padding: 0.5em 1.4em;
 }
-
-.home-menu {
-  padding: 0.5em;
-  text-align: center;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  background: #2d3e50;
-
-  .pure-menu-heading {
-    color: white;
-    font-weight: 400;
-    font-size: 120%;
-  }
-  .pure-menu-selected a {
-    color: white;
-  }
-  a {
-    color: #6FBEF3;
-  }
-  li a {
-    &:hover, &:focus {
-      background: none;
-      border: none;
-      color: #AECFE5;
+.header-menu-item__link_button:hover {
+    background: #214CFD;
+    color: #fff;
+}
+@media screen and (min-width: 271px) {
+    .header-logo {
+        height: 2.35em;
     }
-  }
+    .header-logo__img {
+        width: auto;
+        height: 100%;
+    }
+}
+@media screen and (min-width: 721px) {
+    .header-logo {
+        float: left;
+        text-align: left;
+    }
+    .header-menu {
+        float: right;
+        text-align: left;
+        padding: 0.2em 0;
+        margin: 0;
+    }
+    .header-menu-item {
+        float: left;
+        display: block;
+        margin: 0 0.5em;
+    }
+    .header-menu-item:last-child {
+        margin-right: 0;
+    }
+    .header-menu-item__link:link,
+    .header-menu-item__link:active,
+    .header-menu-item__link:visited {
+        padding: 0.75em;
+    }
+    .header-menu-item__link_button:link,
+    .header-menu-item__link_button:active,
+    .header-menu-item__link_button:visited {
+        padding: 0.75em 2.2em;
+    }
 }
 
-/*
- * -- SPLASH STYLES --
- * This is the blue top section that appears on the page.
- */
-
-.splash-container {
-  background: #1f8dd6;
-  z-index: 1;
-  overflow: hidden;
-  /* The following styles are required for the "scroll-over" effect */
-  width: 100%;
-  height: 88%;
-  top: 0;
-  left: 0;
-  position: fixed !important;
+// Promo
+.promo {
+    margin: 2em auto 6em;
+    padding: 43% 0 0;
+    text-align: center;
+    max-width: 34em;
+    // background: url(../images/promo__bg.png) no-repeat 50% 0 / 100% auto;
+}
+@media screen and (min-width: 721px) {
+    .promo {
+        margin: 4.25em auto 9.5em;
+        padding: 12.25em 0 0;
+        background-size: 612px 221px;
+    }
+}
+.promo__header {
+    font-size: 2.4em;
+    font-weight: 600;
+    padding: 0 0 0.35em;
+}
+.promo__description {
+    color: #1F48FD;
+    font-weight: 600;
+}
+.promo-buttons {
+    margin: 4.5em -1.5em 0;
+    font-size: 0.7em;
+    position: relative;
+    z-index: 1;
+}
+.promo-buttons:after {
+    content: 'or';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 2.78;
+    z-index: -1;
+}
+.promo-buttons-item {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 2.78;
+    width: 8em;
+    text-align: center;
+    padding: 0 1.5em;
+    text-transform: uppercase;
+}
+.promo-buttons-item__button:link,
+.promo-buttons-item__button:active,
+.promo-buttons-item__button:visited {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    border-radius: 100px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: transform 0.2s;
+    transform: scale(1);
+}
+.promo-buttons-item__button:hover {
+    transform: scale(1.05);
+}
+.promo-buttons-item__button:before {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.85em;
+    line-height: 2.75;
+    font-weight: normal;
+    text-transform: lowercase;
+    color: #686868;
+}
+.promo-buttons-item__button_blue:link,
+.promo-buttons-item__button_blue:active,
+.promo-buttons-item__button_blue:visited {
+    background: #214CFD;
+    box-shadow: 0 15px 10px -18px #214CFD;
+}
+.promo-buttons-item__button_green:link,
+.promo-buttons-item__button_green:active,
+.promo-buttons-item__button_green:visited {
+    background: #00D531;
+    box-shadow: 0 15px 10px -18px #00D531;
+}
+.promo-buttons-item__button_blue:before {
+    content: 'contribute';
+}
+.promo-buttons-item__button_green:before {
+    content: 'ask for help';
+}
+@media screen and (min-width: 721px) {
+    .promo-buttons {
+        margin: 4.5em 0 0;
+    }
+    .promo-buttons-item {
+        padding: 0 2.5em;
+        width: 10em;
+    }
 }
 
-.splash {
-  /* absolute center .splash within .splash-container */
-  width: 80%;
-  height: 50%;
-  margin: auto;
-  position: absolute;
-  top: 100px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  text-align: center;
-  text-transform: uppercase;
+// WhatIsThis
+.whatisthis {
+    max-width: 46em;
+    margin: 0 auto;
+}
+.whatisthis__header {
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.1em;
+    padding: 0 0 0.5em;
+    margin: 0 0 1em;
+    position: relative;
+}
+.whatisthis__header:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 2.5em;
+    height: 0.12em;
+    margin: 0 auto;
+    background: #1F48FD;
+}
+.whatisthis__description {
+    color: #616161;
+    margin: 0 auto 4.5em;
+    max-width: 40em;
+}
+.whatisthis-choice {
+    font-size: 0;
+    text-align: center;
+}
+.whatisthis-choice-item {
+    font-size: 20px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 4em;
+}
+.whatisthis-choice-item__link,
+.whatisthis-choice-item__link:link,
+.whatisthis-choice-item__link:active,
+.whatisthis-choice-item__link:visited {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    font-size: 0.7em;
+    line-height: 3.28;
+    text-decoration: none;
+    border: 1px solid #214CFD;
+    color: #214CFD;
+    width: 10.5em;
+}
+.whatisthis-choice-item__link:hover {
+    background: #FD2121;
+    border-color: #FD2121;
+    color: #fff;
+}
+.whatisthis-choice-item__link_active,
+.whatisthis-choice-item__link_active:hover {
+    background: #214CFD;
+    border-color: #214CFD;
+    color: #fff;
+    cursor: default;
+}
+.whatisthis-choice-item:first-child .whatisthis-choice-item__link {
+    border-radius: 100px 0 0 100px;
+}
+.whatisthis-choice-item:last-child .whatisthis-choice-item__link {
+    border-radius: 0 100px 100px 0;
+}
+.whatisthis-features {
+    font-size: 0;
+    margin: 0 -3%;
+}
+.whatisthis-features-item {
+    width: 70%;
+    font-size: 20px;
+    padding: 10.75em 0 0;
+    margin: 0 auto 4em;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    counter-increment: whatisthis-features-item;
+}
+.whatisthis-features-item:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 9em;
+    height: 9em;
+    background: #D4DDFF;
+    border-radius: 50%;
+    z-index: -2;
+}
+.whatisthis-features-item:after {
+    content: counter(whatisthis-features-item);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #617FFA;
+    font-size: 3.2em;
+    line-height: 2.8125;
+    font-weight: 600;
+    z-index: -1;
+}
+.whatisthis-features-item__header {
+    font-size: 1em;
+    font-weight: 600;
+}
+.whatisthis-features-item__text {
+    color: #616161;
+    padding: 0.2em 0 0;
+}
+@media screen and (min-width: 721px) {
+    .whatisthis-choice-item__link,
+    .whatisthis-choice-item__link:link,
+    .whatisthis-choice-item__link:active,
+    .whatisthis-choice-item__link:visited {
+        width: 13.7em;
+    }
+    .whatisthis-features-item {
+        display: inline-block;
+        vertical-align: top;
+        width: 27.33%;
+        margin: 0 3%;
+    }
 }
 
-/* This is the main heading that appears on the blue section */
-
-.splash-head {
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  border: 3px solid white;
-  padding: 1em 1.6em;
-  font-weight: 100;
-  border-radius: 5px;
-  line-height: 1em;
+// Issues
+.issues {
+    margin: 8.5em auto 5.5em;
+    max-width: 40em;
 }
-
-/* This is the subheading that appears on the blue section */
-
-.splash-subhead {
-  color: white;
-  letter-spacing: 0.05em;
-  opacity: 0.8;
+.issues__header {
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.1em;
+    padding: 0 0 0.5em;
+    margin: 0 0 2em;
+    position: relative;
 }
-
-/*
- * -- CONTENT STYLES --
- * This represents the content area (everything below the blue section)
- */
-
-.content-wrapper {
-  /* These styles are required for the "scroll-over" effect */
-  position: absolute;
-  top: 87%;
-  width: 100%;
-  min-height: 12%;
-  z-index: 2;
-  background: white;
+.issues__header:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 2.5em;
+    height: 0.12em;
+    margin: 0 auto;
+    background: #1F48FD;
 }
-
-/* This is the class used for the main content headers (<h2>) */
-
-.content-head {
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 2em 0 1em;
+.issues-list {
+    border: 1px solid #214CFD;
+    border-radius: 8px;
+    margin: 0 0 1.5em;
+    position: relative;
+    z-index: 1;
 }
-
-/* This is a modifier class used when the content-head is inside a ribbon */
-
-.content-head-ribbon {
-  color: white;
+.issues-list:before {
+    content: '';
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
+    box-shadow: 0 -10px 50px 0 rgba(33,75,253,0.43);
+    border-radius: 8px;
+    z-index: -1;
 }
-
-/* This is the class used for the content sub-headers (<h3>) */
-
-.content-subhead {
-  color: #1f8dd6;
-  i {
-    margin-right: 7px;
-  }
-}
-
-/* This is the class used for the dark-background areas. */
-
-.ribbon {
-  background: #2d3e50;
-  color: #aaa;
-}
-
-/* This is the class used for the footer */
-
-.footer {
-  background: #111;
-}
-
-/*
- * -- TABLET (AND UP) MEDIA QUERIES --
- * On tablets and other medium-sized devices, we want to customize some
- * of the mobile styles.
- */
-@media (min-width: 48em) {
-  /* We increase the body font size */
-  body {
-    font-size: 16px;
-  }
-  /* We want to give the content area some more padding */
-  .content {
+.issues-list-item {
     padding: 1em;
-  }
-  /* We can align the menu header to the left, but float the
-  menu items to the right. */
-  .home-menu {
-    text-align: left;
-    ul {
-      float: right;
-    }
-  }
-  .content-wrapper {
-    .content {
-      margin: 0 5%;
-    }
-  }
-
-  /* We increase the height of the splash-container */
-  /*    .splash-container {
-          height: 500px;
-      }*/
-  /* We decrease the width of the .splash, since we have more width
-  to work with */
-  .splash {
-    width: 50%;
-    height: 50%;
-  }
-  .splash-head {
-    font-size: 250%;
-  }
-  /* We remove the border-separator assigned to .l-box-lrg */
-  .l-box-lrg {
-    border: none;
-  }
-
-  .for-dev__maintainers-text p,
-  .for-dev__developers-text  p {
+    border-bottom: 1px solid #214CFD;
+    position: relative;
+}
+.issues-list-item:last-child {
+    border-bottom: 0;
+}
+.issues-list-item__title {
+    word-wrap: break-word;
+}
+.issues-list-item__date {
+    display: inline-block;
+    vertical-align: middle;
+    color: #818181;
+    font-size: 0.8em;
+    padding: 0 0.5em 0 0;
+}
+.issues-list-item__tag {
+    display: inline-block;
+    vertical-align: middle;
+    color: #214CFD;
+    text-transform: uppercase;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+.issues-list-item-open {
+    margin: 1em auto 0;
+    width: 8em;
     text-align: center;
-    padding: 16px 5%;
-  }
-
-  .btn {
-    height: 45px;
-    margin: 5px 15px;
-    width: 190px;
-  }
+}
+.issues-list-item-open__link:link,
+.issues-list-item-open__link:active,
+.issues-list-item-open__link:visited {
+    display: block;
+    color: #214CFD;
+    box-shadow: inset 0 0 0 1px #214CFD;
+    border-radius: 100px;
+    font-size: 0.7em;
+    font-weight: 600;
+    padding: 0.5em 0;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.issues-list-item-open__link:hover {
+    background: #214CFD;
+    color: #fff;
+}
+.issues-all {
+    text-align: center;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+.issues-all__link:link,
+.issues-all__link:active,
+.issues-all__link:visited {
+    text-decoration: none;
+    color: #214CFD;
+    font-weight: 600;
+}
+.issues-all__link:hover {
+    color: #FD2121;
+}
+@media screen and (min-width: 721px) {
+    .issues-list-item {
+        padding: 1em 8em 1em 1em;
+    }
+    .issues-list-item-open {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 1em;
+        width: 6em;
+        height: 2em;
+        margin: auto 0;
+    }
+    .issues-list-item-open__link:link,
+    .issues-list-item-open__link:active,
+    .issues-list-item-open__link:visited {
+        padding: 0.75em 0;
+    }
 }
 
-/*
- * -- DESKTOP (AND UP) MEDIA QUERIES --
- * On desktops and other large devices, we want to over-ride some
- * of the mobile and tablet styles.
- */
-@media (min-width: 78em) {
-  /* We increase the header font size even more */
-  .splash-head {
-    font-size: 300%;
-  }
-
-  .for-dev__maintainers-text p,
-  .for-dev__developers-text  p {
-    text-align: center;
-    padding: 16px 14%;
-  }
-
-  .content-wrapper {
-    .content {
-      margin: 0 15%;
-    }
-  }
-
-  .btn {
-    height: 45px;
-    margin: 5px 10px;
-    width: 200px;
-  }
+// Footer
+.footer {
+    background: #36416D;
+    color: #fff;
+    margin: 0 -10px;
 }
+.footer-content {
+    padding: 1.5em 5em;
+    text-align: center;
+}
+.footer-content__link:link,
+.footer-content__link:active,
+.footer-content__link:visited {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.7em;
+}
+.footer-content__link:hover {
+    text-decoration: underline;
+}
+@media screen and (min-width: 461px) {
+    .footer {
+        margin: 0 -25px;
+    }
+}
+@media screen and (min-width: 921px) {
+    .footer {
+        margin: 0 -50px;
+    }
+}
+
+// other
 
 .main-container {
   min-height: calc(100vh - 250px)

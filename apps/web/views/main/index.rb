@@ -7,7 +7,7 @@ module Web::Views::Main
     end
 
     def link_to_tasks
-      link_to 'View All Tasks', routes.tasks_path, class: 'btn'
+      link_to 'View all', routes.tasks_path, class: 'issues-all__link'
     end
 
     def link_to_new_tasks

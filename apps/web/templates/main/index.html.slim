@@ -1,60 +1,40 @@
-.splash-container
-  .splash
-    h1.splash-head OSS Board
-    p.splash-subhead
-      | Simple way to connect developers and OSS maintainers
+.promo
+  h1.promo__header Community Needs Your Help
+  p.promo__description Simple way to connect developers and open-source maintainers
+  ul.promo-buttons
+    li.promo-buttons-item
+      = link_to 'View tasks', routes.tasks_path, class: 'promo-buttons-item__button promo-buttons-item__button_blue'
+    li.promo-buttons-item
+      = link_to 'Post a task', routes.new_task_path, class: 'promo-buttons-item__button promo-buttons-item__button_green'
 
-.content-wrapper
-  .content.landing-about
-    h2.content-head.is-center.landing-about__title Why?
-    .pure-g
-      .pure-u-1.landing-about__text
-        p
-          | We know that OSS is hard. It's hard for new developers to start writing code
-          |  and we know that maintainers have problems with working on some tasks. That's why
-          |  we created this service where new developers can find mentors and interesting
-          |  tasks and maintainers can find developers to work on project issues.
+.whatisthis
+  h2.whatisthis__header What is this?
+  p.whatisthis__description We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and we&nbsp;know that maintainers have problems with working on&nbsp;some tasks. That&rsquo;s why we&nbsp;created this service where new developers can find mentors and interesting tasks and maintainers can find developers to&nbsp;work on&nbsp;project issues.
+  .whatisthis-choice
+    .whatisthis-choice-item
+      a.whatisthis-choice-item__link.whatisthis-choice-item__link_active I want to contribute
+    .whatisthis-choice-item
+      a.whatisthis-choice-item__link href="#"  I'm a mantainer
+  ul.whatisthis-features
+    li.whatisthis-features-item
+      h3.whatisthis-features-item__header OSS is hard
+      p.whatisthis-features-item__text We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and&nbsp;we
+    li.whatisthis-features-item
+      h3.whatisthis-features-item__header OSS is hard
+      p.whatisthis-features-item__text We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and&nbsp;we
+    li.whatisthis-features-item
+      h3.whatisthis-features-item__header OSS is hard
+      p.whatisthis-features-item__text We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and&nbsp;we
 
-
-  .ribbon.l-box-lrg.pure-g
-    .l-box.pure-u-1.pure-g.landing-about__for-dev.for-dev id="for-dev"
-      .pure-menu.pure-menu-horizontal.pure-menu-scrollable.is-center.for-dev__actions
-        ul.pure-menu-list
-          li.pure-menu-item
-            button.btn.pure-menu-link v-on:click="displayForDevelopers" For developers
-          li.pure-menu-item
-            button.btn.pure-menu-link v-on:click="displayForMaintainers" For maintainers
-
-      .pure-u-1.for-dev__developers-text v-if="forDevelopers"
-        p
-          | You have amazing chance to start working on OSS project, help to other developers
-          |  and update your CV with real tasks.
-        .pure-u-1.is-center
-          = link_to_tasks
-
-      .pure-u-1.for-dev__maintainers-text v-if="forMaintainers"
-        p
-          | Do you have old issue? You don't time for solving some issue? Submit your issue
-          |  and vaiting new developer who want to help you. It's simple and more productive
-          |  instead general issue on github.
-        .pure-u-1.is-center
-          = link_to_new_tasks
-
-  .content.latest-tasks
-    h2.content-head.is-center.latest-tasks__title Latest tasks
-
-    .pure-g
-      .pure-u-1.latest-tasks__table.is-center
-        table.table.pure-table.pure-table-horizontal.latest-tasks-table
-          tbody
-            - tasks.each do |task|
-              tr
-                td.latest-tasks-table__title = task.title
-                td.latest-tasks-table__lang = task.lang
-                td.latest-tasks-table__action = link_to_task(task)
-
-      .pure-u-1.is-center.latest-tasks__show-all
-        = link_to_tasks
-
-  .footer.l-box.is-center
-    = render partial: 'shared/footer'
+.issues
+  h2.issues__header Latest issues
+  ul.issues-list
+    - tasks.each do |task|
+      li.issues-list-item
+        p.issues-list-item__title = task.title
+        span.issues-list-item__date posted 2 days ago
+        span.issues-list-item__tag = task.lang
+        .issues-list-item-open
+          = link_to 'Open task', routes.task_path(task.id), class: 'issues-list-item-open__link'
+  .issues-all
+    = link_to_tasks
