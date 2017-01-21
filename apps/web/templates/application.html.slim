@@ -11,8 +11,8 @@ html
       link rel="stylesheet" href="/web.css"
   body
     .overflow
+      = render partial: 'shared/navbar'
       .wrapper
-        = render partial: 'shared/navbar'
         = yield
         = render partial: 'shared/footer'
 

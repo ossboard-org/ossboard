@@ -20,7 +20,10 @@ button,input,select,textarea {outline: 0 none;}
 textarea {overflow: auto;}
 ul,li {list-style-type: none;}
 html,body,input,textarea,button { font-family: "Open Sans", "Helvetica Neue", "Arial", sans-serif; font-size: 20px; line-height: 1.33; }
-html,body { background: #fff; color: #222; }
+html,body { background: #fcfcfd; color: #222; }
+.white_body {
+  background: #fff;
+}
 
 // General
 .overflow {
@@ -44,8 +47,10 @@ html,body { background: #fff; color: #222; }
 
 // Header
 .header {
-    overflow: hidden;
-    padding: 0.75em 0 0;
+  background: #fff;
+  overflow: hidden;
+  padding: 0.75em 0.5em;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.08);
 }
 .header-logo {
     text-align: center;
