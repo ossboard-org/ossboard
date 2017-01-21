@@ -12,22 +12,27 @@ module Web::Views::Tasks
         hidden_field :user_id, value: current_user.id
 
         div class: 'input' do
+          label :title
           text_field :title, value: task.title, placeholder: 'Title'
         end
 
         div class: 'input' do
-          text_field :repository_name, value: task.repository_name, placeholder: 'Repository Name (optional)'
+          label :repository_name
+          text_field :repository_name, value: task.repository_name
         end
 
         div class: 'input' do
-          text_field :issue_url, value: task.issue_url, placeholder: 'Link to issue (optional)'
+          label :issue_url
+          text_field :issue_url, value: task.issue_url
         end
 
         div class: 'input' do
+          label :complexity
           select :complexity, complexity_options_list
         end
 
         div class: 'input' do
+          label :time_estimate
           select :time_estimate, time_estimate_options_list
         end
 
@@ -49,6 +54,7 @@ module Web::Views::Tasks
             end
 
             div class: 'pure-u-1 task-body__write', 'v-if' => "write" do
+              label :body
               text_area :md_body, task.md_body, placeholder: 'Body', 'v-model' => "taskBody"
               div(class: 'task-form__body-tip') do
                 em '* you can use markdown syntax'
@@ -75,6 +81,7 @@ module Web::Views::Tasks
         end
 
         div class: 'input' do
+          label :lang
           select :lang, langs_list
         end
 
