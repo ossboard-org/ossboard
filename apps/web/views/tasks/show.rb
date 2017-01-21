@@ -72,5 +72,9 @@ module Web::Views::Tasks
       return if task.status == Task::VALID_STATUSES[:in_progress]
       html.span { "(#{task.status})" }
     end
+
+    def complexity_label
+      html.span(class: "level level-#{task.complexity}") { text(task.complexity.upcase) }
+    end
   end
 end

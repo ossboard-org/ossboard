@@ -6,7 +6,7 @@
   padding: 8px 16px;
 }
 
-.level-novice {
+.level-easy {
   background: #00C853;
  
   &:before {
@@ -15,7 +15,7 @@
   }
 }
 
-.level-intermediate {
+.level-medium {
   background: #FFB300;
  
   &:before {
@@ -24,7 +24,7 @@
   }
 }
 
-.level-advanced {
+.level-hard {
   background: #EF5350;
  
   &:before {

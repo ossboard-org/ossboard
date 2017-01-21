@@ -169,4 +169,21 @@ RSpec.describe Web::Views::Tasks::Show do
       it { expect(subject).to eq '' }
     end
   end
+
+  describe '#complexity_label' do
+    context 'for easy level' do
+      let(:task) { Task.new(id: 1, complexity: 'easy') }
+      it { expect(view.complexity_label.to_s).to eq "<span class=\"level level-easy\">\nEASY\n</span>" }
+    end
+
+    context 'for medium level' do
+      let(:task) { Task.new(id: 1, complexity: 'medium') }
+      it { expect(view.complexity_label.to_s).to eq "<span class=\"level level-medium\">\nMEDIUM\n</span>" }
+    end
+
+    context 'for hard level' do
+      let(:task) { Task.new(id: 1, complexity: 'hard') }
+      it { expect(view.complexity_label.to_s).to eq "<span class=\"level level-hard\">\nHARD\n</span>" }
+    end
+  end
 end

@@ -15,8 +15,7 @@
         | Estimated time: #{task.time_estimate}
 
     .task__complexity
-      span.level.level-novice = task.complexity.upcase
-
+      = complexity_label
 
   .task__body
     - if task.approved
