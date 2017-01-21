@@ -27,22 +27,31 @@ html,body { background: #fcfcfd; color: #222; }
 
 // General
 .overflow {
-    overflow: hidden;
+  overflow: hidden;
 }
+
 .wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  min-height: 90vh;
+  flex-direction: column;
+
+  .main-content {
+    flex: 1;
+  }
 }
+
 @media screen and (min-width: 461px) {
-    .wrapper {
-        padding: 0 25px;
-    }
+  .wrapper {
+    padding: 0 25px;
+  }
 }
 @media screen and (min-width: 921px) {
-    .wrapper {
-        padding: 0 50px;
-    }
+  .wrapper {
+    padding: 0 50px;
+  }
 }
 
 // Header
@@ -508,37 +517,6 @@ button.whatisthis-choice-item__link {
     }
 }
 
-// Footer
-.footer {
-    background: #36416D;
-    color: #fff;
-    margin: 0 -10px;
-}
-.footer-content {
-    padding: 1.5em 5em;
-    text-align: center;
-}
-.footer-content__link:link,
-.footer-content__link:active,
-.footer-content__link:visited {
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.7em;
-}
-.footer-content__link:hover {
-    text-decoration: underline;
-}
-@media screen and (min-width: 461px) {
-    .footer {
-        margin: 0 -25px;
-    }
-}
-@media screen and (min-width: 921px) {
-    .footer {
-        margin: 0 -50px;
-    }
-}
-
 // other
 
 .main-container {
@@ -646,13 +624,5 @@ a, .btn {
   &:hover {
     background-color: #f04444;
     color: #fff;
-  }
-}
-
-.navbar-dropdown {
-  width: 160px !important;
-
-  li {
-    background-color: #2d3e50;
   }
 }
