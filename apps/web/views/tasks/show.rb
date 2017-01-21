@@ -14,8 +14,15 @@ module Web::Views::Tasks
       true
     end
 
-    def link_to_author
-      link_to author.name || author.login, routes.user_path(author.login)
+    def author_information
+      html.div(class: 'task__author') do
+        text('Posted by')
+        a(href: routes.user_path(author.login)) do
+          img class: 'task__author-avatar', src: author.avatar_url
+          text(author.name || author.login)
+        end
+        text('3 weeks ago')
+      end
     end
 
     def link_to_original_issue
@@ -24,7 +31,7 @@ module Web::Views::Tasks
     end
 
     def contact_with_mentor_link
-      link_to 'Contact mentor (Gitter)', "https://gitter.im/#{author.login}", target: '_blank', class: 'btn btn-contact task__contact'
+      link_to 'Contact mentor (Gitter)', "https://gitter.im/#{author.login}", target: '_blank', class: 'contact-mentor-link'
     end
 
     def task_status_actions

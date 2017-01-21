@@ -9,6 +9,9 @@ window.onload = function () {
   var taskTitleTag = document.getElementById('task_title');
   var taskTitle = taskTitleTag.textContent || taskTitleTag.innerText;
   var config = {
+    ui: {
+      buttonText: '',
+    },
     networks: {
       googlePlus: {
         enabled: true,
@@ -32,7 +35,7 @@ window.onload = function () {
       }
     }
   }
-  var share = new ShareButton('.task__share', config);
+  var share = new ShareButton('.task__share-js', config);
 }
 
 var for_dev = new Vue({

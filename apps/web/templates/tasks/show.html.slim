@@ -5,26 +5,17 @@
 
   .task__header
     .task__information
-      h2.task__title
+      h2#task_title.task__title
         = task.title
-        = task_status
+      = task_status
 
-      .task__author
-        | Posted by #{link_to_author} 3 weeks ago
-        /| #{link_to_original_issue}
+      = author_information
 
-      .task__time_estimate
-        | Time estimate: #{task.time_estimate}
+      .task__time-estimate
+        | Estimated time: #{task.time_estimate}
 
     .task__complexity
-      span.level.level-novice NOVICE
-      br
-      br
-      span.level.level-intermediate INTERMEDIATE
-      br
-      br
-      span.level.level-advanced ADVANCED
-      /= task.complexity
+      span.level.level-novice = task.complexity.upcase
 
 
   .task__body
@@ -37,7 +28,8 @@
     - if task.approved
       .task__actions
         = contact_with_mentor_link
-        share-button.btn.btn-share.task__share Share task
+        /share-button share
+        share-button.task__share.task__share-js
 
   .task__comments
     h3 Comments
