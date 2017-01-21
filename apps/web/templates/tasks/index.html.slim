@@ -27,8 +27,8 @@
   .tasks__list
     - tasks.each do |task|
       .task-item
-        .task-item__title
-          = link_to_task(task)
-        .task-item__complexity = task.complexity
-        .task-item__repo = task.repository_name
-        .task-item__lang = task.lang
+        .task-item__info
+          .task-item__title = link_to_task(task)
+          = author_information(task.author)
+        .task-item__estimate Estimated time: #{task.time_estimate}
+        .task-item__complexity = complexity_label(task)

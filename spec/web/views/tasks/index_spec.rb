@@ -32,4 +32,21 @@ RSpec.describe Web::Views::Tasks::Index do
     it { expect(view.status_selected_class('test')).to eq('pure-menu-selected') }
     it { expect(view.status_selected_class('invalid')).to eq(nil) }
   end
+
+  describe '#complexity_label' do
+    context 'for easy level' do
+      let(:task) { Task.new(id: 1, complexity: 'easy') }
+      it { expect(view.complexity_label(task).to_s).to eq "<span class=\"level level-easy\">\nEASY\n</span>" }
+    end
+
+    context 'for medium level' do
+      let(:task) { Task.new(id: 1, complexity: 'medium') }
+      it { expect(view.complexity_label(task).to_s).to eq "<span class=\"level level-medium\">\nMEDIUM\n</span>" }
+    end
+
+    context 'for hard level' do
+      let(:task) { Task.new(id: 1, complexity: 'hard') }
+      it { expect(view.complexity_label(task).to_s).to eq "<span class=\"level level-hard\">\nHARD\n</span>" }
+    end
+  end
 end

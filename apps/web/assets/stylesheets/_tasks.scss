@@ -4,10 +4,6 @@
  * of the mobile styles.
  */
 @media (max-width: 48em) {
-  .tasks {
-    margin: 100px 4%;
-  }
-
   .tasks__new {
     margin: 10px 0;
   }
@@ -23,10 +19,6 @@
  * of the mobile and tablet styles.
  */
 @media (min-width: 48em) {
-  .tasks {
-    margin: 100px 8%;
-  }
-
   .task {
     margin: 1em 12%;
   }
@@ -34,6 +26,8 @@
 
 
 .tasks {
+  margin: 1em;
+
   .tasks__actions {
     margin: 0 0 20px;
 
@@ -41,6 +35,49 @@
       width: 100%;
       display: flex;
       justify-content: flex-end;
+
+      .new-task-link {
+        &:link,
+        &:active,
+        &:visited {
+          display: inline-block;
+          vertical-align: top;
+          width: 100%;
+          border-radius: 100px;
+          font-weight: 600;
+          color: #fff;
+          text-decoration: none;
+          position: relative;
+          transition: transform 0.2s;
+          transform: scale(1);
+          padding: 0;
+          background: #00D531;
+          box-shadow: 0 15px 10px -18px #00D531;
+          width: 150px;
+          font-size: 18px;
+          font-weight: 100;
+          padding: 8px 20px;
+          text-align: center;
+        }
+
+        &:hover {
+          transform: scale(1.05);
+        }
+
+        &:before {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          text-align: center;
+          font-size: 0.85em;
+          line-height: 2.75;
+          font-weight: normal;
+          text-transform: lowercase;
+          color: #686868;
+        }
+      }
+
     }
 
     .pure-menu-selected {
@@ -83,29 +120,69 @@
 }
 
 .task-item {
-  margin: 5px 0;
+  padding: 1em 1em;
+  background: #FFFFFF;
+  box-shadow: 0 0 1px 0 rgba(43,59,124,0.18), 0 1px 3px 0 rgba(43,59,125,0.14);
+  border-radius: 2px;
+  margin: 0;
   display: flex;
-  width: 100%;
   flex-wrap: nowrap;
   justify-content: space-between;
-  padding: 10px 20px;
 
   &:hover {
-    background-color: #ddd;
+    background-color: #f4f6ff;
   }
 
-  .task-item__title {
+
+  .task-item__info {
     width: 500px;
+
+    .task-item__title {
+      font-size: 22px;
+      color: #214CFD;
+      letter-spacing: 0;
+      margin-left: -8px;
+
+      a:link,
+      a:active,
+      a:visited {
+        color: #214CFD;
+      }
+    }
+
+    .task-item__author {
+      margin: 0.2em 0;
+      font-size: 16px;
+      color: #9E9E9E;
+      letter-spacing: 0;
+
+      a:link,
+      a:active,
+      a:visited {
+        color: #9E9E9E;
+      }
+    }
+
+    .task-item__author-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 100px;
+      margin-bottom: -7px;
+    }
   }
 
-  .task-item__lang {
-    width: 200px;
-    text-align: center;
+  .task-item__complexity {
+    width: 140px;
+    line-height: 55px;
   }
 
-  .task-item__repo {
-    width: 100px;
-    text-align: center;
+  .task-item__estimate {
+    width: 250px;
+    text-align: right;
+    font-size: 16px;
+    color: #9E9E9E;
+    vertical-align: middle;
+    line-height: 60px;
   }
 }
 
