@@ -192,6 +192,7 @@ html,body { background: #fff; color: #222; }
     position: relative;
     transition: transform 0.2s;
     transform: scale(1);
+    padding: 0;
 }
 .promo-buttons-item__button:hover {
     transform: scale(1.05);
@@ -275,10 +276,16 @@ html,body { background: #fff; color: #222; }
     vertical-align: top;
     margin: 0 0 4em;
 }
+
+button.whatisthis-choice-item__link {
+}
+
 .whatisthis-choice-item__link,
 .whatisthis-choice-item__link:link,
 .whatisthis-choice-item__link:active,
 .whatisthis-choice-item__link:visited {
+    cursor: pointer;
+    background: none;
     display: inline-block;
     vertical-align: top;
     text-align: center;

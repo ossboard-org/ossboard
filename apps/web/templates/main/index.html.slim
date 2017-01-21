@@ -7,23 +7,40 @@
     li.promo-buttons-item
       = link_to 'Post a task', routes.new_task_path, class: 'promo-buttons-item__button promo-buttons-item__button_green'
 
-.whatisthis
+.whatisthis id="for-dev"
   h2.whatisthis__header What is this?
-  p.whatisthis__description We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and we&nbsp;know that maintainers have problems with working on&nbsp;some tasks. That&rsquo;s why we&nbsp;created this service where new developers can find mentors and interesting tasks and maintainers can find developers to&nbsp;work on&nbsp;project issues.
+  p.whatisthis__description
+    | We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start
+    |  writing code and we&nbsp;know that maintainers have problems with working on&nbsp;some
+    |  tasks. That&rsquo;s why we&nbsp;created this service where new developers can find mentors
+    |  and interesting tasks and maintainers can find developers to&nbsp;work on&nbsp;project issues.
+
   .whatisthis-choice
     .whatisthis-choice-item
-      a.whatisthis-choice-item__link.whatisthis-choice-item__link_active I want to contribute
+      button.whatisthis-choice-item__link v-bind:class="{ 'whatisthis-choice-item__link_active': forDevelopers }"  v-on:click="displayForDevelopers" I want to contribute
     .whatisthis-choice-item
-      a.whatisthis-choice-item__link href="#"  I'm a mantainer
-  ul.whatisthis-features
+      button.whatisthis-choice-item__link v-bind:class="{ 'whatisthis-choice-item__link_active': forMaintainers }" v-on:click="displayForMaintainers" I'm a mantainer
+
+  ul.whatisthis-features v-if="forDevelopers"
     li.whatisthis-features-item
-      h3.whatisthis-features-item__header OSS is hard
+      h3.whatisthis-features-item__header Start working on OSS
       p.whatisthis-features-item__text We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and&nbsp;we
     li.whatisthis-features-item
-      h3.whatisthis-features-item__header OSS is hard
+      h3.whatisthis-features-item__header Help to other developers
       p.whatisthis-features-item__text We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and&nbsp;we
     li.whatisthis-features-item
-      h3.whatisthis-features-item__header OSS is hard
+      h3.whatisthis-features-item__header Update your CV
+      p.whatisthis-features-item__text We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and&nbsp;we
+
+  ul.whatisthis-features v-if="forMaintainers"
+    li.whatisthis-features-item
+      h3.whatisthis-features-item__header old issue
+      p.whatisthis-features-item__text We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and&nbsp;we
+    li.whatisthis-features-item
+      h3.whatisthis-features-item__header time for solving issue
+      p.whatisthis-features-item__text We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and&nbsp;we
+    li.whatisthis-features-item
+      h3.whatisthis-features-item__header It's simple
       p.whatisthis-features-item__text We&nbsp;know that OSS is&nbsp;hard. It&rsquo;s hard for new developers to&nbsp;start writing code and&nbsp;we
 
 .issues
