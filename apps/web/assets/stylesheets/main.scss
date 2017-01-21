@@ -572,6 +572,7 @@ button.whatisthis-choice-item__link {
 a, .btn {
   text-decoration: none;
   padding: 9px;
+  border-radius: 100px;
 }
 
 .btn-back {
@@ -607,8 +608,6 @@ a, .btn {
     color: rgba(45, 62, 80, 0.65);
   }
 }
-
-
 
 .btn-new-task {
   color: #42b8dd;
