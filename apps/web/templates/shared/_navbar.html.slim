@@ -1,25 +1,25 @@
 .header
-  .home-menu.pure-menu.pure-menu-horizontal.pure-menu-fixed
-    a.pure-menu-heading href="/" ossboard
-    ul.pure-menu-list
-      li.pure-menu-item class="#{ 'pure-menu-selected' if tasks_active? }"
-        = link_to 'Tasks', routes.tasks_path, class: 'pure-menu-link'
-      li.pure-menu-item
-        = link_to 'How to help', routes.help_path, class: 'pure-menu-link'
-      li.pure-menu-item
-        = link_to 'About', routes.about_path, class: 'pure-menu-link'
-      - if current_user.admin
-        li.pure-menu-item
-          = link_to_admin
-      - if current_user.registred?
-        li.pure-menu-item.pure-menu-has-children.pure-menu-allow-hover
-          a#menuLink1.pure-menu-link href="#" = current_user.name
-          ul.navbar-dropdown.pure-menu-children
-            li.pure-menu-item
-              = link_to 'Profile', routes.user_path(current_user.login), class: 'pure-menu-link'
-            li.pure-menu-item
-              a.pure-menu-link href="/auth/logout" Logout
+  .header-logo
+    a href="/"
+      = image 'header-logo.png', class: "header-logo__img", alt: "OSS Board"
+  ul.header-menu
+    li.header-menu-item
+      = link_to 'Tasks', routes.tasks_path, class: 'header-menu-item__link'
+    li.header-menu-item
+      = link_to 'Help us', routes.help_path, class: 'header-menu-item__link'
+    li.header-menu-item
+      = link_to 'About', routes.about_path, class: 'header-menu-item__link'
 
-      - else
-        li.pure-menu-item
-          a.pure-menu-link href="/auth/github" Sign In
+    - if current_user.admin
+      li.header-menu-item
+        = link_to_admin
+
+    - if current_user.registred?
+      li.header-menu-item
+        = link_to 'Profile', routes.user_path(current_user.login), class: 'header-menu-item__link'
+      li.header-menu-item
+        a.header-menu-item__link.header-menu-item__link_button href="/auth/logout" Logout
+
+    - else
+      li.header-menu-item
+        a href="/auth/github" class="header-menu-item__link header-menu-item__link_button" Login

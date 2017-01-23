@@ -5,4 +5,9 @@ class Task < Hanami::Entity
     closed: 'closed',
     done: 'done'
   }.freeze
+
+  # TODO: Tests
+  def author
+    UserRepository.new.find(user_id)
+  end
 end

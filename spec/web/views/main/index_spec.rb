@@ -26,7 +26,7 @@ RSpec.describe Web::Views::Main::Index do
 
   describe '#link_to_tasks' do
     it 'returns link to all tasks' do
-      expect(view.link_to_tasks.to_s).to eq '<a class="btn" href="/tasks">View All Tasks</a>'
+      expect(view.link_to_tasks.to_s).to eq '<a class="issues-all__link" href="/tasks">View all</a>'
     end
   end
 

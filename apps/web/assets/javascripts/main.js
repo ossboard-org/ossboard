@@ -9,6 +9,9 @@ window.onload = function () {
   var taskTitleTag = document.getElementById('task_title');
   var taskTitle = taskTitleTag.textContent || taskTitleTag.innerText;
   var config = {
+    ui: {
+      buttonText: '',
+    },
     networks: {
       googlePlus: {
         enabled: true,
@@ -32,7 +35,7 @@ window.onload = function () {
       }
     }
   }
-  var share = new ShareButton('.task__share', config);
+  var share = new ShareButton('.task__share-js', config);
 }
 
 var for_dev = new Vue({
@@ -107,14 +110,14 @@ new Vue({
 
 var agreementChackbox = document.getElementById("agreement-checkbox"),
     submitButton = document.getElementById("new-task-submit"),
-    disableButtonReg = new RegExp('(\\s|^)pure-button-disabled(\\s|$)');
+    disableButtonReg = new RegExp('(\\s|^)button-disabled(\\s|$)');
 
 if (agreementChackbox) {
   agreementChackbox.onchange = function() {
     if (agreementChackbox.checked) {
       submitButton.className = submitButton.className.replace(disableButtonReg, ' ');
     } else {
-      submitButton.className += " pure-button-disabled";
+      submitButton.className += " button-disabled";
     }
   }
 }

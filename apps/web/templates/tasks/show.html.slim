@@ -1,35 +1,33 @@
-.task
+.task.main-content
   - if flash[:error]
     .pure-alert.pure-alert-error
       = flash[:error]
 
-  .task__title
-    h2#task_title
-      = task.title
-      = task_status
+  .task__header
+    .task__information
+      h2#task_title.task__title
+        = task.title
+        = task_status
 
-  - if task.approved
-    = task_status_actions
+      = author_information
 
-  .task__author
-    | Author: #{link_to_author} #{link_to_original_issue}
+      .task__time-estimate
+        | Estimated time: #{task.time_estimate}
 
-  .task__complexity
-    | Complexity: #{task.complexity}
-
-  .task__time_estimate
-    | Time estimate: #{task.time_estimate}
+    .task__complexity
+      = complexity_label
 
   .task__body
-    = task_body
+    - if task.approved
+      = task_status_actions
 
-  .task__lang
-    | Language: #{task.lang}
+    .task__text
+      = task_body
 
-  - if task.approved
-    .task__actions
-      = contact_with_mentor_link
-      share-button.btn.btn-share.task__share Share task
+    - if task.approved
+      .task__actions
+        = contact_with_mentor_link
+        share-button.task__share.task__share-js
 
   .task__comments
     h3 Comments

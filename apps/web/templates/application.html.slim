@@ -5,16 +5,16 @@ html
     = favicon
 
     link rel="stylesheet" href="https://yui-s.yahooapis.com/pure/0.6.0/pure-min.css"
+    link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=cyrillic" rel="stylesheet"
+
     - if Hanami.env?(:production)
       link rel="stylesheet" href="/web.css"
   body
-    = render partial: 'shared/navbar'
-
-    .main-container
-      = yield
-
-    .footer.l-box.is-center
-      = render partial: 'shared/footer'
+    .overflow
+      = render partial: 'shared/navbar'
+      .wrapper
+        = yield
+        = render partial: 'shared/footer'
 
     = render partial: 'shared/components'
 

@@ -1,31 +1,32 @@
-.new-task
-  h2.new-task__title Submit new task
+.new-task.main-content
+  .new-task__meta
+    h2.new-task__title Submit new task
 
-  .new-task__errors
-    - unless params.valid?
-      .wrap-errors
-        h2 Errors:
-        ul
-          - params.error_messages.each do |error|
-            li
-              = error
+    .new-task__import id="import-modal"
+      button.new-task__import-button @click="showModal = true; errorMessage = ''; hasError = false" Export from
 
-  .new-task__import id="import-modal"
-    button.btn.new-task__github-import @click="showModal = true; errorMessage = ''; hasError = false" Export from
+      modal v-if="showModal" @close="showModal = false"
+        div slot="body"
+          .modal-header
+            h3 Export from
+          .modal-body
+            .modal-error
+              | {{ errorMessage }}
 
-    modal v-if="showModal" @close="showModal = false"
-      div slot="body"
-        .modal-header
-          h3 Export from
-        .modal-body
-          .modal-error
-            | {{ errorMessage }}
-
-          form.pure-form id="exportForm"
-            input#issueUrl type="text" name="keyword" placeholder="Issue link (github or gitlab)" v-bind:class="{ 'text-danger': hasError }"
-          .modal-footer
-            button.pure-button.pure-button-primary.modal-close-button @click="showModal = false" Close
-            input.pure-button.pure-button-primary.modal-submit.button-green v-bind:class="{ 'pure-button-disabled': exportingIssue }" type="submit" value="Export" @click="exportIssue" @click.enter="exportIssue"
+            form.pure-form id="exportForm"
+              input#issueUrl type="text" name="keyword" placeholder="Issue link (github or gitlab)" v-bind:class="{ 'text-danger': hasError }"
+            .modal-footer
+              button.button.button-back.modal-close-button @click="showModal = false" Close
+              input.button.modal-submit v-bind:class="{ 'pure-button-disabled': exportingIssue }" type="submit" value="Export" @click="exportIssue" @click.enter="exportIssue"
 
   .new-task__form
+    .new-task__errors
+      - unless params.valid?
+        .wrap-errors
+          h2 Errors:
+          ul
+            - params.error_messages.each do |error|
+              li
+                = error
+
     = form
