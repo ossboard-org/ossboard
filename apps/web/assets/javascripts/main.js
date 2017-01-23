@@ -110,14 +110,14 @@ new Vue({
 
 var agreementChackbox = document.getElementById("agreement-checkbox"),
     submitButton = document.getElementById("new-task-submit"),
-    disableButtonReg = new RegExp('(\\s|^)pure-button-disabled(\\s|$)');
+    disableButtonReg = new RegExp('(\\s|^)button-disabled(\\s|$)');
 
 if (agreementChackbox) {
   agreementChackbox.onchange = function() {
     if (agreementChackbox.checked) {
       submitButton.className = submitButton.className.replace(disableButtonReg, ' ');
     } else {
-      submitButton.className += " pure-button-disabled";
+      submitButton.className += " button-disabled";
     }
   }
 }

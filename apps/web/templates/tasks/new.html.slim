@@ -3,7 +3,7 @@
     h2.new-task__title Submit new task
 
     .new-task__import id="import-modal"
-      button.new-task__github-import @click="showModal = true; errorMessage = ''; hasError = false" Export from
+      button.new-task__import-button @click="showModal = true; errorMessage = ''; hasError = false" Export from
 
       modal v-if="showModal" @close="showModal = false"
         div slot="body"
