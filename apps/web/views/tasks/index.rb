@@ -11,7 +11,7 @@ module Web::Views::Tasks
     end
 
     def link_to_new_task
-      link_to 'POST A TASK', routes.new_task_path, class: 'new-task-link'
+      link_to 'POST A TASK', routes.new_task_path, class: 'link'
     end
 
     def status_selected_class(status)

@@ -53,52 +53,6 @@
     display: flex;
     justify-content: space-between;
 
-    .tasks__new {
-
-      .new-task-link {
-        &:link,
-        &:active,
-        &:visited {
-          display: inline-block;
-          vertical-align: top;
-          width: 100%;
-          border-radius: 100px;
-          font-weight: 600;
-          color: #fff;
-          text-decoration: none;
-          position: relative;
-          transition: transform 0.2s;
-          transform: scale(1);
-          padding: 0;
-          background: #00D531;
-          box-shadow: 0 15px 10px -18px #00D531;
-          width: 150px;
-          font-size: 18px;
-          font-weight: 100;
-          padding: 8px 20px;
-          text-align: center;
-        }
-
-        &:hover {
-          transform: scale(1.05);
-        }
-
-        &:before {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          text-align: center;
-          font-size: 0.85em;
-          line-height: 2.75;
-          font-weight: normal;
-          text-transform: lowercase;
-          color: #686868;
-        }
-      }
-
-    }
-
     .pure-menu-selected {
       background-color: #ccc;
 
