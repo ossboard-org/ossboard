@@ -51,7 +51,12 @@
   .tasks__actions {
     margin: 0 0 20px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+
+    .pure-menu-horizontal {
+      width: 680px;
+    }
 
     .pure-menu-selected {
       background-color: #ccc;
