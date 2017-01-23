@@ -22,6 +22,11 @@ RSpec.describe GitHostMatcher do
     it { expect(subject).to eq(nil) }
   end
 
+  context 'when string is github issue, containing dots' do
+    let(:issue_url) { 'https://github.com/hanami/hanami.github.io/issues/663' }
+    it { expect(subject).to eq(org: 'hanami', repo: 'hanami.github.io', issue: '663') }
+  end
+
   context 'when string is gitlab issue' do
     let(:issue_url) { 'https://gitlab.com/hanami/hanami/issues/663' }
     it { expect(subject).to eq(org: 'hanami', repo: 'hanami', issue: '663') }
