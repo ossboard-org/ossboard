@@ -38,7 +38,7 @@
 
     .select-blocks {
       div {
-        width: 45%;
+        width: 49%;
       }
     }
   }
@@ -401,11 +401,18 @@
     border-radius: 2px;
 
     .new-task__errors {
-      position: fixed;
-      margin: 0 2em;
-      right: 0;
-      padding: 10px 20px;
       color: red;
+      margin: 0 0 1em;
+
+      h2 {
+        font-size: 20px;
+        margin-bottom: 0.5em;
+      }
+
+      li {
+        font-size: 16px;
+        margin: 0 0 0 1em;
+      }
     }
 
     label {
