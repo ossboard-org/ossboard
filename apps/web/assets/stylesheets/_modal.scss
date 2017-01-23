@@ -18,12 +18,24 @@
 .modal-container {
   margin: 15% auto;
   width: 50%;
-  padding: 20px 30px;
+  padding: 2em 3em;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
+
+  .modal-body {
+    margin: 1em 0 0;
+
+    form {
+      margin: 1em 0;
+    }
+
+    #issueUrl {
+      width: 100%;
+    }
+  }
 }
 
 .modal-error {

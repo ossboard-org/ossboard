@@ -13,7 +13,7 @@
   }
 
   .new-task {
-    margin: 1em 2%;
+    margin: 1em 2% 2em;
 
     .select-blocks {
       div {
@@ -34,7 +34,7 @@
   }
 
   .new-task {
-    margin: 1em 12%;
+    margin: 1em 12% 3em;
 
     .select-blocks {
       div {
@@ -448,6 +448,7 @@
 
     .agree-checkbox {
       margin: 1em 0 0;
+
       input {
         width: 20px;
       }

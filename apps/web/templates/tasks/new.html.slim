@@ -16,8 +16,8 @@
             form.pure-form id="exportForm"
               input#issueUrl type="text" name="keyword" placeholder="Issue link (github or gitlab)" v-bind:class="{ 'text-danger': hasError }"
             .modal-footer
-              button.pure-button.pure-button-primary.modal-close-button @click="showModal = false" Close
-              input.pure-button.pure-button-primary.modal-submit.button-green v-bind:class="{ 'pure-button-disabled': exportingIssue }" type="submit" value="Export" @click="exportIssue" @click.enter="exportIssue"
+              button.button.button-back.modal-close-button @click="showModal = false" Close
+              input.button.modal-submit v-bind:class="{ 'pure-button-disabled': exportingIssue }" type="submit" value="Export" @click="exportIssue" @click.enter="exportIssue"
 
   .new-task__form
     .new-task__errors
