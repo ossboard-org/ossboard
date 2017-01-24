@@ -1,9 +1,11 @@
 require "dry-matcher"
 
-GITHUB_ISSUE_REGEXP = %r[\.com/([\w-]+)/([\w-]+)/issues/(\d+)].freeze
+GITHUB_ISSUE_REGEXP = %r[\.com/([\w-]+)/([\w.-]+)/issues/(\d+)].freeze
 
 success_case = Dry::Matcher::Case.new(
-  match:   -> value, pattern { value.match(pattern.to_s) && value.match(GITHUB_ISSUE_REGEXP) },
+  match:   -> value, pattern do
+    value.match(pattern.to_s) && value.match(GITHUB_ISSUE_REGEXP)
+  end,
   resolve: -> value do
     match = value.match(GITHUB_ISSUE_REGEXP)
     { org: match[1], repo: match[2], issue: match[3] }
