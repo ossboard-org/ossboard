@@ -9,6 +9,10 @@ For more information read [this](http://www.ossboard.org/about)
 
 Please, read [CONTRIBUTING.md](https://github.com/davydovanton/ossboard/blob/master/CONTRIBUTING.md) file.
 
+## Credits
+
+* @DaZzz for new awesome [design](https://github.com/davydovanton/ossboard/issues/11) :tada:
+
 ## Copyright
 
 Released under MIT License.
