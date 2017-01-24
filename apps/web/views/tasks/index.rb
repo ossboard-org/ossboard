@@ -40,14 +40,14 @@ module Web::Views::Tasks
     end
 
     # TODO: Tests
-    def author_information(author)
+    def author_information(author, task)
       html.div(class: 'task-item__author') do
         text('Posted by')
         a(href: routes.user_path(author.login)) do
           img class: 'task-item__author-avatar', src: author.avatar_url
           text(author.name || author.login)
         end
-        text('3 weeks ago')
+        text(RelativeTime.in_words(task.created_at))
       end
     end
   end

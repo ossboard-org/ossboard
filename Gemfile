@@ -24,6 +24,7 @@ gem 'omniauth-github', github: 'intridea/omniauth-github'
 gem 'slim'
 gem 'hanami-webpack', github: 'samuelsimoes/hanami-webpack'
 gem 'sass'
+gem 'relative_time'
 
 gem 'dry-matcher'
 

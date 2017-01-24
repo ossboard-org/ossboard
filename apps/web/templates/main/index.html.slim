@@ -49,7 +49,7 @@
     - tasks.each do |task|
       li.issues-list-item
         p.issues-list-item__title = task.title
-        span.issues-list-item__date posted 2 days ago
+        span.issues-list-item__date posted #{RelativeTime.in_words(task.created_at)}
         span.issues-list-item__tag = task.lang
         .issues-list-item-open
           = link_to 'Open task', routes.task_path(task.id), class: 'issues-list-item-open__link'

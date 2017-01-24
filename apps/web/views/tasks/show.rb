@@ -21,7 +21,7 @@ module Web::Views::Tasks
           img class: 'task__author-avatar', src: author.avatar_url
           text(author.name || author.login)
         end
-        text('3 weeks ago')
+        text(RelativeTime.in_words(task.created_at))
       end
     end
 

@@ -7,7 +7,7 @@ RSpec.describe Web::Views::Tasks::Show do
   let(:rendered)  { view.render }
   let(:current_user) { User.new(id: 1, name: 'test', email: 'test@ossboard.com') }
   let(:user) { User.new(id: 2, login: 'davydovanton', name: 'test', email: 'test@ossboard.com') }
-  let(:task) { Task.new(id: 1, title: 'task title') }
+  let(:task) { Task.new(id: 1, title: 'task title', created_at: Time.now) }
 
   describe '#title' do
     it { expect(view.title).to eq 'OSSBoard: task title' }
@@ -27,7 +27,7 @@ RSpec.describe Web::Views::Tasks::Show do
           "<img class=\"task__author-avatar\" src=\"\">\n" +
           "test\n" +
           "</a>\n" +
-          "3 weeks ago\n" +
+          "less than a minute\n" +
           "</div>"
       end
     end
@@ -43,7 +43,7 @@ RSpec.describe Web::Views::Tasks::Show do
           "<img class=\"task__author-avatar\" src=\"\">\n" +
           "login\n" +
           "</a>\n" +
-          "3 weeks ago\n" +
+          "less than a minute\n" +
           "</div>"
       end
     end
