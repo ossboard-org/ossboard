@@ -11,7 +11,7 @@ Please, read [CONTRIBUTING.md](https://github.com/davydovanton/ossboard/blob/mas
 
 ## Credits
 
-* @DaZzz for new awesome [design](https://github.com/davydovanton/ossboard/issues/11) :tada:
+* [@DaZzz](https://github.com/DaZzz) for new awesome [design](https://github.com/davydovanton/ossboard/issues/11) :tada:
 
 ## Copyright
 
