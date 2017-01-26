@@ -20,7 +20,7 @@ module Web::Views::Tasks
 
     def task_statuses
       {
-        'in progress' => 'In progress',
+        'in progress' => 'Open',
         'assigned' => 'Assigned',
         'closed' => 'Closed',
         'done' => 'Finished'
