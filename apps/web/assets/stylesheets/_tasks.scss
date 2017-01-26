@@ -21,6 +21,15 @@
       }
     }
   }
+
+  .task-item {
+    .task-item__estimate {
+      text-align: left;
+    }
+    .task-item__complexity {
+      text-align: left;
+    }
+  }
 }
 
 /*
@@ -42,6 +51,15 @@
       }
     }
   }
+
+  .task-item {
+    .task-item__estimate {
+      text-align: right;
+    }
+    .task-item__complexity {
+      text-align: right;
+    }
+  }
 }
 
 
@@ -56,6 +74,10 @@
 
     .pure-menu-horizontal {
       width: 680px;
+
+      a {
+        border-radius: 0;
+      }
     }
 
     .pure-menu-selected {
@@ -115,6 +137,10 @@
   .task-item__info {
     width: 500px;
 
+    a:hover {
+      text-decoration: underline;
+    }
+
     .task-item__title {
       font-size: 22px;
       color: #214CFD;
@@ -151,13 +177,11 @@
 
   .task-item__complexity {
     width: 170px;
-    text-align: right;
     line-height: 55px;
   }
 
   .task-item__estimate {
     width: 265px;
-    text-align: right;
     font-size: 16px;
     color: #9E9E9E;
     vertical-align: middle;
