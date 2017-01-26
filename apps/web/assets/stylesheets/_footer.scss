@@ -6,6 +6,12 @@
   .footer-content {
     padding: 1.5em 5em;
     text-align: center;
+    font-size: 0.7em;
+    color: #758be2;
+
+    span {
+      margin: 0 0.6em;
+    }
 
     .footer-content__link {
       &:link,
@@ -13,7 +19,6 @@
       &:visited {
         color: #fff;
         text-decoration: none;
-        font-size: 0.7em;
       }
 
       &:hover {
