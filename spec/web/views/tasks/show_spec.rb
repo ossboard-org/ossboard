@@ -109,7 +109,7 @@ RSpec.describe Web::Views::Tasks::Show do
 
     context 'when task have issue link' do
       let(:task) { Task.new(id: 1, issue_url: 'github.com') }
-      it { expect(subject).to eq "<span>\n<a href=\"github.com\" target=\"_blank\">Original issue</a>\n • \n</span>" }
+      it { expect(subject).to eq "<span class=\"origin-issue\">\n<a href=\"github.com\" target=\"_blank\">Original issue</a>\n • \n</span>" }
     end
 
     context 'when issue link empty' do
