@@ -20,8 +20,8 @@ RSpec.describe Web::Views::Main::Index do
     after { TaskRepository.new.clear }
 
     it { expect(view.tasks.count).to eq 3 }
-    it { expect(view.tasks.first.title).to eq 'title #7' }
-    it { expect(view.tasks.last.title).to  eq 'title #9' }
+    it { expect(view.tasks.last.title).to eq 'title #7' }
+    it { expect(view.tasks.first.title).to  eq 'title #9' }
   end
 
   describe '#link_to_tasks' do

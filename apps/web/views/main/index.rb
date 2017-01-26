@@ -3,7 +3,7 @@ module Web::Views::Main
     include Web::View
 
     def tasks
-      TaskRepository.new.only_approved.last(3)
+      TaskRepository.new.only_approved.first(3)
     end
 
     def link_to_tasks

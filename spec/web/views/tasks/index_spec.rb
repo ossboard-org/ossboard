@@ -24,7 +24,7 @@ RSpec.describe Web::Views::Tasks::Index do
   end
 
   describe '#task_statuses' do
-    it { expect(view.task_statuses).to eq('in progress' => 'In progress', 'assigned' => 'Assigned', 'closed' => 'Closed', 'done' => 'Finished') }
+    it { expect(view.task_statuses).to eq('in progress' => 'Open', 'assigned' => 'Assigned', 'closed' => 'Closed', 'done' => 'Finished') }
   end
 
   describe '#status_selected_class' do
