@@ -27,7 +27,11 @@ module Web::Views::Tasks
 
     def link_to_original_issue
       return if task.issue_url.nil? || task.issue_url.empty?
-      link_to '(Original issue)', task.issue_url, target: "_blank"
+
+      html.span(class: 'origin-issue') do
+        a 'Original issue', href: task.issue_url, target: "_blank"
+        text(' • ')
+      end
     end
 
     def contact_with_mentor_link
