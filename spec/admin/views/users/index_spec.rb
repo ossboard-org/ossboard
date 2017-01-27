@@ -15,7 +15,7 @@ RSpec.describe Admin::Views::Users::Index do
     after { repo.clear }
 
     it 'returns all users' do
-      expect(view.users).to eq repo.all
+      expect(view.users).to eq repo.all.reverse
     end
   end
 

@@ -16,7 +16,7 @@ RSpec.describe Admin::Views::Tasks::Index do
     after { repo.clear }
 
     it 'returns all tasks' do
-      expect(view.tasks).to eq repo.all
+      expect(view.tasks).to eq repo.all.reverse
     end
   end
 

@@ -3,7 +3,7 @@ module Admin::Views::Tasks
     include Admin::View
 
     def tasks
-      TaskRepository.new.all
+      TaskRepository.new.tasks.order(Sequel.lit('? DESC', :id)).as(Task).to_a
     end
 
     def repository_name(task)

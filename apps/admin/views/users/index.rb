@@ -3,7 +3,7 @@ module Admin::Views::Users
     include Admin::View
 
     def users
-      UserRepository.new.all
+      UserRepository.new.users.order(Sequel.lit('? DESC', :id)).as(User).to_a
     end
 
     def banned_users
