@@ -8,7 +8,17 @@ class UserRepository < Hanami::Repository
   end
 
   def all_from_date(from)
-    users.where("created_at > '#{from}'").where("created_at < '#{Time.now}'").as(User).to_a
+    all_from_date_request(from).as(User).to_a
+  end
+
+  def count_all_from_date(from)
+    result = all_from_date_request(from)
+      .select{ [count(:id), Sequel.lit('created_at::date')] }
+      .group(Sequel.lit('created_at::date'))
+      .order(nil)
+      .to_a
+
+    result.each_with_object({}) {  |users, hsh| hsh[users.created_at] = users.count }
   end
 
   def find_by_login(login)
@@ -25,5 +35,11 @@ class UserRepository < Hanami::Repository
 
   def find_with_tasks(id)
     aggregate(:tasks).where(id: id).as(User).one
+  end
+
+  private
+
+  def all_from_date_request(from)
+    users.where("created_at > '#{from}'").where("created_at < '#{Time.now}'")
   end
 end
