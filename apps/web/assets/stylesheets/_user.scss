@@ -1,10 +1,57 @@
+/*
+ * -- TABLET (AND UP) MEDIA QUERIES --
+ * On tablets and other medium-sized devices, we want to customize some
+ * of the mobile styles.
+ */
+@media (max-width: 48em) {
+  .show-user {
+    margin: 1em 0;
+
+    .show-user__info {
+      margin: 1em 0;
+      width: 100%;
+    }
+
+    .show-user__tasks {
+      width: 100%
+    }
+
+    .tasks {
+      margin: 0;
+    }
+  }
+}
+
+/*
+ * -- DESKTOP (AND UP) MEDIA QUERIES --
+ * On desktops and other large devices, we want to over-ride some
+ * of the mobile and tablet styles.
+ */
+@media (min-width: 48em) {
+  .show-user {
+    margin: 2em 0;
+
+    .show-user__info {
+      width: 30%;
+      margin: 3em 0 1em;
+    }
+
+    .show-user__tasks {
+      width: 60%
+    }
+
+    .tasks {
+     margin: 0 2em;
+    }
+  }
+}
+
+
 .show-user {
-  margin: 100px 8%;
   display: flex;
+  flex-wrap: wrap;
 
   .show-user__info {
-    width: 20%;
-
     .show-user__avatar {
       img {
         max-width: 100%;
@@ -26,13 +73,7 @@
     }
   }
 
-  .show-user__tasks {
-    width: 80%
-  }
-
   .tasks {
-    margin: 0 75px;
-
     .task__title {
       margin: 0 0 30px;
     }
