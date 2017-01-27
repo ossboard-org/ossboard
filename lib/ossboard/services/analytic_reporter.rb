@@ -3,39 +3,47 @@ class AnalyticReporter
     {
       labels: last_month_list.map(&:to_s),
       tasks: {
-        in_progress: last_month_list.map { |day| in_progress_tasks_by_day[day]&.count || 0 },
-        assigned: last_month_list.map { |day| assigned_tasks_by_day[day]&.count || 0 },
-        closed: last_month_list.map { |day| closed_tasks_by_day[day]&.count || 0 },
-        done: last_month_list.map { |day| complited_tasks_by_day[day]&.count || 0 }
+        in_progress: count_days(in_progress_tasks_by_day),
+        assigned: count_days(assigned_tasks_by_day),
+        closed: count_days(closed_tasks_by_day),
+        done: count_days(complited_tasks_by_day)
       },
-      users: last_month_list.map { |day| users_by_days[day]&.count || 0 }
+      users: count_days(users_by_days)
     }
   end
 
   private
+
+  def count_days(collection)
+    last_month_list.map { |day| collection[day]&.count || 0 }
+  end
 
   def users_by_days
     @users_by_days ||= UserRepository.new.all_from_date(ONE_MONTH_AGO).group_by{ |u| u.created_at.to_date }
   end
 
   def closed_tasks_by_day
-    @closed_tasks_by_day ||= task_repo.all_from_date(ONE_MONTH_AGO, Task::VALID_STATUSES[:closed])
-      .group_by{ |task| task.created_at.to_date }
+    tasks_by_status_and_day.fetch(Task::VALID_STATUSES[:closed], {})
   end
 
   def assigned_tasks_by_day
-    @assigned_tasks_by_day ||= task_repo.all_from_date(ONE_MONTH_AGO, Task::VALID_STATUSES[:assigned])
-      .group_by{ |task| task.created_at.to_date }
+    tasks_by_status_and_day.fetch(Task::VALID_STATUSES[:assigned], {})
   end
 
   def in_progress_tasks_by_day
-    @in_progress_tasks_by_day ||= task_repo.all_from_date(ONE_MONTH_AGO, Task::VALID_STATUSES[:in_progress])
-      .group_by{ |task| task.created_at.to_date }
+    tasks_by_status_and_day.fetch(Task::VALID_STATUSES[:in_progress], {})
   end
 
   def complited_tasks_by_day
-    @complited_tasks_by_day ||= task_repo.all_from_date(ONE_MONTH_AGO, Task::VALID_STATUSES[:done])
-      .group_by{ |task| task.created_at.to_date }
+    tasks_by_status_and_day.fetch(Task::VALID_STATUSES[:done], {})
+  end
+
+  def tasks_by_status_and_day
+    return @tasks_by_status_and_day if @tasks_by_status_and_day
+    @tasks_by_status_and_day = task_repo.all_from_date(ONE_MONTH_AGO).group_by(&:status)
+    @tasks_by_status_and_day.each do |k, v|
+      @tasks_by_status_and_day[k] = v.group_by { |task| task.created_at.to_date }
+    end
   end
 
   def last_month_list
