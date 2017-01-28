@@ -138,6 +138,25 @@ RSpec.describe TaskRepository do
       Timecop.freeze(Time.now + (2 * 60 * 60 * 24)) { Fabricate.create(:task) }
     end
 
+    describe '#all_from_date_counted_by_status_and_day' do
+      before(:all) do
+        3.times do |i|
+          Timecop.freeze(Time.utc(2016, 02, 20 + i)) do
+            Fabricate.create(:task, status: 'done')
+            Fabricate.create(:task, status: 'in progress')
+            Fabricate.create(:task, status: 'closed')
+            Fabricate.create(:task, status: 'assigned')
+          end
+        end
+      end
+
+      let (:result) { repo.all_from_date_counted_by_status_and_day(Time.new(2016, 02, 20)) }
+
+      it { expect(result).to be_a(Hash) }
+      it { expect(result['done'].count).to eq 2 }
+      it { expect(result.dig('closed', Date.new(2016, 02, 22))).to eq 1 }
+    end
+
     after(:all) { TaskRepository.new.clear }
 
     let(:date) { Date.new(2016, 02, 18) }

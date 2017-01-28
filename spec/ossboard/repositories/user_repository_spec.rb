@@ -42,6 +42,24 @@ RSpec.describe UserRepository do
     it { expect(repo.all_from_date(date).count).to eq 3 }
   end
 
+  describe '#count_all_from_date' do
+    before do
+      Timecop.freeze(Time.utc(2016, 02, 16)) { Fabricate.create(:user) }
+      Timecop.freeze(Time.utc(2016, 02, 19)) { Fabricate.create(:user) }
+      Timecop.freeze(Time.utc(2016, 02, 20)) do
+        Fabricate.create(:user)
+        Fabricate.create(:user)
+      end
+    end
+
+    let(:date) { Date.new(2016, 02, 17) }
+    let(:result) { repo.count_all_from_date(date) }
+
+    it { expect(result).to be_a(Hash) }
+    it { expect(result[Date.new(2016, 02, 16)]).to be nil }
+    it { expect(result[Date.new(2016, 02, 20)]).to eq 2 }
+  end
+
   describe '#find_by_login_with_tasks' do
     let(:task_repo) { TaskRepository.new }
 
