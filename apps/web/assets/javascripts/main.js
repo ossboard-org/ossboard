@@ -7,7 +7,7 @@ import "!style-loader!css-loader!../stylesheets/share_buttons.css";
 
 window.onload = function () {
   var taskTitleTag = document.getElementById('task_title');
-  var taskTitle = taskTitleTag.textContent || taskTitleTag.innerText;
+  var taskTitle = (taskTitleTag.textContent || taskTitleTag.innerText) + ' #ossboard';
   var config = {
     ui: {
       buttonText: '',
