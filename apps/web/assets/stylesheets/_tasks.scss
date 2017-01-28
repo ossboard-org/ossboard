@@ -152,6 +152,11 @@
       a:visited {
         color: #214CFD;
       }
+
+      a:hover {
+        text-decoration: none;
+        color: #FD2121;
+      }
     }
 
     .task-item__author {
