@@ -27,13 +27,15 @@ RSpec.describe AnalyticReporter do
 
     context 'when users was created' do
       before do
-        Timecop.freeze(Time.now - 60) do
+        Timecop.freeze(Time.now.utc - 60) do
           3.times { Fabricate.create(:user) }
         end
+        Timecop.freeze(Time.now.utc)
       end
 
       after do
         UserRepository.new.clear
+        Timecop.return
       end
 
       it 'returns array with user count' do
@@ -45,7 +47,6 @@ RSpec.describe AnalyticReporter do
   end
 
   context 'tasks information' do
-
     it 'returns empty arrays for each task statuse' do
       tasks = subject[:tasks]
 
@@ -64,16 +65,18 @@ RSpec.describe AnalyticReporter do
 
     context 'when users was created' do
       before do
-        Timecop.freeze(Time.now - 60) do
+        Timecop.freeze(Time.now.utc - 60) do
           Fabricate.create(:task, status: 'in progress')
           Fabricate.create(:task, status: 'assigned')
           Fabricate.create(:task, status: 'done')
           Fabricate.create(:task, status: 'closed')
         end
+        Timecop.freeze(Time.now.utc)
       end
 
       after do
         TaskRepository.new.clear
+        Timecop.return
       end
 
       it 'returns arrays with task counts' do
