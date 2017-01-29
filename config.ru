@@ -15,6 +15,7 @@ end
 if Hanami.env?(:development)
   require 'rack-mini-profiler'
 
+  Rack::MiniProfiler.config.disable_caching = false
   Rack::MiniProfiler.config.storage = Rack::MiniProfiler::FileStore
   Rack::MiniProfiler.config.storage_options = { path: './tmp' }
   Rack::MiniProfiler.profile_method(Hanami::View::Rendering::Partial, :render) { "Render partial #{@options[:partial]}" }

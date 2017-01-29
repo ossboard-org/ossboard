@@ -12,18 +12,6 @@ RSpec.describe Web::Views::Main::Index do
     it { expect(view.title).to eq 'OSSBoard' }
   end
 
-  describe '#tasks' do
-    before do
-      10.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true) }
-    end
-
-    after { TaskRepository.new.clear }
-
-    it { expect(view.tasks.count).to eq 3 }
-    it { expect(view.tasks.last.title).to eq 'title #7' }
-    it { expect(view.tasks.first.title).to  eq 'title #9' }
-  end
-
   describe '#link_to_tasks' do
     it 'returns link to all tasks' do
       expect(view.link_to_tasks.to_s).to eq '<a class="issues-all__link" href="/tasks">View all</a>'

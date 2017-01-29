@@ -2,10 +2,6 @@ module Web::Views::Main
   class Index
     include Web::View
 
-    def tasks
-      TaskRepository.new.only_approved.first(3)
-    end
-
     def link_to_tasks
       link_to 'View all', routes.tasks_path, class: 'issues-all__link'
     end
