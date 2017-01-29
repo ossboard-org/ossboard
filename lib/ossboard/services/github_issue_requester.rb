@@ -1,4 +1,4 @@
-require "net/https"
+require_relative '../../get_request'
 
 class GithubIssueRequester
   def self.call(params)
@@ -34,12 +34,6 @@ class GithubIssueRequester
   GITHUB_ISSUE_API_URL = 'https://api.github.com/repos/%{org}/%{repo}/issues/%{issue}'.freeze
 
   def get_response(url)
-    uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    request = Net::HTTP::Get.new(uri.request_uri)
-    http.request(request)
+    GetRequest.new.call(url)
   end
 end

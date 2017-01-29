@@ -1,4 +1,4 @@
-require "net/https"
+require_relative '../../get_request'
 
 class GitlabIssueRequester
   def self.call(params)
@@ -13,7 +13,7 @@ class GitlabIssueRequester
     issue_data = JSON.parse(issue_response.body)
 
     return parse_errors(issue_response) unless issue_response.is_a?(Net::HTTPSuccess)
-    return ERROR_HASH unless issue_data.is_a?(Array) && issue_data.size == 1
+    return ERROR_HASH unless Array(issue_data).size == 1
 
     issue_data = issue_data.first
 
@@ -33,27 +33,19 @@ class GitlabIssueRequester
   GITLAB_REPO_API_URL = 'https://gitlab.com/api/v3/projects/%{org}%%2F%{repo}'.freeze
   GITLAB_ISSUE_API_URL = 'https://gitlab.com/api/v3/projects/%{org}%%2F%{repo}/issues/?iid=%{issue}'.freeze
 
+  MESSAGE_KEY = 'message'.freeze
   ERROR_HASH = { error: 'invalid url' }.freeze
   ERROR_UNATHORIZED_HASH = { error: 'Unauthorized' }.freeze
 
   def parse_errors(issue_response)
     response_data = JSON.parse(issue_response.body)
-    if response_data.is_a?(Hash) && response_data["message"]&.include?("Unauthorized")
-      ERROR_UNATHORIZED_HASH
-    else
-      ERROR_HASH
-    end
+    response_data.fetch(MESSAGE_KEY, {}).include?("Unauthorized") ?
+      ERROR_UNATHORIZED_HASH : ERROR_HASH
   end
 
   def get_response(url)
-    uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request['PRIVATE-TOKEN'] = ENV['GITLAB_PRIVATE_TOKEN']
-
-    http.request(request)
+    GetRequest.new.call(url) do |request|
+      request['PRIVATE-TOKEN'] = ENV['GITLAB_PRIVATE_TOKEN']
+    end
   end
 end
