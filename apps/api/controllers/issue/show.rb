@@ -17,7 +17,7 @@ module Api::Controllers::Issue
     def match_host(issue_url)
       GitHostMatcher.(issue_url) do |m|
         m.success(:github) { |issue_data| GithubIssueRequester.(issue_data) }
-        m.success(:gitlab) { { error: 'Sorry, but gitlab is not supported now' } }
+        m.success(:gitlab) { |issue_data| GitlabIssueRequester.(issue_data) }
         m.failure { { error: 'invalid url' } }
       end
     end
