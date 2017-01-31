@@ -38,25 +38,6 @@ window.onload = function () {
   var share = new ShareButton('.task__share-js', config);
 }
 
-var for_dev = new Vue({
-  el: '#for-dev',
-  data: {
-    forDevelopers: true,
-    forMaintainers: false
-  },
-  methods: {
-    displayForDevelopers: function () {
-      this.forDevelopers = true
-      this.forMaintainers = false
-    },
-
-    displayForMaintainers: function () {
-      this.forDevelopers = false
-      this.forMaintainers = true
-    }
-  }
-})
-
 Vue.component('modal', {
   template: '#modal-template',
 })
@@ -167,22 +148,22 @@ if (document.getElementById("task-body")) {
   })
 }
 
-if (document.getElementById("leaderboard")) {
+if (document.getElementById("js-switcher")) {
   new Vue({
-    el: '#leaderboard',
+    el: '#js-switcher',
     data: {
-      topDevelopers: true,
-      topMaintainers: false
+      firstCase: true,
+      secondCase: false
     },
     methods: {
-      displayTopDevelopers: function () {
-        this.topDevelopers = true
-        this.topMaintainers = false
+      displayFirstCase: function () {
+        this.firstCase = true
+        this.secondCase = false
       },
 
-      displayTopMaintainers: function () {
-        this.topDevelopers = false
-        this.topMaintainers = true
+      displaySecondCase: function () {
+        this.firstCase = false
+        this.secondCase = true
       }
     }
   })

@@ -1,22 +1,22 @@
-#leaderboard.leaderboard.main-content
+#js-switcher.leaderboard.main-content
   .leaderboard__title
     h2 Leaderboard
 
   .leaderboard__switch
     .leaderboard__switch-item
-      button.leaderboard__switch-item-link v-bind:class="{ 'leaderboard__switch-item-link_active': topDevelopers }"  v-on:click="displayTopDevelopers" Top contributors
+      button.leaderboard__switch-item-link v-bind:class="{ 'leaderboard__switch-item-link_active': firstCase }"  v-on:click="displayFirstCase" Top contributors
     .leaderboard__switch-item
-      button.leaderboard__switch-item-link v-bind:class="{ 'leaderboard__switch-item-link_active': topMaintainers }"  v-on:click="displayTopMaintainers" Top maintainers
+      button.leaderboard__switch-item-link v-bind:class="{ 'leaderboard__switch-item-link_active': secondCase }"  v-on:click="displaySecondCase" Top maintainers
 
   .leaderboard__list
-    .leaderboard__contributors v-if="topDevelopers"
+    .leaderboard__contributors v-if="firstCase"
       - users.each_with_index do |user, i|
         .user-row
           .user-row__rank = i + 1
           = user_information(user)
           .user-row__points 0
 
-    .leaderboard__maintainers v-if="topMaintainers"
+    .leaderboard__maintainers v-if="secondCase"
       - users.each_with_index do |user, i|
         .user-row
           .user-row__rank = i + 1
