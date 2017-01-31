@@ -166,3 +166,24 @@ if (document.getElementById("task-body")) {
     }
   })
 }
+
+if (document.getElementById("leaderboard")) {
+  new Vue({
+    el: '#leaderboard',
+    data: {
+      topDevelopers: true,
+      topMaintainers: false
+    },
+    methods: {
+      displayTopDevelopers: function () {
+        this.topDevelopers = true
+        this.topMaintainers = false
+      },
+
+      displayTopMaintainers: function () {
+        this.topDevelopers = false
+        this.topMaintainers = true
+      }
+    }
+  })
+}

@@ -9,6 +9,53 @@
   }
 
   .leaderboard__switch {
+    font-size: 0;
+    text-align: center;
+
+    .leaderboard__switch-item {
+      font-size: 20px;
+      display: inline-block;
+      vertical-align: top;
+      margin: 0.6em 0;
+    }
+
+    button.leaderboard__switch-item-link {
+    }
+
+    .leaderboard__switch-item-link,
+    .leaderboard__switch-item-link:link,
+    .leaderboard__switch-item-link:active,
+    .leaderboard__switch-item-link:visited {
+      cursor: pointer;
+      background: none;
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+      font-size: 0.7em;
+      line-height: 3.28;
+      text-decoration: none;
+      border: 1px solid #214CFD;
+      color: #214CFD;
+      width: 10.5em;
+    }
+    .leaderboard__switch-item-link:hover {
+      background: #FD2121;
+      border-color: #FD2121;
+      color: #fff;
+    }
+    .leaderboard__switch-item-link_active,
+    .leaderboard__switch-item-link_active:hover {
+      background: #214CFD;
+      border-color: #214CFD;
+      color: #fff;
+      cursor: default;
+    }
+    .leaderboard__switch-item:first-child .leaderboard__switch-item-link {
+      border-radius: 100px 0 0 100px;
+    }
+    .leaderboard__switch-item:last-child .leaderboard__switch-item-link {
+      border-radius: 0 100px 100px 0;
+    }
   }
 
   .leaderboard__list {
@@ -16,6 +63,12 @@
     box-shadow: 0 0 1px 0 rgba(43, 59, 124, 0.18), 0 1px 3px 0 rgba(43, 59, 125, 0.14);
     border-radius: 2px;
     margin: 20px 0;
+
+    a:link,
+    a:active,
+    a:visited {
+      color: #214CFD;
+    }
 
     .leaderboard__contributors {
     }
@@ -33,6 +86,10 @@
     &:hover {
       background: #244FFE;
       color: #fff;
+
+      a {
+        color: #fff;
+      }
     }
 
     .user-row__rank {
