@@ -1,4 +1,21 @@
 .leaderboard.main-content
-  - users.each do |user|
-    div
-      = user.login
+  .leaderboard__title
+    h2 Leaderboard
+
+  .leaderboard__switch
+
+  .leaderboard__list
+    .leaderboard__contributors
+      - users.each_with_index do |user, i|
+        .user-row
+          .user-row__rank = i + 1
+          .user-row__name
+
+            img.user-row__avatar src=user.avatar_url
+            = user.login
+          .user-row__points 0
+
+    /.leaderboard__maintainers
+    /  - users.each do |user|
+    /    div
+    /      = user.login

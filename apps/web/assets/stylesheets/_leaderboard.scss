@@ -1,2 +1,54 @@
 .leaderboard {
+  width: 700px;
+  margin: 2em auto;
+
+  .leaderboard__title {
+    h2 {
+      text-align: center;
+    }
+  }
+
+  .leaderboard__switch {
+  }
+
+  .leaderboard__list {
+    background: #FFFFFF;
+    box-shadow: 0 0 1px 0 rgba(43, 59, 124, 0.18), 0 1px 3px 0 rgba(43, 59, 125, 0.14);
+    border-radius: 2px;
+    margin: 20px 0;
+
+    .leaderboard__contributors {
+    }
+
+    .leaderboard__maintainers {
+    }
+  }
+
+  .user-row {
+    padding: 1em 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &:hover {
+      background: #244FFE;
+      color: #fff;
+    }
+
+    .user-row__rank {
+      margin-right: 1em;
+    }
+
+    .user-row__name {
+      flex-grow: 1;
+    }
+
+    .user-row__avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 100px;
+      margin: 0px 0.4em -5px 0;
+    }
+  }
 }
+
