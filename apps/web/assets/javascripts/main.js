@@ -168,3 +168,14 @@ if (document.getElementById("js-switcher")) {
     }
   })
 }
+
+if (document.getElementById("task-status-select")) {
+  new Vue({
+    el: '#task-status-select',
+    methods: {
+      changeItem(event) {
+        window.location = "/tasks?status=" + event.target.value;
+      }
+    }
+  })
+}
