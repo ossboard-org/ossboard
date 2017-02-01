@@ -48,6 +48,7 @@ module Web::Views::Tasks
           text(author.name || author.login)
         end
         text(RelativeTime.in_words(task.created_at))
+        text(" • #{task.lang}")
       end
     end
   end
