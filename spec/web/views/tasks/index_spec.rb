@@ -81,5 +81,18 @@ RSpec.describe Web::Views::Tasks::Index do
         "</select>"
       end
     end
+
+    context 'when tasks status is closed and user registered' do
+      let(:exposures) { { params: { status: 'moderation' }, current_user: User.new(id: 1) } }
+      it 'returns select form' do
+        expect(view.select_tasks_by_status.to_s).to eq "<select id=\"task-status-select\" @change=\"changeItem($event)\">\n" +
+          "<option value=\"in progress\">Open</option>\n" +
+          "<option value=\"assigned\">Assigned</option>\n" +
+          "<option value=\"closed\">Closed</option>\n" +
+          "<option value=\"done\">Finished</option>\n" +
+          "<option value=\"moderation\" selected=\"selected\">On moderation</option>\n" +
+        "</select>"
+      end
+    end
   end
 end

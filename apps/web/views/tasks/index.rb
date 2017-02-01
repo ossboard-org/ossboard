@@ -38,7 +38,7 @@ module Web::Views::Tasks
     def select_tasks_by_status
       html.select(id: "task-status-select", '@change': "changeItem($event)") do
         task_statuses.each { |status, text| option(text, value: status, selected: status == tasks_status) }
-        option 'On moderation', value: "moderation" if current_user.registred?
+        option('On moderation', value: "moderation", selected: tasks_status == 'moderation') if current_user.registred?
       end
     end
 
