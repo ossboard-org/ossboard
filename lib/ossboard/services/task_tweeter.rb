@@ -1,11 +1,13 @@
 class TaskTwitter
-   def self.call(task)
+  def self.call(task)
     new.call(task)
   end
 
   def call(task)
     tweet text(task)
   end
+
+  private
 
   def link_to_task(task_id)
     "http://www.ossboard.org/tasks/#{task_id}"
@@ -19,18 +21,9 @@ class TaskTwitter
     "#{title} #{tag_and_link}"
   end
 
-  def twitter_client
-    Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
-      config.consumer_secret     = ENV["TWITTER_CONSUMER_SECRET"]
-      config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
-      config.access_token_secret = ENV["TWITTER_ACCESS_SECRET"]
-    end
-  end
-
   def tweet(text)
-    return unless Hanami.env?(:production)
-    twitter_client.update(text)
+    return text unless Hanami.env?(:production)
+    TWITTER_CLIENT.update(text)
   end
 
   # Keep extra 5 symbols for spaces and ...
