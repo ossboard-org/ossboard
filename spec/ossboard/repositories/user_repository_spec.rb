@@ -76,19 +76,6 @@ RSpec.describe UserRepository do
     it { expect(subject.tasks.count).to eq 1 }
   end
 
-  describe '#find_by_uuid' do
-    context 'when user exist with uuid' do
-      before { Fabricate.create(:user, uuid: 'test') }
-
-      it { expect(repo.find_by_uuid('test')).to be_a User }
-      it { expect(repo.find_by_uuid('test').uuid).to eq 'test' }
-    end
-
-    context 'when user not exist with uuid' do
-      it { expect(repo.find_by_uuid('test2')).to eq nil }
-    end
-  end
-
   describe '#find_with_tasks' do
     let(:task_repo) { TaskRepository.new }
 

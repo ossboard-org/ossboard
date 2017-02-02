@@ -81,7 +81,6 @@ RSpec.describe Auth::Controllers::Sessions::Create do
       expect(action.session[:current_user].name).to eq "Anton Davydov"
       expect(action.session[:current_user].email).to eq "mail@davydovanton.com"
       expect(action.session[:current_user].bio).to eq "Indie OSS developer"
-      expect(action.session[:current_user].uuid).to eq uuid
 
       expect(action.session[:account]).to be_a Account
       expect(action.session[:account].uid).to eq uuid
@@ -92,7 +91,7 @@ RSpec.describe Auth::Controllers::Sessions::Create do
   context 'when user and account exist' do
     before do
       user = Fabricate.create(:user,
-        uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3",
+        login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3",
         name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer")
       account_repo.create(user_id: user.id, uid: uuid)
     end
@@ -113,7 +112,6 @@ RSpec.describe Auth::Controllers::Sessions::Create do
       expect(action.session[:current_user].name).to eq "Anton Davydov"
       expect(action.session[:current_user].email).to eq "mail@davydovanton.com"
       expect(action.session[:current_user].bio).to eq "Indie OSS developer"
-      expect(action.session[:current_user].uuid).to eq uuid
 
       expect(action.session[:account]).to be_a Account
       expect(action.session[:account].uid).to eq uuid
@@ -123,7 +121,7 @@ RSpec.describe Auth::Controllers::Sessions::Create do
   context 'when user exist and account does not exist' do
     before do
       @user = Fabricate.create(:user,
-        uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3",
+        login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3",
         name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer")
     end
 
@@ -143,7 +141,6 @@ RSpec.describe Auth::Controllers::Sessions::Create do
       expect(action.session[:current_user].name).to eq "Anton Davydov"
       expect(action.session[:current_user].email).to eq "mail@davydovanton.com"
       expect(action.session[:current_user].bio).to eq "Indie OSS developer"
-      expect(action.session[:current_user].uuid).to eq uuid
 
       expect(action.session[:account]).to be_a Account
       expect(action.session[:account].uid).to eq uuid

@@ -30,10 +30,6 @@ class UserRepository < Hanami::Repository
     aggregate(:tasks).where(login: login).as(User).first
   end
 
-  def find_by_uuid(uuid)
-    users.where(uuid: uuid).as(User).first
-  end
-
   def find_with_tasks(id)
     aggregate(:tasks).where(id: id).as(User).one
   end
