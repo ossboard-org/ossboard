@@ -10,20 +10,25 @@ module Auth::Controllers::Sessions
 
       account = account_repo.find_by_uid(omniauth_params['uid']) || account_repo.create(account_params)
 
-      unless user = account.user
-        user = user_repo.find_by_login(user_params[:login]) || user_repo.create(user_params)
-        account_repo.update(account.id, user_id: user.id)
-
+      unless account.user
+        account_repo.update(account.id, user_id: finded_user_by_login.id)
         account = account_repo.find(account.id)
       end
 
-      session[:account] = account
-      session[:current_user] = user
-
+      set_session(account)
       redirect_to session[:current_path] || '/'
     end
 
     private
+
+    def set_session(account)
+      session[:account] = account
+      session[:current_user] = account.user
+    end
+
+    def finded_user_by_login
+      @finded_user_by_login ||= user_repo.find_by_login(user_params[:login]) || user_repo.create(user_params)
+    end
 
     def user_bloked?(omniauth_params)
       BlokedUserRepository.new.exist?(omniauth_params['extra']['raw_info']['login'])
