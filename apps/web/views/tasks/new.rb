@@ -106,7 +106,7 @@ module Web::Views::Tasks
 
     def validation_errors
       params.error_messages.map do |error|
-        error.gsub(/Md Body/, "Body")
+        error.sub(/Md Body/, "Body")
       end
     end
 
