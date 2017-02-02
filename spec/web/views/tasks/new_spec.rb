@@ -18,4 +18,15 @@ RSpec.describe Web::Views::Tasks::New do
   describe 'nav bar actions' do
     it { expect(view.tasks_active?).to be true }
   end
+
+  describe '#validation_errors' do
+    let(:exposures) do
+      Hash[params: double(error_messages: ['Md Body must be filled', 'Title must be filled'])]
+    end
+
+    subject { view.validation_errors }
+
+    it { expect(subject).to include('Body must be filled') }
+    it { expect(subject).to include('Title must be filled') }
+  end
 end
