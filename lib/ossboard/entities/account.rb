@@ -1,9 +1,10 @@
 class Account < Hanami::Entity
+  attr_reader :attributes
+
   def registred?
     !!id
   end
 
-  # TODO: Tests
   def user=(user)
     attributes[:user] = user
   end
@@ -11,8 +12,4 @@ class Account < Hanami::Entity
   def user
     attributes[:user] || UserRepository.new.find(user_id)
   end
-
-private
-
-  attr_reader :attributes
 end
