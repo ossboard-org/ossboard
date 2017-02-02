@@ -105,9 +105,7 @@ module Web::Views::Tasks
     end
 
     def validation_errors
-      params.error_messages.map do |error|
-        error.sub(/Md Body/, "Body")
-      end
+      params.error_messages.map { |e| e.sub(MD_BODY_REGEXP, 'Body'.freeze) }
     end
 
     def task_form
@@ -117,5 +115,9 @@ module Web::Views::Tasks
     def tasks_active?
       true
     end
+
+  private
+
+    MD_BODY_REGEXP = /Md Body/
   end
 end
