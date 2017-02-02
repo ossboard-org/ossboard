@@ -104,6 +104,12 @@ module Web::Views::Tasks
       end
     end
 
+    def validation_errors
+      params.error_messages.map do |error|
+        error.gsub(/Md Body/, "Body")
+      end
+    end
+
     def task_form
       Form.new(:task, routes.tasks_path, {}, { method: :post })
     end

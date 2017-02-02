@@ -25,7 +25,7 @@
         .wrap-errors
           h2 Errors:
           ul
-            - params.error_messages.each do |error|
+            - validation_errors.each do |error|
               li
                 = error
 
