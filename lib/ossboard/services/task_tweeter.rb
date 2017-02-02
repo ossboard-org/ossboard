@@ -10,7 +10,7 @@ class TaskTwitter
   private
 
   def link_to_task(task_id)
-    "http://www.ossboard.org/tasks/#{task_id}"
+    UrlShortener.call("http://www.ossboard.org/tasks/#{task_id}")
   end
 
   def text(task)
