@@ -5,9 +5,14 @@ RSpec.describe Auth::Controllers::Sessions::Create do
   let(:params) { Hash[ 'omniauth.auth' => onmiauth_hash ] }
   let(:uuid) { '1147484' }
   let(:repo) { UserRepository.new }
+  let(:accunt_repo) { AccountRepository.new }
   let(:onmiauth_hash) do
     {
       "uid"=>uuid,
+      "credentials"=>{
+        "token"=>"24b133c1f6f0366de9e74f37c7c057926f",
+        "expires"=>false
+      },
       "extra"=> {
         "raw_info"=> {
           "login"=>"davydovanton",
@@ -51,13 +56,19 @@ RSpec.describe Auth::Controllers::Sessions::Create do
     }
   end
 
-  after { repo.clear }
+  after do
+    repo.clear
+    accunt_repo.clear
+  end
 
   it { expect(action.call(params)).to redirect_to('/') }
 
   context 'when user not exist' do
-    it 'creates a new user' do
+    it 'creates a new user and account' do
       expect { action.call(params) }.to change { repo.all.count }.by(1)
+      expect { action.call(params) }.to change { accunt_repo.all.count }.by(1)
+
+      expect(accunt_repo.last.user).to eq repo.last
     end
 
     it 'sets current_user session' do
@@ -69,11 +80,17 @@ RSpec.describe Auth::Controllers::Sessions::Create do
       expect(action.session[:current_user].email).to eq "mail@davydovanton.com"
       expect(action.session[:current_user].bio).to eq "Indie OSS developer"
       expect(action.session[:current_user].uuid).to eq uuid
+
+      expect(action.session[:account]).to be_a Account
+      expect(action.session[:account].uid).to eq uuid
+      expect(action.session[:account].token).to eq '24b133c1f6f0366de9e74f37c7c057926f'
     end
   end
 
   context 'when user exist' do
-    before { Fabricate.create(:user, uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3", name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer") }
+    before do
+      Fabricate.create(:user, uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3", name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer")
+    end
 
     it 'does not create a new user' do
       expect { action.call(params) }.to change { repo.all.count }.by(0)
