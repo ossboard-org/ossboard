@@ -13,6 +13,8 @@ module Auth::Controllers::Sessions
       unless user = account.user
         user = user_repo.find_by_login(user_params[:login]) || user_repo.create(user_params)
         account_repo.update(account.id, user_id: user.id)
+
+        account = account_repo.find(account.id)
       end
 
       session[:account] = account

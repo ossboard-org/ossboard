@@ -5,7 +5,7 @@ RSpec.describe Auth::Controllers::Sessions::Create do
   let(:params) { Hash[ 'omniauth.auth' => onmiauth_hash ] }
   let(:uuid) { '1147484' }
   let(:repo) { UserRepository.new }
-  let(:accunt_repo) { AccountRepository.new }
+  let(:account_repo) { AccountRepository.new }
   let(:onmiauth_hash) do
     {
       "uid"=>uuid,
@@ -58,17 +58,19 @@ RSpec.describe Auth::Controllers::Sessions::Create do
 
   after do
     repo.clear
-    accunt_repo.clear
+    account_repo.clear
   end
 
   it { expect(action.call(params)).to redirect_to('/') }
 
   context 'when user not exist' do
-    it 'creates a new user and account' do
+    it 'creates a new user' do
       expect { action.call(params) }.to change { repo.all.count }.by(1)
-      expect { action.call(params) }.to change { accunt_repo.all.count }.by(1)
+    end
 
-      expect(accunt_repo.last.user).to eq repo.last
+    it 'creates a new account' do
+      expect { action.call(params) }.to change { account_repo.all.count }.by(1)
+      expect(account_repo.last.user).to eq repo.last
     end
 
     it 'sets current_user session' do
@@ -87,16 +89,23 @@ RSpec.describe Auth::Controllers::Sessions::Create do
     end
   end
 
-  context 'when user exist' do
+  context 'when user and account exist' do
     before do
-      Fabricate.create(:user, uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3", name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer")
+      user = Fabricate.create(:user,
+        uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3",
+        name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer")
+      account_repo.create(user_id: user.id, uid: uuid)
     end
 
     it 'does not create a new user' do
       expect { action.call(params) }.to change { repo.all.count }.by(0)
     end
 
-    it 'sets current_user session' do
+    it 'does not create a new account' do
+      expect { action.call(params) }.to change { account_repo.all.count }.by(0)
+    end
+
+    it 'sets current_user and account sessions' do
       action.call(params)
       expect(action.session[:current_user]).to be_a User
       expect(action.session[:current_user].login).to eq "davydovanton"
@@ -105,6 +114,41 @@ RSpec.describe Auth::Controllers::Sessions::Create do
       expect(action.session[:current_user].email).to eq "mail@davydovanton.com"
       expect(action.session[:current_user].bio).to eq "Indie OSS developer"
       expect(action.session[:current_user].uuid).to eq uuid
+
+      expect(action.session[:account]).to be_a Account
+      expect(action.session[:account].uid).to eq uuid
+    end
+  end
+
+  context 'when user exist and account does not exist' do
+    before do
+      @user = Fabricate.create(:user,
+        uuid: uuid, login: "davydovanton", avatar_url: "https://avatars.githubusercontent.com/u/1147484?v=3",
+        name: "Anton Davydov", email: "mail@davydovanton.com", bio: "Indie OSS developer")
+    end
+
+    it 'does not create a new user' do
+      expect { action.call(params) }.to change { repo.all.count }.by(0)
+    end
+
+    it 'creates a new account' do
+      expect { action.call(params) }.to change { account_repo.all.count }.by(1)
+    end
+
+    it 'sets current_user and account sessions' do
+      action.call(params)
+      expect(action.session[:current_user]).to be_a User
+      expect(action.session[:current_user].login).to eq "davydovanton"
+      expect(action.session[:current_user].avatar_url).to eq "https://avatars.githubusercontent.com/u/1147484?v=3"
+      expect(action.session[:current_user].name).to eq "Anton Davydov"
+      expect(action.session[:current_user].email).to eq "mail@davydovanton.com"
+      expect(action.session[:current_user].bio).to eq "Indie OSS developer"
+      expect(action.session[:current_user].uuid).to eq uuid
+
+      expect(action.session[:account]).to be_a Account
+      expect(action.session[:account].uid).to eq uuid
+      expect(action.session[:account].token).to eq '24b133c1f6f0366de9e74f37c7c057926f'
+      expect(action.session[:account].user).to eq @user
     end
   end
 
@@ -114,6 +158,7 @@ RSpec.describe Auth::Controllers::Sessions::Create do
 
     it 'creates a new user' do
       expect { action.call(params) }.to change { repo.all.count }.by(0)
+      expect { action.call(params) }.to change { account_repo.all.count }.by(0)
     end
 
     it 'sets current_user session' do
