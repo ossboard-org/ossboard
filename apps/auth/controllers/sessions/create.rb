@@ -8,9 +8,14 @@ module Auth::Controllers::Sessions
         redirect_to '/'
       end
 
-      user = user_repo.find_by_uuid(omniauth_params['uid']) || user_repo.create(user_params)
+      account = account_repo.find_by_uid(omniauth_params['uid']) || account_repo.create(account_params)
 
-      session[:account] = AccountRepository.new.create(account_params(user))
+      unless user = account.user
+        user = user_repo.find_by_login(user_params[:login]) || user_repo.create(user_params)
+        account_repo.update(account.id, user_id: user.id)
+      end
+
+      session[:account] = account
       session[:current_user] = user
 
       redirect_to session[:current_path] || '/'
@@ -24,6 +29,10 @@ module Auth::Controllers::Sessions
 
     def user_repo
       @user_repo ||= UserRepository.new
+    end
+
+    def account_repo
+      @account_repo ||= AccountRepository.new
     end
 
     def omniauth_params
@@ -41,11 +50,10 @@ module Auth::Controllers::Sessions
       params
     end
 
-    def account_params(user)
+    def account_params
       params = {}
       params[:uid]   = omniauth_params['uid']
       params[:token] = omniauth_params['credentials']['token']
-      params[:user_id] = user.id
       params
     end
   end
