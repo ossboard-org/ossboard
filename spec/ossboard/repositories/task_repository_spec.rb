@@ -170,4 +170,22 @@ RSpec.describe TaskRepository do
     it { expect(repo.all_from_date(date, 'closed').count).to eq 2 }
     it { expect(repo.all_from_date(date, 'assigned').count).to eq 2 }
   end
+
+  describe '#on_moderation_for_user' do
+    after { repo.clear }
+
+    before do
+      Fabricate.create(:task, assignee_username: 'davydovanton')
+      Fabricate.create(:task, assignee_username: 'davydovanton')
+      Fabricate.create(:task, assignee_username: 'test')
+    end
+
+    let(:user) { User.new(login: 'davydovanton') }
+
+    it 'returns array of tasks' do
+      result = repo.assigned_tasks_for_user(user)
+      expect(result).to all(be_a(Task))
+      expect(result.count).to eq 2
+    end
+  end
 end

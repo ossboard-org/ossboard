@@ -41,6 +41,10 @@ class TaskRepository < Hanami::Repository
     tasks.where(user_id: id, approved: nil).order(Sequel.lit('? DESC', :id)).as(Task).to_a
   end
 
+  def assigned_tasks_for_user(user)
+    tasks.where(assignee_username: user.login).order(Sequel.lit('? DESC', :id)).as(Task).to_a
+  end
+
   private
 
   def all_from_date_request(from, status = nil)
