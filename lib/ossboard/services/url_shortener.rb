@@ -1,4 +1,4 @@
-require_relative '../../post_request'
+require_relative '../../http_request'
 
 class UrlShortener
   def self.call(url)
@@ -11,7 +11,7 @@ class UrlShortener
   end
 
   def shorten_url(url)
-    response = PostRequest.new.call(SHORTENER_SERVICE_URL, { format: 'simple', url: url })
+    response = HttpRequest.new.post(SHORTENER_SERVICE_URL, { format: 'simple', url: url })
     return url unless response.is_a?(Net::HTTPSuccess)
     response.body
   end
