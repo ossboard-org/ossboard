@@ -37,11 +37,11 @@
     }
 
     .show-user__tasks {
-      width: 60%
+      width: 65%;
     }
 
     .tasks {
-     margin: 0 2em;
+      margin: 0 0 0 2em;
     }
   }
 }
@@ -73,6 +73,41 @@
     }
   }
 
+  .show-user__switch {
+    font-size: 26px;
+    margin: 0 0 1em;
+
+    .show-user__switch-item {
+      display: inline-block;
+    }
+
+    span {
+      margin: 0 0.5em;
+    }
+
+    button {
+      background:none!important;
+      border:none;
+      padding:0!important;
+      font: inherit;
+      cursor: pointer;
+      color: #214CFD;
+
+      &:hover {
+        color: #FD2121;
+      }
+    }
+
+    .show-user__switch-item-link_active {
+      cursor: default;
+      color: #222;
+
+      &:hover {
+        color: #222;
+      }
+    }
+  }
+
   .tasks {
     .task__title {
       margin: 0 0 30px;
@@ -86,9 +121,20 @@
       }
 
       .task-item__title {
+        width: 60%;
         span {
           margin: 0 10px;
         }
+      }
+
+      .task-item__status {
+        width: 120px;
+        text-align: right;
+      }
+
+      .task-item__lang {
+        width: 100px;
+        text-align: right;
       }
     }
   }

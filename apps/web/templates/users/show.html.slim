@@ -12,10 +12,11 @@
   #js-switcher.show-user__tasks.tasks
     .show-user__switch
       .show-user__switch-item
-        button.show-user__switch-item-link v-bind:class="{ 'leaderboard__switch-item-link_active': firstCase }"  v-on:click="displayFirstCase" Complited Tasks
-      | /
-      .leaderboard__switch-item
-        button.show-user__switch-item-link v-bind:class="{ 'leaderboard__switch-item-link_active': secondCase }"  v-on:click="displaySecondCase" Posted Tasks
+        button.show-user__switch-item-link v-bind:class="{ 'show-user__switch-item-link_active': firstCase }"  v-on:click="displayFirstCase" Complited
+      span
+        | /
+      .show-user__switch-item
+        button.show-user__switch-item-link v-bind:class="{ 'show-user__switch-item-link_active': secondCase }"  v-on:click="displaySecondCase" Posted
 
     .tasks__list v-if="firstCase"
       - complited_tasks.each do |task|
