@@ -16,6 +16,11 @@ RSpec.describe TaskTwitter do
         expected_text = "#{task.title} #ossboard http://www.ossboard.org/tasks/#{task.id}"
         expect(subject).to eq expected_text
       end
+
+      it 'shortens the url' do
+        expect(UrlShortener).to receive(:call).with("http://www.ossboard.org/tasks/#{task.id}")
+        subject
+      end
     end
 
     context 'when title long' do
