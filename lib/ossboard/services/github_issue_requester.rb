@@ -1,4 +1,4 @@
-require_relative '../../get_request'
+require_relative '../../http_request'
 
 class GithubIssueRequester
   def self.call(params)
@@ -34,6 +34,6 @@ class GithubIssueRequester
   GITHUB_ISSUE_API_URL = 'https://api.github.com/repos/%{org}/%{repo}/issues/%{issue}'.freeze
 
   def get_response(url)
-    GetRequest.new.call(url)
+    HttpRequest.new.get(url)
   end
 end
