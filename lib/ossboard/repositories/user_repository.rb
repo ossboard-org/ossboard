@@ -1,6 +1,7 @@
 class UserRepository < Hanami::Repository
   associations do
     has_many :tasks
+    has_many :accounts
   end
 
   def admins
@@ -27,10 +28,6 @@ class UserRepository < Hanami::Repository
 
   def find_by_login_with_tasks(login)
     aggregate(:tasks).where(login: login).as(User).first
-  end
-
-  def find_by_uuid(uuid)
-    users.where(uuid: uuid).as(User).first
   end
 
   def find_with_tasks(id)
