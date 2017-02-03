@@ -17,5 +17,9 @@ module Web::Views::Users
     def task_status_style(task)
       'waiting-task' unless task.approved
     end
+
+    def complited_tasks
+      TaskRepository.new.assigned_tasks_for_user(user)
+    end
   end
 end

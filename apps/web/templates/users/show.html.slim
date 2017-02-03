@@ -9,12 +9,29 @@
     .show-user__github
       = link_to 'Github', "http://github.com/#{user.login}"
 
-  .show-user__tasks.tasks
-    h2.task__title Tasks
+  #js-switcher.show-user__tasks.tasks
+    .show-user__switch
+      .show-user__switch-item
+        button.show-user__switch-item-link v-bind:class="{ 'leaderboard__switch-item-link_active': firstCase }"  v-on:click="displayFirstCase" Complited Tasks
+      | /
+      .leaderboard__switch-item
+        button.show-user__switch-item-link v-bind:class="{ 'leaderboard__switch-item-link_active': secondCase }"  v-on:click="displaySecondCase" Posted Tasks
 
-    .tasks__list
+    .tasks__list v-if="firstCase"
+      - complited_tasks.each do |task|
+        .task-item
+          .task-item__title
+            = link_to_task(task)
+          .task-item__status
+            = task.status
+          .task-item__lang = task.lang
+
+    .tasks__list v-if="secondCase"
       - user.tasks.each do |task|
         .task-item class=task_status_style(task)
           .task-item__title
             = link_to_task(task)
+          .task-item__status
+            = task.status
           .task-item__lang = task.lang
+
