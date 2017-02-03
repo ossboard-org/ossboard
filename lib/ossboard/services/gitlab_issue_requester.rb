@@ -44,7 +44,7 @@ class GitlabIssueRequester
   end
 
   def get_response(url)
-    HttpRequest.new.get(url) do |request|
+    HttpRequest.new(url).get do |request|
       request['PRIVATE-TOKEN'] = ENV['GITLAB_PRIVATE_TOKEN']
     end
   end

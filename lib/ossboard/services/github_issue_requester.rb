@@ -34,6 +34,6 @@ class GithubIssueRequester
   GITHUB_ISSUE_API_URL = 'https://api.github.com/repos/%{org}/%{repo}/issues/%{issue}'.freeze
 
   def get_response(url)
-    HttpRequest.new.get(url)
+    HttpRequest.new(url).get
   end
 end

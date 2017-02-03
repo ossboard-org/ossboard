@@ -11,7 +11,7 @@ class UrlShortener
   end
 
   def shorten_url(url)
-    response = HttpRequest.new.post(SHORTENER_SERVICE_URL, { format: 'simple', url: url })
+    response = HttpRequest.new(SHORTENER_SERVICE_URL).post(format: 'simple', url: url)
     return url unless response.is_a?(Net::HTTPSuccess)
     response.body
   end
