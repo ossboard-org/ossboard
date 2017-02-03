@@ -23,8 +23,31 @@ module Web::Views::Tasks
       }
     end
 
+    def tasks_languages
+      {
+        'any' => 'Language',
+        'unknown' => 'Unknown',
+        'ruby' => 'Ruby',
+        'javascript' => 'JavaScript',
+        'java' => 'Java',
+        'python' => 'Python',
+        'go' => 'Go',
+        'haskell' => 'Haskell',
+        'lua' => 'Lua',
+        'scala' => 'Scala',
+        'elixir' => 'Elixir',
+        'rust' => 'Rust',
+        'clojure' => 'Clojure',
+        'php' => 'PHP'
+      }
+    end
+
     def tasks_status
       params[:status] || 'in progress'
+    end
+
+    def tasks_language
+      params[:lang] || 'any'
     end
 
     def tasks_active?
@@ -39,6 +62,14 @@ module Web::Views::Tasks
       html.select(id: "task-status-select", '@change': "changeItem($event)") do
         task_statuses.each { |status, text| option(text, value: status, selected: status == tasks_status) }
         option('On moderation', value: "moderation", selected: tasks_status == 'moderation') if current_user.registred?
+      end
+    end
+
+    def select_tasks_by_language
+      html.select(id: "task-language-select", '@change': "changeItem($event)") do
+        tasks_languages.each do |languge, text|
+          option(text, value: languge, selected: languge == tasks_language)
+        end
       end
     end
 

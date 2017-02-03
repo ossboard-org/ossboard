@@ -29,12 +29,22 @@ class TaskRepository < Hanami::Repository
     end
   end
 
-  def find_by_status(status)
-    if Task::VALID_STATUSES.values.include?(status)
-      tasks.where(approved: true, status: status).order(Sequel.lit('? DESC', :id)).as(Task).to_a
-    else
-      only_approved
-    end
+  def find_by(params)
+      tasks do
+        if params.is_a? Hash
+          if Task::VALID_STATUSES.values.include? params[:status]
+            where(status: params[:status])
+          end
+
+          if Task::VALID_LANGUAGES.values.include? params[:language]
+            where(language: params[:language])
+          end
+        end
+
+        where(approved: true)
+        order(Sequel.lit('? DESC', :id))
+        as(Task).to_a
+      end
   end
 
   def on_moderation_for_user(id)

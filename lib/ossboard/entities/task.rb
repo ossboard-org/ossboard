@@ -6,6 +6,22 @@ class Task < Hanami::Entity
     done: 'done'
   }.freeze
 
+  VALID_LANGUAGES = {
+    unknown: 'unknown',
+    ruby: 'ruby',
+    js: 'javascript',
+    java: 'java',
+    python: 'python',
+    go: 'go',
+    haskell: 'haskell',
+    lua: 'lua',
+    scala: 'scala',
+    elixir: 'elixir',
+    rust: 'rust',
+    clojure: 'clojure',
+    php: 'php'
+  }.freeze
+
   # TODO: Tests
   def author
     UserRepository.new.find(user_id)
