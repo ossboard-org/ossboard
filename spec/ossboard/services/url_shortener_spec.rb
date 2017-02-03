@@ -1,18 +1,20 @@
 RSpec.describe UrlShortener do
-  subject { UrlShortener.new }
+  subject { UrlShortener.call(url) }
 
   describe '#shorten_url' do
-    it 'shortens valid url' do
-      VCR.use_cassette("isgd_shortener_success") do
-        url = subject.shorten_url('https://example.com')
-        expect(url).to eq 'https://is.gd/jGamH3'
+    context 'when link valid' do
+      let(:url) { 'https://example.com' }
+
+      it 'shortens url' do
+        VCR.use_cassette("isgd_shortener_success") { expect(subject).to eq 'https://is.gd/jGamH3' }
       end
     end
 
-    it "doesn't shorten invalid url" do
-      VCR.use_cassette("isgd_shortener_fail") do
-        url = subject.shorten_url('wrong url')
-        expect(url).to eq 'wrong url'
+    context 'when link invalid' do
+      let(:url) { 'wrong url' }
+
+      it "doesn't shorten invalid url" do
+        VCR.use_cassette("isgd_shortener_fail") { expect(subject).to eq 'wrong url' }
       end
     end
   end

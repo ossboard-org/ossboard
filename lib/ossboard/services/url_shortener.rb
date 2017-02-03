@@ -1,4 +1,4 @@
-require_relative '../../post_request'
+require_relative '../../http_request'
 
 class UrlShortener
   def self.call(url)
@@ -6,14 +6,15 @@ class UrlShortener
   end
 
   def call(url)
-    return url unless Hanami.env?(:production)
+    return url if Hanami.env?(:development)
     shorten_url(url)
   end
 
+  private
+
   def shorten_url(url)
-    response = PostRequest.new.call(SHORTENER_SERVICE_URL, { format: 'simple', url: url })
-    return url unless response.is_a?(Net::HTTPSuccess)
-    response.body
+    response = HttpRequest.new(SHORTENER_SERVICE_URL).post(format: 'simple', url: url)
+    response.is_a?(Net::HTTPSuccess) ? response.body : url
   end
 
   SHORTENER_SERVICE_URL = 'https://is.gd/create.php'.freeze

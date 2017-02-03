@@ -13,20 +13,17 @@ RSpec.describe TaskTwitter do
       let(:task) { Fabricate.create(:task, user_id: Fabricate.create(:user).id) }
 
       it 'sends tweet' do
-        expected_text = "#{task.title} #ossboard http://www.ossboard.org/tasks/#{task.id}"
-        expect(subject).to eq expected_text
-      end
-
-      it 'shortens the url' do
-        expect(UrlShortener).to receive(:call).with("http://www.ossboard.org/tasks/#{task.id}")
-        subject
+        VCR.use_cassette("task_twitter_sender") do
+          expected_text = "#{task.title} #ossboard https://is.gd/DHouda"
+          expect(subject).to eq expected_text
+        end
       end
     end
 
     context 'when title long' do
       let(:task) { Fabricate.create(:task, title: Faker::Lorem.paragraph, user_id: Fabricate.create(:user).id) }
 
-      it { expect(subject.size).to be <= 140 }
+      it { VCR.use_cassette("task_twitter_sender") { expect(subject.size).to be <= 140 } }
     end
   end
 
