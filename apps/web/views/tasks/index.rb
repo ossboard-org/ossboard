@@ -23,7 +23,7 @@ module Web::Views::Tasks
       }
     end
 
-    def tasks_languages
+    def task_languages
       {
         'any' => 'Language',
         'unknown' => 'Unknown',
@@ -67,7 +67,7 @@ module Web::Views::Tasks
 
     def select_tasks_by_language
       html.select(id: "task-language-select", '@change': "changeItem($event)") do
-        tasks_languages.each do |languge, text|
+        task_languages.each do |languge, text|
           option(text, value: languge, selected: languge == tasks_language)
         end
       end
