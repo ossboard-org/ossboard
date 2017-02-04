@@ -27,6 +27,27 @@ RSpec.describe Web::Views::Tasks::Index do
     it { expect(view.task_statuses).to eq('in progress' => 'Open', 'assigned' => 'Assigned', 'closed' => 'Closed', 'done' => 'Finished') }
   end
 
+  describe '#tasks_languages' do
+    it do
+      expect(view.task_languages).to eq(
+        'any' => 'Language',
+        'unknown' => 'Unknown',
+        'ruby' => 'Ruby',
+        'javascript' => 'JavaScript',
+        'java' => 'Java',
+        'python' => 'Python',
+        'go' => 'Go',
+        'haskell' => 'Haskell',
+        'lua' => 'Lua',
+        'scala' => 'Scala',
+        'elixir' => 'Elixir',
+        'rust' => 'Rust',
+        'clojure' => 'Clojure',
+        'php' => 'PHP'
+      )
+    end
+  end
+
   describe '#complexity_label' do
     context 'for easy level' do
       let(:task) { Task.new(id: 1, complexity: 'easy') }
@@ -92,6 +113,52 @@ RSpec.describe Web::Views::Tasks::Index do
           "<option value=\"done\">Finished</option>\n" +
           "<option value=\"moderation\" selected=\"selected\">On moderation</option>\n" +
         "</select>"
+      end
+    end
+
+    describe '#select_tasks_by_language' do
+      context 'when tasks language is empty' do
+        let(:exposures) { { params: { }, current_user: User.new } }
+        it 'returns select form' do
+          expect(view.select_tasks_by_language.to_s).to eq "<select id=\"task-language-select\" @change=\"changeItem($event)\">\n" +
+                "<option value=\"any\" selected=\"selected\">Language</option>\n" +
+                "<option value=\"unknown\">Unknown</option>\n" +
+                "<option value=\"ruby\">Ruby</option>\n" +
+                "<option value=\"javascript\">JavaScript</option>\n" +
+                "<option value=\"java\">Java</option>\n" +
+                "<option value=\"python\">Python</option>\n" +
+                "<option value=\"go\">Go</option>\n" +
+                "<option value=\"haskell\">Haskell</option>\n" +
+                "<option value=\"lua\">Lua</option>\n" +
+                "<option value=\"scala\">Scala</option>\n" +
+                "<option value=\"elixir\">Elixir</option>\n" +
+                "<option value=\"rust\">Rust</option>\n" +
+                "<option value=\"clojure\">Clojure</option>\n" +
+                "<option value=\"php\">PHP</option>\n" +
+               "</select>"
+        end
+      end
+
+      context 'when tasks language is unknown' do
+        let(:exposures) { { params: { lang: 'unknown' }, current_user: User.new } }
+        it 'returns select form' do
+          expect(view.select_tasks_by_language.to_s).to eq "<select id=\"task-language-select\" @change=\"changeItem($event)\">\n" +
+                "<option value=\"any\">Language</option>\n" +
+                "<option value=\"unknown\" selected=\"selected\">Unknown</option>\n" +
+                "<option value=\"ruby\">Ruby</option>\n" +
+                "<option value=\"javascript\">JavaScript</option>\n" +
+                "<option value=\"java\">Java</option>\n" +
+                "<option value=\"python\">Python</option>\n" +
+                "<option value=\"go\">Go</option>\n" +
+                "<option value=\"haskell\">Haskell</option>\n" +
+                "<option value=\"lua\">Lua</option>\n" +
+                "<option value=\"scala\">Scala</option>\n" +
+                "<option value=\"elixir\">Elixir</option>\n" +
+                "<option value=\"rust\">Rust</option>\n" +
+                "<option value=\"clojure\">Clojure</option>\n" +
+                "<option value=\"php\">PHP</option>\n" +
+               "</select>"
+        end
       end
     end
   end
