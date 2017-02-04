@@ -46,7 +46,7 @@ module Admin::Views::Tasks
           end
 
           div class: 'input task-form__field' do
-            select :lang, Task::VALID_LANGUAGES
+            select :lang, langs_list
           end
 
           div class: 'input task-form__field pure-control-group' do
