@@ -7,7 +7,7 @@ module Web::Controllers::Tasks
       @tasks = if params[:status] == 'moderation' && authenticated?
         TaskRepository.new.on_moderation_for_user(current_user.id)
       else
-        TaskRepository.new.find_by(status: status, language: language)
+        TaskRepository.new.find_by(status: status, lang: lang)
       end
     end
 
@@ -20,8 +20,8 @@ module Web::Controllers::Tasks
       ALLOWED_STATUSES.include?(params[:status]) ? params[:status] : 'in progress'
     end
 
-    def language
-       params[:lang] if ALLOWED_LANGUAGES.include?(params[:lang])
+    def lang
+      ALLOWED_LANGUAGES.include?(params[:lang]) ? params[:lang] : 'any'
     end
   end
 end
