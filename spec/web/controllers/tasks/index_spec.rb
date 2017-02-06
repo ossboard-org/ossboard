@@ -8,8 +8,6 @@ RSpec.describe Web::Controllers::Tasks::Index do
   it { expect(action.call(params)).to be_success }
 
   describe 'expose' do
-    before { action.call(params) }
-
     describe '#tasks' do
       before do
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'done',        lang: 'ruby') }
@@ -121,7 +119,6 @@ RSpec.describe Web::Controllers::Tasks::Index do
           expect(action.tasks.map(&:status)).to all(eq('in progress'))
         end
       end
-
     end
   end
 end

@@ -30,14 +30,8 @@ class TaskRepository < Hanami::Repository
   end
 
   def find_by(params = {})
-    params.delete(:lang) unless Task::VALID_LANGUAGES.values.include?(params[:lang])
-
-    return only_approved unless params.any?
-
-    tasks
-      .where(params.merge!(approved: true))
-      .order(Sequel.lit('? DESC', :id))
-      .as(Task).to_a
+    params[:approved] = true
+    tasks.where(params).order(Sequel.lit('? DESC', :id)).as(Task).to_a
   end
 
   def on_moderation_for_user(id)

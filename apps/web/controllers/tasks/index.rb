@@ -4,9 +4,13 @@ module Web::Controllers::Tasks
     expose :tasks
 
     def call(params)
+      search_params = {}
+      search_params[:status] = status if status
+      search_params[:lang] = lang if lang
+
       @tasks = for_moderation? ?
         repo.on_moderation_for_user(current_user.id) :
-        repo.find_by(status: status, lang: lang)
+        repo.find_by(search_params)
     end
 
   private
@@ -27,7 +31,7 @@ module Web::Controllers::Tasks
     end
 
     def lang
-      ALLOWED_LANGUAGES.include?(params[:lang]) ? params[:lang] : 'any'
+      ALLOWED_LANGUAGES.include?(params[:lang]) && params[:lang]
     end
   end
 end
