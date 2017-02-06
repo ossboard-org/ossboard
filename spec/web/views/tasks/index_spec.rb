@@ -30,20 +30,20 @@ RSpec.describe Web::Views::Tasks::Index do
   describe '#tasks_languages' do
     it do
       expect(view.task_languages).to eq(
-        'any' => 'Language',
-        'unknown' => 'Unknown',
-        'ruby' => 'Ruby',
-        'javascript' => 'JavaScript',
-        'java' => 'Java',
-        'python' => 'Python',
-        'go' => 'Go',
-        'haskell' => 'Haskell',
-        'lua' => 'Lua',
-        'scala' => 'Scala',
-        'elixir' => 'Elixir',
-        'rust' => 'Rust',
-        'clojure' => 'Clojure',
-        'php' => 'PHP'
+        'any' => 'language',
+        'unknown' => 'unknown',
+        'ruby' => 'ruby',
+        'js' => 'javascript',
+        'java' => 'java',
+        'python' => 'python',
+        'go' => 'go',
+        'haskell' => 'haskell',
+        'lua' => 'lua',
+        'scala' => 'scala',
+        'elixir' => 'elixir',
+        'rust' => 'rust',
+        'clojure' => 'clojure',
+        'php' => 'php'
       )
     end
   end
@@ -119,44 +119,46 @@ RSpec.describe Web::Views::Tasks::Index do
     describe '#select_tasks_by_language' do
       context 'when tasks language is empty' do
         let(:exposures) { { params: { }, current_user: User.new } }
+
         it 'returns select form' do
           expect(view.select_tasks_by_language.to_s).to eq "<select id=\"task-language-select\" @change=\"changeItem($event)\">\n" +
-                "<option value=\"any\" selected=\"selected\">Language</option>\n" +
-                "<option value=\"unknown\">Unknown</option>\n" +
-                "<option value=\"ruby\">Ruby</option>\n" +
-                "<option value=\"javascript\">JavaScript</option>\n" +
-                "<option value=\"java\">Java</option>\n" +
-                "<option value=\"python\">Python</option>\n" +
-                "<option value=\"go\">Go</option>\n" +
-                "<option value=\"haskell\">Haskell</option>\n" +
-                "<option value=\"lua\">Lua</option>\n" +
-                "<option value=\"scala\">Scala</option>\n" +
-                "<option value=\"elixir\">Elixir</option>\n" +
-                "<option value=\"rust\">Rust</option>\n" +
-                "<option value=\"clojure\">Clojure</option>\n" +
-                "<option value=\"php\">PHP</option>\n" +
+                "<option value=\"any\" selected=\"selected\">language</option>\n" +
+                "<option value=\"unknown\">unknown</option>\n" +
+                "<option value=\"ruby\">ruby</option>\n" +
+                "<option value=\"js\">javascript</option>\n" +
+                "<option value=\"java\">java</option>\n" +
+                "<option value=\"python\">python</option>\n" +
+                "<option value=\"go\">go</option>\n" +
+                "<option value=\"haskell\">haskell</option>\n" +
+                "<option value=\"lua\">lua</option>\n" +
+                "<option value=\"scala\">scala</option>\n" +
+                "<option value=\"elixir\">elixir</option>\n" +
+                "<option value=\"rust\">rust</option>\n" +
+                "<option value=\"clojure\">clojure</option>\n" +
+                "<option value=\"php\">php</option>\n" +
                "</select>"
         end
       end
 
       context 'when tasks language is unknown' do
         let(:exposures) { { params: { lang: 'unknown' }, current_user: User.new } }
+
         it 'returns select form' do
           expect(view.select_tasks_by_language.to_s).to eq "<select id=\"task-language-select\" @change=\"changeItem($event)\">\n" +
-                "<option value=\"any\">Language</option>\n" +
-                "<option value=\"unknown\" selected=\"selected\">Unknown</option>\n" +
-                "<option value=\"ruby\">Ruby</option>\n" +
-                "<option value=\"javascript\">JavaScript</option>\n" +
-                "<option value=\"java\">Java</option>\n" +
-                "<option value=\"python\">Python</option>\n" +
-                "<option value=\"go\">Go</option>\n" +
-                "<option value=\"haskell\">Haskell</option>\n" +
-                "<option value=\"lua\">Lua</option>\n" +
-                "<option value=\"scala\">Scala</option>\n" +
-                "<option value=\"elixir\">Elixir</option>\n" +
-                "<option value=\"rust\">Rust</option>\n" +
-                "<option value=\"clojure\">Clojure</option>\n" +
-                "<option value=\"php\">PHP</option>\n" +
+                "<option value=\"any\">language</option>\n" +
+                "<option value=\"unknown\" selected=\"selected\">unknown</option>\n" +
+                "<option value=\"ruby\">ruby</option>\n" +
+                "<option value=\"js\">javascript</option>\n" +
+                "<option value=\"java\">java</option>\n" +
+                "<option value=\"python\">python</option>\n" +
+                "<option value=\"go\">go</option>\n" +
+                "<option value=\"haskell\">haskell</option>\n" +
+                "<option value=\"lua\">lua</option>\n" +
+                "<option value=\"scala\">scala</option>\n" +
+                "<option value=\"elixir\">elixir</option>\n" +
+                "<option value=\"rust\">rust</option>\n" +
+                "<option value=\"clojure\">clojure</option>\n" +
+                "<option value=\"php\">php</option>\n" +
                "</select>"
         end
       end

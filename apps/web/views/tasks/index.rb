@@ -24,22 +24,9 @@ module Web::Views::Tasks
     end
 
     def task_languages
-      {
-        'any' => 'Language',
-        'unknown' => 'Unknown',
-        'ruby' => 'Ruby',
-        'javascript' => 'JavaScript',
-        'java' => 'Java',
-        'python' => 'Python',
-        'go' => 'Go',
-        'haskell' => 'Haskell',
-        'lua' => 'Lua',
-        'scala' => 'Scala',
-        'elixir' => 'Elixir',
-        'rust' => 'Rust',
-        'clojure' => 'Clojure',
-        'php' => 'PHP'
-      }
+      Hanami::Utils::Hash.new(
+        { 'any' => 'language' }.merge!(Task::VALID_LANGUAGES)
+      ).stringify!
     end
 
     def tasks_status
