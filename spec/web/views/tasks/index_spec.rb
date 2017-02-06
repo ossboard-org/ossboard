@@ -69,7 +69,7 @@ RSpec.describe Web::Views::Tasks::Index do
     context 'when tasks status is empty' do
       let(:exposures) { { params: { }, current_user: User.new } }
       it 'returns select form' do
-        expect(view.select_tasks_by_status.to_s).to eq "<select id=\"task-status-select\" @change=\"changeItem($event)\">\n" +
+        expect(view.select_tasks_by_status.to_s).to eq "<select id=\"task-status-select\" @change=\"changeStatus($event)\">\n" +
           "<option value=\"in progress\" selected=\"selected\">Open</option>\n" +
           "<option value=\"assigned\">Assigned</option>\n" +
           "<option value=\"closed\">Closed</option>\n" +
@@ -81,7 +81,7 @@ RSpec.describe Web::Views::Tasks::Index do
     context 'when current user registered' do
       let(:exposures) { { params: { }, current_user: User.new(id: 1) } }
       it 'returns select form' do
-        expect(view.select_tasks_by_status.to_s).to eq "<select id=\"task-status-select\" @change=\"changeItem($event)\">\n" +
+        expect(view.select_tasks_by_status.to_s).to eq "<select id=\"task-status-select\" @change=\"changeStatus($event)\">\n" +
           "<option value=\"in progress\" selected=\"selected\">Open</option>\n" +
           "<option value=\"assigned\">Assigned</option>\n" +
           "<option value=\"closed\">Closed</option>\n" +
@@ -94,7 +94,7 @@ RSpec.describe Web::Views::Tasks::Index do
     context 'when tasks status is closed' do
       let(:exposures) { { params: { status: 'closed' }, current_user: User.new } }
       it 'returns select form' do
-        expect(view.select_tasks_by_status.to_s).to eq "<select id=\"task-status-select\" @change=\"changeItem($event)\">\n" +
+        expect(view.select_tasks_by_status.to_s).to eq "<select id=\"task-status-select\" @change=\"changeStatus($event)\">\n" +
           "<option value=\"in progress\">Open</option>\n" +
           "<option value=\"assigned\">Assigned</option>\n" +
           "<option value=\"closed\" selected=\"selected\">Closed</option>\n" +
@@ -106,7 +106,7 @@ RSpec.describe Web::Views::Tasks::Index do
     context 'when tasks status is closed and user registered' do
       let(:exposures) { { params: { status: 'moderation' }, current_user: User.new(id: 1) } }
       it 'returns select form' do
-        expect(view.select_tasks_by_status.to_s).to eq "<select id=\"task-status-select\" @change=\"changeItem($event)\">\n" +
+        expect(view.select_tasks_by_status.to_s).to eq "<select id=\"task-status-select\" @change=\"changeStatus($event)\">\n" +
           "<option value=\"in progress\">Open</option>\n" +
           "<option value=\"assigned\">Assigned</option>\n" +
           "<option value=\"closed\">Closed</option>\n" +
@@ -121,7 +121,7 @@ RSpec.describe Web::Views::Tasks::Index do
         let(:exposures) { { params: { }, current_user: User.new } }
 
         it 'returns select form' do
-          expect(view.select_tasks_by_language.to_s).to eq "<select id=\"task-language-select\" @change=\"changeItem($event)\">\n" +
+          expect(view.select_tasks_by_language.to_s).to eq "<select id=\"task-language-select\" @change=\"changeLang($event)\">\n" +
                 "<option value=\"any\" selected=\"selected\">language</option>\n" +
                 "<option value=\"unknown\">unknown</option>\n" +
                 "<option value=\"ruby\">ruby</option>\n" +
@@ -144,7 +144,7 @@ RSpec.describe Web::Views::Tasks::Index do
         let(:exposures) { { params: { lang: 'unknown' }, current_user: User.new } }
 
         it 'returns select form' do
-          expect(view.select_tasks_by_language.to_s).to eq "<select id=\"task-language-select\" @change=\"changeItem($event)\">\n" +
+          expect(view.select_tasks_by_language.to_s).to eq "<select id=\"task-language-select\" @change=\"changeLang($event)\">\n" +
                 "<option value=\"any\">language</option>\n" +
                 "<option value=\"unknown\" selected=\"selected\">unknown</option>\n" +
                 "<option value=\"ruby\">ruby</option>\n" +
