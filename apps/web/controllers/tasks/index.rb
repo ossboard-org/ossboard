@@ -11,16 +11,15 @@ module Web::Controllers::Tasks
 
     def search_params
       for_moderation? ?
-        lang_params(user_id: current_user.id, approved: nil) :
-        lang_params(status: status, approved: true)
+        with_language(user_id: current_user.id, approved: nil) :
+        with_language(status: status, approved: true)
     end
-
 
     def for_moderation?
       params[:status] == 'moderation' && authenticated?
     end
 
-    def lang_params(search_params)
+    def with_language(search_params)
       search_params[:lang] = params[:lang] if Task::VALID_LANGUAGES.values.include?(params[:lang])
       search_params
     end
