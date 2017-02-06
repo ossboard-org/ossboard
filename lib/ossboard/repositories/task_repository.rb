@@ -30,12 +30,7 @@ class TaskRepository < Hanami::Repository
   end
 
   def find_by(params = {})
-    params[:approved] = true
     tasks.where(params).order(Sequel.lit('? DESC', :id)).as(Task).to_a
-  end
-
-  def on_moderation_for_user(id)
-    tasks.where(user_id: id, approved: nil).order(Sequel.lit('? DESC', :id)).as(Task).to_a
   end
 
   def assigned_tasks_for_user(user)
