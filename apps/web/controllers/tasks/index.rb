@@ -4,24 +4,28 @@ module Web::Controllers::Tasks
     expose :tasks
 
     def call(params)
-      @tasks = if params[:status] == 'moderation' && authenticated?
-        TaskRepository.new.on_moderation_for_user(current_user.id)
-      else
-        TaskRepository.new.find_by(status: status, lang: lang)
-      end
+      @tasks = TaskRepository.new.find_by(search_params)
     end
 
   private
 
-    ALLOWED_STATUSES = Task::VALID_STATUSES.values
-    ALLOWED_LANGUAGES = Task::VALID_LANGUAGES.values
-
-    def status
-      ALLOWED_STATUSES.include?(params[:status]) ? params[:status] : 'in progress'
+    def search_params
+      for_moderation? ?
+        with_language(user_id: current_user.id, approved: nil) :
+        with_language(status: status, approved: true)
     end
 
-    def lang
-      ALLOWED_LANGUAGES.include?(params[:lang]) ? params[:lang] : 'any'
+    def for_moderation?
+      params[:status] == 'moderation' && authenticated?
+    end
+
+    def with_language(search_params)
+      search_params[:lang] = params[:lang] if Task::VALID_LANGUAGES.values.include?(params[:lang])
+      search_params
+    end
+
+    def status
+      Task::VALID_STATUSES.values.include?(params[:status]) ? params[:status] : 'in progress'
     end
   end
 end

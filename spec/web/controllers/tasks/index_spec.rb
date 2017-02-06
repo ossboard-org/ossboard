@@ -8,8 +8,6 @@ RSpec.describe Web::Controllers::Tasks::Index do
   it { expect(action.call(params)).to be_success }
 
   describe 'expose' do
-    before { action.call(params) }
-
     describe '#tasks' do
       before do
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'done',        lang: 'ruby') }
@@ -19,6 +17,8 @@ RSpec.describe Web::Controllers::Tasks::Index do
       end
 
       after { repo.clear }
+
+      # TODO: specs for moderation case
 
       it 'returns all tasks' do
         expect(action.tasks).to all(be_a(Task))
@@ -85,7 +85,7 @@ RSpec.describe Web::Controllers::Tasks::Index do
       context 'when lang param is unknown' do
         let(:params) { { lang: 'unknown' } }
 
-        it 'returns all tasks where lang is unknown' do
+        it 'returns all tasks with unknown lang' do
           expect(action.tasks).to all(be_a(Task))
           expect(action.tasks.count).to eq 3
           expect(action.tasks.map(&:lang)).to all(eq('unknown'))
@@ -106,7 +106,7 @@ RSpec.describe Web::Controllers::Tasks::Index do
       context 'when lang param is haskell and status is done' do
         let(:params) { { lang: 'haskell', status: 'done' } }
 
-        it 'returns all done, haskell tasks' do
+        it 'returns all done tasks with haskell lang' do
           expect(action.tasks).to all(be_a(Task))
           expect(action.tasks.count).to eq 0
         end
@@ -121,7 +121,6 @@ RSpec.describe Web::Controllers::Tasks::Index do
           expect(action.tasks.map(&:status)).to all(eq('in progress'))
         end
       end
-
     end
   end
 end

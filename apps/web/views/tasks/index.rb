@@ -24,22 +24,9 @@ module Web::Views::Tasks
     end
 
     def task_languages
-      {
-        'any' => 'Language',
-        'unknown' => 'Unknown',
-        'ruby' => 'Ruby',
-        'javascript' => 'JavaScript',
-        'java' => 'Java',
-        'python' => 'Python',
-        'go' => 'Go',
-        'haskell' => 'Haskell',
-        'lua' => 'Lua',
-        'scala' => 'Scala',
-        'elixir' => 'Elixir',
-        'rust' => 'Rust',
-        'clojure' => 'Clojure',
-        'php' => 'PHP'
-      }
+      Hanami::Utils::Hash.new(
+        { 'any' => 'language' }.merge!(Task::VALID_LANGUAGES)
+      ).stringify!
     end
 
     def tasks_status
@@ -59,14 +46,14 @@ module Web::Views::Tasks
     end
 
     def select_tasks_by_status
-      html.select(id: "task-status-select", '@change': "changeItem($event)") do
+      html.select(id: "task-status-select", '@change': "changeStatus($event)") do
         task_statuses.each { |status, text| option(text, value: status, selected: status == tasks_status) }
         option('On moderation', value: "moderation", selected: tasks_status == 'moderation') if current_user.registred?
       end
     end
 
     def select_tasks_by_language
-      html.select(id: "task-language-select", '@change': "changeItem($event)") do
+      html.select(id: "task-language-select", '@change': "changeLang($event)") do
         task_languages.each do |languge, text|
           option(text, value: languge, selected: languge == tasks_language)
         end
