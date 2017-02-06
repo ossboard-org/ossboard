@@ -6,10 +6,15 @@ require 'newrelic-hanami'
 NewRelic::Agent.manual_start
 
 use SecureHeaders::Middleware
-
 use Rack::Session::Cookie, secret: ENV['SESSIONS_SECRET']
+
+class Omniauth::Strategies::GithubAdmin < Omniauth::Strategies::Github
+end
+
+OmniAuth.config.add_camelization 'github_admin', 'GithubAdmin'
 use OmniAuth::Builder do
   provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], provider_ignores_state: true
+  provider :github_admin, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], scope: "user,repo,gist", provider_ignores_state: true
 end
 
 if Hanami.env?(:development)
