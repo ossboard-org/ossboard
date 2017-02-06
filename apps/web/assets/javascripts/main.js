@@ -169,31 +169,28 @@ if (document.getElementById("js-switcher")) {
   })
 }
 
-if (document.getElementById("task-status-select")) {
+if (document.getElementById("tasks-filter")) {
   new Vue({
-    el: '#task-status-select',
+    el: '#tasks-filter',
     data: {
-      lang: document.getElementById('task-language-select').value
-    },
-    methods: {
-      changeItem(event) {
-        window.location = "/tasks?status=" + event.target.value +
-                          "&lang=" + this.lang;
-      }
-    }
-  })
-}
-
-if (document.getElementById("task-language-select")) {
-  new Vue({
-    el: '#task-language-select',
-    data: {
+      lang: document.getElementById('task-language-select').value,
       status: document.getElementById('task-status-select').value
     },
     methods: {
-      changeItem(event) {
-        window.location = "/tasks?status=" + this.status +
-                          "&lang=" + event.target.value;
+      changeStatus(event) {
+        this.status = event.target.value
+        this.reloadPage()
+      },
+
+      changeLang(event) {
+        this.lang = event.target.value
+        this.reloadPage()
+      },
+
+      reloadPage() {
+        window.location = "/tasks?" +
+          (this.status ? "status=" + this.status + '&' : '') +
+          (this.lang != 'any' ? "lang=" + this.lang : '')
       }
     }
   })
