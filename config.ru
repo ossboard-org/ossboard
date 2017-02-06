@@ -6,10 +6,10 @@ require 'newrelic-hanami'
 NewRelic::Agent.manual_start
 
 use SecureHeaders::Middleware
-
 use Rack::Session::Cookie, secret: ENV['SESSIONS_SECRET']
+
 use OmniAuth::Builder do
-  provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], provider_ignores_state: true
+  provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], scope: "write:repo_hook", provider_ignores_state: true
 end
 
 if Hanami.env?(:development)
