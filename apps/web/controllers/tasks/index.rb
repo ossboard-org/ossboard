@@ -4,7 +4,7 @@ module Web::Controllers::Tasks
     expose :tasks
 
     def call(params)
-      @tasks = repo.find_by(search_params)
+      @tasks = TaskRepository.new.find_by(search_params)
     end
 
   private
@@ -22,10 +22,6 @@ module Web::Controllers::Tasks
     def with_language(search_params)
       search_params[:lang] = params[:lang] if Task::VALID_LANGUAGES.values.include?(params[:lang])
       search_params
-    end
-
-    def repo
-      @repo ||= TaskRepository.new
     end
 
     def status
