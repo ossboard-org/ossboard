@@ -12,7 +12,7 @@ RSpec.describe TaskRepository do
 
     context 'when params is empty' do
       it 'returns array of closed tasks' do
-        result = repo.find_by(nil)
+        result = repo.find_by
         expect(result).to all(be_a(Task))
         expect(result.count).to eq 3
       end
@@ -45,14 +45,6 @@ RSpec.describe TaskRepository do
       end
     end
 
-    context 'when status is invalid' do
-      it 'returns array of all tasks' do
-        result = repo.find_by(status: 'test')
-        expect(result).to all(be_a(Task))
-        expect(result.count).to eq 3
-      end
-    end
-
     context 'when lang is ruby' do
       it 'returns array of ruby language tasks' do
         result = repo.find_by(lang: 'ruby')
@@ -80,14 +72,6 @@ RSpec.describe TaskRepository do
       end
     end
 
-    context 'when lang is invalid' do
-      it 'returns array of all tasks' do
-        result = repo.find_by(lang: 'test')
-        expect(result).to all(be_a(Task))
-        expect(result.count).to eq 3
-      end
-    end
-
     context 'when status is in progress and lang is ruby' do
       it 'returns array of in progress, ruby tasks' do
         result = repo.find_by(status: 'in progress', lang: 'ruby')
@@ -95,32 +79,6 @@ RSpec.describe TaskRepository do
         expect(result.count).to eq 1
         expect(result.first.lang).to eq 'ruby'
         expect(result.first.status).to eq 'in progress'
-      end
-    end
-
-    context 'when status is invalid and lang is ruby' do
-      it 'returns array of ruby tasks' do
-        result = repo.find_by(status: 'test', lang: 'ruby')
-        expect(result).to all(be_a(Task))
-        expect(result.count).to eq 1
-        expect(result.first.lang).to eq 'ruby'
-      end
-    end
-
-    context 'when status is in progress and lang is invalid' do
-      it 'returns array of in progress tasks' do
-        result = repo.find_by(status: 'in progress', lang: 'test')
-        expect(result).to all(be_a(Task))
-        expect(result.count).to eq 1
-        expect(result.first.status).to eq 'in progress'
-      end
-    end
-
-    context 'when status is invalid and lang is invalid' do
-      it 'returns array of all tasks' do
-        result = repo.find_by(status: 'test', lang: 'test')
-        expect(result).to all(be_a(Task))
-        expect(result.count).to eq 3
       end
     end
   end
