@@ -255,6 +255,9 @@
       font-family: sans-serif;
       font-size: 18px;
       line-height: 22px;
+      img {
+        width: 100%;
+      }
     }
   }
 
@@ -508,6 +511,9 @@
   .task-body__preview {
     text-align: left;
     white-space: normal;
+    img {
+      width: 100%;
+    }
   }
 
   .task-body__menu {
