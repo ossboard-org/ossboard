@@ -4,8 +4,11 @@
       = flash[:info]
 
   .tasks__actions
-    .tasks__status-selector
-      = select_tasks_by_status
+    .tasks__selectors
+      .tasks__status-selector
+        = select_tasks_by_status
+      .tasks__language-selector
+        = select_tasks_by_language
 
     .tasks__new
       = link_to_new_task

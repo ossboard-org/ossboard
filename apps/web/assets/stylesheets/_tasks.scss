@@ -72,21 +72,27 @@
     flex-wrap: wrap;
     justify-content: space-between;
 
-    .tasks__status-selector {
-      margin: auto 0;
+    .tasks__selectors {
+      display: flex;
 
-      select {
-        padding: 0;
-        margin: 0;
-        border: 1px solid #ccc;
-        width: 120px;
-        border-radius: 3px;
-        overflow: hidden;
-        background-color: #fff;
+      .tasks__status-selector,
+      .tasks__language-selector {
+        margin: auto 2px auto 0;
 
-        background: #fff ;
+        select {
+          padding: 0;
+          margin: 0;
+          border: 1px solid #ccc;
+          width: 120px;
+          border-radius: 3px;
+          overflow: hidden;
+          background-color: #fff;
+
+          background: #fff ;
+        }
       }
     }
+
 
     .tasks__search {
     }

@@ -29,9 +29,26 @@ class TaskRepository < Hanami::Repository
     end
   end
 
-  def find_by_status(status)
-    if Task::VALID_STATUSES.values.include?(status)
-      tasks.where(approved: true, status: status).order(Sequel.lit('? DESC', :id)).as(Task).to_a
+  def find_by(params)
+    params = {} unless params.is_a? Hash
+    status = params[:status] if Task::VALID_STATUSES.values.include?(params[:status])
+    lang = params[:lang] if Task::VALID_LANGUAGES.values.include?(params[:lang])
+
+    if status && lang
+      tasks
+        .where(status: status, lang: lang, approved: true)
+        .order(Sequel.lit('? DESC', :id))
+        .as(Task).to_a
+    elsif status
+      tasks
+        .where(status: status, approved: true)
+        .order(Sequel.lit('? DESC', :id))
+        .as(Task).to_a
+    elsif lang
+      tasks
+        .where(lang: lang, approved: true)
+        .order(Sequel.lit('? DESC', :id))
+        .as(Task).to_a
     else
       only_approved
     end

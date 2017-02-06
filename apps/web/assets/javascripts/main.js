@@ -172,9 +172,28 @@ if (document.getElementById("js-switcher")) {
 if (document.getElementById("task-status-select")) {
   new Vue({
     el: '#task-status-select',
+    data: {
+      lang: document.getElementById('task-language-select').value
+    },
     methods: {
       changeItem(event) {
-        window.location = "/tasks?status=" + event.target.value;
+        window.location = "/tasks?status=" + event.target.value +
+                          "&lang=" + this.lang;
+      }
+    }
+  })
+}
+
+if (document.getElementById("task-language-select")) {
+  new Vue({
+    el: '#task-language-select',
+    data: {
+      status: document.getElementById('task-status-select').value
+    },
+    methods: {
+      changeItem(event) {
+        window.location = "/tasks?status=" + this.status +
+                          "&lang=" + event.target.value;
       }
     }
   })

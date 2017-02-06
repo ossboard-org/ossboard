@@ -1,53 +1,124 @@
 RSpec.describe TaskRepository do
   let(:repo) { TaskRepository.new }
 
-  describe '#find_by_status' do
+  describe '#find_by' do
     after { repo.clear }
 
     before do
-      Fabricate.create(:task, title: 'in progress', approved: true, status: 'in progress')
-      Fabricate.create(:task, title: 'closed', approved: true, status: 'closed')
-      Fabricate.create(:task, title: 'done', approved: true, status: 'done')
+      Fabricate.create(:task, title: 'in progress', approved: true, status: 'in progress', lang: 'ruby')
+      Fabricate.create(:task, title: 'closed', approved: true, status: 'closed', lang: 'haskell')
+      Fabricate.create(:task, title: 'done', approved: true, status: 'done', lang: 'unknown')
     end
 
-    context 'when key empty' do
+    context 'when params is empty' do
       it 'returns array of closed tasks' do
-        result = repo.find_by_status(nil)
+        result = repo.find_by(nil)
         expect(result).to all(be_a(Task))
         expect(result.count).to eq 3
       end
     end
 
-    context 'when key is closed' do
+    context 'when status is closed' do
       it 'returns array of closed tasks' do
-        result = repo.find_by_status('closed')
+        result = repo.find_by(status: 'closed')
         expect(result).to all(be_a(Task))
         expect(result.count).to eq 1
         expect(result.first.status).to eq 'closed'
       end
     end
 
-    context 'when key is done' do
+    context 'when status is done' do
       it 'returns array of done tasks' do
-        result = repo.find_by_status('done')
+        result = repo.find_by(status: 'done')
         expect(result).to all(be_a(Task))
         expect(result.count).to eq 1
         expect(result.first.status).to eq 'done'
       end
     end
 
-    context 'when key is in progress' do
+    context 'when status is in progress' do
       it 'returns array of in progress tasks' do
-        result = repo.find_by_status('in progress')
+        result = repo.find_by(status: 'in progress')
         expect(result).to all(be_a(Task))
         expect(result.count).to eq 1
         expect(result.first.status).to eq 'in progress'
       end
     end
 
-    context 'when key is invalid' do
+    context 'when status is invalid' do
       it 'returns array of all tasks' do
-        result = repo.find_by_status('test')
+        result = repo.find_by(status: 'test')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 3
+      end
+    end
+
+    context 'when lang is ruby' do
+      it 'returns array of ruby language tasks' do
+        result = repo.find_by(lang: 'ruby')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 1
+        expect(result.first.lang).to eq 'ruby'
+      end
+    end
+
+    context 'when lang is haskell' do
+      it 'returns array of haskell language tasks' do
+        result = repo.find_by(lang: 'haskell')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 1
+        expect(result.first.lang).to eq 'haskell'
+      end
+    end
+
+    context 'when lang is unknown' do
+      it 'returns array of unknown language tasks' do
+        result = repo.find_by(lang: 'unknown')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 1
+        expect(result.first.lang).to eq 'unknown'
+      end
+    end
+
+    context 'when lang is invalid' do
+      it 'returns array of all tasks' do
+        result = repo.find_by(lang: 'test')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 3
+      end
+    end
+
+    context 'when status is in progress and lang is ruby' do
+      it 'returns array of in progress, ruby tasks' do
+        result = repo.find_by(status: 'in progress', lang: 'ruby')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 1
+        expect(result.first.lang).to eq 'ruby'
+        expect(result.first.status).to eq 'in progress'
+      end
+    end
+
+    context 'when status is invalid and lang is ruby' do
+      it 'returns array of ruby tasks' do
+        result = repo.find_by(status: 'test', lang: 'ruby')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 1
+        expect(result.first.lang).to eq 'ruby'
+      end
+    end
+
+    context 'when status is in progress and lang is invalid' do
+      it 'returns array of in progress tasks' do
+        result = repo.find_by(status: 'in progress', lang: 'test')
+        expect(result).to all(be_a(Task))
+        expect(result.count).to eq 1
+        expect(result.first.status).to eq 'in progress'
+      end
+    end
+
+    context 'when status is invalid and lang is invalid' do
+      it 'returns array of all tasks' do
+        result = repo.find_by(status: 'test', lang: 'test')
         expect(result).to all(be_a(Task))
         expect(result.count).to eq 3
       end
