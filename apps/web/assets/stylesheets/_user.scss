@@ -122,6 +122,9 @@
 
       .task-item__title {
         width: 60%;
+        a {
+          padding: 0;
+        }
         span {
           margin: 0 10px;
         }
