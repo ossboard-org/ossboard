@@ -151,8 +151,10 @@
       font-size: 22px;
       color: #214CFD;
       letter-spacing: 0;
-      margin-left: -8px;
 
+      a {
+        padding: 0;
+      }
       a:link,
       a:active,
       a:visited {
