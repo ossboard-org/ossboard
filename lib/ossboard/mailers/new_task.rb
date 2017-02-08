@@ -3,7 +3,7 @@ class Mailers::NewTask
 
   from    'info@ossboard.com'
   to      :recipient
-  subject 'OSSBoard: new task was add for moderation'
+  subject 'OSSBoard: new task'
 
   def link_to_task
     "http://www.ossboard.org/admin/tasks/#{task.id}"
