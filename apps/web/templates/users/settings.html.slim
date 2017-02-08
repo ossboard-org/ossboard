@@ -1,3 +1,6 @@
 h1 Settings
 
-#user-repos
+#user-repos data-login=user.login
+  ul
+    li v-for="repo in repos"
+      | {{ repo.full_name }}

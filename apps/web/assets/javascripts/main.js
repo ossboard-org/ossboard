@@ -197,3 +197,28 @@ if (document.getElementById("tasks-filter")) {
     }
   })
 }
+
+if (document.getElementById("user-repos")) {
+  new Vue({
+    el: '#user-repos',
+    data: {
+      repos: [],
+      xhr: new XMLHttpRequest(),
+      apiURL: `/api/user_repos/${document.getElementById('user-repos').dataset.login}`
+    },
+    created: function () {
+      this.fetchData()
+    },
+    methods: {
+      fetchData: function () {
+        var self = this
+        this.xhr.open('GET', this.apiURL)
+        this.xhr.onload = function () {
+          self.repos = JSON.parse(self.xhr.responseText)
+          console.log(self.repos)
+        }
+        this.xhr.send()
+      }
+    }
+  })
+}
