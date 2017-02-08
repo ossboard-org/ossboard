@@ -7,35 +7,37 @@ import "!style-loader!css-loader!../stylesheets/share_buttons.css";
 
 window.onload = function () {
   var taskTitleTag = document.getElementById('task_title');
-  var taskTitle = (taskTitleTag.textContent || taskTitleTag.innerText) + ' #ossboard';
-  var config = {
-    ui: {
-      buttonText: '',
-    },
-    networks: {
-      googlePlus: {
-        enabled: true,
+  if (taskTitleTag) {
+    var taskTitle = (taskTitleTag.textContent || taskTitleTag.innerText) + ' #ossboard';
+    var config = {
+      ui: {
+        buttonText: '',
       },
-      twitter: {
-        enabled: true,
-        description: taskTitle
-      },
-      facebook: {
-        enabled: true,
-        loadSdk: true,
-        title: taskTitle
-      },
-      reddit: {
-        enabled: true,
-        title: taskTitle
-      },
-      email: {
-        enabled: true,
-        description: taskTitle
+      networks: {
+        googlePlus: {
+          enabled: true,
+        },
+        twitter: {
+          enabled: true,
+          description: taskTitle
+        },
+        facebook: {
+          enabled: true,
+          loadSdk: true,
+          title: taskTitle
+        },
+        reddit: {
+          enabled: true,
+          title: taskTitle
+        },
+        email: {
+          enabled: true,
+          description: taskTitle
+        }
       }
     }
+    var share = new ShareButton('.task__share-js', config);
   }
-  var share = new ShareButton('.task__share-js', config);
 }
 
 Vue.component('modal', {
