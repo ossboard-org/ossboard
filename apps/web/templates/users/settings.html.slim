@@ -1,6 +1,6 @@
-h1 Settings
+.settings.main-content
+  h1 Settings
 
-#user-repos data-login=user.login
-  ul
-    li v-for="repo in repos"
+  #user-repos.user-repos data-login=user.login
+    .user-repos__i v-for="repo in repos"
       | {{ repo.full_name }}

@@ -1,0 +1,17 @@
+.settings {
+  .user-repos {
+    width: 70%;
+    margin: 2em auto;
+
+    .user-repos__i {
+      padding: 1em 1em;
+      background: #FFFFFF;
+      box-shadow: 0 0 1px 0 rgba(43, 59, 124, 0.18), 0 1px 3px 0 rgba(43, 59, 125, 0.14);
+      border-radius: 2px;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+}
