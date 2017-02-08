@@ -7,35 +7,37 @@ import "!style-loader!css-loader!../stylesheets/share_buttons.css";
 
 window.onload = function () {
   var taskTitleTag = document.getElementById('task_title');
-  var taskTitle = (taskTitleTag.textContent || taskTitleTag.innerText) + ' #ossboard';
-  var config = {
-    ui: {
-      buttonText: '',
-    },
-    networks: {
-      googlePlus: {
-        enabled: true,
+  if (taskTitleTag) {
+    var taskTitle = (taskTitleTag.textContent || taskTitleTag.innerText) + ' #ossboard';
+    var config = {
+      ui: {
+        buttonText: '',
       },
-      twitter: {
-        enabled: true,
-        description: taskTitle
-      },
-      facebook: {
-        enabled: true,
-        loadSdk: true,
-        title: taskTitle
-      },
-      reddit: {
-        enabled: true,
-        title: taskTitle
-      },
-      email: {
-        enabled: true,
-        description: taskTitle
+      networks: {
+        googlePlus: {
+          enabled: true,
+        },
+        twitter: {
+          enabled: true,
+          description: taskTitle
+        },
+        facebook: {
+          enabled: true,
+          loadSdk: true,
+          title: taskTitle
+        },
+        reddit: {
+          enabled: true,
+          title: taskTitle
+        },
+        email: {
+          enabled: true,
+          description: taskTitle
+        }
       }
     }
+    var share = new ShareButton('.task__share-js', config);
   }
-  var share = new ShareButton('.task__share-js', config);
 }
 
 Vue.component('modal', {
@@ -191,6 +193,31 @@ if (document.getElementById("tasks-filter")) {
         window.location = "/tasks?" +
           (this.status ? "status=" + this.status + '&' : '') +
           (this.lang != 'any' ? "lang=" + this.lang : '')
+      }
+    }
+  })
+}
+
+if (document.getElementById("user-repos")) {
+  new Vue({
+    el: '#user-repos',
+    data: {
+      repos: [],
+      xhr: new XMLHttpRequest(),
+      apiURL: `/api/user_repos/${document.getElementById('user-repos').dataset.login}`
+    },
+    created: function () {
+      this.fetchData()
+    },
+    methods: {
+      fetchData: function () {
+        var self = this
+        this.xhr.open('GET', this.apiURL)
+        this.xhr.onload = function () {
+          self.repos = JSON.parse(self.xhr.responseText)
+          console.log(self.repos)
+        }
+        this.xhr.send()
       }
     }
   })
