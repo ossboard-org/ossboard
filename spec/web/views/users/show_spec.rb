@@ -1,7 +1,7 @@
 require_relative '../../../../apps/web/views/users/show'
 
 RSpec.describe Web::Views::Users::Show do
-  let(:user)      { User.new(login: 'anton') }
+  let(:user)      { User.new(id: 1, login: 'anton') }
   let(:exposures) { Hash[user: user] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/users/show.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
@@ -28,6 +28,26 @@ RSpec.describe Web::Views::Users::Show do
         link = view.link_to_task(task)
         expect(link.to_s).to eq "<span>\ntest\n</span>"
       end
+    end
+  end
+
+  describe '#link_to_settings' do
+    context 'when user not logined' do
+      let(:exposures) { Hash[user: user, current_user: User.new] }
+
+      it { expect(view.link_to_settings.to_s).to eq '' }
+    end
+
+    context 'when logined user opened other user page' do
+      let(:exposures) { Hash[user: user, current_user: User.new(id: 2, login: 'test')] }
+
+      it { expect(view.link_to_settings.to_s).to eq '' }
+    end
+
+    context 'when logined user opened own page' do
+      let(:exposures) { Hash[user: user, current_user: User.new(id: 1, login: 'anton')] }
+
+      it { expect(view.link_to_settings.to_s).to eq '<a href="/users/anton/settings">Settings</a>' }
     end
   end
 

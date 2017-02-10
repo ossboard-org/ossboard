@@ -6,8 +6,9 @@
       h2 = user.name || user.login
     .show-user__bio
       = user.bio
-    .show-user__github
+    .show-user__links
       = link_to 'Github', "http://github.com/#{user.login}"
+      = link_to_settings
 
   #js-switcher.show-user__tasks.tasks
     .show-user__switch

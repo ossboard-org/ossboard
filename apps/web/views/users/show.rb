@@ -14,6 +14,12 @@ module Web::Views::Users
       end
     end
 
+    def link_to_settings
+      return unless current_user == user
+
+      link_to 'Settings', routes.settings_user_path(current_user.login)
+    end
+
     def task_status_style(task)
       'waiting-task' unless task.approved
     end
