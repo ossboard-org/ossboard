@@ -7,6 +7,8 @@ gem 'rake'
 gem 'hanami',       '~> 0.9'
 gem 'hanami-model', '~> 0.7'
 gem 'puma'
+gem 'letsencrypt_rack'
+gem 'letsencrypt_heroku', require: false
 
 # markdown
 gem 'kramdown', '1.13.1'

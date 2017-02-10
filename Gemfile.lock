@@ -32,6 +32,8 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    acme-client (0.5.0)
+      faraday (~> 0.9, >= 0.9.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     ast (2.3.0)
@@ -180,6 +182,11 @@ GEM
     json (2.0.3)
     jwt (1.5.6)
     kramdown (1.13.1)
+    letsencrypt_heroku (0.2.12)
+      acme-client
+      rainbow
+      tty-spinner
+    letsencrypt_rack (0.1.2)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     memoizable (0.4.2)
@@ -312,6 +319,7 @@ GEM
     tilt (2.0.5)
     timecop (0.8.1)
     transproc (0.4.2)
+    tty-spinner (0.4.1)
     twitter (6.0.0)
       addressable (~> 2.5)
       buftok (~> 0.2.0)
@@ -357,6 +365,8 @@ DEPENDENCIES
   hanami-webpack!
   hiredis
   kramdown (= 1.13.1)
+  letsencrypt_heroku
+  letsencrypt_rack
   memory_profiler
   mock_redis
   newrelic-hanami!
