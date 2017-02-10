@@ -3,6 +3,7 @@ require 'omniauth'
 require 'newrelic_rpm'
 require 'newrelic-hanami'
 
+# TODO: call `letsencrypt_heroku` when we switch to Hobby heroku plan
 use LetsencryptRack::Middleware
 
 NewRelic::Agent.manual_start
