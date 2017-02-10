@@ -2,7 +2,9 @@
   h1 Settings
 
   #user-repos.user-repos data-login=user.login
-    .user-repos__i.user-repo v-for="repo in repos"
+    form
+      input name="query" placeholder="Search repository..." v-model="filterKey"
+    .user-repos__i.user-repo v-for="repo in filteredRepos(repos)"
       .user-repo__title
         | {{ repo.full_name }}
       .user-repo__integrate

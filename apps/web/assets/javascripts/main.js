@@ -202,22 +202,33 @@ if (document.getElementById("user-repos")) {
   new Vue({
     el: '#user-repos',
     data: {
+      filterKey: '',
       repos: [],
       xhr: new XMLHttpRequest(),
       apiURL: `/api/user_repos/${document.getElementById('user-repos').dataset.login}`
     },
+
     created: function () {
       this.fetchData()
     },
+
     methods: {
       fetchData: function () {
         var self = this
         this.xhr.open('GET', this.apiURL)
         this.xhr.onload = function () {
           self.repos = JSON.parse(self.xhr.responseText)
-          console.log(self.repos)
         }
         this.xhr.send()
+      },
+
+      filteredRepos: function (repos) {
+        var self = this
+        return repos.filter(function(repo) {
+          if (repo.full_name.toLowerCase().match(self.filterKey)) {
+            return repo
+          }
+        })
       }
     }
   })
