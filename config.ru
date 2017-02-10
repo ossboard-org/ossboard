@@ -3,6 +3,8 @@ require 'omniauth'
 require 'newrelic_rpm'
 require 'newrelic-hanami'
 
+use LetsencryptRack::Middleware
+
 NewRelic::Agent.manual_start
 
 use SecureHeaders::Middleware
