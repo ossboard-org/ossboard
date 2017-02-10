@@ -6,7 +6,6 @@ RSpec.describe Web::Controllers::Tasks::Edit do
   let(:session) { { current_user: User.new } }
   let(:repo)    { TaskRepository.new }
   let(:task)    { Fabricate.create(:task, title: 'TestTask') }
-  let(:params)  { { id: task.id } }
   let(:params)  { { 'rack.session' => session, id: task.id } }
 
   after { repo.clear }
