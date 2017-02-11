@@ -20,7 +20,7 @@ html
 
     = render partial: 'shared/components'
 
-    - if Hanami.env?(:development)
+    - if Hanami.env?(:development) || Hanami.env?(:test)
       script src=webpack_asset_path('web')
 
     - if Hanami.env?(:production)
