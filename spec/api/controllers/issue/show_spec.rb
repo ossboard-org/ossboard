@@ -22,16 +22,17 @@ RSpec.describe Api::Controllers::Issue::Show, :vcr do
 
   context 'with github url' do
     context 'when issue url is valid github' do
-      let(:params) { { issue_url: 'https://github.com/hanami/hanami/issues/663' } }
+      let(:params) { { issue_url: 'https://github.com/ossboard-org/ossboard/issues/69' } }
       it { expect(subject).to match_in_body(/"title":/) }
       it { expect(subject).to match_in_body(/"body":/) }
       it { expect(subject).to match_in_body(/"html_url":/) }
       it { expect(subject).to match_in_body(/"lang":/) }
       it { expect(subject).to match_in_body(/"repository_name":/) }
+      it { expect(subject).to match_in_body(/"complexity":/) }
     end
 
     context 'when issue url is invalid' do
-      let(:params) { { issue_url: 'https://api.github.com/repos/hanami/hanami/issues/663' } }
+      let(:params) { { issue_url: 'https://api.github.com/repos/ossboard-org/ossboard/issues/69' } }
       it { expect(subject).to match_in_body(/\A{"error":"invalid url"}\z/) }
     end
   end
@@ -42,7 +43,7 @@ RSpec.describe Api::Controllers::Issue::Show, :vcr do
     end
 
     context 'when issue url is valid gitlab' do
-      let(:params) { { issue_url: 'https://gitlab.com/gitlab-org/gitlab-ce/issues/27371' } }
+      let(:params) { { issue_url: 'https://gitlab.com/gitlab-org/gitlab-ce/issues/28059' } }
       it { expect(subject).to match_in_body(/"title":/) }
       it { expect(subject).to match_in_body(/"body":/) }
       it { expect(subject).to match_in_body(/"html_url":/) }

@@ -29,7 +29,8 @@ RSpec.describe Web::Controllers::Tasks::Update do
 
   context 'when user authenticated and try to edit not its task' do
     let(:user) { Fabricate.create(:user, name: 'anton', login: 'test') }
-    let(:task) { Fabricate.create(:task, title: 'title', user_id: user.id - 1) }
+    let(:another_user) { Fabricate.create(:user) }
+    let(:task) { Fabricate.create(:task, title: 'title', user_id: another_user.id) }
     let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test' }, 'rack.session' => session } }
 
     it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
