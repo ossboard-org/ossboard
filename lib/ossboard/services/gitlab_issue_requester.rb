@@ -6,13 +6,9 @@ class GitlabIssueRequester
   end
 
   def call(params)
-    success, data = issue_data(params)
-    return data unless success
-
-    success, repo = repo_data(params)
-    return data unless success
-
-    data.merge(repo)
+    issue_data(params)
+      .fmap { |data| data.merge(repo_data(params)) }
+      .value
   end
 
   private
@@ -21,42 +17,38 @@ class GitlabIssueRequester
   GITLAB_ISSUE_API_URL = 'https://gitlab.com/api/v3/projects/%{org}%%2F%{repo}/issues/?iid=%{issue}'.freeze
 
   MESSAGE_KEY = 'message'.freeze
-  ERROR_HASH = { error: 'invalid url' }.freeze
-  ERROR_UNATHORIZED_HASH = { error: 'Unauthorized' }.freeze
-  LABEL_COMPLEXITY_NAMES = %w(easy medium hard).freeze
+  ERROR_HASH = { error: 'invalid url' }
+  ERROR_UNATHORIZED_HASH = { error: 'Unauthorized' }
+  COMPLEXITY_LABELS = %w(easy medium hard).freeze
 
   def issue_data(params)
     response = get_response(GITLAB_ISSUE_API_URL % params)
-    return [false, parse_errors(response)] unless response.is_a?(Net::HTTPSuccess)
+    return M.Left(parse_errors(response)) unless response.is_a?(Net::HTTPSuccess)
 
     data = JSON.parse(response.body)
-    return [false, ERROR_HASH] unless Array(data).size == 1
+    return M.Left(ERROR_HASH) unless Array(data).size == 1
 
     data = data.first
-    result = {
+    M.Right(
       html_url: data['web_url'],
       title: data['title'],
       body: data['description'],
       complexity: issue_complexity(data)
-    }
-
-    [true, result]
+    )
   end
 
   def issue_complexity(data)
-    labels = data['labels'].map(&:downcase)
-    return unless labels
-
-    labels.find { |label| LABEL_COMPLEXITY_NAMES.include?(label) }
+    labels = data['labels'].map!(&:downcase)
+    labels.find { |label| COMPLEXITY_LABELS.include?(label) }
   end
 
   def repo_data(params)
     response = get_response(GITLAB_REPO_API_URL % params)
     data = JSON.parse(response.body)
-    return [false, {}] unless response.is_a?(Net::HTTPSuccess)
+    return {} unless response.is_a?(Net::HTTPSuccess)
 
     result = { repository_name: data['name'] }
-    [true, result]
+    result
   end
 
   def parse_errors(issue_response)
