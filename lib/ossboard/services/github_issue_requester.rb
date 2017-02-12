@@ -13,11 +13,11 @@ class GithubIssueRequester
 
   private
 
-  ERROR_HASH = { error: 'invalid url' }.freeze
+  ERROR_HASH = { error: 'invalid url' }
 
   GITHUB_REPO_API_URL = 'https://api.github.com/repos/%{org}/%{repo}'.freeze
   GITHUB_ISSUE_API_URL = 'https://api.github.com/repos/%{org}/%{repo}/issues/%{issue}'.freeze
-  LABEL_COMPLEXITY_NAMES = %w(easy medium hard).freeze
+  COMPLEXITY_LABELS = %w(easy medium hard).freeze
 
   def get_response(url)
     HttpRequest.new(url).get
@@ -37,10 +37,9 @@ class GithubIssueRequester
   end
 
   def issue_complexity(data)
-    labels = data['labels']
-    return unless labels
-    labels.map { |label| label['name'].downcase }
-          .find { |label_name| LABEL_COMPLEXITY_NAMES.include?(label_name) }
+    data['labels']
+      .map! { |label| label['name'].downcase }
+      .find { |label| COMPLEXITY_LABELS.include?(label) }
   end
 
   def repo_data(params)

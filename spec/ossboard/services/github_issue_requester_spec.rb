@@ -15,6 +15,22 @@ RSpec.describe GithubIssueRequester, :vcr do
         expect(data[:complexity]).to eq 'easy'
       end
     end
+
+    context 'and issue does not have labels' do
+      let(:params) { { org: 'ossboard-org', repo: 'ossboard', issue: '11' } }
+
+      it 'returns github issue data' do
+        VCR.use_cassette("github_success_issue_without_labels") do
+          data = GithubIssueRequester.(params)
+          expect(data[:html_url]).to eq 'https://github.com/ossboard-org/ossboard/issues/11'
+          expect(data[:title]).to eq 'Update design for web app'
+          expect(data[:body]).to match('We need to update mobile version')
+          expect(data[:lang]).to eq 'ruby'
+          expect(data[:repository_name]).to eq 'ossboard'
+          expect(data[:complexity]).to eq nil
+        end
+      end
+    end
   end
 
   context 'when data is invalid' do
