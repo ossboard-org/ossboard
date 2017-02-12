@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce-/issues/?iid=27371
+    uri: https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce-/issues/?iid=28059
     body:
       encoding: US-ASCII
       string: ''

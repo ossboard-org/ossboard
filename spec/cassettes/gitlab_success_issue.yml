@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce/issues/?iid=27371
+    uri: https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce/issues/?iid=28059
     body:
       encoding: US-ASCII
       string: ''
@@ -14,7 +14,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Private-Token:
-      - ''
+      - dyCGuz_Jp2Wx9DyZJzdh
   response:
     status:
       code: 200
@@ -23,18 +23,18 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 29 Jan 2017 00:29:29 GMT
+      - Sat, 11 Feb 2017 18:56:31 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1508'
+      - '965'
       Cache-Control:
       - max-age=0, private, must-revalidate
       Etag:
-      - W/"6be67cb47a34dabf82e3765631c9b6a3"
+      - W/"57e7e1b61fbafac3cea6ef375e862814"
       Link:
-      - <https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce/issues?id=gitlab-org%2Fgitlab-ce&iid=27371&order_by=created_at&page=1&per_page=20&sort=desc&state=all>;
-        rel="first", <https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce/issues?id=gitlab-org%2Fgitlab-ce&iid=27371&order_by=created_at&page=1&per_page=20&sort=desc&state=all>;
+      - <https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce/issues?id=gitlab-org%2Fgitlab-ce&iid=28059&order_by=created_at&page=1&per_page=20&sort=desc&state=all>;
+        rel="first", <https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce/issues?id=gitlab-org%2Fgitlab-ce&iid=28059&order_by=created_at&page=1&per_page=20&sort=desc&state=all>;
         rel="last"
       Vary:
       - Origin
@@ -47,30 +47,23 @@ http_interactions:
       X-Prev-Page:
       - ''
       X-Request-Id:
-      - a67792fe-970e-4d58-8d53-b7b63204020c
+      - 0f09b3bc-4898-4d0b-962f-c4a17764ed8a
       X-Runtime:
-      - '0.142726'
+      - '0.165835'
       X-Total:
       - '1'
       X-Total-Pages:
       - '1'
     body:
       encoding: UTF-8
-      string: '[{"id":4090096,"iid":27371,"project_id":13083,"title":"Set protected
-        branches \"Allowed to push\" to \"No one\" via API","description":"### Description\n\nIt
-        is currently only possible to set the \"Allowed to push\" (or merge) properties
-        of a protected branch to either \"Master\" or \"Developers + Masters\" via
-        the API (using the `developers_can_push` property of the \"Protect repository
-        branch\" endpoint).\n\nHowever, we would like to set it to \"No one\" (we
-        have some branches which must only be modified via a MR).\n\n### Proposal\n\nTo
-        keep the API similar to the protect branches UI, I''d propose replacing the
-        current `developers_can_push = boolean` property with an `allowed_to_push
-        = ''no one'' | ''masters'' | ''developers+masters''`. The same should be done
-        to replace the `developers_can_merge` parameter.\n\n### Links / references\n*
-        [Protect repository branch API endpoint](https://docs.gitlab.com/ee/api/branches.html#protect-repository-branch)","state":"opened","created_at":"2017-01-27T14:13:00.928Z","updated_at":"2017-01-27T14:13:00.928Z","labels":[],"milestone":null,"assignee":null,"author":{"name":"Jay
-        Anslow","username":"janslow","id":465358,"state":"active","avatar_url":"https://secure.gravatar.com/avatar/f8bc5a8898df95d52b989ded1b03946f?s=80\u0026d=identicon","web_url":"https://gitlab.com/janslow"},"subscribed":false,"user_notes_count":0,"upvotes":1,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitlab-org/gitlab-ce/issues/27371"}]'
-    http_version: 
-  recorded_at: Sun, 29 Jan 2017 00:29:29 GMT
+      string: '[{"id":4343075,"iid":28059,"project_id":13083,"title":"No pagination
+        on abuse_reports","description":"We removed\n\n```\n    = paginate @abuse_reports\n```\n\nfrom
+        `app/views/admin/abuse_reports/index.html.haml` in https://gitlab.com/gitlab-org/gitlab-ee/commit/1e6d8a388c3e818ee63daabb3b05b0c30f4502fe\n\nThis
+        removed the ability to paginate through the abuse pages\n\n//cc @lbennett
+        @briann","state":"opened","created_at":"2017-02-11T18:01:27.030Z","updated_at":"2017-02-11T18:08:08.988Z","labels":["Frontend","UX","bug","regression","spam
+        fighting", "medium"],"milestone":null,"assignee":null,"author":{"name":"Chris Wilson","username":"MrChrisW","id":444214,"state":"active","avatar_url":"https://gitlab.com/uploads/user/avatar/444214/avatar.png","web_url":"https://gitlab.com/MrChrisW"},"subscribed":false,"user_notes_count":0,"upvotes":0,"downvotes":0,"due_date":null,"confidential":false,"weight":null,"web_url":"https://gitlab.com/gitlab-org/gitlab-ce/issues/28059"}]'
+    http_version:
+  recorded_at: Sat, 11 Feb 2017 18:56:30 GMT
 - request:
     method: get
     uri: https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce
@@ -85,7 +78,7 @@ http_interactions:
       User-Agent:
       - Ruby
       Private-Token:
-      - ''
+      - dyCGuz_Jp2Wx9DyZJzdh
   response:
     status:
       code: 200
@@ -94,7 +87,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 29 Jan 2017 00:29:30 GMT
+      - Sat, 11 Feb 2017 18:56:32 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -102,254 +95,18 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       Etag:
-      - W/"e4226d99b0c55981295672990395ad2e"
+      - W/"da5d804638a90d8892ca190107207db0"
       Vary:
       - Origin
       X-Request-Id:
-      - b99a8c5a-3240-4bca-af5b-54ff44dde578
+      - 79824c66-70b3-4755-adc9-1c3b131c585a
       X-Runtime:
-      - '0.177514'
+      - '0.177052'
     body:
       encoding: UTF-8
       string: '{"id":13083,"description":"Version Control on your Server. See https://gitlab.com/gitlab-org/gitlab-ce
         and the README for more information","default_branch":"master","tag_list":[],"public":true,"archived":false,"visibility_level":20,"ssh_url_to_repo":"git@gitlab.com:gitlab-org/gitlab-ce.git","http_url_to_repo":"https://gitlab.com/gitlab-org/gitlab-ce.git","web_url":"https://gitlab.com/gitlab-org/gitlab-ce","name":"GitLab
-        Community Edition","name_with_namespace":"GitLab.org / GitLab Community Edition","path":"gitlab-ce","path_with_namespace":"gitlab-org/gitlab-ce","container_registry_enabled":false,"issues_enabled":true,"merge_requests_enabled":true,"wiki_enabled":false,"builds_enabled":true,"snippets_enabled":true,"created_at":"2013-09-26T06:02:36.000Z","last_activity_at":"2017-01-29T00:28:08.590Z","shared_runners_enabled":true,"lfs_enabled":true,"creator_id":1,"namespace":{"id":9970,"name":"GitLab.org","path":"gitlab-org","kind":"group"},"avatar_url":"https://gitlab.com/uploads/project/avatar/13083/logo-extra-whitespace.png","star_count":2681,"forks_count":2519,"open_issues_count":6061,"public_builds":true,"shared_with_groups":[],"only_allow_merge_if_build_succeeds":false,"request_access_enabled":false,"only_allow_merge_if_all_discussions_are_resolved":false,"approvals_before_merge":0,"permissions":{"project_access":null,"group_access":null}}'
-    http_version: 
-  recorded_at: Sun, 29 Jan 2017 00:29:30 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/hanami/hanami/issues/663
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Sun, 29 Jan 2017 00:48:08 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '57'
-      X-Ratelimit-Reset:
-      - '1485653547'
-      Cache-Control:
-      - public, max-age=60, s-maxage=60
-      Vary:
-      - Accept
-      - Accept-Encoding
-      Etag:
-      - W/"38c2a82ed87648c5b9cde59ac52e9a61"
-      Last-Modified:
-      - Sat, 28 Jan 2017 16:56:05 GMT
-      X-Github-Media-Type:
-      - github.v3; format=json
-      Access-Control-Expose-Headers:
-      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
-        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - "*"
-      Content-Security-Policy:
-      - default-src 'none'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Served-By:
-      - 9000e9eef7bb1e89f22030c676da140e
-      X-Github-Request-Id:
-      - F3B8:6972:A9CC593:C909D2F:588D3BC7
-    body:
-      encoding: ASCII-8BIT
-      string: '{"url":"https://api.github.com/repos/hanami/hanami/issues/663","repository_url":"https://api.github.com/repos/hanami/hanami","labels_url":"https://api.github.com/repos/hanami/hanami/issues/663/labels{/name}","comments_url":"https://api.github.com/repos/hanami/hanami/issues/663/comments","events_url":"https://api.github.com/repos/hanami/hanami/issues/663/events","html_url":"https://github.com/hanami/hanami/issues/663","id":188814461,"number":663,"title":"Format
-        resolving and Template lookup","user":{"login":"mereghost","id":10281,"avatar_url":"https://avatars.githubusercontent.com/u/10281?v=3","gravatar_id":"","url":"https://api.github.com/users/mereghost","html_url":"https://github.com/mereghost","followers_url":"https://api.github.com/users/mereghost/followers","following_url":"https://api.github.com/users/mereghost/following{/other_user}","gists_url":"https://api.github.com/users/mereghost/gists{/gist_id}","starred_url":"https://api.github.com/users/mereghost/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/mereghost/subscriptions","organizations_url":"https://api.github.com/users/mereghost/orgs","repos_url":"https://api.github.com/users/mereghost/repos","events_url":"https://api.github.com/users/mereghost/events{/privacy}","received_events_url":"https://api.github.com/users/mereghost/received_events","type":"User","site_admin":false},"labels":[{"id":51404909,"url":"https://api.github.com/repos/hanami/hanami/labels/bug","name":"bug","color":"fc2929","default":true}],"state":"closed","locked":false,"assignee":{"login":"jodosha","id":5089,"avatar_url":"https://avatars.githubusercontent.com/u/5089?v=3","gravatar_id":"","url":"https://api.github.com/users/jodosha","html_url":"https://github.com/jodosha","followers_url":"https://api.github.com/users/jodosha/followers","following_url":"https://api.github.com/users/jodosha/following{/other_user}","gists_url":"https://api.github.com/users/jodosha/gists{/gist_id}","starred_url":"https://api.github.com/users/jodosha/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/jodosha/subscriptions","organizations_url":"https://api.github.com/users/jodosha/orgs","repos_url":"https://api.github.com/users/jodosha/repos","events_url":"https://api.github.com/users/jodosha/events{/privacy}","received_events_url":"https://api.github.com/users/jodosha/received_events","type":"User","site_admin":false},"assignees":[{"login":"jodosha","id":5089,"avatar_url":"https://avatars.githubusercontent.com/u/5089?v=3","gravatar_id":"","url":"https://api.github.com/users/jodosha","html_url":"https://github.com/jodosha","followers_url":"https://api.github.com/users/jodosha/followers","following_url":"https://api.github.com/users/jodosha/following{/other_user}","gists_url":"https://api.github.com/users/jodosha/gists{/gist_id}","starred_url":"https://api.github.com/users/jodosha/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/jodosha/subscriptions","organizations_url":"https://api.github.com/users/jodosha/orgs","repos_url":"https://api.github.com/users/jodosha/repos","events_url":"https://api.github.com/users/jodosha/events{/privacy}","received_events_url":"https://api.github.com/users/jodosha/received_events","type":"User","site_admin":false}],"milestone":{"url":"https://api.github.com/repos/hanami/hanami/milestones/18","html_url":"https://github.com/hanami/hanami/milestone/18","labels_url":"https://api.github.com/repos/hanami/hanami/milestones/18/labels","id":2129213,"number":18,"title":"v1.0.0.beta1","description":"","creator":{"login":"jodosha","id":5089,"avatar_url":"https://avatars.githubusercontent.com/u/5089?v=3","gravatar_id":"","url":"https://api.github.com/users/jodosha","html_url":"https://github.com/jodosha","followers_url":"https://api.github.com/users/jodosha/followers","following_url":"https://api.github.com/users/jodosha/following{/other_user}","gists_url":"https://api.github.com/users/jodosha/gists{/gist_id}","starred_url":"https://api.github.com/users/jodosha/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/jodosha/subscriptions","organizations_url":"https://api.github.com/users/jodosha/orgs","repos_url":"https://api.github.com/users/jodosha/repos","events_url":"https://api.github.com/users/jodosha/events{/privacy}","received_events_url":"https://api.github.com/users/jodosha/received_events","type":"User","site_admin":false},"open_issues":6,"closed_issues":16,"state":"open","created_at":"2016-11-11T11:59:51Z","updated_at":"2017-01-28T16:56:05Z","due_on":null,"closed_at":null},"comments":9,"created_at":"2016-11-11T17:51:18Z","updated_at":"2017-01-21T15:33:51Z","closed_at":"2017-01-21T15:33:51Z","body":"As
-        was reported on Gitter, requests that are made with a `Content-Type` of `text/plain`
-        get resolved to the `:conf` format and consequently a `.txt` template is never
-        used.\r\n\r\nThat happens because we use `Rack::Mime::MIME_TYPES.key(mime_type)`
-        [(see here)](https://github.com/hanami/controller/blob/master/lib/hanami/action/mime.rb#L486)
-        which returns only the first match. The same problem can happen for a bunch
-        of other types (around 40) and we never detected this problem because we skipped
-        those cases on purpose on the tests [(see here)](https://github.com/hanami/controller/blob/master/test/action/format_test.rb#L85)\r\n\r\nMaking
-        it work is kinda of a huge change. Why? For that to work we''d need to make
-        `Hanami::Action#format` an `Array` or make `Hanami::View` (specially the template
-        finder) MIME aware and make it look for the first template file it finds with
-        the possible extensions.\r\n\r\nThat would warrant changes in `view`, `controller`
-        and possibly `hanami`, and that brings me here. I''m willing to work at it
-        but I''d like some input from the hanami members on the best way to tackle
-        this.","closed_by":{"login":"AlfonsoUceda","id":925961,"avatar_url":"https://avatars.githubusercontent.com/u/925961?v=3","gravatar_id":"","url":"https://api.github.com/users/AlfonsoUceda","html_url":"https://github.com/AlfonsoUceda","followers_url":"https://api.github.com/users/AlfonsoUceda/followers","following_url":"https://api.github.com/users/AlfonsoUceda/following{/other_user}","gists_url":"https://api.github.com/users/AlfonsoUceda/gists{/gist_id}","starred_url":"https://api.github.com/users/AlfonsoUceda/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/AlfonsoUceda/subscriptions","organizations_url":"https://api.github.com/users/AlfonsoUceda/orgs","repos_url":"https://api.github.com/users/AlfonsoUceda/repos","events_url":"https://api.github.com/users/AlfonsoUceda/events{/privacy}","received_events_url":"https://api.github.com/users/AlfonsoUceda/received_events","type":"User","site_admin":false}}'
-    http_version: 
-  recorded_at: Sun, 29 Jan 2017 00:48:08 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/hanami/hanami
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Sun, 29 Jan 2017 00:48:08 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '56'
-      X-Ratelimit-Reset:
-      - '1485653547'
-      Cache-Control:
-      - public, max-age=60, s-maxage=60
-      Vary:
-      - Accept
-      - Accept-Encoding
-      Etag:
-      - W/"0276ef1afe874ea9a905033ff43e2f9f"
-      Last-Modified:
-      - Sat, 28 Jan 2017 22:18:58 GMT
-      X-Github-Media-Type:
-      - github.v3; format=json
-      Access-Control-Expose-Headers:
-      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
-        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - "*"
-      Content-Security-Policy:
-      - default-src 'none'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Served-By:
-      - d256f86292c6dde5d09d15d926ec67a3
-      X-Github-Request-Id:
-      - 4FC9:6973:AD07B86:CCCAA1C:588D3BC8
-    body:
-      encoding: ASCII-8BIT
-      string: '{"id":12004006,"name":"hanami","full_name":"hanami/hanami","owner":{"login":"hanami","id":3210273,"avatar_url":"https://avatars.githubusercontent.com/u/3210273?v=3","gravatar_id":"","url":"https://api.github.com/users/hanami","html_url":"https://github.com/hanami","followers_url":"https://api.github.com/users/hanami/followers","following_url":"https://api.github.com/users/hanami/following{/other_user}","gists_url":"https://api.github.com/users/hanami/gists{/gist_id}","starred_url":"https://api.github.com/users/hanami/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/hanami/subscriptions","organizations_url":"https://api.github.com/users/hanami/orgs","repos_url":"https://api.github.com/users/hanami/repos","events_url":"https://api.github.com/users/hanami/events{/privacy}","received_events_url":"https://api.github.com/users/hanami/received_events","type":"Organization","site_admin":false},"private":false,"html_url":"https://github.com/hanami/hanami","description":"The
-        web, with simplicity.","fork":false,"url":"https://api.github.com/repos/hanami/hanami","forks_url":"https://api.github.com/repos/hanami/hanami/forks","keys_url":"https://api.github.com/repos/hanami/hanami/keys{/key_id}","collaborators_url":"https://api.github.com/repos/hanami/hanami/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/hanami/hanami/teams","hooks_url":"https://api.github.com/repos/hanami/hanami/hooks","issue_events_url":"https://api.github.com/repos/hanami/hanami/issues/events{/number}","events_url":"https://api.github.com/repos/hanami/hanami/events","assignees_url":"https://api.github.com/repos/hanami/hanami/assignees{/user}","branches_url":"https://api.github.com/repos/hanami/hanami/branches{/branch}","tags_url":"https://api.github.com/repos/hanami/hanami/tags","blobs_url":"https://api.github.com/repos/hanami/hanami/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/hanami/hanami/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/hanami/hanami/git/refs{/sha}","trees_url":"https://api.github.com/repos/hanami/hanami/git/trees{/sha}","statuses_url":"https://api.github.com/repos/hanami/hanami/statuses/{sha}","languages_url":"https://api.github.com/repos/hanami/hanami/languages","stargazers_url":"https://api.github.com/repos/hanami/hanami/stargazers","contributors_url":"https://api.github.com/repos/hanami/hanami/contributors","subscribers_url":"https://api.github.com/repos/hanami/hanami/subscribers","subscription_url":"https://api.github.com/repos/hanami/hanami/subscription","commits_url":"https://api.github.com/repos/hanami/hanami/commits{/sha}","git_commits_url":"https://api.github.com/repos/hanami/hanami/git/commits{/sha}","comments_url":"https://api.github.com/repos/hanami/hanami/comments{/number}","issue_comment_url":"https://api.github.com/repos/hanami/hanami/issues/comments{/number}","contents_url":"https://api.github.com/repos/hanami/hanami/contents/{+path}","compare_url":"https://api.github.com/repos/hanami/hanami/compare/{base}...{head}","merges_url":"https://api.github.com/repos/hanami/hanami/merges","archive_url":"https://api.github.com/repos/hanami/hanami/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/hanami/hanami/downloads","issues_url":"https://api.github.com/repos/hanami/hanami/issues{/number}","pulls_url":"https://api.github.com/repos/hanami/hanami/pulls{/number}","milestones_url":"https://api.github.com/repos/hanami/hanami/milestones{/number}","notifications_url":"https://api.github.com/repos/hanami/hanami/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/hanami/hanami/labels{/name}","releases_url":"https://api.github.com/repos/hanami/hanami/releases{/id}","deployments_url":"https://api.github.com/repos/hanami/hanami/deployments","created_at":"2013-08-09T15:24:44Z","updated_at":"2017-01-28T22:18:58Z","pushed_at":"2017-01-28T20:32:12Z","git_url":"git://github.com/hanami/hanami.git","ssh_url":"git@github.com:hanami/hanami.git","clone_url":"https://github.com/hanami/hanami.git","svn_url":"https://github.com/hanami/hanami","homepage":"http://hanamirb.org","size":24943,"stargazers_count":3534,"watchers_count":3534,"language":"Ruby","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":348,"mirror_url":null,"open_issues_count":16,"forks":348,"open_issues":16,"watchers":3534,"default_branch":"master","organization":{"login":"hanami","id":3210273,"avatar_url":"https://avatars.githubusercontent.com/u/3210273?v=3","gravatar_id":"","url":"https://api.github.com/users/hanami","html_url":"https://github.com/hanami","followers_url":"https://api.github.com/users/hanami/followers","following_url":"https://api.github.com/users/hanami/following{/other_user}","gists_url":"https://api.github.com/users/hanami/gists{/gist_id}","starred_url":"https://api.github.com/users/hanami/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/hanami/subscriptions","organizations_url":"https://api.github.com/users/hanami/orgs","repos_url":"https://api.github.com/users/hanami/repos","events_url":"https://api.github.com/users/hanami/events{/privacy}","received_events_url":"https://api.github.com/users/hanami/received_events","type":"Organization","site_admin":false},"network_count":348,"subscribers_count":180}'
-    http_version: 
-  recorded_at: Sun, 29 Jan 2017 00:48:09 GMT
-- request:
-    method: get
-    uri: https://gitlab.com/api/v3/projects/hanami%2Fhanami/issues/?iid=663
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Private-Token:
-      - ''
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Sun, 29 Jan 2017 00:48:11 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '30'
-      Cache-Control:
-      - no-cache
-      Vary:
-      - Origin
-      X-Request-Id:
-      - 43ebce1c-c9fd-4de4-a43e-3aee767783a3
-      X-Runtime:
-      - '0.006367'
-    body:
-      encoding: UTF-8
-      string: '{"message":"401 Unauthorized"}'
-    http_version: 
-  recorded_at: Sun, 29 Jan 2017 00:48:11 GMT
-- request:
-    method: get
-    uri: https://gitlab.com/api/v3/projects/hanami%2Fhanami
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Private-Token:
-      - ''
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Sun, 29 Jan 2017 00:48:12 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '35'
-      Cache-Control:
-      - no-cache
-      Vary:
-      - Origin
-      X-Request-Id:
-      - 949dc784-7db0-44a1-97fe-a3715ebb16ad
-      X-Runtime:
-      - '0.012424'
-    body:
-      encoding: UTF-8
-      string: '{"message":"404 Project Not Found"}'
-    http_version: 
-  recorded_at: Sun, 29 Jan 2017 00:48:12 GMT
+        Community Edition","name_with_namespace":"GitLab.org / GitLab Community Edition","path":"gitlab-ce","path_with_namespace":"gitlab-org/gitlab-ce","container_registry_enabled":false,"issues_enabled":true,"merge_requests_enabled":true,"wiki_enabled":false,"builds_enabled":true,"snippets_enabled":true,"created_at":"2013-09-26T06:02:36.000Z","last_activity_at":"2017-02-11T18:15:45.262Z","shared_runners_enabled":true,"lfs_enabled":true,"creator_id":1,"namespace":{"id":9970,"name":"GitLab.org","path":"gitlab-org","kind":"group"},"avatar_url":"https://gitlab.com/uploads/project/avatar/13083/logo-extra-whitespace.png","star_count":2727,"forks_count":2586,"open_issues_count":6255,"public_builds":true,"shared_with_groups":[],"only_allow_merge_if_build_succeeds":false,"request_access_enabled":false,"only_allow_merge_if_all_discussions_are_resolved":false,"approvals_before_merge":0,"permissions":{"project_access":null,"group_access":null}}'
+    http_version:
+  recorded_at: Sat, 11 Feb 2017 18:56:31 GMT
 recorded_with: VCR 3.0.3

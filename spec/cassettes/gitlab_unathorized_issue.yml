@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce/issues/?iid=27371
+    uri: https://gitlab.com/api/v3/projects/gitlab-org%2Fgitlab-ce/issues/?iid=28059
     body:
       encoding: US-ASCII
       string: ''
@@ -39,7 +39,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"message":"401 Unauthorized"}'
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 00:27:32 GMT
 - request:
     method: get
@@ -83,7 +83,7 @@ http_interactions:
       encoding: UTF-8
       string: '{"id":13083,"http_url_to_repo":"https://gitlab.com/gitlab-org/gitlab-ce.git","web_url":"https://gitlab.com/gitlab-org/gitlab-ce","name":"GitLab
         Community Edition","name_with_namespace":"GitLab.org / GitLab Community Edition","path":"gitlab-ce","path_with_namespace":"gitlab-org/gitlab-ce"}'
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 00:27:33 GMT
 - request:
     method: get
@@ -141,6 +141,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: '{"message":"Not Found","documentation_url":"https://developer.github.com/v3"}'
-    http_version: 
+    http_version:
   recorded_at: Sun, 29 Jan 2017 00:32:28 GMT
 recorded_with: VCR 3.0.3

@@ -6,26 +6,13 @@ class GitlabIssueRequester
   end
 
   def call(params)
-    issue_response = get_response(GITLAB_ISSUE_API_URL % params)
-    repo_response = get_response(GITLAB_REPO_API_URL % params)
+    success, data = issue_data(params)
+    return data unless success
 
-    repo_data = JSON.parse(repo_response.body)
-    issue_data = JSON.parse(issue_response.body)
+    success, repo = repo_data(params)
+    return data unless success
 
-    return parse_errors(issue_response) unless issue_response.is_a?(Net::HTTPSuccess)
-    return ERROR_HASH unless Array(issue_data).size == 1
-
-    issue_data = issue_data.first
-
-    data = {
-      html_url: issue_data['web_url'],
-      title: issue_data['title'],
-      body: issue_data['description']
-    }
-
-    data[:repository_name] = repo_data['name'] if repo_response.is_a?(Net::HTTPSuccess)
-
-    data
+    data.merge(repo)
   end
 
   private
@@ -36,6 +23,41 @@ class GitlabIssueRequester
   MESSAGE_KEY = 'message'.freeze
   ERROR_HASH = { error: 'invalid url' }.freeze
   ERROR_UNATHORIZED_HASH = { error: 'Unauthorized' }.freeze
+  LABEL_COMPLEXITY_NAMES = %w(easy medium hard).freeze
+
+  def issue_data(params)
+    response = get_response(GITLAB_ISSUE_API_URL % params)
+    return [false, parse_errors(response)] unless response.is_a?(Net::HTTPSuccess)
+
+    data = JSON.parse(response.body)
+    return [false, ERROR_HASH] unless Array(data).size == 1
+
+    data = data.first
+    result = {
+      html_url: data['web_url'],
+      title: data['title'],
+      body: data['description'],
+      complexity: issue_complexity(data)
+    }
+
+    [true, result]
+  end
+
+  def issue_complexity(data)
+    labels = data['labels'].map(&:downcase)
+    return unless labels
+
+    labels.find { |label| LABEL_COMPLEXITY_NAMES.include?(label) }
+  end
+
+  def repo_data(params)
+    response = get_response(GITLAB_REPO_API_URL % params)
+    data = JSON.parse(response.body)
+    return [false, {}] unless response.is_a?(Net::HTTPSuccess)
+
+    result = { repository_name: data['name'] }
+    [true, result]
+  end
 
   def parse_errors(issue_response)
     response_data = JSON.parse(issue_response.body)
