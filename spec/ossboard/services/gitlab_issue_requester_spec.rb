@@ -29,6 +29,8 @@ RSpec.describe GitlabIssueRequester, :vcr do
   end
 
   context 'when data is invalid' do
+    let(:params) { { org: 'gitlab-org', repo: 'gitlab-ce-', issue: '28059' } }
+
     it 'returns invalid url message' do
       VCR.use_cassette('gitlab_failed_issue') do
         data = subject.(params)
