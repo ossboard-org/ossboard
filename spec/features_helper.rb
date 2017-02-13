@@ -5,7 +5,6 @@ require 'capybara'
 require 'capybara/rspec'
 
 require 'capybara/poltergeist'
-require 'capybara/vue'
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: false)
@@ -23,5 +22,4 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL,           feature: true
   config.include Capybara::RSpecMatchers, feature: true
-  config.include Capybara::Vue::DSL
 end
