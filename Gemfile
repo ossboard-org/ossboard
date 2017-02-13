@@ -29,6 +29,7 @@ gem 'sass'
 gem 'relative_time'
 
 gem 'dry-matcher'
+gem 'dry-monads'
 
 gem 'sidekiq'
 
