@@ -32,6 +32,7 @@ gem 'dry-matcher'
 gem 'dry-monads'
 
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 
 gem 'newrelic-hanami', github: 'artemeff/newrelic-hanami'
 gem 'secure_headers'

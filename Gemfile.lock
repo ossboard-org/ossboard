@@ -286,6 +286,8 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
+    rufus-scheduler (3.3.3)
+      tzinfo
     safe_yaml (1.0.4)
     sass (3.4.23)
     sawyer (0.8.1)
@@ -301,6 +303,12 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-scheduler (2.1.1)
+      hashie (~> 3.4)
+      redis (~> 3)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 3)
+      tilt (>= 1.4.0)
     simple_oauth (0.3.1)
     simplecov (0.12.0)
       docile (~> 1.1.0)
@@ -332,6 +340,8 @@ GEM
       memoizable (~> 0.4.2)
       naught (~> 1.1)
       simple_oauth (~> 0.3.1)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
@@ -388,6 +398,7 @@ DEPENDENCIES
   secure_headers
   shotgun
   sidekiq
+  sidekiq-scheduler
   simplecov
   simplecov-json
   slim
