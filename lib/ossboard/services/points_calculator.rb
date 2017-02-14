@@ -22,9 +22,9 @@ private
 
   def points_params(user)
     {
-      user_id: user.id,
       maintainer: points(user.tasks),
-      developer:  points(TaskRepository.new.assigned_tasks_for_user(user))
+      developer:  points(TaskRepository.new.assigned_tasks_for_user(user)),
+      user_id:    user.id
     }
   end
 
