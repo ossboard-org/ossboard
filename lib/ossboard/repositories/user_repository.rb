@@ -36,6 +36,10 @@ class UserRepository < Hanami::Repository
     aggregate(:tasks).where(id: id).as(User).one
   end
 
+  def all_with_points_and_tasks
+    aggregate(:points, :tasks).as(User).to_a
+  end
+
   private
 
   def all_from_date_request(from)
