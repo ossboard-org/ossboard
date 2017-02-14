@@ -2,6 +2,7 @@ class UserRepository < Hanami::Repository
   associations do
     has_many :tasks
     has_many :accounts
+    has_many :repos
   end
 
   def admins

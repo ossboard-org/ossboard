@@ -1,3 +1,5 @@
+require 'sidekiq-scheduler'
+
 Sidekiq.configure_server do |config|
   config.redis = REDIS
 end
