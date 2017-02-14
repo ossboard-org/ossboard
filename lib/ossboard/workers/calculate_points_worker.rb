@@ -3,10 +3,17 @@ class CalculatePointsWorker
 
   def perform
     users.each do |user|
+      assigned_tasks = TaskRepository.new.tasks.where(assignee_username: user.login).as(Task).to_a
+      points_params = {
+        maintainer: points(user.tasks),
+        developer: points(assigned_tasks)
+      }
+
       if user.points.first
-        PointRepository.new.update(user.points.first.id, maintainer: maintainer_points(user))
+        PointRepository.new.update(user.points.first.id, points_params)
       else
-        @point = PointRepository.new.create(user_id: user.id, maintainer: maintainer_points(user))
+        points_params[:user_id] = user.id
+        PointRepository.new.create(points_params)
       end
     end
   end
@@ -24,7 +31,7 @@ private
     @users ||= UserRepository.new.aggregate(:points, :tasks).as(User).to_a
   end
 
-  def maintainer_points(user)
-    user.tasks.map{ |t| POINTS_FOR_STATUS[t.status] }.inject(:+) || 0
+  def points(tasks)
+    tasks.map{ |t| POINTS_FOR_STATUS[t.status] }.inject(:+) || 0
   end
 end

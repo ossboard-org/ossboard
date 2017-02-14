@@ -1,5 +1,5 @@
 RSpec.describe CalculatePointsWorker do
-  let(:user) { Fabricate.create(:user) }
+  let(:user) { Fabricate.create(:user, login: 'davydovanton') }
   subject { CalculatePointsWorker.new.perform }
 
   after do
@@ -58,6 +58,50 @@ RSpec.describe CalculatePointsWorker do
           point = PointRepository.new.points.where(user_id: user.id).first
           expect(point.maintainer).to eq 11
           expect(point.developer).to eq 0
+        end
+      end
+    end
+
+    context 'when user complete tasks' do
+      context 'and tasks only in progress' do
+        before do
+          5.times { Fabricate.create(:task, assignee_username: user.login, status: 'in progress') }
+        end
+
+        it 'calculates points' do
+          subject
+          point = PointRepository.new.points.where(user_id: user.id).first
+          expect(point.maintainer).to eq 0
+          expect(point.developer).to eq 5
+        end
+
+        context 'when user have point object' do
+          before do
+            PointRepository.new.create(user_id: user.id)
+          end
+
+          it 'calculates points' do
+            subject
+            point = PointRepository.new.points.where(user_id: user.id).first
+            expect(point.maintainer).to eq 0
+            expect(point.developer).to eq 5
+          end
+        end
+      end
+
+      context 'and tasks with different status' do
+        before do
+          Fabricate.create(:task, assignee_username: user.login, status: 'in progress')
+          Fabricate.create(:task, assignee_username: user.login, status: 'assigned')
+          Fabricate.create(:task, assignee_username: user.login, status: 'closed')
+          Fabricate.create(:task, assignee_username: user.login, status: 'done')
+        end
+
+        it 'calculates points' do
+          subject
+          point = PointRepository.new.points.where(user_id: user.id).first
+          expect(point.maintainer).to eq 0
+          expect(point.developer).to eq 11
         end
       end
     end
