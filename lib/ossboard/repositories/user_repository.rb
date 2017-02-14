@@ -3,6 +3,7 @@ class UserRepository < Hanami::Repository
     has_many :tasks
     has_many :accounts
     has_many :repos
+    has_many :points
   end
 
   def admins
