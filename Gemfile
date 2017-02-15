@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 
 ruby '2.3.0'
 
+gem 'bundler'
 gem 'rake'
-gem 'hanami',       '1.0.0.beta1'
-gem 'hanami-model', '1.0.0.beta1'
+gem 'hanami',       '~> 0.9'
+gem 'hanami-model', '~> 0.7'
+
 gem 'puma'
 gem 'letsencrypt_rack'
 gem 'letsencrypt_heroku', require: false

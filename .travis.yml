@@ -7,8 +7,7 @@ services:
 - postgresql
 - redis-server
 before_script:
-- bundle exec hanami db create
-- bundle exec hanami db migrate
+- bundle exec hanami db prepare
 after_script:
 - bundle exec danger
 deploy:
