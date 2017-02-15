@@ -7,8 +7,8 @@ services:
 - postgresql
 - redis-server
 before_script:
-- psql -c 'create database ossboard_test;' -U postgres
-- bundle exec hanami db prepare
+- bundle exec hanami db create
+- bundle exec hanami db migrate
 after_script:
 - bundle exec danger
 deploy:
