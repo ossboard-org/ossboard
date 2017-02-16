@@ -17,10 +17,10 @@ private
   end
 
   def current_user
-    @current_user ||= session[:current_user] || User.new
+    @current_user ||= User.new(session[:current_user])
   end
 
   def account
-    @account ||= session[:account] || Account.new
+    @account ||= Account.new(session[:account])
   end
 end
