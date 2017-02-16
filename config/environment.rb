@@ -35,13 +35,24 @@ Hanami.configure do
   end
 
   mailer do
-    root 'lib/ossboard/mailers'
+    root Hanami.root.join("lib", "ossboard", "mailers")
 
     # See http://hanamirb.org/guides/mailers/delivery
-    delivery do
-      development :test
-      test        :test
-      production  :smtp,
+    delivery :test
+  end
+
+  # These two blocks are new.
+  # They MUST be after the general settings like `mount`, `model`, `mailer`.
+  environment :development do
+    # See: http://hanamirb.org/guides/projects/logging
+    logger level: :info
+  end
+
+  environment :production do
+    logger level: :info, formatter: :json
+
+    mailer do
+      delivery  :smtp,
         port:      587,
         address:   "smtp.mailgun.org",
         user_name: ENV['MAILGUN_USERNAME'],

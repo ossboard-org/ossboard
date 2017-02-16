@@ -270,18 +270,6 @@ module Api
     configure :development do
       # Don't handle exceptions, render the stack trace
       handle_exceptions false
-
-      # Logger
-      # See: http://hanamirb.org/guides/applications/logging
-      #
-      # Logger stream. It defaults to STDOUT.
-      # logger.stream "log/development.log"
-      #
-      # Logger level. It defaults to DEBUG
-      # logger.level :debug
-      #
-      # Logger format. It defaults to DEFAULT
-      # logger.format :default
     end
 
     ##
@@ -290,12 +278,6 @@ module Api
     configure :test do
       # Don't handle exceptions, render the stack trace
       handle_exceptions false
-
-      # Logger
-      # See: http://hanamirb.org/guides/applications/logging
-      #
-      # Logger level. It defaults to ERROR
-      logger.level :error
     end
 
     ##
@@ -305,18 +287,6 @@ module Api
       # scheme 'https'
       # host   'example.org'
       # port   443
-
-      # Logger
-      # See: http://hanamirb.org/guides/applications/logging
-      #
-      # Logger stream. It defaults to STDOUT.
-      # logger.stream "log/production.log"
-      #
-      # Logger level. It defaults to INFO
-      logger.level :info
-
-      # Logger format.
-      logger.format :json
 
       assets do
         # Don't compile static assets in production mode (eg. Sass, ES6)
