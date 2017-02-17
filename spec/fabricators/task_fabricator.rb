@@ -6,8 +6,8 @@ Fabricator(:task) do
   md_body         { Faker::Lorem.paragraph }
   issue_url       { Faker::Internet.url('github.com', "/davydovanton/ossboard/issues/#{Faker::Number.number(2)}") }
   approved        false
-  lang            :ruby
-  complexity      :easy
+  lang            'ruby'
+  complexity      'easy'
   status          'in progress'
   status          'few days'
 end

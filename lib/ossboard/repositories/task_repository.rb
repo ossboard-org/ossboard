@@ -17,15 +17,14 @@ class TaskRepository < Hanami::Repository
 
   def all_from_date_counted_by_status_and_day(from)
     result = all_from_date_request(from)
-      .select{ [count(:id), :status, Sequel.lit('created_at::date')] }
-      .group(:status, Sequel.lit('created_at::date'))
-      .order(nil)
-      .to_a
+      .project { [int::count(:id), status, time::date_trunc('day', created_at).as(:created_at_day)] }
+      .group   { [:status, :created_at_day] }
+      .order(nil).to_a
       .group_by(&:status)
 
     result.each do |status, records_by_status|
       result[status] = {}
-      records_by_status.each { |record| result[status][record.created_at] = record.count }
+      records_by_status.each { |record| result[status][Date.parse(record.created_at_day.to_s)] = record.count }
     end
   end
 
