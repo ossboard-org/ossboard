@@ -16,12 +16,11 @@ class UserRepository < Hanami::Repository
 
   def count_all_from_date(from)
     result = all_from_date_request(from)
-      .select{ [count(:id), Sequel.lit('created_at::date')] }
-      .group(Sequel.lit('created_at::date'))
+      .project { [int::count(:id), time::date_trunc('day', created_at).as(:created_at_day)] }
+      .group   { date_trunc('day', :created_at) }
       .order(nil)
-      .to_a
 
-    result.each_with_object({}) {  |users, hsh| hsh[users.created_at] = users.count }
+    result.to_a.each_with_object({}) {  |record, hsh| hsh[Date.parse(record.created_at_day.to_s)] = record.count }
   end
 
   def find_by_login(login)
