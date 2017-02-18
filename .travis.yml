@@ -1,4 +1,6 @@
 language: ruby
+node_js:
+  - "6.9.1"
 sudo: false
 cache: bundler
 rvm:
