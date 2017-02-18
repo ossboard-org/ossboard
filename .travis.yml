@@ -8,6 +8,7 @@ services:
 - redis-server
 before_script:
 - bundle exec hanami db prepare
+- npm i
 - webpack
 after_script:
 - bundle exec danger
