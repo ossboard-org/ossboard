@@ -63,4 +63,8 @@ Hanami.configure do
         enable_starttls_auto: true
     end
   end
+
+  environment :test do
+    ENV['WEBPACK_DEV_SERVER'] = 'false'
+  end
 end
