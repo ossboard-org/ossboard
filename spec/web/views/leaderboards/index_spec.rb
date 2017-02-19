@@ -8,7 +8,7 @@ RSpec.describe Web::Views::Leaderboards::Index do
 
   describe 'exposes' do
     describe '#users' do
-      it { expect(view.users).to all(be_an(User)) }
+      it { expect(view.users).to every(be_an(User)) }
     end
   end
 end
