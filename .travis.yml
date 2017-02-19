@@ -1,6 +1,4 @@
 language: ruby
-node_js:
-  - "6.9.1"
 sudo: false
 cache: bundler
 rvm:
@@ -8,9 +6,13 @@ rvm:
 services:
 - postgresql
 - redis-server
+env:
+- TRAVIS_NODE_VERSION="6.9.1"
+before_install:
+- rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+- npm install
 before_script:
 - bundle exec hanami db prepare
-- npm i
 - webpack
 after_script:
 - bundle exec danger
