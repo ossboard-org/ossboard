@@ -11,6 +11,7 @@ Capybara.register_driver :poltergeist do |app|
 end
 
 Capybara.javascript_driver = :poltergeist
+Capybara.default_max_wait_time = 10
 
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = true
