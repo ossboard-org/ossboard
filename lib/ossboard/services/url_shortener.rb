@@ -1,10 +1,6 @@
 require_relative '../../http_request'
 
-class UrlShortener
-  def self.call(url)
-    new.call(url)
-  end
-
+class UrlShortener < Service::Base
   def call(url)
     return url if Hanami.env?(:development)
     shorten_url(url)

@@ -1,10 +1,6 @@
 require_relative '../../http_request'
 
-class GitlabIssueRequester
-  def self.call(params)
-    new.call(params)
-  end
-
+class GitlabIssueRequester < Service::Base
   def call(params)
     issue_data(params)
       .fmap { |data| data.merge(repo_data(params)) }
