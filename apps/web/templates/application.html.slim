@@ -22,8 +22,7 @@ html
 
     - if Hanami.env?(:development)
       script src=webpack_asset_path('web')
-
-    - if Hanami.env?(:production)
+    - else
       script src="/#{webpack_asset_path('web').split('/')[1]}"
 
     javascript:

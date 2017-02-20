@@ -8,6 +8,7 @@ var devServerPort = process.env.WEBPACK_DEV_SERVER_PORT,
     publicPath = process.env.WEBPACK_PUBLIC_PATH;
 
 var config = {
+  target: 'node',
   entry: {
     web: "./apps/web/assets/javascripts/main.js",
     admin: "./apps/admin/assets/javascripts/main.js"
@@ -45,7 +46,9 @@ var config = {
     {
       test: /\.scss$/,
       loaders: ["style-loader", "css-loader", "sass-loader"]
-    }]
+    },
+    { test: /\.json$/, loader: "json-loader" }
+    ]
   }
 };
 

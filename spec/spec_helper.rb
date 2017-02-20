@@ -34,6 +34,8 @@ Sidekiq::Testing.fake!
 RSpec.configure do |config|
   config.include RSpec::Hanami::Matchers
   config.include RSpec::Hanami::RequestHelpers
+  # avoid conflicts with Capybara, see https://github.com/teamcapybara/capybara/issues/1396
+  config.include RspecEvery
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
