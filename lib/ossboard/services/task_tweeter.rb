@@ -1,8 +1,4 @@
-class TaskTwitter
-  def self.call(task)
-    new.call(task)
-  end
-
+class TaskTwitter < Service::Base
   def call(task)
     tweet text(task)
   end

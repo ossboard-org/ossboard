@@ -1,10 +1,6 @@
 require_relative '../../http_request'
 
-class GithubIssueRequester
-  def self.call(params)
-    new.call(params)
-  end
-
+class GithubIssueRequester < Service::Base
   def call(params)
     issue_data(params)
       .fmap { |data| data.merge(repo_data(params)) }

@@ -1,8 +1,4 @@
-class PointsCalculator
-  def self.call(user)
-    new.call(user)
-  end
-
+class PointsCalculator < Service::Base
   def call(user)
     if point = user.points.first
       PointRepository.new.update(point.id, points_params(user))
