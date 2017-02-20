@@ -23,3 +23,5 @@ RSpec.configure do |config|
   config.include Capybara::DSL,           feature: true
   config.include Capybara::RSpecMatchers, feature: true
 end
+
+`cd #{Hanami.root} && webpack`
