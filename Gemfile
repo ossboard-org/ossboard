@@ -69,6 +69,7 @@ group :test do
   gem 'hanami-fabrication'
   gem 'faker'
   gem 'timecop'
+  gem 'rspec-retry'
 end
 
 group :production do

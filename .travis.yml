@@ -17,7 +17,6 @@ before_install:
 - npm install
 before_script:
 - bundle exec hanami db prepare
-- webpack
 after_script:
 - bundle exec danger
 deploy:

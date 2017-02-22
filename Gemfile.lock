@@ -287,6 +287,8 @@ GEM
     rspec-mocks (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.5.0)
+    rspec-retry (0.5.3)
+      rspec-core (> 3.3, < 3.6)
     rspec-support (3.5.0)
     rubocop (0.47.1)
       parser (>= 2.3.3.1, < 3.0)
@@ -405,6 +407,7 @@ DEPENDENCIES
   rouge (= 1.11.1)
   rspec
   rspec-hanami!
+  rspec-retry
   sass
   secure_headers
   shotgun
