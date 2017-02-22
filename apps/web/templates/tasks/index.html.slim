@@ -11,7 +11,8 @@
         = select_tasks_by_language
 
     .tasks__new
-      = link_to_new_task
+      - if current_user.registred?
+        = link_to_new_task
 
   .tasks__list
     - tasks.each do |task|
