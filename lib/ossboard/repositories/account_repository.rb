@@ -4,6 +4,6 @@ class AccountRepository < Hanami::Repository
   end
 
   def find_by_uid(uid)
-    accounts.where(uid: uid).as(Account).first
+    accounts.where(uid: uid).as(Account).one
   end
 end

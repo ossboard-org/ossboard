@@ -24,11 +24,11 @@ class UserRepository < Hanami::Repository
   end
 
   def find_by_login(login)
-    users.where(login: login).as(User).first
+    users.where(login: login).as(User).one
   end
 
   def find_by_login_with_tasks(login)
-    aggregate(:tasks).where(login: login).as(User).first
+    aggregate(:tasks).where(login: login).as(User).one
   end
 
   def find_with_tasks(id)
