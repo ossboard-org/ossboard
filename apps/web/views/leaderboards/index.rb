@@ -3,7 +3,8 @@ module Web::Views::Leaderboards
     include Web::View
 
     def users
-      UserRepository.new.all.last(15)
+      UserRepository.new
+        .all_with_points_and_tasks
     end
 
     # TODO: Tests
