@@ -20,11 +20,11 @@
         .user-row
           .user-row__rank = i + 1
           = user_information(user)
-          .user-row__points = user.points.first.developer
+          .user-row__points = user.points&.first&.developer
 
     .leaderboard__maintainers v-if="secondCase"
       - users.each_with_index do |user, i|
         .user-row
           .user-row__rank = i + 1
           = user_information(user)
-          .user-row__points = user.points.first.maintainer
+          .user-row__points = user.points&.first&.maintainer
