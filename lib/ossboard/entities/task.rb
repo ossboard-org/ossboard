@@ -43,7 +43,6 @@ class Task < Hanami::Entity
     crystal: 'crystal'
   }.freeze
 
-  # TODO: Tests
   def author
     UserRepository.new.find(user_id)
   end

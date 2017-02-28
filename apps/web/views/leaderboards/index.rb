@@ -7,7 +7,6 @@ module Web::Views::Leaderboards
         .all_with_points_and_tasks
     end
 
-    # TODO: Tests
     def user_information(user)
       html.div(class: 'user-row__name') do
         a(href: routes.user_path(user.login)) do

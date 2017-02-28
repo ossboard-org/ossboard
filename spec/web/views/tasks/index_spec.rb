@@ -165,6 +165,23 @@ RSpec.describe Web::Views::Tasks::Index do
                "</select>"
         end
       end
+
+      describe '#author_information' do
+        let(:author) { User.new(login: 'testtest', avatar_url: 'test_url') }
+        let(:task) { Task.new(lang: 'ru', created_at: Time.now) }
+
+        it 'renders' do
+          expect(view.author_information(author, task).to_s).to eq"<div class=\"task-item__author\">\n" + 
+              "Posted by\n" + 
+              "<a href=\"/users/testtest\">\n" + 
+                "<img class=\"task-item__author-avatar\" src=\"test_url\">\n" + 
+                "testtest\n" + 
+              "</a>\n" + 
+              "less than a minute\n" + 
+              " • ru\n" + 
+            "</div>"
+        end
+      end
     end
   end
 end
