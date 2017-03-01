@@ -9,7 +9,9 @@ SimpleCov.formatters = [
   SimpleCov::Formatter::JSONFormatter
 ]
 
-SimpleCov.start
+SimpleCov.start do
+  add_filter "/spec/"
+end
 
 # This line needed to fix the error
 # NoMethodError: undefined method `user_id' for <Rake::Task  => []>:Rake::Task
