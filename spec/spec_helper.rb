@@ -11,6 +11,8 @@ SimpleCov.formatters = [
 
 SimpleCov.start do
   add_filter "/spec/"
+  add_filter "/config/"
+  add_filter "/db/"
 end
 
 # This line needed to fix the error
