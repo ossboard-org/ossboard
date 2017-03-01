@@ -7,12 +7,18 @@ module Api::Controllers::Issue
     end
 
     def call(params)
-      response = params.valid? ? match_host(params[:issue_url]) : { error: 'empty url' }
-      self.status = 404 if response[:error]
-      self.body = JSON.generate(response)
+      generate_response
+      self.status = 404 if @response[:error]
+      self.body = JSON.generate(@response)
     end
 
   private
+
+    EMPTY_URL_ERROR = { error: 'empty url' }
+
+    def generate_response
+      @response ||= params.valid? ? match_host(params[:issue_url]) : EMPTY_URL_ERROR
+    end
 
     def match_host(issue_url)
       GitHostMatcher.(issue_url) do |m|
