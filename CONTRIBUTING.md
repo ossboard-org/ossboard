@@ -33,7 +33,7 @@ Here's a quick guide:
 
 1. Fork the repo.
 
-2. Run the tests. This is to make sure your starting point works. Run `HANAMI_ENV=test bundle exec hanami db prepare' to create the test database. Tests can be run via `bundle exec rspec`
+2. Run the tests. This is to make sure your starting point works. Run `HANAMI_ENV=test bundle exec hanami db prepare` to create the test database. Tests can be run via `bundle exec rspec`
 
 3. Create a new branch and make your changes. This includes tests for features!
 
