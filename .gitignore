@@ -5,3 +5,4 @@
 /coverage
 /log
 /.env.local
+npm-debug.log

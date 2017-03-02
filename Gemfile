@@ -33,7 +33,6 @@ gem 'dry-monads'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 
-gem 'newrelic-hanami', github: 'artemeff/newrelic-hanami'
 gem 'secure_headers'
 
 gem 'twitter'
@@ -73,5 +72,5 @@ group :test do
 end
 
 group :production do
-  # gem 'puma'
+  gem 'newrelic-hanami', github: 'artemeff/newrelic-hanami'
 end
