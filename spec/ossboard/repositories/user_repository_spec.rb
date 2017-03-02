@@ -106,8 +106,8 @@ RSpec.describe UserRepository do
 
     it { expect(subject).to be_a Array }
 
-    # TODO: what to expect?
-    # it { expect(subject.tasks.count).to eq 1 }
-    # it { expect(subject.points.count).to eq 1 }
+    it { expect(subject[0]).to be_a User }
+    it { expect(subject[0].points).to be_a Array }
+    it { expect(subject[0].tasks).to be_a Array }
   end
 end

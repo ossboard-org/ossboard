@@ -34,7 +34,7 @@ RSpec.describe Web::Controllers::Tasks::Index do
           action.call(params)
         end
 
-        it 'returns all tasks on moderation' do
+        it 'returns all done tasks' do
           expect(action.tasks).to all(be_a(Task))
           expect(action.tasks.count).to eq 3
           expect(action.tasks.map(&:user_id)).to all(eq(user.id))
