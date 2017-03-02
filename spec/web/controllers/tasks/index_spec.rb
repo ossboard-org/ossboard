@@ -13,12 +13,11 @@ RSpec.describe Web::Controllers::Tasks::Index do
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'done',        lang: 'ruby') }
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'closed',      lang: 'haskell') }
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'in progress', lang: 'unknown') }
+        3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'moderation',  lang: 'elixir') }
         action.call(params)
       end
 
       after { repo.clear }
-
-      # TODO: specs for moderation case
 
       it 'returns all tasks' do
         expect(action.tasks).to all(be_a(Task))
@@ -35,7 +34,7 @@ RSpec.describe Web::Controllers::Tasks::Index do
           action.call(params)
         end
 
-        it 'returns all done tasks' do
+        it 'returns all tasks on moderation' do
           expect(action.tasks).to all(be_a(Task))
           expect(action.tasks.count).to eq 3
           expect(action.tasks.map(&:user_id)).to all(eq(user.id))
@@ -79,6 +78,17 @@ RSpec.describe Web::Controllers::Tasks::Index do
           expect(action.tasks).to all(be_a(Task))
           expect(action.tasks.count).to eq 3
           expect(action.tasks.map(&:status)).to all(eq('in progress'))
+        end
+      end
+
+      context 'when status param is on moderation' do
+        let(:user) { Fabricate.create(:user, admin: false) }
+        let(:params) { { status: 'moderation' } }
+
+        it 'returns all tasks on moderation' do
+          expect(action.tasks).to all(be_a(Task))
+          expect(action.tasks.count).to eq 3
+          expect(action.tasks.map(&:status)).to all(eq('moderation'))
         end
       end
 

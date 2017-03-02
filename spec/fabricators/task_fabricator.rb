@@ -9,5 +9,4 @@ Fabricator(:task) do
   lang            'ruby'
   complexity      'easy'
   status          'in progress'
-  status          'few days'
 end

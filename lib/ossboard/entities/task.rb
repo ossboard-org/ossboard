@@ -23,7 +23,8 @@ class Task < Hanami::Entity
     in_progress: 'in progress',
     assigned: 'assigned',
     closed: 'closed',
-    done: 'done'
+    done: 'done',
+    moderation: 'moderation',
   }.freeze
 
   VALID_LANGUAGES = {
