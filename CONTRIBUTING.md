@@ -33,13 +33,16 @@ Here's a quick guide:
 
 1. Fork the repo.
 
-2. Run the tests. This is to make sure your starting point works. Tests can be
-run via `bundle exec rspec`
+2. Run the tests. This is to make sure your starting point works. Run `HANAMI_ENV=test bundle exec hanami db prepare` to create the test database. Tests can be run via `bundle exec rspec`
 
 3. Create a new branch and make your changes. This includes tests for features!
 
 4. Push to your fork and submit a pull request. For more information, see
 [Github's pull request help section](https://help.github.com/articles/using-pull-requests/).
+
+5. Make sure you do not delete/update the existing cassettes as tests are dependent on them. 
+
+6. Delete log/development.log and capybara-*.html. 
 
 At this point you're waiting on us. Expect a conversation regarding your pull
 request; Questions, clarifications, and so on.
