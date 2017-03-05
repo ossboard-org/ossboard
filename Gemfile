@@ -43,7 +43,7 @@ group :development do
   # See: http://hanamirb.org/guides/projects/code-reloading
   gem 'shotgun'
 
-  # gem 'hanami-scaffold', github: 'davydovanton/hanami-scaffold'
+  gem 'better_errors', github: 'grekko/better_errors'
 
   gem 'rack-mini-profiler', require: false
   gem 'memory_profiler'

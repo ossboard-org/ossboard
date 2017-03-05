@@ -26,4 +26,10 @@ if Hanami.env?(:development)
   use Rack::MiniProfiler
 end
 
+if Hanami.env?(:development)
+  BetterErrors::Middleware.allow_ip! "0.0.0.0"
+  use BetterErrors::Middleware
+  BetterErrors.application_root = Hanami.root.to_s
+end
+
 run Hanami.app

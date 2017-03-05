@@ -7,6 +7,7 @@ module Web::Controllers::Main
     expose :tasks
 
     def call(params)
+      fail
       @tasks = TaskRepository.new.only_approved.first(3)
       fresh last_modified: @tasks.first&.created_at
     end
