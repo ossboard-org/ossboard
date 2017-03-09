@@ -60,7 +60,6 @@ module Web::Views::Tasks
       end
     end
 
-    # TODO: Tests
     def author_information(author, task)
       html.div(class: 'task-item__author') do
         text('Posted by')

@@ -61,3 +61,8 @@ $ HANAMI_ENV=test bundle exec hanami db prepare
 $ bundle exec rspec
 $ GITHUB_KEY='your github key' GITHUB_SECRET='your github server' bundle exec hanami server
 ```
+## Troubleshooting
+
+If you are using peer authentication and get password request, configure your pg_hba.conf to 
+trust local ipv4 connections:
+```host    all             all             127.0.0.1/32            trust```
