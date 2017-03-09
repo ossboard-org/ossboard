@@ -39,7 +39,8 @@ class Task < Hanami::Entity
     elixir: 'elixir',
     rust: 'rust',
     clojure: 'clojure',
-    php: 'php'
+    php: 'php',
+    crystal: 'crystal'
   }.freeze
 
   # TODO: Tests
