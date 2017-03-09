@@ -132,14 +132,14 @@ RSpec.describe 'Tasks page', type: :feature, js: true do
         expect(page).to have_css('.modal-error', text: 'Error: invalid url')
       end
 
-      it 'export github issue' do
+      xit 'export github issue' do
         VCR.use_cassette('github_success_issue') do
           export(github_url)
           expect_issue(title: github_title, repository_name: 'ossboard', url: github_url, language: 'ruby', content: github_content)
         end
       end
 
-      it 'export gitlab issue' do
+      xit 'export gitlab issue' do
         VCR.use_cassette('gitlab_success_issue') do
           export(gitlab_url)
           expect_issue(title: gitlab_title, repository_name: gitlab_repo, url: gitlab_url, language: '', content: gitlab_content)
