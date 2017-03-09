@@ -43,7 +43,8 @@ RSpec.describe Web::Views::Tasks::Index do
         'elixir' => 'elixir',
         'rust' => 'rust',
         'clojure' => 'clojure',
-        'php' => 'php'
+        'php' => 'php',
+        'crystal' => 'crystal'
       )
     end
   end
@@ -136,6 +137,7 @@ RSpec.describe Web::Views::Tasks::Index do
                 "<option value=\"rust\">rust</option>\n" +
                 "<option value=\"clojure\">clojure</option>\n" +
                 "<option value=\"php\">php</option>\n" +
+                "<option value=\"crystal\">crystal</option>\n" +
                "</select>"
         end
       end
@@ -159,6 +161,7 @@ RSpec.describe Web::Views::Tasks::Index do
                 "<option value=\"rust\">rust</option>\n" +
                 "<option value=\"clojure\">clojure</option>\n" +
                 "<option value=\"php\">php</option>\n" +
+                "<option value=\"crystal\">crystal</option>\n" +
                "</select>"
         end
       end

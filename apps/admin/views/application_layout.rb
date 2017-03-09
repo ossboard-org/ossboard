@@ -30,7 +30,8 @@ module Admin
         'elixir'   => 'elixir',
         'rust'     => 'rust',
         'clojure'  => 'clojure',
-        'php'      => 'php'
+        'php'      => 'php',
+        'crystal'  => 'crystal'
       }.freeze
 
       COMPLEXITY_OPTIONS_HASH = {
