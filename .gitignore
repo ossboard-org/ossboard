@@ -3,7 +3,7 @@
 /tmp
 /node_modules
 /coverage
-/log
+/log/*.log
 /.env.local
 /.idea/**
 npm-debug.log
