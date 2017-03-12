@@ -26,7 +26,7 @@ module Web::Views::Tasks
         end
 
         div class: 'input' do
-          select :lang, langs_list
+          select :lang, Task::VALID_LANGUAGES
         end
 
         if current_user.registred?
