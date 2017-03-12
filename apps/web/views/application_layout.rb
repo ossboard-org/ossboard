@@ -7,10 +7,6 @@ module Web
         link_to 'admin app', '/admin', class: 'header-menu-item__link'
       end
 
-      def langs_list
-        LANGUAGES_HASH
-      end
-
       def complexity_options_list
         COMPLEXITY_OPTIONS_HASH
       end
@@ -24,22 +20,6 @@ module Web
       end
 
     private
-
-      LANGUAGES_HASH = {
-        'language' => 'unknown',
-        'ruby'     => 'ruby',
-        'js'       => 'javascript',
-        'java'     => 'java',
-        'python'   => 'python',
-        'go'       => 'go',
-        'haskell'  => 'haskell',
-        'lua'      => 'lua',
-        'scala'    => 'scala',
-        'elixir'   => 'elixir',
-        'rust'     => 'rust',
-        'clojure'  => 'clojure',
-        'php'      => 'php'
-      }.freeze
 
       COMPLEXITY_OPTIONS_HASH = {
         'Easy' => 'easy',

@@ -45,7 +45,7 @@ module Web::Views::Tasks
 
           div class: 'input' do
             label(:lang) { text('Task language') }
-            select :lang, langs_list
+            select :lang, Task::VALID_LANGUAGES
           end
         end
 
