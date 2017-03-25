@@ -57,6 +57,7 @@ new Vue({
     exportIssue: function () {
       var url = '/api/issue?issue_url=' + document.getElementById('issueUrl').value
       var self = this
+      var default_complexity = 'easy'
       this.exportingIssue = true
 
       this.xhr.open('GET', url, true);
@@ -71,7 +72,7 @@ new Vue({
           document.getElementById('task-issue-url').value = data.html_url
           document.getElementById('task-md-body').value = data.body
           document.getElementById('task-lang').value = data.lang
-          document.getElementById('task-complexity').value = data.complexity
+          document.getElementById('task-complexity').value = data.complexity ? data.complexity : default_complexity
           self.showModal = false
         } else {
           self.hasError = true;

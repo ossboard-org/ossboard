@@ -106,6 +106,7 @@ RSpec.describe 'Tasks page', type: :feature, js: true do
 
     context 'export button logic' do
       let(:github_url) { 'https://github.com/ossboard-org/ossboard/issues/69' }
+      let(:github_url_without_complexity) { 'https://github.com/davydovanton/shallow_attributes/issues/8' }
       let(:github_content) { 'Currently, for the big screen, footer has not fixed to page bottom.' }
       let(:github_title) { 'Footer has not fixed to page bottom' }
 
@@ -136,6 +137,13 @@ RSpec.describe 'Tasks page', type: :feature, js: true do
         VCR.use_cassette('github_success_issue') do
           export(github_url)
           expect_issue(title: github_title, repository_name: 'ossboard', url: github_url, language: 'ruby', content: github_content)
+        end
+      end
+
+      it 'export github issue without complexity' do
+        VCR.use_cassette('github_success_issue_without_complexity') do
+            export(github_url_without_complexity)
+            expect(find('#task-complexity').value).to start_with('easy')
         end
       end
 
