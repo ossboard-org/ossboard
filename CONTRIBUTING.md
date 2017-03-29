@@ -59,7 +59,7 @@ $ npm install
 $ bundle exec hanami db prepare
 $ HANAMI_ENV=test bundle exec hanami db prepare
 $ bundle exec rspec
-$ GITHUB_KEY='your github key' GITHUB_SECRET='your github server' bundle exec hanami server
+$ GITHUB_KEY='your github key' GITHUB_SECRET='your github secret' bundle exec hanami server
 ```
 ## Troubleshooting
 
