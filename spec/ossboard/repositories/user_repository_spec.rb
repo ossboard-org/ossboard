@@ -1,7 +1,11 @@
 RSpec.describe UserRepository do
   let(:repo) { UserRepository.new }
 
-  after { repo.clear }
+  around do |example|
+    repo.clear
+    example.run
+    repo.clear
+  end
 
   describe '#find_by_login' do
     context 'when user exist with uuid' do
