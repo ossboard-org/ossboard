@@ -16,7 +16,7 @@ module TasksPageHelper
     md_html = File.read(File.expand_path('../../../support/markdown/text.html', __FILE__))
     expect(page).to have_css('button.btn.btn-default.pure-menu-link', text: 'Write')
     expect(page).not_to have_css('button.btn.btn-default.pure-menu-link', text: 'Preview')
-    page.find('#previewed-text > :first-child') && page.find('#previewed-text')['innerHTML'] == md_html
+    page.find('#previewed-text > :first-child') && (expect(page.find('#previewed-text')['innerHTML']).to eq(md_html))
   end
 
   def expect_issue(title:, repository_name:, url:, language:, content:)

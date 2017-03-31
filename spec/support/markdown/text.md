@@ -10,3 +10,7 @@ Alt-H1
 
 Alt-H2
 ------
+
+- [ ] unchecked
+- [x] checked
+- [X] checked
