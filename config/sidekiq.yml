@@ -1,3 +1,5 @@
 :schedule:
   RefreshUserReposWorker:
     every: 12h
+  CalculatePointsWorker:
+    every: 12h
