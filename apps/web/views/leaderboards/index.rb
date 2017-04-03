@@ -3,8 +3,20 @@ module Web::Views::Leaderboards
     include Web::View
 
     def users
-      UserRepository.new
-        .all_with_points_and_tasks
+      UserRepository.new.all_with_points_and_tasks
+    end
+
+    # TODO: specs
+    def developers
+      users.sort do |first, second|
+        second.points.first&.developer <=> first.points.first&.developer
+      end
+    end
+
+    def maintainers
+      users.sort do |first, second|
+        second.points.first&.maintainer <=> first.points.first&.maintainer
+      end
     end
 
     def user_information(user)
