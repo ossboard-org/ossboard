@@ -13,7 +13,7 @@ RSpec.describe Web::Controllers::Tasks::Index do
         repo.clear
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'done',        lang: 'ruby') }
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'closed',      lang: 'haskell') }
-        3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'in progress', lang: 'unknown') }
+        3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'in progress', lang: 'unknown', repository_name: 'ossboard') }
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'moderation',  lang: 'elixir') }
         action.call(params)
       end
@@ -23,6 +23,16 @@ RSpec.describe Web::Controllers::Tasks::Index do
       it 'returns all tasks' do
         expect(action.tasks).to all(be_a(Task))
         expect(action.tasks.count).to eq 3
+      end
+
+      context 'when repository param is ossboard' do
+        let(:params)  { { repository: 'ossboard' } }
+
+        it 'returns all done tasks' do
+          expect(action.tasks).to all(be_a(Task))
+          expect(action.tasks.count).to eq 3
+          expect(action.tasks.map(&:repository_name)).to all(eq('ossboard'))
+        end
       end
 
       context 'when status param is done' do

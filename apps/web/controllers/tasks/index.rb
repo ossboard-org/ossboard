@@ -20,6 +20,7 @@ module Web::Controllers::Tasks
     end
 
     def with_language(search_params)
+      search_params[:repository_name] = params[:repository] if params[:repository]
       search_params[:lang] = params[:lang] if Task::VALID_LANGUAGES.values.include?(params[:lang])
       search_params
     end
