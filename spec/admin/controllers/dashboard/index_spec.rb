@@ -9,7 +9,7 @@ RSpec.describe Admin::Controllers::Dashboard::Index do
     it { expect(action.call(params)).to be_success }
   end
 
-  context 'when admin login' do
+  context 'when admin logout' do
     let(:params) { {} }
 
     it { expect(action.call(params)).to redirect_to('/') }
