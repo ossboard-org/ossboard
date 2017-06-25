@@ -14,7 +14,8 @@ module Api::Controllers::Issue
 
   private
 
-    EMPTY_URL_ERROR = { error: 'empty url' }
+    EMPTY_URL_ERROR   = { error: 'empty url' }
+    INVALID_URL_ERROR = { error: 'invalid url' }
 
     def generate_response
       @response ||= params.valid? ? match_host(params[:issue_url]) : EMPTY_URL_ERROR
@@ -24,7 +25,7 @@ module Api::Controllers::Issue
       GitHostMatcher.(issue_url) do |m|
         m.success(:github) { |issue_data| GithubIssueRequester.(issue_data) }
         m.success(:gitlab) { |issue_data| GitlabIssueRequester.(issue_data) }
-        m.failure { { error: 'invalid url' } }
+        m.failure { INVALID_URL_ERROR }
       end
     end
   end
