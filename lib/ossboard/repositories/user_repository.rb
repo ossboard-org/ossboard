@@ -7,11 +7,11 @@ class UserRepository < Hanami::Repository
   end
 
   def admins
-    users.where(admin: true).as(User).to_a
+    users.where(admin: true).map_to(User).to_a
   end
 
   def all_from_date(from)
-    all_from_date_request(from).as(User).to_a
+    all_from_date_request(from).map_to(User).to_a
   end
 
   def count_all_from_date(from)
@@ -24,19 +24,19 @@ class UserRepository < Hanami::Repository
   end
 
   def find_by_login(login)
-    users.where(login: login).as(User).one
+    users.where(login: login).map_to(User).one
   end
 
   def find_by_login_with_tasks(login)
-    aggregate(:tasks).where(login: login).as(User).one
+    aggregate(:tasks).where(login: login).map_to(User).one
   end
 
   def find_with_tasks(id)
-    aggregate(:tasks).where(id: id).as(User).one
+    aggregate(:tasks).where(id: id).map_to(User).one
   end
 
   def all_with_points_and_tasks
-    aggregate(:points, :tasks).as(User).to_a
+    aggregate(:points, :tasks).map_to(User).to_a
   end
 
   private
