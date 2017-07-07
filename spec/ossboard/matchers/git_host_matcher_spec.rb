@@ -1,6 +1,6 @@
-RSpec.describe GitHostMatcher do
+RSpec.describe Matchers::GitHost::Matcher do
   subject do
-    GitHostMatcher.(issue_url) do |m|
+    Matchers::GitHost::Matcher.(issue_url) do |m|
       m.success(:github){ |params| params }
       m.success(:gitlab){ |params| params }
       m.failure { |params| params }

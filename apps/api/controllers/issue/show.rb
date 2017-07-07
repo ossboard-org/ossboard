@@ -22,7 +22,7 @@ module Api::Controllers::Issue
     end
 
     def match_host(issue_url)
-      GitHostMatcher.(issue_url) do |m|
+      Matchers::GitHost::Matcher.(issue_url) do |m|
         m.success(:github) { |issue_data| GithubIssueRequester.(issue_data) }
         m.success(:gitlab) { |issue_data| GitlabIssueRequester.(issue_data) }
         m.failure { INVALID_URL_ERROR }
