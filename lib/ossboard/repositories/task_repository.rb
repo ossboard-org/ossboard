@@ -1,18 +1,18 @@
 class TaskRepository < Hanami::Repository
   def only_approved
-    tasks.where(approved: true).order(Sequel.lit('? DESC', :id)).as(Task).to_a
+    tasks.where(approved: true).order(Sequel.lit('? DESC', :id)).map_to(Task).to_a
   end
 
   def not_approved
-    tasks.where(approved: false).as(Task).to_a
+    tasks.where(approved: false).map_to(Task).to_a
   end
 
   def new_tasks
-    tasks.where(approved: nil).as(Task).to_a
+    tasks.where(approved: nil).map_to(Task).to_a
   end
 
   def all_from_date(from, status = nil)
-    all_from_date_request(from, status).as(Task).to_a
+    all_from_date_request(from, status).map_to(Task).to_a
   end
 
   def all_from_date_counted_by_status_and_day(from)
@@ -29,11 +29,11 @@ class TaskRepository < Hanami::Repository
   end
 
   def find_by(params = {})
-    tasks.where(params).order(Sequel.lit('? DESC', :id)).as(Task).to_a
+    tasks.where(params).order(Sequel.lit('? DESC', :id)).map_to(Task).to_a
   end
 
   def assigned_tasks_for_user(user)
-    tasks.where(assignee_username: user.login).order(Sequel.lit('? DESC', :id)).as(Task).to_a
+    tasks.where(assignee_username: user.login).order(Sequel.lit('? DESC', :id)).map_to(Task).to_a
   end
 
   private
