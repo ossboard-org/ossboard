@@ -1,4 +1,4 @@
-module Service
+module Services
   class Base
     def self.call(attr)
       new.call(attr)

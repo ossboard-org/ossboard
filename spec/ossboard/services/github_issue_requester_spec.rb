@@ -1,4 +1,4 @@
-RSpec.describe GithubIssueRequester, :vcr do
+RSpec.describe Services::GithubIssueRequester, :vcr do
   let(:params) { {} }
 
   context 'when data is valid' do
@@ -6,7 +6,7 @@ RSpec.describe GithubIssueRequester, :vcr do
 
     it 'returns github issue data' do
       VCR.use_cassette("github_success_issue") do
-        data = GithubIssueRequester.(params)
+        data = Services::GithubIssueRequester.(params)
         expect(data[:html_url]).to eq 'https://github.com/ossboard-org/ossboard/issues/69'
         expect(data[:title]).to eq 'Footer has not fixed to page bottom'
         expect(data[:body]).to match('Currently, for the big screen')
@@ -21,7 +21,7 @@ RSpec.describe GithubIssueRequester, :vcr do
 
       it 'returns github issue data' do
         VCR.use_cassette("github_success_issue_without_labels") do
-          data = GithubIssueRequester.(params)
+          data = Services::GithubIssueRequester.(params)
           expect(data[:html_url]).to eq 'https://github.com/ossboard-org/ossboard/issues/11'
           expect(data[:title]).to eq 'Update design for web app'
           expect(data[:body]).to match('We need to update mobile version')
@@ -38,7 +38,7 @@ RSpec.describe GithubIssueRequester, :vcr do
 
     it 'returns github issue data' do
       VCR.use_cassette("github_failed_issue") do
-        data = GithubIssueRequester.(params)
+        data = Services::GithubIssueRequester.(params)
         expect(data).to eq(error: 'invalid url')
       end
     end

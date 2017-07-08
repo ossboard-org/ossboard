@@ -1,4 +1,4 @@
-RSpec.describe GitlabIssueRequester, :vcr do
+RSpec.describe Services::GitlabIssueRequester, :vcr do
   let(:params) { { org: 'gitlab-org', repo: 'gitlab-ce', issue: '28059' } }
 
   context 'when data is valid' do

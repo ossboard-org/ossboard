@@ -1,6 +1,6 @@
-RSpec.describe PointsCalculator do
+RSpec.describe Services::PointsCalculator do
   let(:user) { Fabricate.create(:user, login: 'davydovanton') }
-  subject { PointsCalculator.call(UserRepository.new.all_with_points_and_tasks.last) }
+  subject { Services::PointsCalculator.call(UserRepository.new.all_with_points_and_tasks.last) }
 
   after do
     TaskRepository.new.clear

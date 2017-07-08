@@ -3,7 +3,7 @@ module Api::Controllers::Analytics
     include Api::Action
 
     def call(params)
-      self.body = JSON.generate(AnalyticReporter.new.call)
+      self.body = JSON.generate(Services::AnalyticReporter.new.call)
     end
   end
 end
