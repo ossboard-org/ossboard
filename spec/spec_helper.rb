@@ -20,8 +20,11 @@ end
 require 'fabrication'
 
 require_relative '../config/environment'
+require 'dry/container/stub'
+OSSBoard::Application.enable_stubs!
+OSSBoard::Application.stub(:redis, ConnectionPool.new(size: 10, timeout: 3) { MockRedis.new })
+
 Hanami.boot
-Hanami::Utils.require!("#{__dir__}/support")
 
 require 'vcr'
 
@@ -34,6 +37,8 @@ end
 require 'rspec/hanami'
 require 'sidekiq/testing'
 Sidekiq::Testing.fake!
+
+require_relative './support/rspec_every'
 
 RSpec.configure do |config|
   config.include RSpec::Hanami::Matchers

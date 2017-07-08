@@ -81,6 +81,8 @@ GEM
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.1)
+    dry-auto_inject (0.4.3)
+      dry-container (>= 0.3.4)
     dry-configurable (0.7.0)
       concurrent-ruby (~> 1.0)
     dry-container (0.6.0)
@@ -104,6 +106,13 @@ GEM
       dry-equalizer (~> 0.2)
       dry-types (~> 0.9, >= 0.9.0)
       ice_nine (~> 0.11)
+    dry-system (0.5.1)
+      concurrent-ruby (~> 1.0)
+      dry-auto_inject (>= 0.4.0)
+      dry-configurable (~> 0.1)
+      dry-container (~> 0.4)
+      dry-equalizer (~> 0.2)
+      inflecto (>= 0.0.2)
     dry-types (0.11.0)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.1)
@@ -389,6 +398,7 @@ DEPENDENCIES
   dotenv (~> 2.0)
   dry-matcher
   dry-monads
+  dry-system
   faker
   hanami (= 1.0.0)
   hanami-fabrication

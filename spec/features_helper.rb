@@ -3,6 +3,7 @@ require_relative './spec_helper'
 
 require 'capybara'
 require 'capybara/rspec'
+require_relative './support/capybara'
 
 require 'capybara/poltergeist'
 

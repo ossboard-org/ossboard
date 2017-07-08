@@ -1,6 +1,7 @@
 module Web::Controllers::Tasks
   class Create
     include Web::Action
+    include OSSBoard::Import[:markdown]
 
     expose :task
 
@@ -38,7 +39,7 @@ module Web::Controllers::Tasks
 
     def task_params
       hash = params[:task]
-      hash[:body] = Markdown.parse(hash[:md_body])
+      hash[:body] = markdown.parse(hash[:md_body])
       hash[:status] = Task::VALID_STATUSES[:in_progress]
       hash[:approved] = nil
       hash

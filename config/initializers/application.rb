@@ -1,0 +1,1 @@
+OSSBoard::Application.finalize!

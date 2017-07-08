@@ -151,7 +151,7 @@ RSpec.describe Auth::Controllers::Sessions::Create do
 
   context 'when user in black list' do
     before { BlokedUserRepository.new.create('davydovanton') }
-    after { REDIS.with(&:flushdb) }
+    after { OSSBoard::Application[:redis].with(&:flushdb) }
 
     it 'creates a new user' do
       expect { action.call(params) }.to change { repo.all.count }.by(0)

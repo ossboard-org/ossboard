@@ -1,1 +1,2 @@
-Hanami::Utils.require!("#{__dir__}/ossboard")
+module OSSBoard
+end
