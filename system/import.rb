@@ -1,4 +1,4 @@
-require 'system/container'
+require_relative './container'
 
 module OSSBoard
   Import = Application.injector

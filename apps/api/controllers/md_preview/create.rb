@@ -1,6 +1,7 @@
 module Api::Controllers::MdPreview
   class Create
     include Api::Action
+    include OSSBoard::Import[:markdown]
 
     params do
       required(:md_text).filled(:str?)
@@ -15,7 +16,7 @@ module Api::Controllers::MdPreview
     EMPTY_STRING = ''.freeze
 
     def text
-      params.valid? ? OSSBoard::Markdown.new.parse(params[:md_text]) : EMPTY_STRING
+      params.valid? ? markdown.parse(params[:md_text]) : EMPTY_STRING
     end
   end
 end

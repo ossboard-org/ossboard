@@ -1,6 +1,7 @@
 module Admin::Controllers::Tasks
   class Update
     include Admin::Action
+    include OSSBoard::Import[:markdown]
     expose :task
 
     params do
@@ -24,7 +25,7 @@ module Admin::Controllers::Tasks
 
       if @task && params.valid?
         task_params = params[:task]
-        task_params[:body] = OSSBoard::Markdown.new.parse(task_params[:md_body])
+        task_params[:body] = markdown.parse(task_params[:md_body])
 
         repo.update(@task.id, task_params)
         redirect_to routes.task_path(task.id)

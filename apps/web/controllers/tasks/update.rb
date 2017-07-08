@@ -1,6 +1,7 @@
 module Web::Controllers::Tasks
   class Update
     include Web::Action
+    include OSSBoard::Import[:markdown]
 
     expose :task
 
@@ -46,7 +47,7 @@ module Web::Controllers::Tasks
 
     def task_params(params)
       task_params = params[:task]
-      task_params[:body] = OSSBoard::Markdown.new.parse(task_params[:md_body])
+      task_params[:body] = markdown.parse(task_params[:md_body])
       task_params
     end
   end
