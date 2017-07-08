@@ -46,7 +46,7 @@ RSpec.describe Admin::Views::Users::Index do
 
     context 'when user banned' do
       before { BlokedUserRepository.new.create('davydovanton') }
-      after { REDIS.with(&:flushdb) }
+      after { OSSBoard::Application[:redis].with(&:flushdb) }
 
       it { expect(view.link_to_block(user).to_s).to eq(
            '<form action="/admin/unban_users/1" method="POST">' + "\n" +

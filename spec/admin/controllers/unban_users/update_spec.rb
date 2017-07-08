@@ -7,7 +7,7 @@ RSpec.describe Admin::Controllers::UnbanUsers::Update do
   let(:params)  { { login: login, 'rack.session' => session } }
 
   before { BlokedUserRepository.new.create('anton') }
-  after { REDIS.with(&:flushdb) }
+  after { OSSBoard::Application[:redis].with(&:flushdb) }
 
   context 'when login was banned' do
     let(:login) { 'anton' }

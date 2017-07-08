@@ -19,9 +19,15 @@ end
 # NoMethodError: undefined method `user_id' for <Rake::Task  => []>:Rake::Task
 require 'fabrication'
 
+
 require_relative '../config/environment'
+require 'dry/container/stub'
+OSSBoard::Application.enable_stubs!
+OSSBoard::Application.stub(:redis, ConnectionPool.new(size: 10, timeout: 3) {
+  MockRedis.new
+})
+
 Hanami.boot
-Hanami::Utils.require!("#{__dir__}/support")
 
 require 'vcr'
 
@@ -39,7 +45,7 @@ RSpec.configure do |config|
   config.include RSpec::Hanami::Matchers
   config.include RSpec::Hanami::RequestHelpers
   # avoid conflicts with Capybara, see https://github.com/teamcapybara/capybara/issues/1396
-  config.include RspecEvery
+  # config.include RspecEvery
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
