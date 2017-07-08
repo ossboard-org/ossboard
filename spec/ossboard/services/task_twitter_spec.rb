@@ -26,8 +26,4 @@ RSpec.describe Services::TaskTwitter do
       it { VCR.use_cassette("task_twitter_sender") { expect(subject.size).to be <= 140 } }
     end
   end
-
-  it "#twitter_client returs a twitter client" do
-    expect(TWITTER_CLIENT).to be_a(Twitter::REST::Client)
-  end
 end

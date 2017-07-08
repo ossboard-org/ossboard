@@ -1,5 +1,7 @@
 module Services
   class TaskTwitter < Base
+    include OSSBoard::Import[:twitter]
+
     def call(task)
       tweet text(task)
     end
@@ -20,7 +22,7 @@ module Services
 
     def tweet(text)
       return text unless Hanami.env?(:production)
-      TWITTER_CLIENT.update(text)
+      twitter.update(text)
     end
 
     # Keep extra 5 symbols for spaces and ...
