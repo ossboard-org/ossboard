@@ -1,5 +1,7 @@
 require 'dry/system/container'
 
-class Application < Dry::System::Container
-  configure
+module OSSBoard
+  class Application < Dry::System::Container
+    configure
+  end
 end

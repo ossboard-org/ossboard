@@ -1,3 +1,5 @@
 require 'system/container'
 
-Import = Application.injector
+module OSSBoard
+  Import = Application.injector
+end
