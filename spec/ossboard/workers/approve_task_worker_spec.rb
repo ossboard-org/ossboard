@@ -16,7 +16,7 @@ RSpec.describe ApproveTaskWorker do
 
     it 'calls approved task twitter services' do
       VCR.use_cassette("approve_task_worker") do
-        expect(TaskTwitter).to receive(:call).with(task)
+        expect(Services::TaskTwitter).to receive(:call).with(task)
         subject.perform(task.id)
       end
     end

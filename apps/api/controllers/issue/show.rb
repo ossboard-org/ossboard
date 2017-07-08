@@ -23,8 +23,8 @@ module Api::Controllers::Issue
 
     def match_host(issue_url)
       Matchers::GitHost::Matcher.(issue_url) do |m|
-        m.success(:github) { |issue_data| GithubIssueRequester.(issue_data) }
-        m.success(:gitlab) { |issue_data| GitlabIssueRequester.(issue_data) }
+        m.success(:github) { |issue_data| Services::GithubIssueRequester.(issue_data) }
+        m.success(:gitlab) { |issue_data| Services::GitlabIssueRequester.(issue_data) }
         m.failure { INVALID_URL_ERROR }
       end
     end

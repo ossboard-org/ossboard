@@ -1,5 +1,5 @@
-RSpec.describe AnalyticReporter do
-  subject { AnalyticReporter.new.call }
+RSpec.describe Services::AnalyticReporter do
+  subject { Services::AnalyticReporter.new.call }
 
   before(:all) do
     UserRepository.new.clear

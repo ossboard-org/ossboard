@@ -1,7 +1,7 @@
-RSpec.describe TaskTwitter do
+RSpec.describe Services::TaskTwitter do
   let(:task) { Fabricate.create(:task, user_id: Fabricate.create(:user).id) }
 
-  subject { TaskTwitter.new.call(task) }
+  subject { Services::TaskTwitter.new.call(task) }
 
   after do
     TaskRepository.new.clear
