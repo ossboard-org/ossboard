@@ -38,6 +38,8 @@ require 'rspec/hanami'
 require 'sidekiq/testing'
 Sidekiq::Testing.fake!
 
+require_relative './support/rspec_every'
+
 RSpec.configure do |config|
   config.include RSpec::Hanami::Matchers
   config.include RSpec::Hanami::RequestHelpers
