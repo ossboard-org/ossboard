@@ -104,7 +104,7 @@ RSpec.describe Web::Controllers::Tasks::Create do
   end
 
   describe 'when params invalid' do
-    let(:params) { { task: { 'rack.session' => session } } }
+    let(:params) { { task: {}, 'rack.session' => session } }
 
     it { expect(action.call(params)).to have_http_status(200) }
     it { expect(action.call(params)).to match_in_body('Title is missing') }
