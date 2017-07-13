@@ -1,8 +1,6 @@
 module Web::Controllers::Tasks
   class Create
     include Web::Action
-    include OSSBoard::Import[:markdown]
-
     expose :task
 
     params do
@@ -19,16 +17,14 @@ module Web::Controllers::Tasks
     end
 
     def call(params)
-      if params.valid? && authenticated?
-        task = TaskRepository.new.create(task_params)
+			return unless authenticated?
+      result = Interactors::Tasks::Create.new(params.valid?, params).call
 
-        NewTaskNotificationWorker.perform_async(task.id)
+      if result.successful?
         flash[:info] = INFO_MESSAGE
-
         redirect_to routes.tasks_path
       else
-        @task = Task.new(params[:task])
-        self.body = Web::Views::Tasks::New.render(format: format, task: @task,
+        self.body = Web::Views::Tasks::New.render(format: format, task: result.task,
           current_user: current_user, params: params, updated_csrf_token: set_csrf_token)
       end
     end
@@ -36,13 +32,5 @@ module Web::Controllers::Tasks
     private
 
     INFO_MESSAGE = 'Task had been added to moderation. You can check your task status on profile page'.freeze
-
-    def task_params
-      hash = params[:task]
-      hash[:body] = markdown.parse(hash[:md_body])
-      hash[:status] = Task::VALID_STATUSES[:in_progress]
-      hash[:approved] = nil
-      hash
-    end
   end
 end
