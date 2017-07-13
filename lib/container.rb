@@ -7,6 +7,6 @@ require_relative 'ossboard/core/http_request'
 class Container
   extend Dry::Container::Mixin
   register('core.markdown', Core::Markdown.new)
-  register('core.http_request', Core::HttpRequest)
+  register('core.http_request', Core::HttpRequest.new)
 end
 Import = Dry::AutoInject(Container)

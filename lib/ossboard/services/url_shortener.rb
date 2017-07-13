@@ -8,7 +8,7 @@ module Services
     private
 
     def shorten_url(url)
-      response = Container['core.http_request'].new(SHORTENER_SERVICE_URL).post(format: 'simple', url: url)
+      response = Container['core.http_request'].post(SHORTENER_SERVICE_URL, format: 'simple', url: url)
       response.is_a?(Net::HTTPSuccess) ? response.body : url
     end
 

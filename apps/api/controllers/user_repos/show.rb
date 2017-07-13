@@ -19,7 +19,7 @@ module Api::Controllers::UserRepos
     private
 
     def repos_page(page = 1)
-      http_request.new("https://api.github.com/users/#{params[:login]}/repos?per_page=100&page=#{page}").get.body
+      http_request.get("https://api.github.com/users/#{params[:login]}/repos?per_page=100&page=#{page}").body
     end
   end
 end
