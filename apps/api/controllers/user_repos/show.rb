@@ -1,6 +1,7 @@
 module Api::Controllers::UserRepos
   class Show
     include Api::Action
+    include Import['core.http_request']
 
     params do
       required(:login).filled(:str?)
@@ -18,7 +19,7 @@ module Api::Controllers::UserRepos
     private
 
     def repos_page(page = 1)
-      HttpRequest.new("https://api.github.com/users/#{params[:login]}/repos?per_page=100&page=#{page}").get.body
+      http_request.new("https://api.github.com/users/#{params[:login]}/repos?per_page=100&page=#{page}").get.body
     end
   end
 end

@@ -1,7 +1,7 @@
 module Web::Controllers::Tasks
   class Update
     include Web::Action
-    include OSSBoard::Import[:markdown]
+    include Import['core.markdown']
 
     expose :task
 

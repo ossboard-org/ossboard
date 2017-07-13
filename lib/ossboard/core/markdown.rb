@@ -1,7 +1,7 @@
 require 'kramdown'
 require 'rouge'
 
-module OSSBoard
+module Core
   class Markdown
     LINK_REGEXP = %r((?<![=["|']|><a-z0-9_\.])(?<!http:\/\/)((http[s]?\:\/\/)?([a-z0-9\.]+\.[a-z]{2,5}(\/[\?=&a-z0-9_\.\/]+)?)))
     CHECKBOX_REGEXP_CHECKED = %r(\K\[(x|X)\]\s?(.*)<)
