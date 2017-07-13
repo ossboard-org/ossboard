@@ -1,5 +1,3 @@
-require_relative '../../http_request'
-
 module Services
   class GitlabIssueRequester < Base
     def call(params)
@@ -55,7 +53,7 @@ module Services
     end
 
     def get_response(url)
-      HttpRequest.new(url).get do |request|
+      Container['core.http_request'].new(url).get do |request|
         request['PRIVATE-TOKEN'] = ENV['GITLAB_PRIVATE_TOKEN']
       end
     end

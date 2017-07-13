@@ -1,5 +1,3 @@
-require_relative '../../http_request'
-
 module Services
   class GithubIssueRequester < Base
     def call(params)
@@ -17,7 +15,7 @@ module Services
     COMPLEXITY_LABELS = %w(easy medium hard).freeze
 
     def get_response(url)
-      HttpRequest.new(url).get
+      Container['core.http_request'].new(url).get
     end
 
     def issue_data(params)

@@ -1,5 +1,3 @@
-require_relative '../../http_request'
-
 module Services
   class UrlShortener < Base
     def call(url)
@@ -10,7 +8,7 @@ module Services
     private
 
     def shorten_url(url)
-      response = HttpRequest.new(SHORTENER_SERVICE_URL).post(format: 'simple', url: url)
+      response = Container['core.http_request'].new(SHORTENER_SERVICE_URL).post(format: 'simple', url: url)
       response.is_a?(Net::HTTPSuccess) ? response.body : url
     end
 
