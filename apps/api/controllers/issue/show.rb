@@ -7,26 +7,9 @@ module Api::Controllers::Issue
     end
 
     def call(params)
-      generate_response
-      self.status = 404 if @response[:error]
-      self.body = JSON.generate(@response)
-    end
-
-  private
-
-    EMPTY_URL_ERROR   = { error: 'empty url' }
-    INVALID_URL_ERROR = { error: 'invalid url' }
-
-    def generate_response
-      @response ||= params.valid? ? match_host(params[:issue_url]) : EMPTY_URL_ERROR
-    end
-
-    def match_host(issue_url)
-      Matchers::GitHost::Matcher.(issue_url) do |m|
-        m.success(:github) { |issue_data| Services::GithubIssueRequester.(issue_data) }
-        m.success(:gitlab) { |issue_data| Services::GitlabIssueRequester.(issue_data) }
-        m.failure { INVALID_URL_ERROR }
-      end
+      result = Interactors::Issues::Show.new(params.valid?, params).call
+      self.status = 404 if result.failure?
+      self.body = JSON.generate(result.response)
     end
   end
 end
