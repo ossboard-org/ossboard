@@ -1,7 +1,7 @@
 module Admin::Controllers::Tasks
   class Update
     include Admin::Action
-    include OSSBoard::Import[:markdown]
+    include Import['core.markdown']
     expose :task
 
     params do

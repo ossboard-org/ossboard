@@ -6,5 +6,4 @@ class Container
   extend Dry::Container::Mixin
   register('core.markdown', OSSBoard::Markdown.new)
 end
-
-# Import = Dry::AutoInject(Container)
+Import = Dry::AutoInject(Container)

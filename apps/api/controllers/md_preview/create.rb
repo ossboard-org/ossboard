@@ -1,7 +1,7 @@
 module Api::Controllers::MdPreview
   class Create
     include Api::Action
-    include OSSBoard::Import[:markdown]
+    include Import['core.markdown']
 
     params do
       required(:md_text).filled(:str?)
