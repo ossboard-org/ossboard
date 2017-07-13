@@ -16,7 +16,8 @@ module Interactors
         @response = if @is_valid
           match_host(@params[:issue_url])
         else
-          error('invalid params') && EMPTY_URL_ERROR
+          error('invalid params')
+          EMPTY_URL_ERROR
         end
       end
 
@@ -29,7 +30,10 @@ module Interactors
         Matchers::GitHost::Matcher.(issue_url) do |m|
           m.success(:github) { |issue_data| Services::GithubIssueRequester.(issue_data) }
           m.success(:gitlab) { |issue_data| Services::GitlabIssueRequester.(issue_data) }
-          m.failure { error('invalid url') && INVALID_URL_ERROR }
+          m.failure do
+            error('invalid url')
+            INVALID_URL_ERROR
+          end
         end
       end
     end
