@@ -2,18 +2,16 @@ require "net/https"
 
 module Core
   class HttpRequest
-    def initialize(url)
-      @uri = URI.parse(url)
-    end
-
-    def get
+    def get(url)
+      uri = URI.parse(url)
       request = Net::HTTP::Get.new(uri.request_uri)
       yield request if block_given?
 
       http(uri).request(request)
     end
 
-    def post(params = {})
+    def post(url, **params)
+      uri = URI.parse(url)
       request = Net::HTTP::Post.new(uri.request_uri)
       request.set_form_data(params)
       yield request if block_given?
