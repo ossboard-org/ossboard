@@ -7,12 +7,15 @@ RSpec.describe Admin::Views::Users::Index do
   let(:rendered)  { view.render }
   let(:repo)      { UserRepository.new }
 
+  before do
+    repo.clear
+    OSSBoard::Application[:redis].with(&:flushdb)
+  end
+
   describe 'users' do
     before do
       3.times { Fabricate.create(:user, name: 'Anton') }
     end
-
-    after { repo.clear }
 
     it 'returns all users' do
       expect(view.users).to eq repo.all.reverse
@@ -46,7 +49,6 @@ RSpec.describe Admin::Views::Users::Index do
 
     context 'when user banned' do
       before { BlokedUserRepository.new.create('davydovanton') }
-      after { OSSBoard::Application[:redis].with(&:flushdb) }
 
       it { expect(view.link_to_block(user).to_s).to eq(
            '<form action="/admin/unban_users/1" method="POST">' + "\n" +
