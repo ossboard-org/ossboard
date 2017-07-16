@@ -12,7 +12,7 @@ class Container
   extend Dry::Container::Mixin
 
   register('core.markdown', Core::Markdown.new)
-  register('core.http_request', Core::HttpRequest)
+  register('core.http_request', Core::HttpRequest.new)
 
   register('services.analytic_reporter', Services::AnalyticReporter.new)
   register('services.github_issue_requester', Services::GithubIssueRequester.new)

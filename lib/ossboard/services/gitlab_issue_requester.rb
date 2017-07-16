@@ -53,7 +53,7 @@ module Services
     end
 
     def get_response(url)
-      Container['core.http_request'].new(url).get do |request|
+      Container['core.http_request'].get(url) do |request|
         request['PRIVATE-TOKEN'] = ENV['GITLAB_PRIVATE_TOKEN']
       end
     end

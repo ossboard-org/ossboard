@@ -15,7 +15,7 @@ module Services
     COMPLEXITY_LABELS = %w(easy medium hard).freeze
 
     def get_response(url)
-      Container['core.http_request'].new(url).get
+      Container['core.http_request'].get(url)
     end
 
     def issue_data(params)
