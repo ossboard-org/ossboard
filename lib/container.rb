@@ -8,7 +8,7 @@ require 'dry-auto_inject'
   gitlab_issue_requester points_calculator task_tweeter
 ].each { |file| require_relative "ossboard/services/#{file}" }
 
-require 'ossboard/matchers/git_host_matcher'
+require_relative 'ossboard/matchers/git_host_matcher'
 
 class Container
   extend Dry::Container::Mixin
