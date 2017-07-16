@@ -4,7 +4,7 @@ require 'dry-auto_inject'
 %w[markdown http_request].each { |file| require_relative "ossboard/core/#{file}" }
 
 %w[
-  base analytic_reporter github_issue_requester
+  base analytic_reporter github_issue_requester url_shortener
   gitlab_issue_requester points_calculator task_tweeter
 ].each { |file| require_relative "ossboard/services/#{file}" }
 
@@ -19,6 +19,7 @@ class Container
   register('services.gitlab_issue_requester', Services::GitlabIssueRequester.new)
   register('services.points_calculator', Services::PointsCalculator.new)
   register('services.task_twitter', Services::TaskTwitter.new)
+  register('services.url_shortener', Services::UrlShortener.new)
 end
 
 Import = Dry::AutoInject(Container)
