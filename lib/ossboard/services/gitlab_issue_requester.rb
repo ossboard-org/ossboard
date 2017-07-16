@@ -1,5 +1,5 @@
 module Services
-  class GitlabIssueRequester < Base
+  class GitlabIssueRequester
     def call(params)
       issue_data(params)
         .fmap { |data| data.merge(repo_data(params)) }

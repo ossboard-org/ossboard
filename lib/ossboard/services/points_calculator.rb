@@ -1,5 +1,5 @@
 module Services
-  class PointsCalculator < Base
+  class PointsCalculator
     def call(user)
       if point = user.points.first
         PointRepository.new.update(point.id, points_params(user))

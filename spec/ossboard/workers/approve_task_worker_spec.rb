@@ -13,12 +13,5 @@ RSpec.describe ApproveTaskWorker do
         expect{ subject.perform(task.id) }.to change { Hanami::Mailer.deliveries.size }.by(1)
       end
     end
-
-    it 'calls approved task twitter services' do
-      VCR.use_cassette("approve_task_worker") do
-        expect(Services::TaskTwitter).to receive(:call).with(task)
-        subject.perform(task.id)
-      end
-    end
   end
 end

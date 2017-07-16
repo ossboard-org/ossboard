@@ -1,5 +1,5 @@
 module Services
-  class TaskTwitter < Base
+  class TaskTwitter
     include OSSBoard::Import[:twitter]
 
     def call(task)

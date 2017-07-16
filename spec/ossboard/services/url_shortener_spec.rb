@@ -1,5 +1,5 @@
 RSpec.describe Services::UrlShortener do
-  subject { Services::UrlShortener.call(url) }
+  subject { Services::UrlShortener.new.call(url) }
 
   describe '#shorten_url' do
     context 'when link valid' do

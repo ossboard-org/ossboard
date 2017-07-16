@@ -4,7 +4,7 @@ require 'dry-auto_inject'
 %w[markdown http_request].each { |file| require_relative "ossboard/core/#{file}" }
 
 %w[
-  base analytic_reporter github_issue_requester url_shortener
+  analytic_reporter github_issue_requester url_shortener
   gitlab_issue_requester points_calculator task_tweeter
 ].each { |file| require_relative "ossboard/services/#{file}" }
 

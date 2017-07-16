@@ -1,5 +1,5 @@
 module Services
-  class UrlShortener < Base
+  class UrlShortener
     def call(url)
       return url if Hanami.env?(:development)
       shorten_url(url)

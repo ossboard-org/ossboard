@@ -1,5 +1,5 @@
 module Services
-  class GithubIssueRequester < Base
+  class GithubIssueRequester
     def call(params)
       issue_data(params)
         .fmap { |data| data.merge(repo_data(params)) }
