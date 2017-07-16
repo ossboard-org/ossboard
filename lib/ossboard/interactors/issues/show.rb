@@ -28,7 +28,7 @@ module Interactors
 
 
       def match_host(issue_url)
-        Matchers::GitHost::Matcher.(issue_url) do |m|
+        Container['matchers.git_host'].(issue_url) do |m|
           m.success(:github) { |issue_data| Container['services.github_issue_requester'].(issue_data) }
           m.success(:gitlab) { |issue_data| Container['services.gitlab_issue_requester'].(issue_data) }
           m.failure do

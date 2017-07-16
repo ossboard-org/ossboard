@@ -8,6 +8,8 @@ require 'dry-auto_inject'
   gitlab_issue_requester points_calculator task_tweeter
 ].each { |file| require_relative "ossboard/services/#{file}" }
 
+require 'ossboard/matchers/git_host_matcher'
+
 class Container
   extend Dry::Container::Mixin
 
@@ -20,6 +22,8 @@ class Container
   register('services.points_calculator', Services::PointsCalculator.new)
   register('services.task_twitter', Services::TaskTwitter.new)
   register('services.url_shortener', Services::UrlShortener.new)
+
+  register('matchers.git_host', Matchers::GitHost::Matcher)
 end
 
 Import = Dry::AutoInject(Container)
