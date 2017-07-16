@@ -8,6 +8,6 @@ class ApproveTaskWorker
     return unless task
 
     Mailers::TaskApproved.deliver(user: user, task: task, format: :html)
-    Services::TaskTwitter.call(task)
+    Container['services.task_twitter'].call(task)
   end
 end

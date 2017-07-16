@@ -4,6 +4,6 @@ class CalculatePointsWorker
   def perform
     UserRepository.new
       .all_with_points_and_tasks
-      .each { |user| Services::PointsCalculator.call(user) }
+      .each { |user| Container['services.points_calculator'].call(user) }
   end
 end
