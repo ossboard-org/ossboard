@@ -3,7 +3,7 @@ RSpec.describe Services::PointsCalculator do
   let(:service) { Services::PointsCalculator.new }
   subject { service.call(UserRepository.new.all_with_points_and_tasks.last) }
 
-  after do
+  before do
     TaskRepository.new.clear
     UserRepository.new.clear
     PointRepository.new.clear

@@ -5,11 +5,11 @@ RSpec.describe Admin::Controllers::Users::Destroy do
   let(:session) { { current_user: User.new(id: 1, admin: true) } }
   let(:params)  { { id: 1, 'rack.session' => session, login: 'davydovanton' } }
 
-  before { Fabricate.create(:user, login: 'davydovanton') }
-
-  after do
+  before do
     OSSBoard::Application[:redis].with(&:flushdb)
     UserRepository.new.clear
+
+    Fabricate.create(:user, login: 'davydovanton')
   end
 
   it { expect(action.call(params)).to redirect_to '/admin/users' }
