@@ -2,10 +2,16 @@ require_relative '../../../../apps/api/controllers/users/show'
 
 RSpec.describe Api::Controllers::Users::Show do
   let(:action) { described_class.new }
-  let(:params) { Hash[] }
+  let(:params) { Hash[id: 'davydovanton'] }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+  subject { action.call(params) }
+
+  context 'when params invalid' do
+    let(:params) { Hash[] }
+    it { expect(subject).to be_success }
+  end
+
+  context 'when params valid' do
+    it { expect(subject).to be_success }
   end
 end
