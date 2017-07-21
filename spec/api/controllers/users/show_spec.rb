@@ -24,5 +24,6 @@ RSpec.describe Api::Controllers::Users::Show do
   context 'when params valid' do
     it { expect(subject).to be_success }
     it { expect(subject).to match_in_body '"name":"Anton","login\":"davydovanton"' }
+    it { expect(subject).to match_in_body '"tasks":\[\]' }
   end
 end
