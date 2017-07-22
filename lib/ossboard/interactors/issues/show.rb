@@ -26,7 +26,6 @@ module Interactors
       EMPTY_URL_ERROR   = { error: 'empty url' }
       INVALID_URL_ERROR = { error: 'invalid url' }
 
-
       def match_host(issue_url)
         Container['matchers.git_host'].(issue_url) do |m|
           m.success(:github) { |issue_data| Container['services.github_issue_requester'].(issue_data) }

@@ -1,10 +1,7 @@
-require 'hanami/interactor'
-
+# TODO: add hanami interactor and try to understand bug
 module Interactors
   module TaskStatus
     class Update
-      include Hanami::Interactor
-
       def initialize(current_user, params)
         @current_user = current_user
         @params = params
@@ -12,7 +9,7 @@ module Interactors
 
       def call
         @task = repo.find(@params[:id])
-        repo.update(@task.id, task_params) if valid?(@task)
+        repo.update(@task.id, task_params) if valid?
       end
 
     private
@@ -24,7 +21,7 @@ module Interactors
       end
 
       def valid?
-        @task && current_user.author?(@task) &&
+        @task && @current_user.author?(@task) &&
           ALLOWED_STATUSES.include?(@params[:status]) &&
           (@task.status == Task::VALID_STATUSES[:in_progress] ||
            @task.status == Task::VALID_STATUSES[:assigned])
