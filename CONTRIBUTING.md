@@ -49,7 +49,7 @@ request; Questions, clarifications, and so on.
 
 ## How to install project
 
-1. register a new github OAuth application. You can do it [here](https://github.com/settings/applications/new).
+1. register a new github OAuth application. You can do it [here](https://github.com/settings/applications/new). Set Authorization callback URL to http://127.0.0.1:2300/auth/github/callback
 2. register a new gitlab Personal Access Token. You can do it [here](https://gitlab.com/profile/personal_access_tokens).
 3. install http://phantomjs.org/download.html
 4. run this commands:
