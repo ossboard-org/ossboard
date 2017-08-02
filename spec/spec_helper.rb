@@ -46,6 +46,9 @@ RSpec.configure do |config|
   # avoid conflicts with Capybara, see https://github.com/teamcapybara/capybara/issues/1396
   config.include RspecEvery
 
+  config.before(:suite) do
+    `#{__dir__}/../node_modules/.bin/webpack`
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
