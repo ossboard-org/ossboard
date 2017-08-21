@@ -1,6 +1,6 @@
 class TaskRepository < Hanami::Repository
   def only_approved
-    tasks.where(approved: true).order(Sequel.lit('? DESC', :id)).map_to(Task).to_a
+    tasks.where(approved: true).order { id.desc }.map_to(Task).to_a
   end
 
   def not_approved
@@ -29,11 +29,11 @@ class TaskRepository < Hanami::Repository
   end
 
   def find_by(params = {})
-    tasks.where(params).order(Sequel.lit('? DESC', :id)).map_to(Task).to_a
+    tasks.where(params).order { id.desc }.map_to(Task).to_a
   end
 
   def assigned_tasks_for_user(user)
-    tasks.where(assignee_username: user.login).order(Sequel.lit('? DESC', :id)).map_to(Task).to_a
+    tasks.where(assignee_username: user.login).order { id.desc }.map_to(Task).to_a
   end
 
   private
