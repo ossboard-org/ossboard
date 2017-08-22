@@ -19,6 +19,10 @@ module Web
         'OSSBoard'
       end
 
+      def description
+        'A simple way to connect developers and open-source maintainers'
+      end
+
     private
 
       COMPLEXITY_OPTIONS_HASH = {

@@ -12,6 +12,10 @@ RSpec.describe Web::Views::Main::Index do
     it { expect(view.title).to eq 'OSSBoard' }
   end
 
+  describe '#description' do
+    it { expect(view.description).to be }
+  end
+
   describe '#link_to_tasks' do
     it 'returns link to all tasks' do
       expect(view.link_to_tasks.to_s).to eq '<a class="issues-all__link" href="/tasks">View all</a>'

@@ -21,8 +21,14 @@ module IndexPageSwitcher
 end
 
 RSpec.describe 'Index page', type: :feature, js: true do
-
   include IndexPageSwitcher
+
+  it 'renders meta tags' do
+    visit '/'
+
+    expect(page).to have_selector('title', text: 'OSSBoard', visible: false)
+    expect(page).to have_css('meta[name="description"]', visible: false)
+  end
 
   it 'switcher on index page with "I want to contribute" default switch position' do
     visit '/'
@@ -39,5 +45,4 @@ RSpec.describe 'Index page', type: :feature, js: true do
     page.find('.whatisthis-choice-item__link', text: 'I want to contribute').click
     expect_i_want_to_contribute
   end
-
 end
