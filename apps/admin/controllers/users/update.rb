@@ -15,6 +15,7 @@ module Admin::Controllers::Users
     end
 
     def call(params)
+      # TODO: To operation
       @user = repo.find(params[:id])
 
       if @user && params.valid?
