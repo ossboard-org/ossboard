@@ -7,3 +7,5 @@
 /.env.local
 /.idea/**
 npm-debug.log
+.env.development
+.env.test
