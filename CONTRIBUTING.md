@@ -57,6 +57,7 @@ request; Questions, clarifications, and so on.
 ```
 $ bundle install
 $ npm install
+$ cp .env.development.sample .env.development && cp .env.test.sample .env.test
 $ bundle exec hanami db prepare
 $ HANAMI_ENV=test bundle exec hanami db prepare
 $ bundle exec rspec
