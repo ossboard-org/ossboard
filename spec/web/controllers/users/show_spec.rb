@@ -5,6 +5,11 @@ RSpec.describe Web::Controllers::Users::Show do
   let(:user) { Fabricate.create(:user, name: 'Anton', login: 'davydovanton') }
   let(:params)  { { id: user.login } }
 
+  before do
+    TaskRepository.new.clear
+    UserRepository.new.clear
+  end
+
   after do
     TaskRepository.new.clear
     UserRepository.new.clear
