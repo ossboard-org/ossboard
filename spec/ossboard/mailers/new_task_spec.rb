@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Mailers::NewTask do
-  before { Hanami::Mailer.deliveries.clear }
   let(:user) { User.new(email: 'anton@ossboard.org') }
   let(:task) { Task.new(id: 1) }
 

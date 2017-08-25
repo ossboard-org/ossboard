@@ -3,12 +3,6 @@ RSpec.describe Services::PointsCalculator do
   let(:service) { Services::PointsCalculator.new }
   subject { service.call(UserRepository.new.all_with_points_and_tasks.last) }
 
-  before do
-    TaskRepository.new.clear
-    UserRepository.new.clear
-    PointRepository.new.clear
-  end
-
   describe '#perform' do
     context 'when user does not have tasks' do
       it 'does nothing' do
