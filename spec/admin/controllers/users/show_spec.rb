@@ -6,8 +6,6 @@ RSpec.describe Admin::Controllers::Users::Show do
   let(:session) { { current_user: User.new(id: 1, admin: true) } }
   let(:params)  { { id: user.id, 'rack.session' => session } }
 
-  after { TaskRepository.new.clear }
-
   it { expect(action.call(params)).to be_success }
 
   describe 'expose' do

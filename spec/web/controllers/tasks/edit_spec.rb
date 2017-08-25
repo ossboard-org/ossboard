@@ -8,8 +8,6 @@ RSpec.describe Web::Controllers::Tasks::Edit do
   let(:task)    { Fabricate.create(:task, title: 'TestTask') }
   let(:params)  { { 'rack.session' => session, id: task.id } }
 
-  after { repo.clear }
-
   context 'when user unauthenticated' do
     it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
 
@@ -24,11 +22,6 @@ RSpec.describe Web::Controllers::Tasks::Edit do
     let(:task)    { Fabricate.create(:task, title: 'TestTask', user_id: user.id) }
     let(:session) { { current_user: User.new(id: user.id - 1) } }
 
-    after do
-      UserRepository.new.clear
-      repo.clear
-    end
-
     it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
 
     it 'sets error flash message' do
@@ -41,11 +34,6 @@ RSpec.describe Web::Controllers::Tasks::Edit do
   context 'when user authenticated and try to edit approved task' do
     let(:task)    { Fabricate.create(:task, title: 'TestTask', user_id: user.id, approved: true) }
     let(:session) { { current_user: user } }
-
-    after do
-      UserRepository.new.clear
-      repo.clear
-    end
 
     it { expect(action.call(params)).to redirect_to("/tasks/#{task.id}") }
 

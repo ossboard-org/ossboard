@@ -43,8 +43,6 @@ RSpec.describe Account do
     context 'wen user exist in DB' do
       let(:user) { UserRepository.new.create(login: 'davydovanton') }
 
-      after { UserRepository.new.clear }
-
       it 'returns user entity' do
         account.user = user
         expect(account.user).to eq user

@@ -13,8 +13,6 @@ RSpec.describe Admin::Views::Tasks::Index do
       3.times { Fabricate.create(:task, title: 'good', approved: true) }
     end
 
-    after { repo.clear }
-
     it 'returns all tasks' do
       expect(view.tasks).to eq repo.all.reverse
     end

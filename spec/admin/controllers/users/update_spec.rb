@@ -6,8 +6,6 @@ RSpec.describe Admin::Controllers::Users::Update do
   let(:user)   { Fabricate.create(:user, name: 'old') }
   let(:session) { { current_user: User.new(id: 1, admin: true) } }
 
-  after { repo.clear }
-
   describe 'when params valid' do
     let(:params) { { id: user.id, user: { name: 'test', login: 'test', email: 'test@test.com', bio: 'empty', admin: '1' }, 'rack.session' => session  } }
 

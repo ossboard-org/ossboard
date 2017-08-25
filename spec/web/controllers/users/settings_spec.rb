@@ -6,8 +6,6 @@ RSpec.describe Web::Controllers::Users::Settings do
   let(:user)    { Fabricate.create(:user, name: 'Anton', login: 'davydovanton') }
   let(:params)  { { 'rack.session' => session, id: user.login } }
 
-  after { UserRepository.new.clear }
-
   context 'when user not register' do
     it { expect(action.call(params)).to redirect_to('/') }
   end

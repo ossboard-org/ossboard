@@ -3,11 +3,6 @@ RSpec.describe Services::TaskTwitter do
 
   subject { Services::TaskTwitter.new.call(task) }
 
-  after do
-    TaskRepository.new.clear
-    UserRepository.new.clear
-  end
-
   describe '#call' do
     context 'with correct text' do
       let(:task) { Fabricate.create(:task, user_id: Fabricate.create(:user).id) }

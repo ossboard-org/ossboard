@@ -7,7 +7,6 @@ RSpec.describe Admin::Controllers::Users::Destroy do
 
   before do
     OSSBoard::Application[:redis].with(&:flushdb)
-    UserRepository.new.clear
 
     Fabricate.create(:user, login: 'davydovanton')
   end

@@ -1,11 +1,6 @@
 RSpec.describe Services::AnalyticReporter do
   subject { Services::AnalyticReporter.new.call }
 
-  before(:all) do
-    UserRepository.new.clear
-    TaskRepository.new.clear
-  end
-
   context 'labels information' do
     it 'returns array of days for chart labels' do
       labels = subject[:labels]
@@ -33,10 +28,7 @@ RSpec.describe Services::AnalyticReporter do
         Timecop.freeze(Time.now.utc)
       end
 
-      after do
-        UserRepository.new.clear
-        Timecop.return
-      end
+      after { Timecop.return }
 
       it 'returns array with user count' do
         users = subject[:users]
@@ -74,10 +66,7 @@ RSpec.describe Services::AnalyticReporter do
         Timecop.freeze(Time.now.utc)
       end
 
-      after do
-        TaskRepository.new.clear
-        Timecop.return
-      end
+      after { Timecop.return }
 
       it 'returns arrays with task counts' do
         tasks = subject[:tasks]

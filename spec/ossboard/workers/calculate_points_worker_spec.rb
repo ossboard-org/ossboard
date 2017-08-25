@@ -2,18 +2,6 @@ RSpec.describe CalculatePointsWorker do
   let(:user) { Fabricate.create(:user, login: 'davydovanton') }
   subject { CalculatePointsWorker.new.perform }
 
-  clear_repositories = lambda do
-    TaskRepository.new.clear
-    UserRepository.new.clear
-    PointRepository.new.clear
-  end
-
-  around do |example|
-    clear_repositories.call
-    example.run
-    clear_repositories.call
-  end
-
   describe '#perform' do
     context 'when user does not have tasks' do
       it 'does nothing' do

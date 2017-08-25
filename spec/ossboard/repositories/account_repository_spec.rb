@@ -5,7 +5,6 @@ RSpec.describe AccountRepository do
 
     context 'when user exist with uuid' do
       before { repo.create(uid: 'test') }
-      after  { repo.clear }
 
       it { expect(repo.find_by_uid('test')).to be_a Account }
       it { expect(repo.find_by_uid('test').uid).to eq 'test' }

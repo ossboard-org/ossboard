@@ -58,7 +58,6 @@ RSpec.describe 'Tasks page', type: :feature, js: true do
     let(:repo) { UserRepository.new }
 
     before(:each) { visit '/tasks' }
-    after { repo.clear }
 
     it 'status filter in default position "Open"' do
       expect_task(open_task)

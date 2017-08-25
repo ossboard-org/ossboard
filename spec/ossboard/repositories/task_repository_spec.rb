@@ -2,8 +2,6 @@ RSpec.describe TaskRepository do
   let(:repo) { TaskRepository.new }
 
   describe '#find_by' do
-    after { repo.clear }
-
     before do
       Fabricate.create(:task, title: 'in progress', approved: true, status: 'in progress', lang: 'ruby')
       Fabricate.create(:task, title: 'closed', approved: true, status: 'closed', lang: 'haskell')
@@ -84,8 +82,6 @@ RSpec.describe TaskRepository do
   end
 
   describe '#only_approved' do
-    after { repo.clear }
-
     before do
       Fabricate.create(:task, title: 'bad')
       Fabricate.create(:task, title: 'good', approved: true)
@@ -100,8 +96,6 @@ RSpec.describe TaskRepository do
   end
 
   describe '#not_approved' do
-    after { repo.clear }
-
     before do
       Fabricate.create(:task, title: 'bad')
       Fabricate.create(:task, title: 'new',  approved: nil)
@@ -117,8 +111,6 @@ RSpec.describe TaskRepository do
   end
 
   describe '#new_tasks' do
-    after { repo.clear }
-
     before do
       Fabricate.create(:task, title: 'bad')
       Fabricate.create(:task, title: 'new',  approved: nil)
@@ -167,8 +159,6 @@ RSpec.describe TaskRepository do
       it { expect(result.dig('closed', Date.new(2016, 02, 22))).to eq 1 }
     end
 
-    after(:all) { TaskRepository.new.clear }
-
     let(:date) { Date.new(2016, 02, 18) }
 
     it 'returns array of tasks' do
@@ -182,8 +172,6 @@ RSpec.describe TaskRepository do
   end
 
   describe '#on_moderation_for_user' do
-    after { repo.clear }
-
     before do
       Fabricate.create(:task, assignee_username: 'davydovanton')
       Fabricate.create(:task, assignee_username: 'davydovanton')
