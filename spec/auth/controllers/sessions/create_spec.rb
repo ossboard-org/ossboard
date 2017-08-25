@@ -56,11 +56,6 @@ RSpec.describe Auth::Controllers::Sessions::Create do
     }
   end
 
-  after do
-    repo.clear
-    account_repo.clear
-  end
-
   it { expect(action.call(params)).to redirect_to('/') }
 
   context 'when user not exist' do

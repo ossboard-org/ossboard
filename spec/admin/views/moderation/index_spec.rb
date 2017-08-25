@@ -21,8 +21,6 @@ RSpec.describe Admin::Views::Moderation::Index do
       3.times { Fabricate.create(:task, title: 'good', approved: true) }
     end
 
-    after { repo.clear }
-
     it 'returns only not approved tasks' do
       expect(view.tasks.count).to eq 3
       expect(view.tasks.map(&:approved)).to eq [nil, nil, nil]

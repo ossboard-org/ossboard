@@ -8,7 +8,6 @@ RSpec.describe Admin::Views::Users::Index do
   let(:repo)      { UserRepository.new }
 
   before do
-    repo.clear
     OSSBoard::Application[:redis].with(&:flushdb)
   end
 
