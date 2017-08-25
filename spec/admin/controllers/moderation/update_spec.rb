@@ -8,8 +8,6 @@ RSpec.describe Admin::Controllers::Moderation::Update do
   let(:repo) { TaskRepository.new }
   let(:task) { Fabricate.create(:task, approved: nil, user_id: Fabricate.create(:user).id) }
 
-  after { repo.clear }
-
   context 'when action is approve' do
     let(:action_value) { 'approve' }
 

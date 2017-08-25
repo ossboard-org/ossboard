@@ -6,8 +6,6 @@ RSpec.describe Admin::Controllers::Tasks::Update do
   let(:task) { Fabricate.create(:task, title: 'old', body: nil) }
   let(:session) { { current_user: User.new(id: 1, admin: true) } }
 
-  after { repo.clear }
-
   describe 'when params valid' do
     let(:params) { { id: task.id, task: task_params, 'rack.session' => session } }
     let(:task_params) do
