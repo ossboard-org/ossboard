@@ -3,6 +3,7 @@ ENV['HANAMI_ENV'] ||= 'test'
 
 require 'simplecov'
 require 'simplecov-json'
+require "support/database_cleaner"
 
 SimpleCov.formatters = [
   SimpleCov::Formatter::HTMLFormatter,
