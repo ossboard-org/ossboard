@@ -7,8 +7,6 @@ RSpec.describe Api::Controllers::Users::Show do
 
   subject { action.call(params) }
 
-  after { UserRepository.new.clear }
-
   context 'when params invalid' do
     let(:params) { Hash[] }
     it { expect(subject).to be_success }
