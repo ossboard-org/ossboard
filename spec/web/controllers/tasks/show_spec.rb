@@ -5,8 +5,6 @@ RSpec.describe Web::Controllers::Tasks::Show do
   let(:task) { Fabricate.create(:task, title: 'test') }
   let(:params) { { id: task.id } }
 
-  after { TaskRepository.new.clear }
-
   it { expect(action.call(params)).to be_success }
 
   describe 'expose' do

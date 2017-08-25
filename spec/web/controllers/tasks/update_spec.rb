@@ -8,8 +8,6 @@ RSpec.describe Web::Controllers::Tasks::Update do
   let(:action) { described_class.new }
   let(:params) { { id: task.id } }
 
-  after { repo.clear }
-
   context 'when user in not authenticated' do
     let(:params) { { id: task.id, task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test' }, 'rack.session' => session } }
 
@@ -82,8 +80,6 @@ RSpec.describe Web::Controllers::Tasks::Update do
           issue_url: 'github.com/issue/1'
         }
       end
-
-      after { UserRepository.new.clear }
 
       it 'sets error flash message' do
         action.call(params)

@@ -10,15 +10,12 @@ RSpec.describe Web::Controllers::Tasks::Index do
   describe 'expose' do
     describe '#tasks' do
       before do
-        repo.clear
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'done',        lang: 'ruby') }
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'closed',      lang: 'haskell') }
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'in progress', lang: 'unknown', repository_name: 'ossboard') }
         3.times { |i| Fabricate.create(:task, title: "title ##{i}", approved: true, status: 'moderation',  lang: 'elixir') }
         action.call(params)
       end
-
-      after { repo.clear }
 
       it 'returns all tasks' do
         expect(action.tasks).to all(be_a(Task))

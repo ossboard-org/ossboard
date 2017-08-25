@@ -4,8 +4,6 @@ RSpec.describe Web::Controllers::Main::Index do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 
-  after { TaskRepository.new.clear }
-
   it { expect(action.call(params)).to be_success }
 
   describe 'with last modified cache' do

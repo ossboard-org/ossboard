@@ -5,8 +5,6 @@ RSpec.describe Web::Controllers::Tasks::Create do
   let(:repo) { TaskRepository.new }
   let(:session) { { current_user: User.new(id: 1, login: 'test') } }
 
-  after { repo.clear }
-
   describe 'when user in not authenticated' do
     let(:params) { { task: { title: 'test', md_body: 'This is *bongos*, indeed.', lang: 'test', complexity: 'easy' } } }
 
@@ -32,8 +30,6 @@ RSpec.describe Web::Controllers::Tasks::Create do
         issue_url: 'github.com/issue/1'
       }
     end
-
-    after { UserRepository.new.clear }
 
     it 'sets error flash message' do
       action.call(params)
