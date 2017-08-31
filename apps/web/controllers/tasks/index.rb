@@ -9,6 +9,7 @@ module Web::Controllers::Tasks
 
   private
 
+    # TODO: replace to service object
     def search_params
       for_moderation? ?
         with_language(user_id: current_user.id, approved: nil) :

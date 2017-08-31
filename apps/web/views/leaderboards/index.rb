@@ -7,6 +7,7 @@ module Web::Views::Leaderboards
     end
 
     # TODO: specs
+    # TODO: replace to model
     def developers
       users.sort do |first, second|
         second.points.first&.developer <=> first.points.first&.developer
