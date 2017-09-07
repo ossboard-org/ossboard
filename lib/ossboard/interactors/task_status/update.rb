@@ -1,4 +1,3 @@
-# TODO: add hanami interactor and try to understand bug
 module Interactors
   module TaskStatus
     class Update
