@@ -2,10 +2,6 @@ module Web::Views::Leaderboards
   class Index
     include Web::View
 
-    def users
-      @users ||= UserRepository.new.all_with_points_and_tasks
-    end
-
     # TODO: specs
     # TODO: replace to model
     def developers
