@@ -76,6 +76,17 @@ RSpec.describe Web::Controllers::TaskStatus::Update do
       end
     end
 
+    context 'when username is invalid' do
+      let(:username) { '!nv@l1d d@ta {><}' }
+
+      it 'does nothig' do
+        action.call(params)
+        updated_task = repo.find(task.id)
+        expect(updated_task.status).to eq 'assigned'
+        expect(updated_task.assignee_username).to eq 'nvl1d dta '
+      end
+    end
+
     context 'when username is set' do
       let(:username) { 'davydovanton' }
 
