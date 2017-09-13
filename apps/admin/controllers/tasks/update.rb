@@ -28,6 +28,7 @@ module Admin::Controllers::Tasks
         redirect_to routes.task_path(result.task.id)
       else
         self.status = 422
+        redirect_to routes.edit_task_path(result.task.id)
       end
     end
   end
