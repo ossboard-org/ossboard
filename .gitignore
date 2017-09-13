@@ -9,3 +9,4 @@
 npm-debug.log
 .env.development
 .env.test
+.byebug_history
