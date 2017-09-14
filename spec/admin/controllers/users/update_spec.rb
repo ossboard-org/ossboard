@@ -25,7 +25,9 @@ RSpec.describe Admin::Controllers::Users::Update do
   describe 'when params invalid' do
     let(:params) { { id: user.id, 'rack.session' => session  } }
 
-    it { expect(action.call(params)).to have_http_status(422) }
+    it 'redirects to an edit path' do
+      expect(action.call(params)).to redirect_to("/admin/users/#{user.id}/edit")
+    end
 
     it 'does not create new task' do
       action.call(params)

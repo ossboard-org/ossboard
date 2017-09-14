@@ -25,7 +25,6 @@ module Admin::Controllers::Users
         repo.update(@user.id, user_params)
         redirect_to routes.user_path(user.id)
       else
-        self.status = 422
         redirect_to routes.edit_user_path(user.id)
       end
     end
