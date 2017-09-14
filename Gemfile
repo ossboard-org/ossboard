@@ -47,8 +47,6 @@ group :development do
 
   gem 'rack-mini-profiler', require: false
   gem 'memory_profiler'
-  gem 'pry'
-  gem 'pry-byebug'
 end
 
 group :test, :development do
@@ -58,6 +56,8 @@ group :test, :development do
   gem 'danger-rubocop'
   gem 'danger-simplecov_json'
   gem 'database_cleaner'
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :test do
