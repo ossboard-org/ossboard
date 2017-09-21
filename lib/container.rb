@@ -7,7 +7,7 @@ require 'dry-auto_inject'
   analytic_reporter url_shortener points_calculator task_tweeter
 ].each { |file| require_relative "ossboard/services/#{file}" }
 
-require_relative 'ossboard/matchers/git_host_matcher'
+require_relative 'tasks/matchers/git_host'
 
 %w[github_issue_requester gitlab_issue_requester].each { |file| require_relative "tasks/services/#{file}" }
 
@@ -24,8 +24,6 @@ class Container
     register('url_shortener', Services::UrlShortener.new)
   end
 
-  register('matchers.git_host', Matchers::GitHost::Matcher)
-
   namespace('tasks') do
     namespace('interactors') do
       register('create') { Tasks::Interactors::Create }
@@ -37,6 +35,8 @@ class Container
       register('github_issue_requester', Tasks::Services::GithubIssueRequester.new)
       register('gitlab_issue_requester', Tasks::Services::GitlabIssueRequester.new)
     end
+
+    register('matchers.git_host', Tasks::Matchers::GitHost::Matcher)
   end
 end
 
