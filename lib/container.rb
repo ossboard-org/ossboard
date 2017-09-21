@@ -16,18 +16,24 @@ class Container
   register('core.markdown', Core::Markdown.new)
   register('core.http_request', Core::HttpRequest.new)
 
-  register('services.analytic_reporter', Services::AnalyticReporter.new)
-  register('services.github_issue_requester', Services::GithubIssueRequester.new)
-  register('services.gitlab_issue_requester', Services::GitlabIssueRequester.new)
-  register('services.points_calculator', Services::PointsCalculator.new)
-  register('services.task_twitter', Services::TaskTwitter.new)
-  register('services.url_shortener', Services::UrlShortener.new)
+  namespace('services') do
+    register('analytic_reporter', Services::AnalyticReporter.new)
+    register('github_issue_requester', Services::GithubIssueRequester.new)
+    register('gitlab_issue_requester', Services::GitlabIssueRequester.new)
+    register('points_calculator', Services::PointsCalculator.new)
+    register('task_twitter', Services::TaskTwitter.new)
+    register('url_shortener', Services::UrlShortener.new)
+  end
 
   register('matchers.git_host', Matchers::GitHost::Matcher)
 
-  register('tasks.interactors.create') { Tasks::Interactors::Create }
-  register('tasks.interactors.update_status') { Tasks::Interactors::UpdateStatus }
-  register('tasks.interactors.issue_information') { Tasks::Interactors::IssueInformation }
+  namespace('tasks') do
+    namespace('interactors') do
+      register('create') { Tasks::Interactors::Create }
+      register('update_status') { Tasks::Interactors::UpdateStatus }
+      register('issue_information') { Tasks::Interactors::IssueInformation }
+    end
+  end
 end
 
 Import = Dry::AutoInject(Container)
