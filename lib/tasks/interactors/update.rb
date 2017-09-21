@@ -1,7 +1,7 @@
 require 'hanami/interactor'
 
-module Interactors
-  module Tasks
+module Tasks
+  module Interactors
     class Update
       include Hanami::Interactor
       include Import['core.markdown']

@@ -1,7 +1,7 @@
 module Admin::Controllers::Tasks
   class Update
     include Admin::Action
-    include Import['core.markdown']
+    include Import['core.markdown', 'tasks.interactors.update']
     expose :task
 
     params do
@@ -21,7 +21,7 @@ module Admin::Controllers::Tasks
     end
 
     def call(params)
-      result = Interactors::Tasks::Update.new(params.valid?, params).call
+      result = update.new(params.valid?, params).call
       @task = result.task
 
       if result.successful?

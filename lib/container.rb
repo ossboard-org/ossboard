@@ -27,6 +27,7 @@ class Container
   namespace('tasks') do
     namespace('interactors') do
       register('create') { Tasks::Interactors::Create }
+      register('update') { Tasks::Interactors::Update }
       register('update_status') { Tasks::Interactors::UpdateStatus }
       register('issue_information') { Tasks::Interactors::IssueInformation }
     end
