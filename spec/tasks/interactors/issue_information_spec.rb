@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Interactors::Issues::Show do
+RSpec.describe Tasks::Interactors::IssueInformation do
   let(:is_valid) { true }
   let(:params) { { issue_url: Faker::Internet.url } }
-  let(:interactor) { Interactors::Issues::Show }
+  let(:interactor) { described_class }
 
   describe '#initialize' do
     it 'instantiates class with 2 arguments' do

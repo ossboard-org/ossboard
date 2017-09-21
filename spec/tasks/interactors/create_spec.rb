@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Interactors::Tasks::Create do
+RSpec.describe Tasks::Interactors::Create do
   let(:is_valid) { true }
   let(:params) { { task: { status: 'in_progress', md_body: Faker::Hipster.sentence, title: 'test_task_title' } } }
-  let(:interactor) { Interactors::Tasks::Create }
+  let(:interactor) { described_class }
 
   describe '#initialize' do
     it 'instantiates class with 2 arguments' do
