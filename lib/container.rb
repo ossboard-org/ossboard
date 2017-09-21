@@ -24,6 +24,8 @@ class Container
   register('services.url_shortener', Services::UrlShortener.new)
 
   register('matchers.git_host', Matchers::GitHost::Matcher)
+
+  register('tasks.interactors.create') { Tasks::Interactors::Create }
 end
 
 Import = Dry::AutoInject(Container)
