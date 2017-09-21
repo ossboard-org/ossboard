@@ -56,6 +56,8 @@ group :test, :development do
   gem 'danger-rubocop'
   gem 'danger-simplecov_json'
   gem 'database_cleaner'
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :test do

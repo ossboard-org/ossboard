@@ -21,24 +21,14 @@ module Admin::Controllers::Tasks
     end
 
     def call(params)
-      @task = repo.find(params[:id])
+      result = Interactors::Tasks::Update.new(params.valid?, params).call
+      @task = result.task
 
-      # TODO: To operation
-      if @task && params.valid?
-        task_params = params[:task]
-        task_params[:body] = markdown.parse(task_params[:md_body])
-
-        repo.update(@task.id, task_params)
-        redirect_to routes.task_path(task.id)
+      if result.successful?
+        redirect_to routes.task_path(result.task.id)
       else
-        self.status = 422
+        redirect_to routes.edit_task_path(result.task.id)
       end
-    end
-
-  private
-
-    def repo
-      @repo ||= TaskRepository.new
     end
   end
 end

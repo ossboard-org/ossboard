@@ -28,10 +28,14 @@ module Tasks
 
       def task_params
         if @params[:status] == Task::VALID_STATUSES[:assigned]
-          { status: @params[:status], assignee_username: @params[:assignee_username] }
+          { status: @params[:status], assignee_username: assignee_username }
         else
           { status: @params[:status] }
         end
+      end
+
+      def assignee_username
+        @params[:assignee_username].gsub(/[^\w\s]/, '')
       end
 
     end
