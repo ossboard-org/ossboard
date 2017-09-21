@@ -4,11 +4,12 @@ require 'dry-auto_inject'
 %w[markdown http_request].each { |file| require_relative "ossboard/core/#{file}" }
 
 %w[
-  analytic_reporter github_issue_requester url_shortener
-  gitlab_issue_requester points_calculator task_tweeter
+  analytic_reporter url_shortener points_calculator task_tweeter
 ].each { |file| require_relative "ossboard/services/#{file}" }
 
 require_relative 'ossboard/matchers/git_host_matcher'
+
+%w[github_issue_requester gitlab_issue_requester].each { |file| require_relative "tasks/services/#{file}" }
 
 class Container
   extend Dry::Container::Mixin
@@ -18,8 +19,6 @@ class Container
 
   namespace('services') do
     register('analytic_reporter', Services::AnalyticReporter.new)
-    register('github_issue_requester', Services::GithubIssueRequester.new)
-    register('gitlab_issue_requester', Services::GitlabIssueRequester.new)
     register('points_calculator', Services::PointsCalculator.new)
     register('task_twitter', Services::TaskTwitter.new)
     register('url_shortener', Services::UrlShortener.new)
@@ -32,6 +31,11 @@ class Container
       register('create') { Tasks::Interactors::Create }
       register('update_status') { Tasks::Interactors::UpdateStatus }
       register('issue_information') { Tasks::Interactors::IssueInformation }
+    end
+
+    namespace('services') do
+      register('github_issue_requester', Tasks::Services::GithubIssueRequester.new)
+      register('gitlab_issue_requester', Tasks::Services::GitlabIssueRequester.new)
     end
   end
 end
