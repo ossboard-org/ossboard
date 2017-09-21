@@ -1,8 +1,8 @@
 require 'hanami/interactor'
 
-module Interactors
-  module Issues
-    class Show
+module Tasks
+  module Interactors
+    class IssueInformation
       include Hanami::Interactor
 
       expose :response

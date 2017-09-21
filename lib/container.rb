@@ -27,6 +27,7 @@ class Container
 
   register('tasks.interactors.create') { Tasks::Interactors::Create }
   register('tasks.interactors.update_status') { Tasks::Interactors::UpdateStatus }
+  register('tasks.interactors.issue_information') { Tasks::Interactors::IssueInformation }
 end
 
 Import = Dry::AutoInject(Container)
