@@ -26,6 +26,7 @@ class Container
   register('matchers.git_host', Matchers::GitHost::Matcher)
 
   register('tasks.interactors.create') { Tasks::Interactors::Create }
+  register('tasks.interactors.update_status') { Tasks::Interactors::UpdateStatus }
 end
 
 Import = Dry::AutoInject(Container)

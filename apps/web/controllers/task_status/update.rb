@@ -1,9 +1,10 @@
 module Web::Controllers::TaskStatus
   class Update
     include Web::Action
+    include Import['tasks.interactors.update_status']
 
     def call(params)
-      Interactors::TaskStatus::Update.new(current_user, params).call
+      update_status.new(current_user, params).call
       redirect_to routes.task_path(params[:id])
     end
 
