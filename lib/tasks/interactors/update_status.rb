@@ -1,6 +1,6 @@
-module Interactors
-  module TaskStatus
-    class Update
+module Tasks
+  module Interactors
+    class UpdateStatus
       def initialize(current_user, params)
         @current_user = current_user
         @params = params

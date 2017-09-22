@@ -1,6 +1,8 @@
 module Web::Controllers::Tasks
   class Create
     include Web::Action
+    include Import['tasks.interactors.create']
+
     expose :task
 
     params do
@@ -18,7 +20,7 @@ module Web::Controllers::Tasks
 
     def call(params)
 			return unless authenticated?
-      result = Interactors::Tasks::Create.new(params.valid?, params).call
+      result = create.new(params.valid?, params).call
 
       if result.successful?
         flash[:info] = INFO_MESSAGE

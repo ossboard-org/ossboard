@@ -1,8 +1,8 @@
 require 'hanami/interactor'
 
-module Interactors
-  module Issues
-    class Show
+module Tasks
+  module Interactors
+    class IssueInformation
       include Hanami::Interactor
 
       expose :response
@@ -27,9 +27,9 @@ module Interactors
       INVALID_URL_ERROR = { error: 'invalid url' }
 
       def match_host(issue_url)
-        Container['matchers.git_host'].(issue_url) do |m|
-          m.success(:github) { |issue_data| Container['services.github_issue_requester'].(issue_data) }
-          m.success(:gitlab) { |issue_data| Container['services.gitlab_issue_requester'].(issue_data) }
+        Container['tasks.matchers.git_host'].(issue_url) do |m|
+          m.success(:github) { |issue_data| Container['tasks.services.github_issue_requester'].(issue_data) }
+          m.success(:gitlab) { |issue_data| Container['tasks.services.gitlab_issue_requester'].(issue_data) }
           m.failure do
             error('invalid url')
             INVALID_URL_ERROR

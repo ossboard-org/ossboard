@@ -1,7 +1,7 @@
 require 'hanami/interactor'
 
-module Interactors
-  module Tasks
+module Tasks
+  module Interactors
     class Create
       include Hanami::Interactor
 

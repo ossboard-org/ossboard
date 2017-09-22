@@ -1,6 +1,6 @@
-RSpec.describe Services::GithubIssueRequester, :vcr do
+RSpec.describe Tasks::Services::GithubIssueRequester, :vcr do
   let(:params) { {} }
-  let(:service) { Services::GithubIssueRequester.new }
+  let(:service) { described_class.new }
 
   context 'when data is valid' do
     let(:params) { { org: 'ossboard-org', repo: 'ossboard', issue: '69' } }

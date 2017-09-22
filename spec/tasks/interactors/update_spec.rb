@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Interactors::Tasks::Update do
+RSpec.describe Tasks::Interactors::Update do
   let(:params_valid) { true }
   let(:current_user) { Fabricate.create(:user, login: 'davydovanton') }
   let(:task) { Fabricate.create(:task, user_id: current_user.id, status: 'in progress') }
@@ -8,7 +8,7 @@ RSpec.describe Interactors::Tasks::Update do
     { id: task.id, task: { title: 'new_title_for_task', body: Faker::Lorem.sentence,
                            md_body: Faker::Lorem.sentence } }
   end
-  let(:interactor) { Interactors::Tasks::Update }
+  let(:interactor) { described_class }
 
   describe '#initialize' do
     it 'instantiates class with 2 arguments' do

@@ -1,6 +1,6 @@
-RSpec.describe Services::GitlabIssueRequester, :vcr do
+RSpec.describe Tasks::Services::GitlabIssueRequester, :vcr do
   let(:params) { { org: 'gitlab-org', repo: 'gitlab-ce', issue: '28059' } }
-  let(:service) { Services::GitlabIssueRequester.new }
+  let(:service) { described_class.new }
 
   context 'when data is valid' do
     it 'returns gitlab issue data' do
