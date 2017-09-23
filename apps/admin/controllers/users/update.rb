@@ -15,24 +15,14 @@ module Admin::Controllers::Users
     end
 
     def call(params)
-      # TODO: To operation
-      @user = repo.find(params[:id])
+      result = Interactors::Users::Update.new(params.valid?, params).call
+      @user = result.user
 
-      if @user && params.valid?
-        user_params = params[:user]
-        user_params[:admin] = user_params[:admin] == '1'
-
-        repo.update(@user.id, user_params)
+      if result.successful?
         redirect_to routes.user_path(user.id)
       else
         redirect_to routes.edit_user_path(user.id)
       end
-    end
-
-  private
-
-    def repo
-      @repo ||= UserRepository.new
     end
   end
 end
