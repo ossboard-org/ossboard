@@ -39,7 +39,7 @@ class TaskRepository < Hanami::Repository
   private
 
   def all_from_date_request(from, status = nil)
-    request = tasks.where("created_at > '#{from}'").where("created_at < '#{Time.now}'")
+    request = tasks.where { (created_at > from) & (created_at < Time.now) }
     request = request.where(status: status) if status
     request
   end

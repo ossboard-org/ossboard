@@ -126,10 +126,10 @@ RSpec.describe TaskRepository do
   end
 
   describe '#all_from_date' do
-    before(:all) do
+    before do
       3.times do |i|
         random_days_count = i * 60 * 60 * 24
-        Timecop.freeze(Time.new(2016, 02, 20) - random_days_count) do
+        Timecop.freeze(Time.utc(2016, 02, 20) - random_days_count) do
           Fabricate.create(:task, status: 'done')
           Fabricate.create(:task, status: 'in progress')
           Fabricate.create(:task, status: 'closed')
@@ -140,35 +140,39 @@ RSpec.describe TaskRepository do
       Timecop.freeze(Time.now + (2 * 60 * 60 * 24)) { Fabricate.create(:task) }
     end
 
-    describe '#all_from_date_counted_by_status_and_day' do
-      before(:all) do
-        3.times do |i|
-          Timecop.freeze(Time.utc(2016, 02, 20 + i)) do
-            Fabricate.create(:task, status: 'done')
-            Fabricate.create(:task, status: 'in progress')
-            Fabricate.create(:task, status: 'closed')
-            Fabricate.create(:task, status: 'assigned')
-          end
-        end
-      end
-
-      let (:result) { repo.all_from_date_counted_by_status_and_day(Time.new(2016, 02, 20)) }
-
-      it { expect(result).to be_a(Hash) }
-      it { expect(result['done'].count).to eq 2 }
-      it { expect(result.dig('closed', Date.new(2016, 02, 22))).to eq 1 }
-    end
-
     let(:date) { Date.new(2016, 02, 18) }
 
     it 'returns array of tasks' do
       expect(repo.all_from_date(date)).to be_a(Array)
       expect(repo.all_from_date(date).count).to eq 8
     end
-    it { expect(repo.all_from_date(date, 'in progress').count).to eq 2 }
-    it { expect(repo.all_from_date(date, 'done').count).to eq 2 }
-    it { expect(repo.all_from_date(date, 'closed').count).to eq 2 }
-    it { expect(repo.all_from_date(date, 'assigned').count).to eq 2 }
+
+    it 'returns correct tasks for statuses' do
+      expect(repo.all_from_date(date, 'in progress').count).to eq 2
+      expect(repo.all_from_date(date, 'done').count).to eq 2
+      expect(repo.all_from_date(date, 'closed').count).to eq 2
+      expect(repo.all_from_date(date, 'assigned').count).to eq 2
+    end
+  end
+
+  describe '#all_from_date_counted_by_status_and_day' do
+    before do
+      (-2..2).each do |days_count|
+        Timecop.freeze(Time.utc(2016, 02, 20 + days_count)) do
+          Fabricate.create(:task, status: 'done')
+          Fabricate.create(:task, status: 'in progress')
+          Fabricate.create(:task, status: 'closed')
+          Fabricate.create(:task, status: 'assigned')
+        end
+      end
+    end
+
+    it 'returns correct tasks' do
+      result = repo.all_from_date_counted_by_status_and_day(Time.utc(2016, 02, 20))
+      expect(result).to be_a(Hash)
+      expect(result['done'].count).to eq 2
+      expect(result.dig('closed', Date.new(2016, 02, 22))).to eq 1
+    end
   end
 
   describe '#on_moderation_for_user' do

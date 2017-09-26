@@ -42,6 +42,6 @@ class UserRepository < Hanami::Repository
   private
 
   def all_from_date_request(from)
-    users.where("created_at > '#{from}'").where("created_at < '#{Time.now}'")
+    users.where { (created_at > from) & (created_at < Time.now) }
   end
 end
