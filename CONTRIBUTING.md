@@ -66,9 +66,12 @@ $ GITHUB_KEY='your github key' GITHUB_SECRET='your github secret' bundle exec ha
 
 ## Troubleshooting
 
-If you are using peer authentication and get password request, configure your pg_hba.conf to 
-trust local ipv4 connections:
+If you are using peer authentication and get password request,
+update `DATABASE_URL` in `.env.{ENVIRONMENT}` not to include host.
 
+Example:
 ```
-host    all             all             127.0.0.1/32            trust
+# .env.test
+
+DATABASE_URL="postgres:///ossboard_test"
 ```
