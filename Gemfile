@@ -12,6 +12,7 @@ gem 'letsencrypt_heroku', require: false
 # markdown
 gem 'kramdown', '1.13.1'
 gem 'rouge', '1.11.1'
+gem 'rinku'
 
 gem 'pg'
 gem 'redis', '~>3.2'
