@@ -30,7 +30,7 @@ class Task < Hanami::Entity
   VALID_LANGUAGES = {
     unknown: 'unknown',
     ruby: 'ruby',
-    js: 'javascript',
+    javascript: 'javascript',
     java: 'java',
     python: 'python',
     go: 'go',
