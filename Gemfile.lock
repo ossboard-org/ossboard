@@ -278,6 +278,7 @@ GEM
     rake (12.0.0)
     redis (3.3.3)
     relative_time (1.0.0)
+    rinku (2.0.3)
     rom (3.3.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.3)
@@ -435,6 +436,7 @@ DEPENDENCIES
   rake
   redis (~> 3.2)
   relative_time
+  rinku
   rouge (= 1.11.1)
   rspec
   rspec-hanami!
