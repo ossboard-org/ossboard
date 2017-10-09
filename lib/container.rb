@@ -1,27 +1,38 @@
 require 'dry-container'
 require 'dry-auto_inject'
 
-%w[markdown_parser http_request].each { |file| require_relative "ossboard/core/#{file}" }
-
-%w[
-  analytic_reporter url_shortener points_calculator task_tweeter
-].each { |file| require_relative "ossboard/services/#{file}" }
-
-require_relative 'tasks/matchers/git_host'
-
-%w[github_issue_requester gitlab_issue_requester].each { |file| require_relative "tasks/services/#{file}" }
-
 class Container
+  ContainerPath = File.dirname(__FILE__)
   extend Dry::Container::Mixin
 
-  register('core.markdown_parser', Core::MarkdownParser.new)
-  register('core.http_request', Core::HttpRequest.new)
+  namespace('core') do
+    register('markdown_parser') do
+      load_file! 'ossboard/core/markdown_parser'
+      Core::MarkdownParser.new
+    end
+    register('http_request') do
+      load_file! 'ossboard/core/http_request'
+      Core::HttpRequest.new
+    end
+  end
 
   namespace('services') do
-    register('analytic_reporter', Services::AnalyticReporter.new)
-    register('points_calculator', Services::PointsCalculator.new)
-    register('task_twitter', Services::TaskTwitter.new)
-    register('url_shortener', Services::UrlShortener.new)
+    register('analytic_reporter') do
+      load_file! 'ossboard/services/analytic_reporter'
+      Services::AnalyticReporter.new
+    end
+    register('points_calculator') do
+      load_file! 'ossboard/services/points_calculator'
+      Services::PointsCalculator.new
+    end
+    register('url_shortener') do
+      load_file! 'ossboard/services/url_shortener'
+      Services::UrlShortener.new
+    end
+    register('task_twitter') do
+      load_file! 'ossboard/services/task_tweeter'
+      Services::TaskTwitter.new
+    end
   end
 
   namespace('tasks') do
@@ -33,12 +44,25 @@ class Container
     end
 
     namespace('services') do
-      register('github_issue_requester', Tasks::Services::GithubIssueRequester.new)
-      register('gitlab_issue_requester', Tasks::Services::GitlabIssueRequester.new)
+      register('github_issue_requester') do
+        load_file! 'tasks/services/github_issue_requester'
+        Tasks::Services::GithubIssueRequester.new
+      end
+      register('gitlab_issue_requester') do
+        load_file! 'tasks/services/gitlab_issue_requester'
+        Tasks::Services::GitlabIssueRequester.new
+      end
     end
 
-    register('matchers.git_host', Tasks::Matchers::GitHost::Matcher)
+    register('matchers.git_host') do
+      load_file! 'tasks/matchers/git_host'
+      Tasks::Matchers::GitHost::Matcher
+    end
+  end
+
+  def self.load_file!(path)
+    container_path = File.dirname(__FILE__)
+    require_relative "#{container_path}/#{path}"
   end
 end
-
 Import = Dry::AutoInject(Container)

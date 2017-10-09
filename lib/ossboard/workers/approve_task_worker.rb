@@ -1,5 +1,6 @@
 class ApproveTaskWorker
   include Sidekiq::Worker
+  include Import['services.task_twitter']
 
   def perform(task_id)
     task = TaskRepository.new.find(task_id)
@@ -8,6 +9,6 @@ class ApproveTaskWorker
     return unless task
 
     Mailers::TaskApproved.deliver(user: user, task: task, format: :html)
-    Container['services.task_twitter'].call(task)
+    task_twitter.call(task)
   end
 end
