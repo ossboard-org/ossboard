@@ -1,7 +1,7 @@
 module Api::Controllers::MdPreview
   class Create
     include Api::Action
-    include Import['core.markdown']
+    include Import['core.markdown_parser']
 
     params do
       required(:md_text).filled(:str?)
@@ -16,7 +16,7 @@ module Api::Controllers::MdPreview
     EMPTY_STRING = ''.freeze
 
     def text
-      params.valid? ? markdown.parse(params[:md_text]) : EMPTY_STRING
+      params.valid? ? markdown_parser.call(params[:md_text]) : EMPTY_STRING
     end
   end
 end

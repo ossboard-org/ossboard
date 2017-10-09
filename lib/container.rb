@@ -1,7 +1,7 @@
 require 'dry-container'
 require 'dry-auto_inject'
 
-%w[markdown http_request].each { |file| require_relative "ossboard/core/#{file}" }
+%w[markdown_parser http_request].each { |file| require_relative "ossboard/core/#{file}" }
 
 %w[
   analytic_reporter url_shortener points_calculator task_tweeter
@@ -14,7 +14,7 @@ require_relative 'tasks/matchers/git_host'
 class Container
   extend Dry::Container::Mixin
 
-  register('core.markdown', Core::Markdown.new)
+  register('core.markdown_parser', Core::MarkdownParser.new)
   register('core.http_request', Core::HttpRequest.new)
 
   namespace('services') do

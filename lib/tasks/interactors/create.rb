@@ -26,7 +26,7 @@ module Tasks
 
       def task_params
         hash = @params[:task]
-        hash[:body] = Container['core.markdown'].parse(hash[:md_body])
+        hash[:body] = Container['core.markdown_parser'].call(hash[:md_body])
         hash[:status] = Task::VALID_STATUSES[:in_progress]
         hash[:approved] = nil
         hash

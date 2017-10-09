@@ -2,22 +2,24 @@ require 'kramdown'
 require 'rouge'
 require 'rinku'
 
-
 module Core
-  class Markdown
+  class MarkdownParser
     CHECKBOX_REGEXP_CHECKED = %r(\K\[(x|X)\]\s?(.*)<)
     CHECKBOX_REGEXP_UNCHECKED = %r(\K\[ \]\s?(.*)<)
 
-    def parse(text)
-      html = ::Kramdown::Document.new(text,
-                                      input: 'GFM',
-                                      coderay_csscoderay_css: :class,
-                                      syntax_highlighter: :rouge).to_html
+    def initialize(kramdown = ::Kramdown::Document)
+      @kramdown = kramdown
+    end
 
-      Rinku.auto_link(parse_checkbox(html))
+    def call(text)
+      Rinku.auto_link parse_checkbox parse text
     end
 
     private
+
+    def parse(text)
+      @kramdown.new(text, input: 'GFM', coderay_csscoderay_css: :class, syntax_highlighter: :rouge).to_html
+    end
 
     def parse_checkbox(html)
       html
