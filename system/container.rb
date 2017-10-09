@@ -10,7 +10,7 @@ class Container < Dry::System::Container
     register('analytic_reporter') { load! 'ossboard/services/analytic_reporter' }
     register('points_calculator') { load! 'ossboard/services/points_calculator' }
     register('url_shortener')     { load! 'ossboard/services/url_shortener' }
-    register('task_twitter')      { load! 'ossboard/services/task_tweeter' }
+    register('task_twitter')      { load! 'ossboard/services/task_twitter' }
   end
 
   namespace('tasks') do
@@ -39,9 +39,10 @@ class Container < Dry::System::Container
   def self.load!(path)
     load_file!(path)
 
-    klass = Inflecto.classify(path.sub!('ossboard/', ''))
-    Object.const_get(klass).new
+    path.sub!('ossboard/', '')
+
+    Object.const_get(Inflecto.classify(path)).new
   end
 
-  configure
+  configure 
 end
