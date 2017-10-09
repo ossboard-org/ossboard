@@ -1,5 +1,5 @@
 class BlokedUserRepository
-  include OSSBoard::Import[:redis]
+  include Import[:redis]
 
   def create(nickname)
     redis.with { |conn| conn.sadd(REDIS_LIST_KEY, nickname) }

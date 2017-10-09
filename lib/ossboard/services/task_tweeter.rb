@@ -1,7 +1,6 @@
 module Services
   class TaskTwitter
-    include OSSBoard::Import[:twitter]
-    include Import['services.url_shortener']
+    include Import[:twitter, 'services.url_shortener']
 
     def call(task)
       tweet text(task)
