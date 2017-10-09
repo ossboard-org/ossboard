@@ -8,7 +8,7 @@ RSpec.describe Admin::Views::Users::Index do
   let(:repo)      { UserRepository.new }
 
   before do
-    OSSBoard::Application[:redis].with(&:flushdb)
+    Container[:redis].with(&:flushdb)
   end
 
   describe 'users' do

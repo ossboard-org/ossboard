@@ -1,6 +1,6 @@
 module Services
   class TaskTwitter
-    include OSSBoard::Import[:twitter]
+    include Import[:twitter, 'services.url_shortener']
 
     def call(task)
       tweet text(task)
@@ -9,7 +9,7 @@ module Services
     private
 
     def link_to_task(task_id)
-      Container['services.url_shortener'].call("http://www.ossboard.org/tasks/#{task_id}")
+      url_shortener.call("http://www.ossboard.org/tasks/#{task_id}")
     end
 
     def text(task)

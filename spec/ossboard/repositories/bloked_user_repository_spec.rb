@@ -1,5 +1,5 @@
 RSpec.describe BlokedUserRepository do
-  before { OSSBoard::Application[:redis].with(&:flushdb) }
+  before { Container[:redis].with(&:flushdb) }
 
   let(:repo) { BlokedUserRepository.new }
 
