@@ -13,10 +13,16 @@ module Core
                                       input: 'GFM',
                                       coderay_csscoderay_css: :class,
                                       syntax_highlighter: :rouge).to_html
-      html = html.gsub(CHECKBOX_REGEXP_CHECKED, %(<input type="checkbox" checked disabled><label>\\2</label><))
-        .gsub(CHECKBOX_REGEXP_UNCHECKED, %(<input type="checkbox" disabled><label>\\1</label><))
 
-      Rinku.auto_link(html)
+      Rinku.auto_link(parse_checkbox(html))
+    end
+
+    private
+
+    def parse_checkbox(html)
+      html
+        .gsub(CHECKBOX_REGEXP_CHECKED, %(<input type="checkbox" checked disabled><label>\\2</label><))
+        .gsub(CHECKBOX_REGEXP_UNCHECKED, %(<input type="checkbox" disabled><label>\\1</label><))
     end
   end
 end
