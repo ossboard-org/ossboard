@@ -4,6 +4,7 @@ require_relative 'resolver'
 class Container < Dry::System::Container
   extend Dry::Hanami::Resolver
 
+  register_folder! 'ossboard/repositories'
   register_folder! 'ossboard/core'
   register_folder! 'ossboard/services'
 

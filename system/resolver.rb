@@ -1,10 +1,11 @@
 module Dry
   module Hanami
     module Resolver
+      PROJECT_NAME = ::Hanami::Environment.new.project_name
+
       def register_folder!(folder)
         all_files_in_folder(folder).each do |file|
-          env = ::Hanami::Environment.new
-          register_name = file.sub("#{env.project_name}/", '').gsub('/', '.')
+          register_name = file.sub("#{PROJECT_NAME}/", '').gsub('/', '.').gsub(/_repository\z/, '')
           register(register_name) { load! file }
         end
       end
@@ -19,7 +20,9 @@ module Dry
       def load!(path)
         load_file!(path)
 
-        right_path = path.sub('ossboard/', '')
+        unnecessary_part = path[/repositories/] ? "#{PROJECT_NAME}/repositories" : "#{PROJECT_NAME}/"
+        right_path = path.sub(unnecessary_part, '')
+
         Object.const_get(Inflecto.classify(right_path)).new
       end
 
