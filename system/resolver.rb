@@ -6,7 +6,7 @@ module Dry
       def register_folder!(folder)
         all_files_in_folder(folder).each do |file|
           register_name = file.sub("#{PROJECT_NAME}/", '').gsub('/', '.').gsub(/_repository\z/, '')
-          register(register_name) { load! file }
+          register(register_name, memoize: true) { load! file }
         end
       end
 
