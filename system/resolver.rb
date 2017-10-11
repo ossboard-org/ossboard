@@ -23,7 +23,7 @@ module Dry
         unnecessary_part = path[/repositories/] ? "#{PROJECT_NAME}/repositories" : "#{PROJECT_NAME}/"
         right_path = path.sub(unnecessary_part, '')
 
-        resolver.call(Object.const_get(Inflecto.classify(right_path)))
+        resolver.call(Object.const_get(Inflecto.classify(right_path).sub('Statu', 'Status')))
       end
 
       def load_file!(path)

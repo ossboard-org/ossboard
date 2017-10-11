@@ -4,25 +4,20 @@ require_relative 'resolver'
 class Container < Dry::System::Container
   extend Dry::Hanami::Resolver
 
+  #  Core
   register_folder! 'ossboard/repositories'
   register_folder! 'ossboard/core'
   register_folder! 'ossboard/services'
   # register_folder! 'ossboard/workers', resolver: ->(k) { k }
 
-  namespace('tasks') do
-    namespace('interactors') do
-      register('create')            { Tasks::Interactors::Create }
-      register('update')            { Tasks::Interactors::Update }
-      register('update_status')     { Tasks::Interactors::UpdateStatus }
-      register('issue_information') { Tasks::Interactors::IssueInformation }
-    end
-
-    register('matchers.git_host') do
-      load_file! 'tasks/matchers/git_host'
-      Tasks::Matchers::GitHost::Matcher
-    end
-  end
+  # Tasks domain
   register_folder! 'tasks/services'
+  register_folder! 'tasks/interactors', resolver: ->(k) { k }
+
+  register('tasks.matchers.git_host') do
+    load_file! 'tasks/matchers/git_host'
+    Tasks::Matchers::GitHost::Matcher
+  end
 
   configure
 end
