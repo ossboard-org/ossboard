@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/artemeff/newrelic-hanami.git
+  remote: https://github.com/artemeff/newrelic-hanami.git
   revision: ee11cf775500e1f1fa7d7136aab8e3882bcba60f
   specs:
     newrelic-hanami (0.4.3)
@@ -7,7 +7,7 @@ GIT
       newrelic_rpm
 
 GIT
-  remote: git://github.com/davydovanton/rspec-hanami.git
+  remote: https://github.com/davydovanton/rspec-hanami.git
   revision: e79a01fdcd7bb50acbee7a61b85dbff77b6e0c27
   specs:
     rspec-hanami (0.2.0)
@@ -15,7 +15,7 @@ GIT
       rspec
 
 GIT
-  remote: git://github.com/intridea/omniauth-github.git
+  remote: https://github.com/intridea/omniauth-github.git
   revision: 2e77639f32c35598e398c0c591ffab37691cdee7
   specs:
     omniauth-github (1.3.0)
@@ -23,7 +23,7 @@ GIT
       omniauth-oauth2 (>= 1.4.0, < 2.0)
 
 GIT
-  remote: git://github.com/samuelsimoes/hanami-webpack.git
+  remote: https://github.com/samuelsimoes/hanami-webpack.git
   revision: 1019f8efc217c9ae7290e220bf2c9e05ddd603ae
   specs:
     hanami-webpack (0.0.1)
