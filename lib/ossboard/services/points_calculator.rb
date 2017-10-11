@@ -1,10 +1,15 @@
 module Services
   class PointsCalculator
+    include Import[
+      point_repo: 'repositories.point',
+      task_repo: 'repositories.task'
+    ]
+
     def call(user)
       if point = user.points.first
-        PointRepository.new.update(point.id, points_params(user))
+        point_repo.update(point.id, points_params(user))
       else
-        PointRepository.new.create(points_params(user))
+        point_repo.create(points_params(user))
       end
     end
 
@@ -20,7 +25,7 @@ module Services
     def points_params(user)
       {
         maintainer: points(user.tasks),
-        developer:  points(TaskRepository.new.assigned_tasks_for_user(user)),
+        developer:  points(task_repo.assigned_tasks_for_user(user)),
         user_id:    user.id
       }
     end
