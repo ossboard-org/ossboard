@@ -3,7 +3,8 @@ module Dry
     module Resolver
       def register_folder!(folder)
         all_files_in_folder(folder).each do |file|
-          register_name = file.sub('ossboard/', '').gsub('/', '.')
+          env = ::Hanami::Environment.new
+          register_name = file.sub("#{env.project_name}/", '').gsub('/', '.')
           register(register_name) { load! file }
         end
       end
