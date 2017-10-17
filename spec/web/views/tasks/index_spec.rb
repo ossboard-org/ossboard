@@ -33,7 +33,7 @@ RSpec.describe Web::Views::Tasks::Index do
         'any' => 'language',
         'unknown' => 'unknown',
         'ruby' => 'ruby',
-        'js' => 'javascript',
+        'javascript' => 'javascript',
         'java' => 'java',
         'python' => 'python',
         'go' => 'go',
@@ -126,7 +126,7 @@ RSpec.describe Web::Views::Tasks::Index do
                 "<option value=\"any\" selected=\"selected\">language</option>\n" +
                 "<option value=\"unknown\">unknown</option>\n" +
                 "<option value=\"ruby\">ruby</option>\n" +
-                "<option value=\"js\">javascript</option>\n" +
+                "<option value=\"javascript\">javascript</option>\n" +
                 "<option value=\"java\">java</option>\n" +
                 "<option value=\"python\">python</option>\n" +
                 "<option value=\"go\">go</option>\n" +
@@ -150,7 +150,7 @@ RSpec.describe Web::Views::Tasks::Index do
                 "<option value=\"any\">language</option>\n" +
                 "<option value=\"unknown\" selected=\"selected\">unknown</option>\n" +
                 "<option value=\"ruby\">ruby</option>\n" +
-                "<option value=\"js\">javascript</option>\n" +
+                "<option value=\"javascript\">javascript</option>\n" +
                 "<option value=\"java\">java</option>\n" +
                 "<option value=\"python\">python</option>\n" +
                 "<option value=\"go\">go</option>\n" +

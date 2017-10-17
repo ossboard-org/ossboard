@@ -130,6 +130,22 @@ RSpec.describe Web::Controllers::Tasks::Index do
         end
       end
 
+      context 'when lang param is valid' do
+        before do
+          Task::VALID_LANGUAGES.keys.map.with_index do |lang_name, index|
+            Fabricate.create(:task, title: "title ##{index}", approved: true, status: 'done', lang: lang_name.to_s)
+          end
+        end
+
+        it 'returns all tasks with respective language' do
+          Task::VALID_LANGUAGES.keys.map(&:to_s).each do |lang_name|
+            action.call(lang: lang_name, status: 'done')
+            expect(action.tasks).to all(be_a(Task))
+            expect(action.tasks.map(&:lang)).to all(eq(lang_name))
+          end
+        end
+      end
+
       context 'when lang param is invalid and status is invalid' do
         let(:params) { { lang: 'test', status: 'test' } }
 
