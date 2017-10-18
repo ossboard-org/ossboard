@@ -6,8 +6,7 @@ RSpec.describe Admin::Controllers::Users::Destroy do
   let(:params)  { { id: 1, 'rack.session' => session, login: 'davydovanton' } }
 
   before do
-    OSSBoard::Application[:redis].with(&:flushdb)
-
+    Container[:redis].with(&:flushdb)
     Fabricate.create(:user, login: 'davydovanton')
   end
 

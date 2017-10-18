@@ -52,7 +52,8 @@ request; Questions, clarifications, and so on.
 1. register a new github OAuth application. You can do it [here](https://github.com/settings/applications/new). Set Authorization callback URL to http://127.0.0.1:2300/auth/github/callback
 2. register a new gitlab Personal Access Token. You can do it [here](https://gitlab.com/profile/personal_access_tokens).
 3. install http://phantomjs.org/download.html (you can check travisCI file for more information)
-4. run this commands:
+4. setup PostgreSQL referring to your OS manual or from [here](https://www.postgresql.org/download/)
+5. run these commands:
 
 ```
 $ bundle install
@@ -66,9 +67,12 @@ $ GITHUB_KEY='your github key' GITHUB_SECRET='your github secret' bundle exec ha
 
 ## Troubleshooting
 
-If you are using peer authentication and get password request, configure your pg_hba.conf to 
-trust local ipv4 connections:
+If you are using peer authentication and get password request,
+update `DATABASE_URL` in `.env.{ENVIRONMENT}` not to include host.
 
+Example:
 ```
-host    all             all             127.0.0.1/32            trust
+# .env.test
+
+DATABASE_URL="postgres:///ossboard_test"
 ```

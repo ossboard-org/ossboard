@@ -22,9 +22,9 @@ RSpec.describe Api::Controllers::MdPreview::Create do
   end
 
   context 'when md text has link without protocol' do
-    let(:params) { { md_text: 'Bingo-bongo! test google.com' } }
+    let(:params) { { md_text: 'Bingo-bongo! test http://google.com' } }
     it { expect(action.call(params)).to be_success }
-    it { expect(action.call(params).last).to eq ['{"text":"<p>Bingo-bongo! test <a href=\"google.com\">google.com</a></p>\n"}'] }
+    it { expect(action.call(params).last).to eq ['{"text":"<p>Bingo-bongo! test <a href=\"http://google.com\">http://google.com</a></p>\n"}'] }
   end
 
   context 'when md text has link with protocol' do

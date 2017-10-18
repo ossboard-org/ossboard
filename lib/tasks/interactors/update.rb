@@ -4,7 +4,6 @@ module Tasks
   module Interactors
     class Update
       include Hanami::Interactor
-      include Import['core.markdown']
 
       expose :task
 
@@ -29,7 +28,7 @@ module Tasks
       end
 
       def prepare_task_params
-        @params[:task][:body] = Core::Markdown.new().parse(@params[:task][:md_body])
+        @params[:task][:body] = Core::MarkdownParser.new.call(@params[:task][:md_body])
       end
     end
   end

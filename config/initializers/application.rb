@@ -1,1 +1,1 @@
-OSSBoard::Application.finalize!
+Container.finalize!

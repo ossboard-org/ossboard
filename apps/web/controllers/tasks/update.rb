@@ -1,7 +1,7 @@
 module Web::Controllers::Tasks
   class Update
     include Web::Action
-    include Import['core.markdown']
+    include Import['core.markdown_parser']
 
     expose :task
 
@@ -47,7 +47,7 @@ module Web::Controllers::Tasks
 
     def task_params(params)
       task_params = params[:task]
-      task_params[:body] = markdown.parse(task_params[:md_body])
+      task_params[:body] = markdown_parser.call(task_params[:md_body])
       task_params
     end
   end

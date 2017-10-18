@@ -1,7 +1,7 @@
 module Admin::Controllers::Tasks
   class Update
     include Admin::Action
-    include Import['core.markdown', 'tasks.interactors.update']
+    include Import['tasks.interactors.update']
     expose :task
 
     params do

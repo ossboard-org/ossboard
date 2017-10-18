@@ -1,5 +1,7 @@
 module Services
   class UrlShortener
+    include Import['core.http_request']
+
     def call(url)
       return url if Hanami.env?(:development)
       shorten_url(url)
@@ -8,7 +10,7 @@ module Services
     private
 
     def shorten_url(url)
-      response = Container['core.http_request'].post(SHORTENER_SERVICE_URL, format: 'simple', url: url)
+      response = http_request.post(SHORTENER_SERVICE_URL, format: 'simple', url: url)
       response.is_a?(Net::HTTPSuccess) ? response.body : url
     end
 

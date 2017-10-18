@@ -1,9 +1,9 @@
 require 'sidekiq-scheduler'
 
 Sidekiq.configure_server do |config|
-  config.redis = OSSBoard::Application[:redis]
+  config.redis = Container[:redis]
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = OSSBoard::Application[:redis]
+  config.redis = Container[:redis]
 end

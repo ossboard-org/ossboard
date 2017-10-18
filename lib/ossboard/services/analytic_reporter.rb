@@ -1,5 +1,6 @@
 module Services
   class AnalyticReporter
+    include Import['repositories.user', 'repositories.task']
     def call
       {
         labels: last_month_list.map(&:to_s),
@@ -20,7 +21,7 @@ module Services
     end
 
     def users_by_day_count
-      @users_by_day ||= UserRepository.new.count_all_from_date(ONE_MONTH_AGO)
+      @users_by_day ||= user.count_all_from_date(ONE_MONTH_AGO)
     end
 
     def closed_tasks_by_day_count
@@ -40,7 +41,7 @@ module Services
     end
 
     def tasks_by_status_and_day_count
-      @tasks_by_status_and_day_count ||= TaskRepository.new.all_from_date_counted_by_status_and_day(ONE_MONTH_AGO)
+      @tasks_by_status_and_day_count ||= task.all_from_date_counted_by_status_and_day(ONE_MONTH_AGO)
     end
 
     def last_month_list

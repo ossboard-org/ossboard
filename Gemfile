@@ -1,6 +1,11 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.4.1'
+
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
 
 gem 'rake'
 gem 'hanami',       '1.0.0'
@@ -12,6 +17,7 @@ gem 'letsencrypt_heroku', require: false
 # markdown
 gem 'kramdown', '1.13.1'
 gem 'rouge', '1.11.1'
+gem 'rinku'
 
 gem 'pg'
 gem 'redis', '~>3.2'
