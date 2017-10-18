@@ -1,6 +1,7 @@
 module Api::Controllers::Issue
   class Show
     include Api::Action
+    include Hanami::Serializer::Action
     include Import['tasks.interactors.issue_information']
 
     params do
@@ -9,8 +10,10 @@ module Api::Controllers::Issue
 
     def call(params)
       result = issue_information.new(params.valid?, params).call
-      self.status = 404 if result.failure?
-      self.body = JSON.generate(result.response)
+
+      status = result.failure? ? 404 : 200
+
+      send_json(result.response, status: status)
     end
   end
 end
