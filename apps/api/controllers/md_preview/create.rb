@@ -1,6 +1,7 @@
 module Api::Controllers::MdPreview
   class Create
     include Api::Action
+    include Hanami::Serializer::Action
     include Import['core.markdown']
 
     params do
@@ -8,7 +9,7 @@ module Api::Controllers::MdPreview
     end
 
     def call(params)
-      self.body = JSON.generate(text: text)
+      send_json(text: text)
     end
 
   private

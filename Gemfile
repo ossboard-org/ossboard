@@ -27,6 +27,8 @@ gem 'hanami-webpack', github: 'samuelsimoes/hanami-webpack'
 gem 'sass'
 gem 'relative_time'
 
+gem 'hanami-serializer', github: 'davydovanton/hanami-serializer'
+
 gem 'dry-matcher'
 gem 'dry-monads'
 gem 'dry-system'

@@ -7,6 +7,14 @@ GIT
       newrelic_rpm
 
 GIT
+  remote: git://github.com/davydovanton/hanami-serializer.git
+  revision: d5f10ef199a73fd5816c01d8dd66d13115e00212
+  specs:
+    hanami-serializer (0.1.0)
+      dry-struct
+      dry-types
+
+GIT
   remote: git://github.com/davydovanton/rspec-hanami.git
   revision: e79a01fdcd7bb50acbee7a61b85dbff77b6e0c27
   specs:
@@ -416,6 +424,7 @@ DEPENDENCIES
   hanami (= 1.0.0)
   hanami-fabrication
   hanami-model (= 1.0.0)
+  hanami-serializer!
   hanami-webpack!
   hiredis
   kramdown (= 1.13.1)
