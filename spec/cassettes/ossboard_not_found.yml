@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.ossboard.org/404
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Sat, 21 Oct 2017 18:01:29 GMT
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/octet-stream
+      Set-Cookie:
+      - rack.session=BAh7BkkiD3Nlc3Npb25faWQGOgZFVEkiRWI2YmQxOTk4NzdjN2U5M2UzODZh%0AMmVkNWQxNjZhNWU3ZWU5YjkxNTM4NDM3MDBjYTllYjQ4N2Y5NjM1YWVhOTQG%0AOwBG%0A--564391531bf19def5fb35586549eac5dc5c907bc;
+        path=/; HttpOnly; secure; SameSite=Lax
+      - rack.session=BAh7BkkiD3Nlc3Npb25faWQGOgZFVEkiRWI2YmQxOTk4NzdjN2U5M2UzODZh%0AMmVkNWQxNjZhNWU3ZWU5YjkxNTM4NDM3MDBjYTllYjQ4N2Y5NjM1YWVhOTQG%0AOwBG%0A--564391531bf19def5fb35586549eac5dc5c907bc;
+        path=/; HttpOnly; secure; SameSite=Lax
+      Clear-Site-Data:
+      - '"cache", "cookies", "storage", "executionContexts"'
+      Strict-Transport-Security:
+      - max-age=631138519
+      Referrer-Policy:
+      - origin-when-cross-origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - DENY
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '1386'
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: |
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>404 - Not Found</title>
+            <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+            <style>
+              * { margin: 0; padding: 0; }
+              body { font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; color: #333; background-color: #ecf0f1; font-size: 16px; line-height: 24px; }
+              h2, h3 { margin: -20px; line-height: 100px; text-align: center; }
+              .logo { text-align: center; margin-top: 0.5em; }
+              h2 { font-size: 30px; }
+              h3 { font-size: 20px; line-height: 22px; color: #666; }
+              hr { margin: 2em; color: #ecf0f1; }
+              ul { text-align: center; }
+              li { display: inline; margin: 2em; line-height: 24px; list-style-type: none; vertical-align: text-top;}
+              p { margin-top: 60px; text-align: center; }
+              a { color: #333; padding: 1px; }
+              code { padding: .2em; background-color: #ecf0f1 }
+              #container { margin: 20% auto; padding: 24px; width: 75%; background-color: #fff; border: 1px solid #999; border-width: 1px; }
+              #content { margin: 30px 10px 0 10px; }
+              #footer { margin:0 auto 0; padding: 12px; width:700px; line-height: 24px; font-size: 12px; }
+              .bold { font-weight: bold; }
+            </style>
+          </head>
+          <body>
+            <div id="container">
+              <h2>404 - Not Found</h2>
+            </div>
+          </body>
+        </html>
+    http_version: 
+  recorded_at: Sat, 21 Oct 2017 18:01:30 GMT
+recorded_with: VCR 3.0.3
