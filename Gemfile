@@ -8,8 +8,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rake'
-gem 'hanami',       '1.0.0'
-gem 'hanami-model', '1.0.0'
+gem 'hanami',       '1.1.0'
+gem 'hanami-model', '1.1.0'
 gem 'puma'
 gem 'letsencrypt_rack'
 gem 'letsencrypt_heroku', require: false
