@@ -12,7 +12,7 @@ module Auth::Controllers::Sessions
 
       unless account.user
         account_repo.update(account.id, user_id: user.id)
-        account.user = user
+        account = Account.new(**account.to_h, user: user)
       end
 
       set_session(account)
