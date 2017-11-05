@@ -34,9 +34,15 @@ RSpec.describe Web::Views::Tasks::Index do
         'unknown' => 'unknown',
         'ruby' => 'ruby',
         'javascript' => 'javascript',
+        'typescript' => 'typescript',
         'java' => 'java',
         'python' => 'python',
         'go' => 'go',
+        'csharp' => 'csharp',
+        'fsharp' => 'fsharp',
+ +      'vbnet' => 'vbnet',
+ +      'c' => 'c',
+ +      'cplusplus' => 'cplusplus',
         'haskell' => 'haskell',
         'lua' => 'lua',
         'scala' => 'scala',
@@ -127,9 +133,15 @@ RSpec.describe Web::Views::Tasks::Index do
                 "<option value=\"unknown\">unknown</option>\n" +
                 "<option value=\"ruby\">ruby</option>\n" +
                 "<option value=\"javascript\">javascript</option>\n" +
+                "<option value=\"typescript\">typescript</option>\n" +
                 "<option value=\"java\">java</option>\n" +
                 "<option value=\"python\">python</option>\n" +
                 "<option value=\"go\">go</option>\n" +
+                "<option value=\"csharp\">csharp</option>\n" +
+                "<option value=\"fsharp\">fsharp</option>\n" +
+                "<option value=\"vbnet\">vbnet</option>\n" +
+                "<option value=\"c\">c</option>\n" +
+                "<option value=\"cplusplus\">cplusplus</option>\n" +
                 "<option value=\"haskell\">haskell</option>\n" +
                 "<option value=\"lua\">lua</option>\n" +
                 "<option value=\"scala\">scala</option>\n" +
@@ -151,9 +163,15 @@ RSpec.describe Web::Views::Tasks::Index do
                 "<option value=\"unknown\" selected=\"selected\">unknown</option>\n" +
                 "<option value=\"ruby\">ruby</option>\n" +
                 "<option value=\"javascript\">javascript</option>\n" +
+                "<option value=\"typescript\">typescript</option>\n" +
                 "<option value=\"java\">java</option>\n" +
                 "<option value=\"python\">python</option>\n" +
                 "<option value=\"go\">go</option>\n" +
+                "<option value=\"csharp\">csharp</option>\n" +
+                "<option value=\"fsharp\">fsharp</option>\n" +
+                "<option value=\"vbnet\">vbnet</option>\n" +
+                "<option value=\"c\">c</option>\n" +
+                "<option value=\"cplusplus\">cplusplus</option>\n" +
                 "<option value=\"haskell\">haskell</option>\n" +
                 "<option value=\"lua\">lua</option>\n" +
                 "<option value=\"scala\">scala</option>\n" +
