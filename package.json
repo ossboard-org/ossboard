@@ -10,6 +10,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "live-server": "^1.1.0",
     "node-sass": "^3.13.0",
+    "phantomjs": "^2.1.7",
     "sass-loader": "^4.0.2",
     "script-loader": "^0.7.0",
     "stats-webpack-plugin": "*",
