@@ -1,0 +1,45 @@
+version: '3'
+services:
+  db:
+    image: 'postgres:9.6'
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+
+  app: &app
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: ossboard
+    command: bash
+    volumes:
+      - .:/app
+      - bundler-data:/usr/local/bundle/:cached
+      - bin-data:/usr/local/bin/:cached
+    environment:
+      - HANAMI_ENV=${HANAMI_ENV:-development}
+    depends_on:
+      - db
+      - redis
+
+  web:
+    <<: *app
+    command: bundle exec hanami server --host '0.0.0.0'
+    environment:
+      - WEB_CONCURRENCY=${WEB_CONCURRENCY:-0}
+      - WEBPACK_DEV_SERVER_PORT=3020
+      - WEBPACK_DEV_SERVER_HOST=0.0.0.0
+    ports:
+      - "2300:2300"
+      - "3020:3020"
+
+  job:
+    <<: *app
+    command: bundle exec sidekiq -C config/sidekiq.yml
+
+volumes:
+  bundler-data:
+  bin-data:
+  pg-data:

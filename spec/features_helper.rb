@@ -9,6 +9,7 @@ require 'capybara/poltergeist'
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: false)
+  Capybara::Poltergeist::Driver.new(app, phantomjs: (Hanami.root + 'node_modules/.bin/phantomjs').to_s)
 end
 
 Capybara.javascript_driver = :poltergeist
@@ -34,4 +35,4 @@ RSpec.configure do |config|
   config.around(:each, :js) { |ex| ex.run_with_retry retry: 3 }
 end
 
-`cd #{Hanami.root} && webpack`
+`cd #{Hanami.root} && ./node_modules/.bin/webpack`

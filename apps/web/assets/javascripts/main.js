@@ -44,54 +44,56 @@ Vue.component('modal', {
   template: '#modal-template',
 })
 
-new Vue({
-  el: '#import-modal',
-  data: {
-    showModal: false,
-    hasError: false,
-    errorMessage: '',
-    exportingIssue: false,
-    xhr: new XMLHttpRequest()
-  },
-  methods: {
-    exportIssue: function () {
-      var url = '/api/issue?issue_url=' + document.getElementById('issueUrl').value
-      var self = this
-      var default_complexity = 'easy'
-      this.exportingIssue = true
+if (document.getElementById("import-modal")) {
+  new Vue({
+    el: '#import-modal',
+    data: {
+      showModal: false,
+      hasError: false,
+      errorMessage: '',
+      exportingIssue: false,
+      xhr: new XMLHttpRequest()
+    },
+    methods: {
+      exportIssue: function () {
+        var url = '/api/issue?issue_url=' + document.getElementById('issueUrl').value
+        var self = this
+        var default_complexity = 'easy'
+        this.exportingIssue = true
 
-      this.xhr.open('GET', url, true);
-      this.xhr.setRequestHeader('Content-type', 'application/json');
-      this.xhr.setRequestHeader('Accept', 'application/json');
-      this.xhr.onload = function() {
-        var data = JSON.parse(self.xhr.response)
+        this.xhr.open('GET', url, true);
+        this.xhr.setRequestHeader('Content-type', 'application/json');
+        this.xhr.setRequestHeader('Accept', 'application/json');
+        this.xhr.onload = function() {
+          var data = JSON.parse(self.xhr.response)
 
-        if (self.xhr.status == 200) {
-          document.getElementById('task-title').value = data.title
-          document.getElementById('task-repository-name').value = data.repository_name
-          document.getElementById('task-issue-url').value = data.html_url
-          document.getElementById('task-md-body').value = data.body
-          document.getElementById('task-lang').value = data.lang
-          document.getElementById('task-complexity').value = data.complexity ? data.complexity : default_complexity
-          self.showModal = false
-        } else {
-          self.hasError = true;
-          self.errorMessage = 'Error: ' + data.error;
-        }
+          if (self.xhr.status == 200) {
+            document.getElementById('task-title').value = data.title
+            document.getElementById('task-repository-name').value = data.repository_name
+            document.getElementById('task-issue-url').value = data.html_url
+            document.getElementById('task-md-body').value = data.body
+            document.getElementById('task-lang').value = data.lang
+            document.getElementById('task-complexity').value = data.complexity ? data.complexity : default_complexity
+            self.showModal = false
+          } else {
+            self.hasError = true;
+            self.errorMessage = 'Error: ' + data.error;
+          }
 
-        self.exportingIssue = false
-      };
-      this.xhr.send();
-    }
-  },
-  created: function () {
-    document.addEventListener("keydown", (e) => {
-      if (this.showModal && e.keyCode == 27) {
-        this.showModal = false;
+          self.exportingIssue = false
+        };
+        this.xhr.send();
       }
-    });
-  }
-})
+    },
+    created: function () {
+      document.addEventListener("keydown", (e) => {
+        if (this.showModal && e.keyCode == 27) {
+          this.showModal = false;
+        }
+      });
+    }
+  })
+}
 
 var agreementChackbox = document.getElementById("agreement-checkbox"),
     submitButton = document.getElementById("new-task-submit"),
