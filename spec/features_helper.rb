@@ -9,7 +9,7 @@ require 'capybara/poltergeist'
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: false)
-  Capybara::Poltergeist::Driver.new(app, phantomjs: (Hanami.root + 'node_modules/.bin/phantomjs').to_s)
+  Capybara::Poltergeist::Driver.new(app, phantomjs: Phantomjs.path)
 end
 
 Capybara.javascript_driver = :poltergeist

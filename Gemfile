@@ -73,6 +73,7 @@ group :test do
   gem 'rspec-hanami', github: 'davydovanton/rspec-hanami'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
   gem 'simplecov', require: false
   gem 'simplecov-json', require: false
   gem 'vcr'
