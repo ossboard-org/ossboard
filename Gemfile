@@ -8,8 +8,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rake'
-gem 'hanami',       '1.2.0'
-gem 'hanami-model', '1.2.0'
+gem 'hanami',       '1.3.1'
+gem 'hanami-model', '1.3.1'
 gem 'puma'
 gem 'letsencrypt_rack'
 gem 'letsencrypt_heroku', require: false
@@ -49,7 +49,7 @@ gem 'twitter'
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading
-  gem 'shotgun'
+  # gem 'shotgun'
 
   # gem 'hanami-scaffold', github: 'davydovanton/hanami-scaffold'
 

@@ -252,7 +252,7 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
-        include Authentication # included in all the actions
+        include Authentication # included in all actions auth helpers
         before { session[:current_path] = @_env['REQUEST_PATH'] }
       end
 

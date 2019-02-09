@@ -21,9 +21,6 @@ end
 require 'fabrication'
 
 require_relative '../config/environment'
-require 'dry/container/stub'
-Container.enable_stubs!
-Container.stub(:redis, ConnectionPool.new(size: 10, timeout: 3) { MockRedis.new })
 
 Hanami.boot
 
