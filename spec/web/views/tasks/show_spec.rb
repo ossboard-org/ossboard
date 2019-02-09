@@ -138,9 +138,14 @@ RSpec.describe Web::Views::Tasks::Show do
         it { expect(subject).to eq "<div class=\"task__status\">\n" +
              "<form action=\"/task_status/1\" method=\"POST\">\n" +
              "<input type=\"hidden\" name=\"_method\" value=\"PATCH\">\n" +
-             "<input type=\"hidden\" name=\"status\" value=\"assigned\">\n" +
-             "<input name=\"assignee_username\" value=\"\" placeholder=\"Assignee @github\" class=\"assign-user\">\n" +
-             "<input class=\"btn btn-assign\" type=\"submit\" value=\"Assign\">\n" +
+             "<input type=\"hidden\" name=\"status\" value=\"done\">\n" +
+             "<input class=\"btn btn-done\" type=\"submit\" value=\"Completed\">\n" +
+             "</form>\n" +
+
+             "<form action=\"/task_status/1\" method=\"POST\">\n" +
+             "<input type=\"hidden\" name=\"_method\" value=\"PATCH\">\n" +
+             "<input type=\"hidden\" name=\"status\" value=\"closed\">\n" +
+             "<input class=\"btn btn-close\" type=\"submit\" value=\"Closed\">\n" +
              "</form>\n" +
              "</div>" }
       end

@@ -43,25 +43,16 @@ module Web::Views::Tasks
       return unless [Task::VALID_STATUSES[:in_progress], Task::VALID_STATUSES[:assigned]].include?(task.status)
 
       html.div(class: 'task__status') do
-        if task.status == Task::VALID_STATUSES[:in_progress]
-          form(action: "/task_status/#{task.id}", method: "POST") do
-            input(type: "hidden", name: "_method", value: "PATCH")
-            input(type: "hidden", name: "status",  value: "assigned")
-            input(name: "assignee_username", value: "", placeholder: 'Assignee @github', class: 'assign-user')
-            input(class: 'btn btn-assign', type: "submit", value: "Assign")
-          end
-        else
-          form(action: "/task_status/#{task.id}", method: "POST") do
-            input(type: "hidden", name: "_method", value: "PATCH")
-            input(type: "hidden", name: "status",  value: "done")
-            input(class: 'btn btn-done', type: "submit", value: "Completed")
-          end
+        form(action: "/task_status/#{task.id}", method: "POST") do
+          input(type: "hidden", name: "_method", value: "PATCH")
+          input(type: "hidden", name: "status",  value: "done")
+          input(class: 'btn btn-done', type: "submit", value: "Completed")
+        end
 
-          form(action: "/task_status/#{task.id}", method: "POST") do
-            input(type: "hidden", name: "_method", value: "PATCH")
-            input(type: "hidden", name: "status",  value: "closed")
-            input(class: 'btn btn-close', type: "submit", value: "Closed")
-          end
+        form(action: "/task_status/#{task.id}", method: "POST") do
+          input(type: "hidden", name: "_method", value: "PATCH")
+          input(type: "hidden", name: "status",  value: "closed")
+          input(class: 'btn btn-close', type: "submit", value: "Closed")
         end
       end
     end
