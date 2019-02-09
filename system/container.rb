@@ -11,6 +11,7 @@ class Container < Dry::System::Container
 
   # Tasks domain
   register_folder! 'tasks/services'
+  register_folder! 'tasks/operations'
   register_folder! 'tasks/interactors', resolver: ->(k) { k }
   register_folder! 'tasks/matchers', resolver: ->(k) { k::Matcher }
 
