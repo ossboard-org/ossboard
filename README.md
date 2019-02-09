@@ -17,4 +17,4 @@ Please, read [CONTRIBUTING.md](https://github.com/davydovanton/ossboard/blob/mas
 
 Released under MIT License.
 
-Copyright © 2016-2017 Anton Davydov.
+Copyright © 2016-2019 Anton Davydov.
