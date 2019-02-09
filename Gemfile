@@ -36,7 +36,7 @@ gem 'relative_time'
 gem 'hanami-serializer', github: 'davydovanton/hanami-serializer'
 
 gem 'dry-matcher'
-gem 'dry-monads'
+gem 'dry-monads', '~> 1.2.0'
 gem 'dry-system'
 
 gem 'sidekiq'

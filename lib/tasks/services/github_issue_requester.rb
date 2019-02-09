@@ -1,10 +1,19 @@
+require 'dry/monads/result'
+
 module Tasks
   module Services
     class GithubIssueRequester
+      include Dry::Monads::Result::Mixin
+
       def call(params)
-        issue_data(params)
-          .fmap { |data| data.merge(repo_data(params)) }
-          .value
+        result = issue_data(params).fmap { |data| data.merge(repo_data(params)) }
+
+        case result
+        when Success
+          result.value!
+        when Failure
+          result.failure
+        end
       end
 
     private
@@ -21,10 +30,10 @@ module Tasks
 
       def issue_data(params)
         response = get_response(GITHUB_ISSUE_API_URL % params)
-        return M.Left(ERROR_HASH) unless response.is_a?(Net::HTTPSuccess)
+        return Failure(ERROR_HASH) unless response.is_a?(Net::HTTPSuccess)
 
         data = JSON.parse(response.body)
-        M.Right(
+        Success(
           html_url: data['html_url'],
           title: data['title'],
           body: data['body'],
