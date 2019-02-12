@@ -1,6 +1,6 @@
 require_relative '../../../../apps/auth/controllers/sessions/destroy'
 
-RSpec.describe Auth::Controllers::Sessions::Destroy do
+RSpec.describe Auth::Controllers::Sessions::Destroy, type: :action do
   let(:action) { described_class.new }
   let(:params)  { { 'rack.session' => session } }
 

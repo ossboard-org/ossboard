@@ -1,6 +1,6 @@
 require_relative '../../../../apps/auth/controllers/sessions/failure'
 
-RSpec.describe Auth::Controllers::Sessions::Failure do
+RSpec.describe Auth::Controllers::Sessions::Failure, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 
