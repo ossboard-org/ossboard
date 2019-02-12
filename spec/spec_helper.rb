@@ -39,8 +39,10 @@ Sidekiq::Testing.fake!
 require_relative './support/rspec_every'
 
 RSpec.configure do |config|
-  config.include RSpec::Hanami::Matchers
+  config.include RSpec::Hanami::Matchers, type: :action
+  config.include RSpec::Hanami::Matchers, type: :view
   config.include RSpec::Hanami::RequestHelpers
+  config.include Dry::Monads::Result::Mixin
   # avoid conflicts with Capybara, see https://github.com/teamcapybara/capybara/issues/1396
   config.include RspecEvery
 

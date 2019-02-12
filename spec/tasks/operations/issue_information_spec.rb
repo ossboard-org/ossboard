@@ -15,7 +15,7 @@ RSpec.describe Tasks::Operations::IssueInformation do
   context 'when data has valid schema' do
     subject { operation.call(true, params) }
 
-    it { expect(subject.success?).to be true }
+    it { expect(subject).to be_success }
     it { expect(subject.value!).to eq(status: :ok) }
   end
 
