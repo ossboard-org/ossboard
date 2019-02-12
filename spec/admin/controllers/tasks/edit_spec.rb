@@ -1,6 +1,6 @@
 require_relative '../../../../apps/admin/controllers/tasks/edit'
 
-RSpec.describe Admin::Controllers::Tasks::Edit do
+RSpec.describe Admin::Controllers::Tasks::Edit, type: :action do
   let(:action) { described_class.new }
   let(:task) { Fabricate.create(:task, title: 'test') }
   let(:session) { { current_user: User.new(id: 1, admin: true) } }

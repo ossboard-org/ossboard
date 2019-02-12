@@ -1,6 +1,6 @@
 require_relative '../../../../apps/admin/controllers/unban_users/update'
 
-RSpec.describe Admin::Controllers::UnbanUsers::Update do
+RSpec.describe Admin::Controllers::UnbanUsers::Update, type: :action do
   let(:action) { described_class.new }
   let(:login) { 'davydovanton' }
   let(:session) { { current_user: User.new(id: 1, admin: true) } }

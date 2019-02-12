@@ -1,6 +1,6 @@
 require_relative '../../../../apps/admin/controllers/users/destroy'
 
-RSpec.describe Admin::Controllers::Users::Destroy do
+RSpec.describe Admin::Controllers::Users::Destroy, type: :action do
   let(:action) { described_class.new }
   let(:session) { { current_user: User.new(id: 1, admin: true) } }
   let(:params)  { { id: 1, 'rack.session' => session, login: 'davydovanton' } }

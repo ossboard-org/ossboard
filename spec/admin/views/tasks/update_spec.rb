@@ -1,6 +1,6 @@
 require_relative '../../../../apps/admin/views/tasks/update'
 
-RSpec.describe Admin::Views::Tasks::Update do
+RSpec.describe Admin::Views::Tasks::Update, type: :view do
   let(:task)      { Task.new(id: 1, title: 'test', body: 'test') }
   let(:exposures) { Hash[task: task] }
   let(:template)  { Hanami::View::Template.new('apps/admin/templates/tasks/edit.html.slim') }

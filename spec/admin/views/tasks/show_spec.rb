@@ -1,6 +1,6 @@
 require_relative '../../../../apps/admin/views/tasks/show'
 
-RSpec.describe Admin::Views::Tasks::Show do
+RSpec.describe Admin::Views::Tasks::Show, type: :view do
   let(:template)  { Hanami::View::Template.new('apps/admin/templates/tasks/show.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }

@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/controllers/tasks/create'
 
-RSpec.describe Admin::Controllers::Tasks::Update do
+RSpec.describe Admin::Controllers::Tasks::Update, type: :action do
   let(:action) { described_class.new }
   let(:repo) { TaskRepository.new }
   let(:task) { Fabricate.create(:task, title: 'old', body: nil) }

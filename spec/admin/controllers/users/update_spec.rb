@@ -1,6 +1,6 @@
 require_relative '../../../../apps/admin/controllers/users/update'
 
-RSpec.describe Admin::Controllers::Users::Update do
+RSpec.describe Admin::Controllers::Users::Update, type: :action do
   let(:action) { described_class.new }
   let(:repo)   { UserRepository.new }
   let(:user)   { Fabricate.create(:user, name: 'old') }

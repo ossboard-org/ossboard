@@ -1,6 +1,6 @@
 require_relative '../../../../apps/admin/views/users/update'
 
-RSpec.describe Admin::Views::Users::Update do
+RSpec.describe Admin::Views::Users::Update, type: :view do
   let(:exposures) { {} }
   let(:template)  { Hanami::View::Template.new('apps/admin/templates/users/edit.html.slim') }
   let(:view)      { described_class.new(template, exposures) }

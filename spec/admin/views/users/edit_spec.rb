@@ -1,6 +1,6 @@
 require_relative '../../../../apps/admin/views/users/edit'
 
-RSpec.describe Admin::Views::Users::Edit do
+RSpec.describe Admin::Views::Users::Edit, type: :view do
   let(:user) { User.new(id: 1) }
   let(:exposures) { { user: user } }
   let(:template)  { Hanami::View::Template.new('apps/admin/templates/users/edit.html.slim') }
