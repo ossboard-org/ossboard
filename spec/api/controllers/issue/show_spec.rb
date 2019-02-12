@@ -1,6 +1,6 @@
 require_relative '../../../../apps/api/controllers/issue/show'
 
-RSpec.describe Api::Controllers::Issue::Show, :vcr do
+RSpec.describe Api::Controllers::Issue::Show, :vcr, type: :action do
   include Dry::Monads::Result::Mixin
 
   let(:action) { described_class.new(operation: operation) }

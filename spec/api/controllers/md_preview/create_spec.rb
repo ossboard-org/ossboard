@@ -1,6 +1,6 @@
 require_relative '../../../../apps/api/controllers/md_preview/create'
 
-RSpec.describe Api::Controllers::MdPreview::Create do
+RSpec.describe Api::Controllers::MdPreview::Create, type: :action do
   let(:action) { described_class.new }
   let(:params) { {} }
 

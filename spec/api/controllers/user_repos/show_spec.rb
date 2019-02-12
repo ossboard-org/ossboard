@@ -1,6 +1,6 @@
 require_relative '../../../../apps/api/controllers/user_repos/show'
 
-RSpec.describe Api::Controllers::UserRepos::Show do
+RSpec.describe Api::Controllers::UserRepos::Show, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[login: 'davydovanton'] }
 

@@ -1,6 +1,6 @@
 require_relative '../../../../apps/api/controllers/analytics/index'
 
-RSpec.describe Api::Controllers::Analytics::Index do
+RSpec.describe Api::Controllers::Analytics::Index, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 

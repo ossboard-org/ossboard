@@ -1,6 +1,6 @@
 require_relative '../../../../apps/api/controllers/users/show'
 
-RSpec.describe Api::Controllers::Users::Show do
+RSpec.describe Api::Controllers::Users::Show, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[id: user.login] }
   let(:user) { Fabricate.create(:user, name: 'Anton', login: 'davydovanton') }
