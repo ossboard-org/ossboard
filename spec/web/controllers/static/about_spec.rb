@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/controllers/static/about'
 
-RSpec.describe Web::Controllers::Static::About do
+RSpec.describe Web::Controllers::Static::About, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 

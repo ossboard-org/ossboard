@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/controllers/users/show'
 
-RSpec.describe Web::Controllers::Users::Show do
+RSpec.describe Web::Controllers::Users::Show, type: :action do
   let(:action) { described_class.new }
   let(:user) { Fabricate.create(:user, name: 'Anton', login: 'davydovanton') }
   let(:params)  { { id: user.login } }

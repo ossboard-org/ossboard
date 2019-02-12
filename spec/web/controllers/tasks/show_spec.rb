@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/controllers/tasks/show'
 
-RSpec.describe Web::Controllers::Tasks::Show do
+RSpec.describe Web::Controllers::Tasks::Show, type: :action do
   let(:action) { described_class.new }
   let(:task) { Fabricate.create(:task, title: 'test') }
   let(:params) { { id: task.id } }

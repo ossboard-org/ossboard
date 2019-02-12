@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/views/leaderboards/index'
 
-RSpec.describe Web::Views::Leaderboards::Index do
+RSpec.describe Web::Views::Leaderboards::Index, type: :view do
   let(:exposures) { Hash[foo: 'bar'] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/leaderboards/index.html.slim') }
   let(:user)      { User.new(id: 1, admin: false, login: 'whatever', avatar_url: 'test_url') }

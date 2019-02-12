@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/controllers/tasks/create'
 
-RSpec.describe Web::Controllers::Tasks::Create do
+RSpec.describe Web::Controllers::Tasks::Create, type: :action do
   let(:action) { described_class.new }
   let(:repo) { TaskRepository.new }
   let(:session) { { current_user: User.new(id: 1, login: 'test') } }

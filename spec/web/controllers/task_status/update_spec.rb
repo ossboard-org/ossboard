@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/controllers/task_status/update'
 
-RSpec.describe Web::Controllers::TaskStatus::Update do
+RSpec.describe Web::Controllers::TaskStatus::Update, type: :action do
   let(:action) { described_class.new }
 
   let(:repo) { TaskRepository.new }

@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/controllers/tasks/index'
 
-RSpec.describe Web::Controllers::Tasks::Index do
+RSpec.describe Web::Controllers::Tasks::Index, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
   let(:repo) { TaskRepository.new }

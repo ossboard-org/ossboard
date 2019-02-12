@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/views/users/show'
 
-RSpec.describe Web::Views::Users::Show do
+RSpec.describe Web::Views::Users::Show, type: :view do
   let(:user)      { User.new(id: 1, login: 'anton') }
   let(:exposures) { Hash[user: user] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/users/show.html.slim') }

@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/controllers/tasks/new'
 
-RSpec.describe Web::Controllers::Tasks::New do
+RSpec.describe Web::Controllers::Tasks::New, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 

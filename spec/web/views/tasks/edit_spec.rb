@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/views/tasks/edit'
 
-RSpec.describe Web::Views::Tasks::Edit do
+RSpec.describe Web::Views::Tasks::Edit, type: :view do
   let(:exposures) { Hash[params: {}, task: Task.new(id: 1)] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/tasks/edit.html.slim') }
   let(:view)      { described_class.new(template, exposures) }

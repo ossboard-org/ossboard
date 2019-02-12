@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/controllers/tasks/update'
 
-RSpec.describe Web::Controllers::Tasks::Update do
+RSpec.describe Web::Controllers::Tasks::Update, type: :action do
   let(:repo) { TaskRepository.new }
   let(:task) { Fabricate.create(:task, title: 'title')}
   let(:user) { User.new(login: 'test') }

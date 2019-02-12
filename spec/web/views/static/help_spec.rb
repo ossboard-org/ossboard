@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/views/static/help'
 
-RSpec.describe Web::Views::Static::Help do
+RSpec.describe Web::Views::Static::Help, type: :view do
   let(:exposures) { Hash[foo: 'bar'] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/static/help.html.slim') }
   let(:view)      { described_class.new(template, exposures) }

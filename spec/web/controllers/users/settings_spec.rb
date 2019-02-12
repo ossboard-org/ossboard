@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/controllers/users/settings'
 
-RSpec.describe Web::Controllers::Users::Settings do
+RSpec.describe Web::Controllers::Users::Settings, type: :action do
   let(:action)  { described_class.new }
   let(:session) { { current_user: User.new } }
   let(:user)    { Fabricate.create(:user, name: 'Anton', login: 'davydovanton') }

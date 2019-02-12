@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/views/main/index'
 
-RSpec.describe Web::Views::Main::Index do
+RSpec.describe Web::Views::Main::Index, type: :view do
   let(:exposures) { Hash[foo: 'bar'] }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/main/index.html.slim') }
   let(:view)      { described_class.new(template, exposures) }

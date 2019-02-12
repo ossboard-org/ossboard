@@ -1,6 +1,6 @@
 require_relative '../../../../apps/web/views/tasks/show'
 
-RSpec.describe Web::Views::Tasks::Show do
+RSpec.describe Web::Views::Tasks::Show, type: :view do
   let(:exposures) { { current_user: current_user, author: user, task: task } }
   let(:template)  { Hanami::View::Template.new('apps/web/templates/tasks/show.html.slim') }
   let(:view)      { described_class.new(template, exposures) }
