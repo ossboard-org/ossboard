@@ -5,6 +5,8 @@ Simple way to connect developers and oss maintainers.
 
 For more information read [this](http://www.ossboard.org/about)
 
+[Release board](https://github.com/ossboard-org/ossboard/projects/1)
+
 ## Contributing
 
 Please, read [CONTRIBUTING.md](https://github.com/davydovanton/ossboard/blob/master/CONTRIBUTING.md) file.
