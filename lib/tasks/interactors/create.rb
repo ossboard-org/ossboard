@@ -14,7 +14,7 @@ module Tasks
 
       def call
         if @is_valid
-          task = TaskRepository.new.create(task_params)
+          @task = TaskRepository.new.create(task_params)
           NewTaskNotificationWorker.perform_async(task.id)
         else
           @task = Task.new(@params[:task])
