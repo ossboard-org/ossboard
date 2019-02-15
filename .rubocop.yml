@@ -1,0 +1,84 @@
+# We are using default RuboCop settings.
+# We are writing beautiful code.
+# There is nothing to change here. At least now.
+AllCops:
+  TargetRubyVersion: 2.4
+  DefaultFormatter: progress
+  DisplayCopNames: true
+  ExtraDetails: true
+  Exclude:
+    # Ignore vendored gems
+    - vendor/**/*
+    # Ignore node modules
+    - node_modules/**/*
+
+# Ignore block length in DSLs using blocks extensively
+Metrics/BlockLength:
+  Exclude:
+  # RSpec DSL
+  - '**/*_spec.rb'
+  - '**/spec/**/*.rb'
+  # Rake DSL
+  - '**/rakelib/**/*.rake'
+  # Rubygems DSL
+  - '**/*.gemspec'
+  # ROM::SQL & Sequel DSL
+  - db/**/*.rb
+  # hanami app configs
+  - apps/**/application.rb
+
+Metrics/MethodLength:
+  Exclude:
+  # Rake DSL
+  - rakelib/**/*.rake
+  - lib/rake/**.rb
+  # RSpec DSL
+  - '**/spec/**/*.rb'
+  - apps/web/views/**/*.rb
+
+Metrics/ModuleLength:
+  Exclude:
+  # RSpec DSL
+  - spec/**/*.rb
+
+Metrics/AbcSize:
+  Exclude:
+  # Rake DSL
+  - rakelib/**/*.rake
+  # RSpec DSL
+  - '**/spec/**/*.rb'
+
+Metrics/LineLength:
+  Max: 120
+
+Naming/FileName:
+  Exclude:
+  - apps/*-*/lib/*-*.rb
+
+Style/MixinGrouping:
+  Exclude:
+  # RSpec DSL
+  - '**/spec/**/*.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    # Ignore hanami apps
+    - apps/**/*
+
+Style/FormatStringToken:
+  Enabled: false
+
+Lint/Loop:
+  Enabled: false
+
+Lint/HandleExceptions:
+  Exclude:
+    - Rakefile
+
+Lint/UnusedBlockArgument:
+  Exclude:
+  # RSpec DSL
+  - '**/spec/**/*.rb'

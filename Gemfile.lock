@@ -470,6 +470,7 @@ DEPENDENCIES
   rspec
   rspec-hanami!
   rspec-retry
+  rubocop
   sass
   secure_headers
   sidekiq

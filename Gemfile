@@ -60,6 +60,9 @@ end
 group :test, :development do
   gem 'dotenv', '~> 2.0'
 
+  # style check
+  gem 'rubocop', require: false
+
   gem 'danger'
   gem 'danger-rubocop'
   gem 'danger-simplecov_json'
