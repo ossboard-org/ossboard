@@ -9,19 +9,18 @@ module Web::Controllers::Tasks
     expose :task, :params
 
     def call(params)
+      @params = params
+
       result = operation.call(id: params[:id])
 
       case result
       when Success
-        @task = TaskRepository.new.find(params[:id])
-        @author = UserRepository.new.find(@task.user_id) || User.new(name: 'Anonymous')
+        @task = result.value!
 
-        unless current_user.can_edit_task?(@task)
+        unless current_user.can_edit_task?(result.value!)
           flash[:error] = "You doesn't have access for editing this task"
           redirect_to routes.task_path(params[:id])
         end
-
-        @params = params
       when Failure
         redirect_to(routes.tasks_path)
       end

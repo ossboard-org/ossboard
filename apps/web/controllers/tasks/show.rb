@@ -13,7 +13,7 @@ module Web::Controllers::Tasks
 
       case result
       when Success
-        @task = TaskRepository.new.find(params[:id])
+        @task = result.value!
         @author = UserRepository.new.find(@task.user_id) || User.new(name: 'Anonymous')
       when Failure
         redirect_to(routes.tasks_path)
