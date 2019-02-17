@@ -16,8 +16,11 @@ module Tasks
         return Failure('Unprocessable entity') unless params_valid
         return Failure('No task found') unless task_repo.find(params[:id])
 
-        params[:task][:body] = markdown_parser.call(params[:task][:md_body])
-        task_repo.update(params[:id], params[:task])
+        if params[:task][:md_body]
+          params[:task][:body] = markdown_parser.call(params[:task][:md_body])
+        end
+
+        Success(task_repo.update(params[:id], params[:task]))
       end
     end
   end

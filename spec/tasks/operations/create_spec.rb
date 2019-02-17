@@ -42,7 +42,7 @@ RSpec.describe Tasks::Operations::Create, type: :operation do
 
     it { expect{ subject }.to change(NewTaskNotificationWorker.jobs, :size).by(0) }
 
-    it 'calls repository with all fields' do
+    it 'does not call repository' do
       expect(task_repo).to_not receive(:create)
       subject
     end
