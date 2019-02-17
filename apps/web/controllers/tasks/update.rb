@@ -18,6 +18,7 @@ module Web::Controllers::Tasks
       end
     end
 
+    # TODO: move to operations
     def call(params)
       @task = repo.find(params[:id])
 

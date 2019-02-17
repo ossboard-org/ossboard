@@ -8,6 +8,7 @@ module Web::Controllers::Tasks
 
     expose :task, :author
 
+    # TODO: move author logic to tasks domain
     def call(params)
       result = operation.call(id: params[:id])
 

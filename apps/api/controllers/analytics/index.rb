@@ -4,6 +4,7 @@ module Api::Controllers::Analytics
     include Hanami::Serializer::Action
     include Import['services.analytic_reporter']
 
+    # TODO: move to operations
     def call(params)
       send_json(analytic_reporter.call)
     end

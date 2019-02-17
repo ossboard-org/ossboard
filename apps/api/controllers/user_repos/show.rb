@@ -7,6 +7,7 @@ module Api::Controllers::UserRepos
       required(:login).filled(:str?)
     end
 
+    # TODO: move to operations
     def call(params)
       if params.valid?
         self.body = repos_page

@@ -3,6 +3,7 @@ module Web::Controllers::TaskStatus
     include Web::Action
     include Import['tasks.interactors.update_status']
 
+    # TODO: move to operations
     def call(params)
       update_status.new(current_user, params).call
       redirect_to routes.task_path(params[:id])

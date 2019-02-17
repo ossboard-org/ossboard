@@ -8,6 +8,7 @@ module Api::Controllers::MdPreview
       required(:md_text).filled(:str?)
     end
 
+    # TODO: move to operations
     def call(params)
       send_json(text: text)
     end
