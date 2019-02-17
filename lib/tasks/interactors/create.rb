@@ -15,7 +15,7 @@ module Tasks
       def call
         if @is_valid
           @task = TaskRepository.new.create(task_params)
-          NewTaskNotificationWorker.perform_async(task.id)
+          NewTaskNotificationWorker.perform_async(@task.id)
         else
           @task = Task.new(@params[:task])
           error('invalid task attributes')
