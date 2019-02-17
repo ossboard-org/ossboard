@@ -54,4 +54,8 @@ class Task < Hanami::Entity
   def author
     UserRepository.new.find(user_id)
   end
+
+  def opened?
+    status == Task::VALID_STATUSES[:in_progress] || status == Task::VALID_STATUSES[:assigned]
+  end
 end
