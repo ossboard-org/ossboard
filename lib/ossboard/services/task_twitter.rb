@@ -26,6 +26,7 @@ module Services
     end
 
     # Keep extra 5 symbols for spaces and ...
+    # TODO: update length to 200
     TWEET_MAX_LENGTH = 135
   end
 end
